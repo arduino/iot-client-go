@@ -1,4 +1,4 @@
-module github.com/bcmi-labs/iot-api-client-go/iot
+module github.com/bcmi-labs/iot-api-client-go
 
 require (
     github.com/antihax/optional v0.0.0-20180406194304-ca021399b1a6
