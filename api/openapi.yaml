@@ -5,7 +5,7 @@ info:
   title: Iot API
   version: "2.0"
 servers:
-- url: http://api-dev.arduino.cc
+- url: http://api-dev.arduino.cc/iot
 paths:
   /v1/series/batch_query:
     post:

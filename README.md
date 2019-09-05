@@ -28,7 +28,7 @@ import "./iot"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api-dev.arduino.cc*
+All URIs are relative to *http://api-dev.arduino.cc/iot*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
