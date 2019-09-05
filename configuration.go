@@ -61,7 +61,7 @@ type Configuration struct {
 
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "http://api-dev.arduino.cc",
+		BasePath:      "http://api-dev.arduino.cc/iot",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "OpenAPI/0.0.1/go",
 	}
