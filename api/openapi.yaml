@@ -2857,7 +2857,7 @@ components:
         id: 3F1FKVRR
         meta:
           timestamp: 1458609066
-        status: "400"
+        status: 400
       properties:
         code:
           description: an application-specific error code, expressed as a string value.
@@ -2880,10 +2880,10 @@ components:
             timestamp: 1458609066
           type: object
         status:
-          description: the HTTP status code applicable to this problem, expressed
-            as a string value.
-          example: "400"
-          type: string
+          description: the HTTP status code applicable to this problem
+          example: 400
+          format: int64
+          type: integer
       title: 'Mediatype identifier: application/vnd.goa.error+json; view=default'
       type: object
     propertiesValue:
