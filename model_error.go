@@ -20,6 +20,6 @@ type ModelError struct {
 	Id string `json:"id,omitempty"`
 	// a meta object containing non-standard meta-information about the error.
 	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-	// the HTTP status code applicable to this problem, expressed as a string value.
-	Status string `json:"status,omitempty"`
+	// the HTTP status code applicable to this problem
+	Status int64 `json:"status,omitempty"`
 }
