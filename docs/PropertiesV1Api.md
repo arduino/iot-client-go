@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**PropertiesV1Create**](PropertiesV1Api.md#PropertiesV1Create) | **Put** /v1/things/{id}/properties | create properties_v1
 [**PropertiesV1Delete**](PropertiesV1Api.md#PropertiesV1Delete) | **Delete** /v1/things/{id}/properties/{pid} | delete properties_v1
 [**PropertiesV1List**](PropertiesV1Api.md#PropertiesV1List) | **Get** /v1/things/{id}/properties | list properties_v1
-[**PropertiesV1Publish**](PropertiesV1Api.md#PropertiesV1Publish) | **Put** /v1/things/{id}/properties/{pid}/publish | publish properties_v1
+[**PropertiesV1Send**](PropertiesV1Api.md#PropertiesV1Send) | **Put** /v1/things/{id}/properties/{pid}/send | send properties_v1
 [**PropertiesV1Show**](PropertiesV1Api.md#PropertiesV1Show) | **Get** /v1/things/{id}/properties/{pid} | show properties_v1
 [**PropertiesV1Update**](PropertiesV1Api.md#PropertiesV1Update) | **Post** /v1/things/{id}/properties/{pid} | update properties_v1
 
@@ -137,12 +137,12 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PropertiesV1Publish
+## PropertiesV1Send
 
-> PropertiesV1Publish(ctx, id, pid, propertyValue)
-publish properties_v1
+> PropertiesV1Send(ctx, id, pid, propertyStringValue)
+send properties_v1
 
-Publish a property value to MQTT
+Publish a property value to MQTT, as string
 
 ### Required Parameters
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the thing | 
 **pid** | **string**| The id of the property | 
-**propertyValue** | [**PropertyValue**](PropertyValue.md)| PropertyValuePayload describes a property value | 
+**propertyStringValue** | [**PropertyStringValue**](PropertyStringValue.md)| PropertyStringValuePayload describes a property value | 
 
 ### Return type
 

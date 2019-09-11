@@ -15,16 +15,20 @@ import (
 
 // ArduinoSeriesResponse media type (default view)
 type ArduinoSeriesResponse struct {
+	// Total number of values in the array 'values'
+	CountValues int64 `json:"count_values"`
 	// From date
 	FromDate time.Time `json:"from_date"`
 	// Resolution in seconds
 	Interval int64 `json:"interval"`
+	// If the response is different than 'ok'
+	Message string `json:"message,omitempty"`
 	// Query of for the data
 	Query string `json:"query"`
 	// Response version
 	RespVersion int64 `json:"resp_version"`
-	// Series information
-	Series []BatchQueryResponseSeriesMediaV1 `json:"series"`
+	// Max of values
+	SeriesLimit int64 `json:"series_limit,omitempty"`
 	// Status of the response
 	Status string `json:"status"`
 	// Timestamp in RFC3339
@@ -32,5 +36,5 @@ type ArduinoSeriesResponse struct {
 	// To date
 	ToDate time.Time `json:"to_date"`
 	// Values in Float
-	Values [][]float64 `json:"values"`
+	Values []float64 `json:"values"`
 }

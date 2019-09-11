@@ -12,6 +12,8 @@ package iot
 
 // ArduinoSeriesBatch media type (default view)
 type ArduinoSeriesBatch struct {
+	// Response version
+	RespVersion int64 `json:"resp_version"`
 	// Responses of the request
 	Responses []ArduinoSeriesResponse `json:"responses"`
 }

@@ -346,14 +346,14 @@ func (a *PropertiesV1ApiService) PropertiesV1List(ctx _context.Context, id strin
 }
 
 /*
-PropertiesV1ApiService publish properties_v1
-Publish a property value to MQTT
+PropertiesV1ApiService send properties_v1
+Publish a property value to MQTT, as string
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param pid The id of the property
- * @param propertyValue PropertyValuePayload describes a property value
+ * @param propertyStringValue PropertyStringValuePayload describes a property value
 */
-func (a *PropertiesV1ApiService) PropertiesV1Publish(ctx _context.Context, id string, pid string, propertyValue PropertyValue) (*_nethttp.Response, error) {
+func (a *PropertiesV1ApiService) PropertiesV1Send(ctx _context.Context, id string, pid string, propertyStringValue PropertyStringValue) (*_nethttp.Response, error) {
 	var (
 		localVarHttpMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -363,7 +363,7 @@ func (a *PropertiesV1ApiService) PropertiesV1Publish(ctx _context.Context, id st
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/v1/things/{id}/properties/{pid}/publish"
+	localVarPath := a.client.cfg.BasePath + "/v1/things/{id}/properties/{pid}/send"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", id)), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(fmt.Sprintf("%v", pid)), -1)
 
@@ -389,7 +389,7 @@ func (a *PropertiesV1ApiService) PropertiesV1Publish(ctx _context.Context, id st
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &propertyValue
+	localVarPostBody = &propertyStringValue
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
