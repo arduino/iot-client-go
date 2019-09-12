@@ -12,7 +12,7 @@ package iot
 import (
 	"time"
 )
-
+// ArduinoDevicev2propertyvaluesLastEvaluatedKey struct for ArduinoDevicev2propertyvaluesLastEvaluatedKey
 type ArduinoDevicev2propertyvaluesLastEvaluatedKey struct {
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	Id string `json:"id,omitempty"`
