@@ -22,10 +22,11 @@ var (
 	_ _context.Context
 )
 
+// SeriesV1ApiService SeriesV1Api service
 type SeriesV1ApiService service
 
 /*
-SeriesV1ApiService batch_query series_v1
+SeriesV1BatchQuery batch_query series_v1
 Returns the batch of time-series data
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param batchQueryRequestsMediaV1
@@ -33,7 +34,7 @@ Returns the batch of time-series data
 */
 func (a *SeriesV1ApiService) SeriesV1BatchQuery(ctx _context.Context, batchQueryRequestsMediaV1 BatchQueryRequestsMediaV1) (ArduinoSeriesBatch, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -49,92 +50,92 @@ func (a *SeriesV1ApiService) SeriesV1BatchQuery(ctx _context.Context, batchQuery
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/vnd.arduino.series.batch+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.batch+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
 	localVarPostBody = &batchQueryRequestsMediaV1
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHttpResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue, localVarHttpResponse, err
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarReturnValue, localVarHttpResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	if localVarHttpResponse.StatusCode >= 300 {
+	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHttpResponse.Status,
+			error: localVarHTTPResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 200 {
+		if localVarHTTPResponse.StatusCode == 200 {
 			var v ArduinoSeriesBatch
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHttpResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHttpResponse.StatusCode == 503 {
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
-		return localVarReturnValue, localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarReturnValue, localVarHttpResponse, nil
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 /*
-SeriesV1ApiService batch_query_raw series_v1
+SeriesV1BatchQueryRaw batch_query_raw series_v1
 Returns the batch of time-series data raw
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param batchQueryRawRequestsMediaV1
@@ -142,7 +143,7 @@ Returns the batch of time-series data raw
 */
 func (a *SeriesV1ApiService) SeriesV1BatchQueryRaw(ctx _context.Context, batchQueryRawRequestsMediaV1 BatchQueryRawRequestsMediaV1) (ArduinoSeriesRawBatch, *_nethttp.Response, error) {
 	var (
-		localVarHttpMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -158,86 +159,86 @@ func (a *SeriesV1ApiService) SeriesV1BatchQueryRaw(ctx _context.Context, batchQu
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/vnd.arduino.series.raw.batch+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.raw.batch+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
 	localVarPostBody = &batchQueryRawRequestsMediaV1
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHttpResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue, localVarHttpResponse, err
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarReturnValue, localVarHttpResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	if localVarHttpResponse.StatusCode >= 300 {
+	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHttpResponse.Status,
+			error: localVarHTTPResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 200 {
+		if localVarHTTPResponse.StatusCode == 200 {
 			var v ArduinoSeriesRawBatch
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHttpResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHttpResponse.StatusCode == 503 {
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
-		return localVarReturnValue, localVarHttpResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarReturnValue, localVarHttpResponse, nil
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

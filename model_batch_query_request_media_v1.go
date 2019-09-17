@@ -12,7 +12,7 @@ package iot
 import (
 	"time"
 )
-
+// BatchQueryRequestMediaV1 struct for BatchQueryRequestMediaV1
 type BatchQueryRequestMediaV1 struct {
 	// From timestamp
 	From time.Time `json:"from"`

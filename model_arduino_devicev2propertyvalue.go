@@ -12,8 +12,7 @@ package iot
 import (
 	"time"
 )
-
-// ArduinoDevicev2propertyvalue media type (default view)
+// ArduinoDevicev2propertyvalue ArduinoDevicev2propertyvalue media type (default view)
 type ArduinoDevicev2propertyvalue struct {
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	Value ArduinoDevicev2propertyvalueValue `json:"value,omitempty"`

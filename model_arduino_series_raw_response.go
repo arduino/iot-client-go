@@ -12,8 +12,7 @@ package iot
 import (
 	"time"
 )
-
-// ArduinoSeriesRawResponse media type (default view)
+// ArduinoSeriesRawResponse ArduinoSeriesRawResponse media type (default view)
 type ArduinoSeriesRawResponse struct {
 	// Total number of values in the array 'values'
 	CountValues int64 `json:"count_values"`
