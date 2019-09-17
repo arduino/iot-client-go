@@ -12,8 +12,7 @@ package iot
 import (
 	"time"
 )
-
-// ArduinoThing media type (default view)
+// ArduinoThing ArduinoThing media type (default view)
 type ArduinoThing struct {
 	// Creation date of the thing
 	CreatedAt time.Time `json:"created_at,omitempty"`
