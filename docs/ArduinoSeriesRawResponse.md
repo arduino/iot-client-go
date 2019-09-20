@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Status** | **string** | Status of the response | 
 **Times** | [**[]time.Time**](time.Time.md) | Timestamp in RFC3339 | 
 **ToDate** | [**time.Time**](time.Time.md) | To date | 
-**Values** | [**[]map[string]interface{}**](map[string]interface{}.md) | Values can be in Float, String, Bool, Object | 
+**Values** | [**[]interface{}**](interface{}.md) | Values can be in Float, String, Bool, Object | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -16,5 +16,5 @@ type PropertiesValue struct {
 	// The type of the property
 	Type string `json:"type"`
 	// The last value of the property
-	Value map[string]interface{} `json:"value"`
+	Value interface{} `json:"value"`
 }

@@ -36,5 +36,5 @@ type ArduinoSeriesRawResponse struct {
 	// To date
 	ToDate time.Time `json:"to_date"`
 	// Values can be in Float, String, Bool, Object
-	Values []map[string]interface{} `json:"values"`
+	Values []interface{} `json:"values"`
 }
