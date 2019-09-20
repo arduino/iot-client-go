@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DeletedAt** | [**time.Time**](time.Time.md) | Delete date of the property | [optional] 
 **Href** | **string** | The api reference of this property | 
 **Id** | **string** | The id of the property | 
-**LastValue** | [**map[string]interface{}**](map[string]interface{}.md) | Last value of this property | [optional] 
+**LastValue** | [**interface{}**](interface{}.md) | Last value of this property | [optional] 
 **MaxValue** | **float64** | Maximum value of this property | [optional] 
 **MinValue** | **float64** | Minimum value of this property | [optional] 
 **Name** | **string** | The friendly name of the property | 

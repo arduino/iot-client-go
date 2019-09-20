@@ -21,7 +21,7 @@ type ArduinoDevicev2 struct {
 	// The arn of the device
 	Id string `json:"id"`
 	// The metadata of the device
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
 	Name string `json:"name"`
 	// The serial uuid of the device
