@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/url"
 	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -57,6 +58,9 @@ func testAttachDeviceThing(t *testing.T, thingID, deviceID string) ArduinoThing 
 func TestMain(m *testing.M) {
 	// Check credentials
 	flag.Parse()
+	*clientID = strings.TrimSpace(*clientID)
+	*clientSecret = strings.TrimSpace(*clientSecret)
+
 	if *clientID == "" || *clientSecret == "" {
 		log.Fatalf("Invalid credentials, use -client-id -client-secret")
 	}
