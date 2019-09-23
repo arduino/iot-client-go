@@ -18,7 +18,7 @@ type ModelError struct {
 	// a unique identifier for this particular occurrence of the problem.
 	Id string `json:"id,omitempty"`
 	// a meta object containing non-standard meta-information about the error.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]interface{} `json:"meta,omitempty"`
 	// the HTTP status code applicable to this problem
 	Status int64 `json:"status,omitempty"`
 }

@@ -1,11 +1,11 @@
-# PropertyValue
+# ArduinoSeriesRawBatchLastvalue
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeviceId** | **string** | The device who send the property | [optional] 
-**Value** | [**interface{}**](interface{}.md) | The property value | 
+**Responses** | [**[]ArduinoSeriesRawLastValueResponse**](ArduinoSeriesRawLastValueResponse.md) | Responses of the request | 
+**Status** | **string** | Status of the response | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

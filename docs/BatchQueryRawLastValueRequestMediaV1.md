@@ -1,11 +1,11 @@
-# PropertyValue
+# BatchQueryRawLastValueRequestMediaV1
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeviceId** | **string** | The device who send the property | [optional] 
-**Value** | [**interface{}**](interface{}.md) | The property value | 
+**PropertyId** | **string** | Property id | 
+**ThingId** | **string** | Thing id | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
