@@ -59,7 +59,14 @@ func TestMain(m *testing.M) {
 	// Check credentials
 	flag.Parse()
 	*clientID = strings.TrimSpace(*clientID)
+	if *clientID == "" {
+		*clientID = os.Getenv("CLIENT_ID")
+	}
+
 	*clientSecret = strings.TrimSpace(*clientSecret)
+	if *clientSecret == "" {
+		*clientSecret = os.Getenv("CLIENT_SECRET")
+	}
 
 	if *clientID == "" || *clientSecret == "" {
 		log.Fatalf("Invalid credentials, use -client-id -client-secret")
