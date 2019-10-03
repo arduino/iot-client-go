@@ -15,7 +15,7 @@ additionalValues.Add("audience", "https://api.arduino.cc")
 config := cc.Config{
     ClientID:       clientID,
     ClientSecret:   clientSecret,
-    TokenURL:       "https://login.oniudra.cc/oauth/token",
+    TokenURL:       "https://login.arduino.cc/oauth/token",
     EndpointParams: additionalValues,
 }
 // Get the access token in exchange of client_id and client_secret

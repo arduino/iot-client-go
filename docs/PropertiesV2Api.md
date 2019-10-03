@@ -1,6 +1,6 @@
 # \PropertiesV2Api
 
-All URIs are relative to *http://api-dev.arduino.cc/iot*
+All URIs are relative to *http://api2.arduino.cc/iot*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
