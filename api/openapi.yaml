@@ -5,7 +5,7 @@ info:
   title: Iot API
   version: "2.0"
 servers:
-- url: http://api-dev.arduino.cc/iot
+- url: http://api2.arduino.cc/iot
 paths:
   /v2/devices:
     get:
@@ -3123,5 +3123,5 @@ components:
           scopes:
             iot:devices: Read and write my devices
             iot:things: Read and write my things
-          tokenUrl: https://login.oniudra.cc/oauth/token
+          tokenUrl: https://login.arduino.cc/oauth/token
       type: oauth2
