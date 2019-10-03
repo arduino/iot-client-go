@@ -5,24 +5,24 @@ import (
 	"log"
 	"net/url"
 
-	iot "github.com/bcmi-labs/iot-api-client-go"
+	iot "github.com/arduino/iot-client-go"
 	cc "golang.org/x/oauth2/clientcredentials"
 )
 
 var (
-	clientID     = "yr9Tb0P4qFOI3cziKizqUFZTrUvaeL47"
-	clientSecret = "D-P2atuyJEZpB64_vymSQQYr1MPMuZhhK0e1U3jgPGVLRBSMH5jhKaivyRybu_4I"
+	clientID     = "your_client_id"
+	clientSecret = "your_client_secret"
 )
 
 func main() {
 	// We need to pass the additional "audience" var to request an access token
 	additionalValues := url.Values{}
-	additionalValues.Add("audience", "https://api.arduino.cc")
+	additionalValues.Add("audience", "https://api2.arduino.cc/iot")
 	// Set up OAuth2 configuration
 	config := cc.Config{
 		ClientID:       clientID,
 		ClientSecret:   clientSecret,
-		TokenURL:       "https://login.oniudra.cc/oauth/token",
+		TokenURL:       "https://login.arduino.cc/oauth/token",
 		EndpointParams: additionalValues,
 	}
 	// Get the access token in exchange of client_id and client_secret
