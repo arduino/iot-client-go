@@ -11,6 +11,7 @@
 package iot
 import (
 	"time"
+	"time"
 )
 // ArduinoSeriesResponse ArduinoSeriesResponse media type (default view)
 type ArduinoSeriesResponse struct {
