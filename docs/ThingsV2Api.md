@@ -18,6 +18,7 @@ Method | HTTP request | Description
 ## ThingsV2Create
 
 > ArduinoThing ThingsV2Create(ctx, createThingsV2Payload, optional)
+
 create things_v2
 
 Creates a new thing associated to the user
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ## ThingsV2CreateSketch
 
 > ArduinoThing ThingsV2CreateSketch(ctx, id, thingSketch)
+
 createSketch things_v2
 
 Creates a new sketch thing associated to the thing
@@ -96,6 +98,7 @@ Name | Type | Description  | Notes
 ## ThingsV2Delete
 
 > ThingsV2Delete(ctx, id, optional)
+
 delete things_v2
 
 Removes a thing associated to the user
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ## ThingsV2DeleteSketch
 
 > ArduinoThing ThingsV2DeleteSketch(ctx, id)
+
 deleteSketch things_v2
 
 ### Required Parameters
@@ -171,6 +175,7 @@ Name | Type | Description  | Notes
 ## ThingsV2List
 
 > []ArduinoThing ThingsV2List(ctx, optional)
+
 list things_v2
 
 Returns the list of things associated to the user
@@ -215,6 +220,7 @@ Name | Type | Description  | Notes
 ## ThingsV2Show
 
 > ArduinoThing ThingsV2Show(ctx, id, optional)
+
 show things_v2
 
 Returns the thing requested by the user
@@ -259,6 +265,7 @@ Name | Type | Description  | Notes
 ## ThingsV2Update
 
 > ArduinoThing ThingsV2Update(ctx, id, thing, optional)
+
 update things_v2
 
 Updates a thing associated to the user
@@ -305,6 +312,7 @@ Name | Type | Description  | Notes
 ## ThingsV2UpdateSketch
 
 > ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId)
+
 updateSketch things_v2
 
 Update an existing thing sketch

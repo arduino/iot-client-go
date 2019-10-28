@@ -329,7 +329,6 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -541,7 +540,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -664,7 +662,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

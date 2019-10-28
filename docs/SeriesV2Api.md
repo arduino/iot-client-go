@@ -13,6 +13,7 @@ Method | HTTP request | Description
 ## SeriesV2BatchQuery
 
 > ArduinoSeriesBatch SeriesV2BatchQuery(ctx, batchQueryRequestsMediaV1)
+
 batch_query series_v2
 
 Returns the batch of time-series data
@@ -46,6 +47,7 @@ Name | Type | Description  | Notes
 ## SeriesV2BatchQueryRaw
 
 > ArduinoSeriesRawBatch SeriesV2BatchQueryRaw(ctx, batchQueryRawRequestsMediaV1)
+
 batch_query_raw series_v2
 
 Returns the batch of time-series data raw
@@ -79,6 +81,7 @@ Name | Type | Description  | Notes
 ## SeriesV2BatchQueryRawLastValue
 
 > ArduinoSeriesRawBatchLastvalue SeriesV2BatchQueryRawLastValue(ctx, batchLastValueRequestsMediaV1)
+
 batch_query_raw_last_value series_v2
 
 Returns the batch of time-series data raw
