@@ -110,7 +110,6 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -371,7 +370,6 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -459,7 +457,6 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -675,7 +672,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
