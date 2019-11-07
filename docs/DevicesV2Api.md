@@ -18,6 +18,7 @@ Method | HTTP request | Description
 ## DevicesV2Create
 
 > ArduinoDevicev2 DevicesV2Create(ctx, createDevicesV2Payload)
+
 create devices_v2
 
 Creates a new device associated to the user.
@@ -51,6 +52,7 @@ Name | Type | Description  | Notes
 ## DevicesV2Delete
 
 > DevicesV2Delete(ctx, id)
+
 delete devices_v2
 
 Removes a device associated to the user
@@ -84,6 +86,7 @@ Name | Type | Description  | Notes
 ## DevicesV2GetProperties
 
 > ArduinoDevicev2properties DevicesV2GetProperties(ctx, id, optional)
+
 getProperties devices_v2
 
 GET device properties
@@ -128,6 +131,7 @@ Name | Type | Description  | Notes
 ## DevicesV2List
 
 > []ArduinoDevicev2 DevicesV2List(ctx, optional)
+
 list devices_v2
 
 Returns the list of devices associated to the user
@@ -170,6 +174,7 @@ Name | Type | Description  | Notes
 ## DevicesV2Show
 
 > ArduinoDevicev2 DevicesV2Show(ctx, id)
+
 show devices_v2
 
 Returns the device requested by the user
@@ -203,6 +208,7 @@ Name | Type | Description  | Notes
 ## DevicesV2Timeseries
 
 > ArduinoDevicev2propertyvalues DevicesV2Timeseries(ctx, id, pid, optional)
+
 timeseries devices_v2
 
 GET device properties values in a range of time
@@ -250,6 +256,7 @@ Name | Type | Description  | Notes
 ## DevicesV2Update
 
 > ArduinoDevicev2 DevicesV2Update(ctx, id, devicev2)
+
 update devices_v2
 
 Updates a device associated to the user
@@ -284,6 +291,7 @@ Name | Type | Description  | Notes
 ## DevicesV2UpdateProperties
 
 > DevicesV2UpdateProperties(ctx, id, propertiesValues)
+
 updateProperties devices_v2
 
 Update device properties last values

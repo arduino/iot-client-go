@@ -117,7 +117,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx _context.Context, batchQuery
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -226,7 +225,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx _context.Context, batchQu
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -335,7 +333,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx _context.Context
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

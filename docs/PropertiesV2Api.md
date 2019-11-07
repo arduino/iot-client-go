@@ -16,6 +16,7 @@ Method | HTTP request | Description
 ## PropertiesV2Create
 
 > ArduinoProperty PropertiesV2Create(ctx, id, property)
+
 create properties_v2
 
 Creates a new property associated to a thing
@@ -50,6 +51,7 @@ Name | Type | Description  | Notes
 ## PropertiesV2Delete
 
 > PropertiesV2Delete(ctx, id, pid, optional)
+
 delete properties_v2
 
 Removes a property associated to a thing
@@ -96,6 +98,7 @@ Name | Type | Description  | Notes
 ## PropertiesV2List
 
 > []ArduinoProperty PropertiesV2List(ctx, id, optional)
+
 list properties_v2
 
 Returns the list of properties associated to the thing
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ## PropertiesV2Publish
 
 > PropertiesV2Publish(ctx, id, pid, propertyValue)
+
 publish properties_v2
 
 Publish a property value to MQTT
@@ -175,6 +179,7 @@ Name | Type | Description  | Notes
 ## PropertiesV2Show
 
 > ArduinoProperty PropertiesV2Show(ctx, id, pid, optional)
+
 show properties_v2
 
 Returns the property requested by the user
@@ -221,6 +226,7 @@ Name | Type | Description  | Notes
 ## PropertiesV2Update
 
 > ArduinoProperty PropertiesV2Update(ctx, id, pid, property)
+
 update properties_v2
 
 Updates a property associated to a thing
