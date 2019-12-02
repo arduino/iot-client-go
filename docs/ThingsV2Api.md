@@ -40,7 +40,7 @@ Optional parameters are passed through a pointer to a ThingsV2CreateOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
+ **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
 
 ### Return type
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -120,7 +120,7 @@ Optional parameters are passed through a pointer to a ThingsV2DeleteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, hard delete the thing | [default to false]
+ **force** | **optional.Bool**| If true, hard delete the thing | 
 
 ### Return type
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.thing+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -195,9 +195,11 @@ Optional parameters are passed through a pointer to a ThingsV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the things | [default to false]
+ **acrossUserIds** | **optional.Bool**| If true, returns all the things | 
  **deviceId** | **optional.String**| The id of the device you want to filter | 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | [default to false]
+ **ids** | [**optional.Interface of []string**](string.md)| Filter only the desired things | 
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | 
+ **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | 
 
 ### Return type
 
@@ -210,7 +212,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.thing+json; type=collection
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -242,7 +244,7 @@ Optional parameters are passed through a pointer to a ThingsV2ShowOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | [default to false]
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | 
 
 ### Return type
 
@@ -255,7 +257,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -289,7 +291,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
+ **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
 
 ### Return type
 
@@ -302,7 +304,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -311,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2UpdateSketch
 
-> ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId)
+> ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId, optional)
 
 updateSketch things_v2
 
@@ -325,6 +327,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the thing | 
 **sketchId** | **string**| The id of the sketch | 
+ **optional** | ***ThingsV2UpdateSketchOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ThingsV2UpdateSketchOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateSketch** | [**optional.Interface of UpdateSketch**](UpdateSketch.md)|  | 
 
 ### Return type
 
@@ -336,8 +350,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

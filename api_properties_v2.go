@@ -64,7 +64,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -184,7 +184,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -273,7 +273,7 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json; type=collection", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -381,7 +381,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -484,7 +484,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -594,7 +594,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

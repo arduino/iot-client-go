@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | [**time.Time**](time.Time.md) | Creation date of the device | [optional] 
+**Events** | [**[]ArduinoDevicev2SimpleProperties**](ArduinoDevicev2SimpleProperties.md) | ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view) | [optional] 
+**Fqbn** | **string** | The fully qualified board name | [optional] 
 **Href** | **string** | The api reference of this device | 
 **Id** | **string** | The arn of the device | 
 **Metadata** | [**map[string]interface{}**](interface{}.md) | The metadata of the device | [optional] 

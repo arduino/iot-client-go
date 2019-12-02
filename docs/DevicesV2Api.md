@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DevicesV2Create**](DevicesV2Api.md#DevicesV2Create) | **Put** /v2/devices | create devices_v2
 [**DevicesV2Delete**](DevicesV2Api.md#DevicesV2Delete) | **Delete** /v2/devices/{id} | delete devices_v2
+[**DevicesV2GetEvents**](DevicesV2Api.md#DevicesV2GetEvents) | **Get** /v2/devices/{id}/events | getEvents devices_v2
 [**DevicesV2GetProperties**](DevicesV2Api.md#DevicesV2GetProperties) | **Get** /v2/devices/{id}/properties | getProperties devices_v2
 [**DevicesV2List**](DevicesV2Api.md#DevicesV2List) | **Get** /v2/devices | list devices_v2
 [**DevicesV2Show**](DevicesV2Api.md#DevicesV2Show) | **Get** /v2/devices/{id} | show devices_v2
@@ -42,7 +43,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.arduino.devicev2+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -83,6 +84,52 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DevicesV2GetEvents
+
+> ArduinoDevicev2EventProperties DevicesV2GetEvents(ctx, id, optional)
+
+getEvents devices_v2
+
+GET device events
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string**| The id of the device | 
+ **optional** | ***DevicesV2GetEventsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2GetEventsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **optional.Int32**| The number of events to select | 
+ **start** | **optional.String**| The time at which to start selecting events | 
+
+### Return type
+
+[**ArduinoDevicev2EventProperties**](ArduinoDevicev2EventProperties.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DevicesV2GetProperties
 
 > ArduinoDevicev2properties DevicesV2GetProperties(ctx, id, optional)
@@ -108,7 +155,7 @@ Optional parameters are passed through a pointer to a DevicesV2GetPropertiesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | [default to false]
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | 
 
 ### Return type
 
@@ -121,7 +168,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.devicev2properties+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -151,7 +198,7 @@ Optional parameters are passed through a pointer to a DevicesV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the devices | [default to false]
+ **acrossUserIds** | **optional.Bool**| If true, returns all the devices | 
 
 ### Return type
 
@@ -164,7 +211,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.devicev2+json; type=collection
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -198,7 +245,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.devicev2+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -246,7 +293,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.devicev2propertyvalues+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -281,7 +328,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.arduino.devicev2+json, application/vnd.goa.error+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -11,6 +11,8 @@
 package iot
 // CreateDevicesV2Payload DeviceV2 describes a device.
 type CreateDevicesV2Payload struct {
+	// The fully qualified board name
+	Fqbn string `json:"fqbn,omitempty"`
 	// The UUID of the device
 	Id string `json:"id,omitempty"`
 	// The friendly name of the device

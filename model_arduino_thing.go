@@ -29,7 +29,7 @@ type ArduinoThing struct {
 	// ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view)
 	Properties []ArduinoProperty `json:"properties,omitempty"`
 	// The number of properties of the thing
-	PropertiesCount float64 `json:"properties_count,omitempty"`
+	PropertiesCount int64 `json:"properties_count,omitempty"`
 	// The id of the attached sketch
 	SketchId string `json:"sketch_id,omitempty"`
 	// Update date of the thing
