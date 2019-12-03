@@ -57,6 +57,7 @@ type Configuration struct {
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
+	Debug         bool              `json:"debug,omitempty"`
 	HTTPClient    *http.Client
 }
 
@@ -65,7 +66,8 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "http://api2.arduino.cc/iot",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI/1.0.0/go",
+		UserAgent:     "OpenAPI/1.1.0/go",
+		Debug:         false,
 	}
 	return cfg
 }

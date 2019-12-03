@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"strings"
 	"github.com/antihax/optional"
+	"reflect"
 )
 
 // Linger please
@@ -72,7 +73,7 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -182,7 +183,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -367,7 +368,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -424,7 +425,9 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 type ThingsV2ListOpts struct {
     AcrossUserIds optional.Bool
     DeviceId optional.String
+    Ids optional.Interface
     ShowDeleted optional.Bool
+    ShowProperties optional.Bool
 }
 
 /*
@@ -434,7 +437,9 @@ Returns the list of things associated to the user
  * @param optional nil or *ThingsV2ListOpts - Optional Parameters:
  * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the things
  * @param "DeviceId" (optional.String) -  The id of the device you want to filter
+ * @param "Ids" (optional.Interface of []string) -  Filter only the desired things
  * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted things
+ * @param "ShowProperties" (optional.Bool) -  If true, returns things with their properties, and last values
 @return []ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptionals *ThingsV2ListOpts) ([]ArduinoThing, *_nethttp.Response, error) {
@@ -460,8 +465,22 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("device_id", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.Ids.IsSet() {
+		t:=localVarOptionals.Ids.Value()
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
+	}
 	if localVarOptionals != nil && localVarOptionals.ShowDeleted.IsSet() {
 		localVarQueryParams.Add("show_deleted", parameterToString(localVarOptionals.ShowDeleted.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ShowProperties.IsSet() {
+		localVarQueryParams.Add("show_properties", parameterToString(localVarOptionals.ShowProperties.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -473,7 +492,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json; type=collection"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -571,7 +590,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -689,7 +708,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -763,15 +782,22 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ThingsV2UpdateSketchOpts Optional parameters for the method 'ThingsV2UpdateSketch'
+type ThingsV2UpdateSketchOpts struct {
+    UpdateSketch optional.Interface
+}
+
 /*
 ThingsV2UpdateSketch updateSketch things_v2
 Update an existing thing sketch
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param sketchId The id of the sketch
+ * @param optional nil or *ThingsV2UpdateSketchOpts - Optional Parameters:
+ * @param "UpdateSketch" (optional.Interface of UpdateSketch) - 
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id string, sketchId string) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id string, sketchId string, localVarOptionals *ThingsV2UpdateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -791,7 +817,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -800,13 +826,22 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.thing+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	if localVarOptionals != nil && localVarOptionals.UpdateSketch.IsSet() {
+		localVarOptionalUpdateSketch, localVarOptionalUpdateSketchok := localVarOptionals.UpdateSketch.Value().(UpdateSketch)
+		if !localVarOptionalUpdateSketchok {
+			return localVarReturnValue, nil, reportError("updateSketch should be UpdateSketch")
+		}
+		localVarPostBody = &localVarOptionalUpdateSketch
+	}
+
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

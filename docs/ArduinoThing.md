@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The id of the thing | 
 **Name** | **string** | The friendly name of the thing | 
 **Properties** | [**[]ArduinoProperty**](ArduinoProperty.md) | ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view) | [optional] 
-**PropertiesCount** | **float64** | The number of properties of the thing | [optional] 
+**PropertiesCount** | **int64** | The number of properties of the thing | [optional] 
 **SketchId** | **string** | The id of the attached sketch | [optional] 
 **UpdatedAt** | [**time.Time**](time.Time.md) | Update date of the thing | [optional] 
 **UserId** | **string** | The user id of the owner | 

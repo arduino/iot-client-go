@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Fqbn** | **string** | The fully qualified board name | [optional] 
 **Id** | **string** | The UUID of the device | [optional] 
 **Name** | **string** | The friendly name of the device | [optional] 
 **Serial** | **string** | The serial uuid of the device | [optional] 
