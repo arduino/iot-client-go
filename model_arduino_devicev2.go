@@ -16,6 +16,10 @@ import (
 type ArduinoDevicev2 struct {
 	// Creation date of the device
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view)
+	Events []ArduinoDevicev2SimpleProperties `json:"events,omitempty"`
+	// The fully qualified board name
+	Fqbn string `json:"fqbn,omitempty"`
 	// The api reference of this device
 	Href string `json:"href"`
 	// The arn of the device

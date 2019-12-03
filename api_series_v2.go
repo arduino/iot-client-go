@@ -59,7 +59,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx _context.Context, batchQuery
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.batch+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -167,7 +167,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx _context.Context, batchQu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.raw.batch+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -275,7 +275,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx _context.Context
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.raw.batch.lastvalue+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
