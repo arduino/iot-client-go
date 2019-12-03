@@ -286,7 +286,7 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyPayload.UpdateStrategy, property.UpdateStrategy, "Property update strategy was set correctly")
 
 	// Update sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2UpdateSketch(ctx, thing.Id, thing.SketchId)
+	thing, _, err = client.ThingsV2Api.ThingsV2UpdateSketch(ctx, thing.Id, thing.SketchId, nil)
 	assert.NoError(t, err, "No errors updating sketch")
 	assert.NotNil(t, thing.SketchId, "Sketch ID is not null")
 
