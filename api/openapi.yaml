@@ -3504,5 +3504,5 @@ components:
           scopes:
             iot:devices: Read and write my devices
             iot:things: Read and write my things
-          tokenUrl: https://login.arduino.cc/oauth/token
+          tokenUrl: https://api2.arduino.cc/iot/v1/clients/token
       type: oauth2
