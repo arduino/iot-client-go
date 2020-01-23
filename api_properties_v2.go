@@ -15,9 +15,9 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"fmt"
-	"strings"
+
 	"github.com/antihax/optional"
+	"strings"
 )
 
 // Linger please
@@ -48,7 +48,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -141,7 +141,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 
 // PropertiesV2DeleteOpts Optional parameters for the method 'PropertiesV2Delete'
 type PropertiesV2DeleteOpts struct {
-    Force optional.Bool
+	Force optional.Bool
 }
 
 /*
@@ -164,9 +164,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -231,7 +231,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 
 // PropertiesV2ListOpts Optional parameters for the method 'PropertiesV2List'
 type PropertiesV2ListOpts struct {
-    ShowDeleted optional.Bool
+	ShowDeleted optional.Bool
 }
 
 /*
@@ -255,7 +255,7 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -365,9 +365,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}/publish"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -441,7 +441,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 
 // PropertiesV2ShowOpts Optional parameters for the method 'PropertiesV2Show'
 type PropertiesV2ShowOpts struct {
-    ShowDeleted optional.Bool
+	ShowDeleted optional.Bool
 }
 
 /*
@@ -466,9 +466,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -580,9 +580,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -15,10 +15,10 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"fmt"
-	"strings"
+
 	"github.com/antihax/optional"
 	"reflect"
+	"strings"
 )
 
 // Linger please
@@ -31,7 +31,7 @@ type ThingsV2ApiService service
 
 // ThingsV2CreateOpts Optional parameters for the method 'ThingsV2Create'
 type ThingsV2CreateOpts struct {
-    Force optional.Bool
+	Force optional.Bool
 }
 
 /*
@@ -166,7 +166,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -258,7 +258,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 
 // ThingsV2DeleteOpts Optional parameters for the method 'ThingsV2Delete'
 type ThingsV2DeleteOpts struct {
-    Force optional.Bool
+	Force optional.Bool
 }
 
 /*
@@ -280,7 +280,7 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -351,7 +351,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -422,11 +422,11 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 
 // ThingsV2ListOpts Optional parameters for the method 'ThingsV2List'
 type ThingsV2ListOpts struct {
-    AcrossUserIds optional.Bool
-    DeviceId optional.String
-    Ids optional.Interface
-    ShowDeleted optional.Bool
-    ShowProperties optional.Bool
+	AcrossUserIds  optional.Bool
+	DeviceId       optional.String
+	Ids            optional.Interface
+	ShowDeleted    optional.Bool
+	ShowProperties optional.Bool
 }
 
 /*
@@ -464,7 +464,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 		localVarQueryParams.Add("device_id", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Ids.IsSet() {
-		t:=localVarOptionals.Ids.Value()
+		t := localVarOptionals.Ids.Value()
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
@@ -545,7 +545,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 
 // ThingsV2ShowOpts Optional parameters for the method 'ThingsV2Show'
 type ThingsV2ShowOpts struct {
-    ShowDeleted optional.Bool
+	ShowDeleted optional.Bool
 }
 
 /*
@@ -569,7 +569,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -662,7 +662,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 
 // ThingsV2UpdateOpts Optional parameters for the method 'ThingsV2Update'
 type ThingsV2UpdateOpts struct {
-    Force optional.Bool
+	Force optional.Bool
 }
 
 /*
@@ -687,7 +687,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -782,7 +782,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 
 // ThingsV2UpdateSketchOpts Optional parameters for the method 'ThingsV2UpdateSketch'
 type ThingsV2UpdateSketchOpts struct {
-    UpdateSketch optional.Interface
+	UpdateSketch optional.Interface
 }
 
 /*
@@ -792,7 +792,7 @@ Update an existing thing sketch
  * @param id The id of the thing
  * @param sketchId The id of the sketch
  * @param optional nil or *ThingsV2UpdateSketchOpts - Optional Parameters:
- * @param "UpdateSketch" (optional.Interface of UpdateSketch) - 
+ * @param "UpdateSketch" (optional.Interface of UpdateSketch) -
 @return ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id string, sketchId string, localVarOptionals *ThingsV2UpdateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
@@ -807,9 +807,9 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch/{sketchId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"sketchId"+"}", _neturl.QueryEscape(parameterToString(sketchId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sketchId"+"}", _neturl.QueryEscape(parameterToString(sketchId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
