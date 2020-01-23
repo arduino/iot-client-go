@@ -44,7 +44,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx _context.Context, batchQuery
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/series/batch_query"
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -152,7 +151,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx _context.Context, batchQu
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/series/batch_query_raw"
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -260,7 +258,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx _context.Context
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/series/batch_query_raw/lastvalue"
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
