@@ -15,9 +15,9 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"fmt"
-	"strings"
+
 	"github.com/antihax/optional"
+	"strings"
 )
 
 // Linger please
@@ -142,7 +142,7 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -194,8 +194,8 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 
 // DevicesV2GetEventsOpts Optional parameters for the method 'DevicesV2GetEvents'
 type DevicesV2GetEventsOpts struct {
-    Limit optional.Int32
-    Start optional.String
+	Limit optional.Int32
+	Start optional.String
 }
 
 /*
@@ -220,7 +220,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -306,7 +306,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 
 // DevicesV2GetPropertiesOpts Optional parameters for the method 'DevicesV2GetProperties'
 type DevicesV2GetPropertiesOpts struct {
-    ShowDeleted optional.Bool
+	ShowDeleted optional.Bool
 }
 
 /*
@@ -330,7 +330,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -404,7 +404,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 
 // DevicesV2ListOpts Optional parameters for the method 'DevicesV2List'
 type DevicesV2ListOpts struct {
-    AcrossUserIds optional.Bool
+	AcrossUserIds optional.Bool
 }
 
 /*
@@ -515,7 +515,7 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -585,8 +585,8 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 
 // DevicesV2TimeseriesOpts Optional parameters for the method 'DevicesV2Timeseries'
 type DevicesV2TimeseriesOpts struct {
-    Limit optional.Int32
-    Start optional.String
+	Limit optional.Int32
+	Start optional.String
 }
 
 /*
@@ -612,9 +612,9 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -709,7 +709,7 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -817,7 +817,7 @@ func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/devices/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
