@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -15,9 +15,8 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-
-	"github.com/antihax/optional"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -48,7 +47,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -94,16 +93,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v ArduinoProperty
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -124,6 +113,25 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -141,7 +149,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 
 // PropertiesV2DeleteOpts Optional parameters for the method 'PropertiesV2Delete'
 type PropertiesV2DeleteOpts struct {
-	Force optional.Bool
+    Force optional.Bool
 }
 
 /*
@@ -164,9 +172,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -223,6 +231,15 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -231,7 +248,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 
 // PropertiesV2ListOpts Optional parameters for the method 'PropertiesV2List'
 type PropertiesV2ListOpts struct {
-	ShowDeleted optional.Bool
+    ShowDeleted optional.Bool
 }
 
 /*
@@ -255,7 +272,7 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -302,16 +319,6 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []ArduinoProperty
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -323,6 +330,16 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -365,9 +382,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}/publish"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -433,6 +450,15 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -441,7 +467,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 
 // PropertiesV2ShowOpts Optional parameters for the method 'PropertiesV2Show'
 type PropertiesV2ShowOpts struct {
-	ShowDeleted optional.Bool
+    ShowDeleted optional.Bool
 }
 
 /*
@@ -466,9 +492,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -515,16 +541,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoProperty
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -536,6 +552,16 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -580,9 +606,9 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", _neturl.QueryEscape(parameterToString(pid, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -628,16 +654,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoProperty
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -659,6 +675,16 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

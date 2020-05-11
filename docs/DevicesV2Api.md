@@ -1,6 +1,6 @@
 # \DevicesV2Api
 
-All URIs are relative to *http://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc/iot*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -15,10 +15,9 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-
+	"strings"
 	"github.com/antihax/optional"
 	"reflect"
-	"strings"
 )
 
 // Linger please
@@ -31,7 +30,7 @@ type ThingsV2ApiService service
 
 // ThingsV2CreateOpts Optional parameters for the method 'ThingsV2Create'
 type ThingsV2CreateOpts struct {
-	Force optional.Bool
+    Force optional.Bool
 }
 
 /*
@@ -102,8 +101,8 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v ArduinoThing
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -123,6 +122,16 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -166,7 +175,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -212,16 +221,6 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v ArduinoThing
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -233,6 +232,16 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -258,7 +267,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 
 // ThingsV2DeleteOpts Optional parameters for the method 'ThingsV2Delete'
 type ThingsV2DeleteOpts struct {
-	Force optional.Bool
+    Force optional.Bool
 }
 
 /*
@@ -280,7 +289,7 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -299,7 +308,7 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -327,6 +336,25 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -351,7 +379,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -395,15 +423,14 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoThing
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -422,11 +449,11 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 
 // ThingsV2ListOpts Optional parameters for the method 'ThingsV2List'
 type ThingsV2ListOpts struct {
-	AcrossUserIds  optional.Bool
-	DeviceId       optional.String
-	Ids            optional.Interface
-	ShowDeleted    optional.Bool
-	ShowProperties optional.Bool
+    AcrossUserIds optional.Bool
+    DeviceId optional.String
+    Ids optional.Interface
+    ShowDeleted optional.Bool
+    ShowProperties optional.Bool
 }
 
 /*
@@ -464,7 +491,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 		localVarQueryParams.Add("device_id", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Ids.IsSet() {
-		t := localVarOptionals.Ids.Value()
+		t:=localVarOptionals.Ids.Value()
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
@@ -518,15 +545,14 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v []ArduinoThing
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -545,7 +571,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 
 // ThingsV2ShowOpts Optional parameters for the method 'ThingsV2Show'
 type ThingsV2ShowOpts struct {
-	ShowDeleted optional.Bool
+    ShowDeleted optional.Bool
 }
 
 /*
@@ -569,7 +595,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -616,16 +642,6 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoThing
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -662,7 +678,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 
 // ThingsV2UpdateOpts Optional parameters for the method 'ThingsV2Update'
 type ThingsV2UpdateOpts struct {
-	Force optional.Bool
+    Force optional.Bool
 }
 
 /*
@@ -687,7 +703,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -736,16 +752,6 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoThing
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -757,6 +763,16 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -782,7 +798,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 
 // ThingsV2UpdateSketchOpts Optional parameters for the method 'ThingsV2UpdateSketch'
 type ThingsV2UpdateSketchOpts struct {
-	UpdateSketch optional.Interface
+    UpdateSketch optional.Interface
 }
 
 /*
@@ -792,7 +808,7 @@ Update an existing thing sketch
  * @param id The id of the thing
  * @param sketchId The id of the sketch
  * @param optional nil or *ThingsV2UpdateSketchOpts - Optional Parameters:
- * @param "UpdateSketch" (optional.Interface of UpdateSketch) -
+ * @param "UpdateSketch" (optional.Interface of UpdateSketch) - 
 @return ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id string, sketchId string, localVarOptionals *ThingsV2UpdateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
@@ -807,9 +823,9 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/v2/things/{id}/sketch/{sketchId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(id, "")) , -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"sketchId"+"}", _neturl.QueryEscape(parameterToString(sketchId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sketchId"+"}", _neturl.QueryEscape(parameterToString(sketchId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -862,8 +878,18 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ArduinoThing
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -873,6 +899,16 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

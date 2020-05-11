@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -21,6 +21,8 @@ type Property struct {
 	Permission string `json:"permission"`
 	// If true, data will persist into a timeseries database
 	Persist bool `json:"persist,omitempty"`
+	// The integer id of the property
+	Tag float64 `json:"tag,omitempty"`
 	// The type of the property
 	Type string `json:"type"`
 	// The update frequency in seconds, or the amount of the property has to change in order to trigger an update
