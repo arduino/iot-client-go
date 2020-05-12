@@ -263,10 +263,7 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyPayload.UpdateStrategy, property.UpdateStrategy, "Property update strategy was set correctly")
 
 	// Generate a sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id, ThingSketch{
-		Ssid: "ssid",
-		Pass: "password",
-	})
+	thing, _, err = client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id, ThingSketch{})
 	assert.NoError(t, err, "No errors creating sketch")
 	assert.NotNil(t, thing.SketchId, "Sketch ID is not null")
 
