@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -13,8 +13,6 @@ package iot
 type Devicev2 struct {
 	// The fully qualified board name
 	Fqbn string `json:"fqbn,omitempty"`
-	// The UUID of the device
-	Id string `json:"id,omitempty"`
 	// The friendly name of the device
 	Name string `json:"name,omitempty"`
 	// The serial uuid of the device

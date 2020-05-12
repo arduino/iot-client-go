@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -18,6 +18,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"mime/multipart"
 	"net/http"
@@ -40,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Iot API API v2.0
+// APIClient manages communication with the Arduino IoT Cloud API API v2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,6 +50,10 @@ type APIClient struct {
 	// API Services
 
 	DevicesV2Api *DevicesV2ApiService
+
+	DevicesV2CertsApi *DevicesV2CertsApiService
+
+	DevicesV2PassApi *DevicesV2PassApiService
 
 	PropertiesV2Api *PropertiesV2ApiService
 
@@ -74,6 +79,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.DevicesV2Api = (*DevicesV2ApiService)(&c.common)
+	c.DevicesV2CertsApi = (*DevicesV2CertsApiService)(&c.common)
+	c.DevicesV2PassApi = (*DevicesV2PassApiService)(&c.common)
 	c.PropertiesV2Api = (*PropertiesV2ApiService)(&c.common)
 	c.SeriesV2Api = (*SeriesV2ApiService)(&c.common)
 	c.ThingsV2Api = (*ThingsV2ApiService)(&c.common)
@@ -375,6 +382,15 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	if s, ok := v.(*string); ok {
 		*s = string(b)
 		return nil
+	}
+	if f, ok := v.(**os.File); ok {
+		*f, err = ioutil.TempFile("", "HttpClientFile")
+		if err != nil {
+			return
+		}
+		_, err = (*f).Write(b)
+		_, err = (*f).Seek(0, io.SeekStart)
+		return
 	}
 	if xmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {
