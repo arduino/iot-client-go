@@ -1,7 +1,7 @@
 /*
- * Iot API
+ * Arduino IoT Cloud API
  *
- * Collection of all public API endpoints.
+ *  Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
  *
  * API version: 2.0
  */
@@ -83,13 +83,13 @@ type Configuration struct {
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "http://api2.arduino.cc/iot",
+		BasePath:      "https://api2.arduino.cc/iot",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI/1.2.0/go",
+		UserAgent:     "OpenAPI/1.2.1/go",
 		Debug:         false,
 		Servers:       []ServerConfiguration{
 			{
-				Url: "http://api2.arduino.cc/iot",
+				Url: "https://api2.arduino.cc/iot",
 				Description: "No description provided",
 			},
 		},
