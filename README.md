@@ -27,4 +27,22 @@ if err != nil {
 log.Printf("Got an access token, will expire on %s", tok.Expiry)
 ```
 
-For a working example, see [the example folder](./example) in this repo.
+For a working example, see [the example folder](https://github.com/arduino/iot-client-go/tree/master/example) in this repo.
+
+## How to get Arduino IoT Cloud Client Credentials
+
+**NOTE:** Client Credentials are an Arduino IoT Cloud Maker Plan feature. Form more informations check the [Arduino Store](https://store.arduino.cc/digital/create).
+
+You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` section in the [IoT Cloud things dashobard](https://create.arduino.cc/iot/things):
+
+### Step 1
+
+![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_1.png?raw=true)
+
+### Step 2
+
+![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_2.png?raw=true)
+
+### Step 3
+
+![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_3.png?raw=true)
