@@ -96,7 +96,7 @@ func TestMain(m *testing.M) {
 	// Create an instance of the iot-api Go client, we pass an empty config
 	// because defaults are ok
 	client = NewAPIClient(NewConfiguration())
-
+	cleanup()
 	code := m.Run()
 	cleanup()
 	// call flag.Parse() here if TestMain uses flags
@@ -295,7 +295,7 @@ func TestProperties(t *testing.T) {
 	assert.NoError(t, err, "No errors publishing property")
 
 	// Wait for data pipeline ingest the last value
-	time.Sleep(5 * time.Second)
+	time.Sleep(10 * time.Second)
 
 	// Get Last value
 	property, _, err = client.PropertiesV2Api.PropertiesV2Show(ctx, thing.Id, property.Id, nil)
