@@ -14,5 +14,5 @@ type PropertyValue struct {
 	// The device who send the property
 	DeviceId string `json:"device_id,omitempty"`
 	// The property value
-	Value interface{} `json:"value"`
+	Value *interface{} `json:"value"`
 }

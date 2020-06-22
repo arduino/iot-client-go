@@ -19,5 +19,5 @@ type ArduinoDevicev2SimpleProperties struct {
 	// Update date of the property
 	UpdatedAt time.Time `json:"updated_at"`
 	// Value of the property
-	Value interface{} `json:"value"`
+	Value *interface{} `json:"value"`
 }

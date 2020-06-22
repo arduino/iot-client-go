@@ -23,7 +23,7 @@ type ArduinoProperty struct {
 	// The id of the property
 	Id string `json:"id"`
 	// Last value of this property
-	LastValue interface{} `json:"last_value,omitempty"`
+	LastValue *interface{} `json:"last_value,omitempty"`
 	// Maximum value of this property
 	MaxValue float64 `json:"max_value,omitempty"`
 	// Minimum value of this property
