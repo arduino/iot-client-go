@@ -4320,7 +4320,17 @@ components:
       title: updateSketch
       type: object
     ArduinoDevicev2propertyvalue_value_statistics:
-      example: '{"adr":0.29123958894625906,"channel":0.9067990865360126,"duplicate":0.23726501923298104,"freq":0.10815957932005495,"modBW":0.4634843366964926,"rssi":0.037609672803732105,"seqno":0.00136794523068846,"sf":0.9144273278077354,"snr":0.5495513936018442,"time":0.02851660548332954}'
+      example:
+        adr: 0.29123958894625906
+        channel: 0.9067990865360126
+        duplicate: 0.23726501923298104
+        freq: 0.10815957932005495
+        modBW: 0.4634843366964926
+        rssi: 0.037609672803732105
+        seqno: 0.00136794523068846
+        sf: 0.9144273278077354
+        snr: 0.5495513936018442
+        time: 0.02851660548332954
       properties:
         adr:
           example: 0.29123958894625906
@@ -4362,8 +4372,22 @@ components:
           example: 0.02851660548332954
           format: double
           type: number
+      type: object
     ArduinoDevicev2propertyvalue_value:
-      example: '{"payload":"Officiis omnis animi hic magnam optio.","seqno":97046750376806740,"statistics":{"adr":0.29123958894625906,"channel":0.9067990865360126,"duplicate":0.23726501923298104,"freq":0.10815957932005495,"modBW":0.4634843366964926,"rssi":0.037609672803732105,"seqno":0.00136794523068846,"sf":0.9144273278077354,"snr":0.5495513936018442,"time":0.02851660548332954}}'
+      example:
+        payload: Officiis omnis animi hic magnam optio.
+        seqno: 97046750376806740
+        statistics:
+          adr: 0.29123958894625906
+          channel: 0.9067990865360126
+          duplicate: 0.23726501923298104
+          freq: 0.10815957932005495
+          modBW: 0.4634843366964926
+          rssi: 0.037609672803732105
+          seqno: 0.00136794523068846
+          sf: 0.9144273278077354
+          snr: 0.5495513936018442
+          time: 0.02851660548332954
       properties:
         payload:
           example: Officiis omnis animi hic magnam optio.
@@ -4374,9 +4398,12 @@ components:
           type: integer
         statistics:
           $ref: '#/components/schemas/ArduinoDevicev2propertyvalue_value_statistics'
+      type: object
     ArduinoDevicev2propertyvalues_last_evaluated_key:
-      example: '{"created_at":"1997-02-25T01:34:07Z","id":"Consectetur natus.","name":"Est
-        reiciendis quaerat necessitatibus eos nobis."}'
+      example:
+        created_at: 1997-02-25T01:34:07Z
+        id: Consectetur natus.
+        name: Est reiciendis quaerat necessitatibus eos nobis.
       properties:
         created_at:
           example: 1997-02-25T01:34:07Z
@@ -4388,6 +4415,7 @@ components:
         name:
           example: Est reiciendis quaerat necessitatibus eos nobis.
           type: string
+      type: object
   securitySchemes:
     oauth2:
       flows:
