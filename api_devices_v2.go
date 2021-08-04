@@ -16,7 +16,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -98,7 +97,6 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ModelError
@@ -108,7 +106,6 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -118,7 +115,6 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -213,7 +209,6 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -232,8 +227,8 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 
 // DevicesV2GetEventsOpts Optional parameters for the method 'DevicesV2GetEvents'
 type DevicesV2GetEventsOpts struct {
-    Limit optional.Int32
-    Start optional.String
+    Limit optional.
+    Start optional.
 }
 
 /*
@@ -242,11 +237,11 @@ GET device events
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
  * @param optional nil or *DevicesV2GetEventsOpts - Optional Parameters:
- * @param "Limit" (optional.Int32) -  The number of events to select
- * @param "Start" (optional.String) -  The time at which to start selecting events
+ * @param "Limit" (optional.) -  The number of events to select
+ * @param "Start" (optional.) -  The time at which to start selecting events
 @return ArduinoDevicev2EventProperties
 */
-func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string, localVarOptionals *DevicesV2GetEventsOpts) (ArduinoDevicev2EventProperties, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id stringlocalVarOptionals *DevicesV2GetEventsOpts) (ArduinoDevicev2EventProperties, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -316,7 +311,6 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -326,7 +320,6 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError
@@ -354,7 +347,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 
 // DevicesV2GetPropertiesOpts Optional parameters for the method 'DevicesV2GetProperties'
 type DevicesV2GetPropertiesOpts struct {
-    ShowDeleted optional.Bool
+    ShowDeleted optional.
 }
 
 /*
@@ -363,10 +356,10 @@ GET device properties
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
  * @param optional nil or *DevicesV2GetPropertiesOpts - Optional Parameters:
- * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted properties
+ * @param "ShowDeleted" (optional.) -  If true, shows the soft deleted properties
 @return ArduinoDevicev2properties
 */
-func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id string, localVarOptionals *DevicesV2GetPropertiesOpts) (ArduinoDevicev2properties, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id stringlocalVarOptionals *DevicesV2GetPropertiesOpts) (ArduinoDevicev2properties, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -433,7 +426,6 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -461,7 +453,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 
 // DevicesV2ListOpts Optional parameters for the method 'DevicesV2List'
 type DevicesV2ListOpts struct {
-    AcrossUserIds optional.Bool
+    AcrossUserIds optional.
 }
 
 /*
@@ -469,7 +461,7 @@ DevicesV2List list devices_v2
 Returns the list of devices associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DevicesV2ListOpts - Optional Parameters:
- * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the devices
+ * @param "AcrossUserIds" (optional.) -  If true, returns all the devices
 @return []ArduinoDevicev2
 */
 func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOptionals *DevicesV2ListOpts) ([]ArduinoDevicev2, *_nethttp.Response, error) {
@@ -537,7 +529,6 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -634,7 +625,6 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -662,8 +652,8 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 
 // DevicesV2TimeseriesOpts Optional parameters for the method 'DevicesV2Timeseries'
 type DevicesV2TimeseriesOpts struct {
-    Limit optional.Int32
-    Start optional.String
+    Limit optional.
+    Start optional.
 }
 
 /*
@@ -673,11 +663,11 @@ GET device properties values in a range of time
  * @param id The id of the device
  * @param pid The id of the property
  * @param optional nil or *DevicesV2TimeseriesOpts - Optional Parameters:
- * @param "Limit" (optional.Int32) -  The number of properties to select
- * @param "Start" (optional.String) -  The time at which to start selecting properties
+ * @param "Limit" (optional.) -  The number of properties to select
+ * @param "Start" (optional.) -  The time at which to start selecting properties
 @return ArduinoDevicev2propertyvalues
 */
-func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id string, pid string, localVarOptionals *DevicesV2TimeseriesOpts) (ArduinoDevicev2propertyvalues, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id stringpid stringlocalVarOptionals *DevicesV2TimeseriesOpts) (ArduinoDevicev2propertyvalues, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -749,7 +739,6 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -783,7 +772,7 @@ Updates a device associated to the user
  * @param devicev2 DeviceV2 describes a device.
 @return ArduinoDevicev2
 */
-func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, devicev2 Devicev2) (ArduinoDevicev2, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id stringdevicev2 Devicev2) (ArduinoDevicev2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -849,7 +838,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
@@ -859,7 +847,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ModelError
@@ -869,7 +856,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -879,7 +865,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -912,7 +897,7 @@ Update device properties last values
  * @param id The id of the device
  * @param propertiesValues
 */
-func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id string, propertiesValues PropertiesValues) (*_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id stringpropertiesValues PropertiesValues) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -977,7 +962,6 @@ func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

@@ -16,7 +16,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"github.com/antihax/optional"
 	"reflect"
 )
 
@@ -30,7 +29,7 @@ type ThingsV2ApiService service
 
 // ThingsV2CreateOpts Optional parameters for the method 'ThingsV2Create'
 type ThingsV2CreateOpts struct {
-    Force optional.Bool
+    Force optional.
 }
 
 /*
@@ -39,10 +38,10 @@ Creates a new thing associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param createThingsV2Payload ThingPayload describes a thing
  * @param optional nil or *ThingsV2CreateOpts - Optional Parameters:
- * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
+ * @param "Force" (optional.) -  If true, detach device from the other thing, and attach to this thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2Payload CreateThingsV2Payload, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2Payload CreateThingsV2PayloadlocalVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -109,7 +108,6 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ModelError
@@ -119,7 +117,6 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -129,7 +126,6 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -163,7 +159,7 @@ Creates a new sketch thing associated to the thing
  * @param thingSketch ThingSketchPayload describes a sketch of a thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id string, thingSketch ThingSketch) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id stringthingSketch ThingSketch) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -229,7 +225,6 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -239,7 +234,6 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -267,7 +261,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 
 // ThingsV2DeleteOpts Optional parameters for the method 'ThingsV2Delete'
 type ThingsV2DeleteOpts struct {
-    Force optional.Bool
+    Force optional.
 }
 
 /*
@@ -276,9 +270,9 @@ Removes a thing associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param optional nil or *ThingsV2DeleteOpts - Optional Parameters:
- * @param "Force" (optional.Bool) -  If true, hard delete the thing
+ * @param "Force" (optional.) -  If true, hard delete the thing
 */
-func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, localVarOptionals *ThingsV2DeleteOpts) (*_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id stringlocalVarOptionals *ThingsV2DeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -344,7 +338,6 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -449,11 +442,11 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 
 // ThingsV2ListOpts Optional parameters for the method 'ThingsV2List'
 type ThingsV2ListOpts struct {
-    AcrossUserIds optional.Bool
-    DeviceId optional.String
+    AcrossUserIds optional.
+    DeviceId optional.
     Ids optional.Interface
-    ShowDeleted optional.Bool
-    ShowProperties optional.Bool
+    ShowDeleted optional.
+    ShowProperties optional.
 }
 
 /*
@@ -461,11 +454,11 @@ ThingsV2List list things_v2
 Returns the list of things associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ThingsV2ListOpts - Optional Parameters:
- * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the things
- * @param "DeviceId" (optional.String) -  The id of the device you want to filter
+ * @param "AcrossUserIds" (optional.) -  If true, returns all the things
+ * @param "DeviceId" (optional.) -  The id of the device you want to filter
  * @param "Ids" (optional.Interface of []string) -  Filter only the desired things
- * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted things
- * @param "ShowProperties" (optional.Bool) -  If true, returns things with their properties, and last values
+ * @param "ShowDeleted" (optional.) -  If true, shows the soft deleted things
+ * @param "ShowProperties" (optional.) -  If true, returns things with their properties, and last values
 @return []ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptionals *ThingsV2ListOpts) ([]ArduinoThing, *_nethttp.Response, error) {
@@ -571,7 +564,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 
 // ThingsV2ShowOpts Optional parameters for the method 'ThingsV2Show'
 type ThingsV2ShowOpts struct {
-    ShowDeleted optional.Bool
+    ShowDeleted optional.
 }
 
 /*
@@ -580,10 +573,10 @@ Returns the thing requested by the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param optional nil or *ThingsV2ShowOpts - Optional Parameters:
- * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted thing
+ * @param "ShowDeleted" (optional.) -  If true, shows the soft deleted thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, localVarOptionals *ThingsV2ShowOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id stringlocalVarOptionals *ThingsV2ShowOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -650,7 +643,6 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -678,7 +670,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 
 // ThingsV2UpdateOpts Optional parameters for the method 'ThingsV2Update'
 type ThingsV2UpdateOpts struct {
-    Force optional.Bool
+    Force optional.
 }
 
 /*
@@ -688,10 +680,10 @@ Updates a thing associated to the user
  * @param id The id of the thing
  * @param thing ThingPayload describes a thing
  * @param optional nil or *ThingsV2UpdateOpts - Optional Parameters:
- * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
+ * @param "Force" (optional.) -  If true, detach device from the other thing, and attach to this thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thing Thing, localVarOptionals *ThingsV2UpdateOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id stringthing ThinglocalVarOptionals *ThingsV2UpdateOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -760,7 +752,6 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -770,7 +761,6 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -811,7 +801,7 @@ Update an existing thing sketch
  * @param "UpdateSketch" (optional.Interface of UpdateSketch) - 
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id string, sketchId string, localVarOptionals *ThingsV2UpdateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id stringsketchId stringlocalVarOptionals *ThingsV2UpdateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -886,7 +876,6 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ModelError
@@ -896,7 +885,6 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -906,7 +894,6 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

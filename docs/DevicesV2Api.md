@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2GetEvents
 
-> ArduinoDevicev2EventProperties DevicesV2GetEvents(ctx, id, optional)
+> ArduinoDevicev2EventProperties DevicesV2GetEvents(ctx, idoptional)
 
 getEvents devices_v2
 
@@ -109,8 +109,8 @@ Optional parameters are passed through a pointer to a DevicesV2GetEventsOpts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **optional.Int32**| The number of events to select | 
- **start** | **optional.String**| The time at which to start selecting events | 
+ **limit** | **optional.**| The number of events to select | 
+ **start** | **optional.**| The time at which to start selecting events | 
 
 ### Return type
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2GetProperties
 
-> ArduinoDevicev2properties DevicesV2GetProperties(ctx, id, optional)
+> ArduinoDevicev2properties DevicesV2GetProperties(ctx, idoptional)
 
 getProperties devices_v2
 
@@ -155,7 +155,7 @@ Optional parameters are passed through a pointer to a DevicesV2GetPropertiesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | 
+ **showDeleted** | **optional.**| If true, shows the soft deleted properties | 
 
 ### Return type
 
@@ -198,7 +198,7 @@ Optional parameters are passed through a pointer to a DevicesV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the devices | 
+ **acrossUserIds** | **optional.**| If true, returns all the devices | 
 
 ### Return type
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Timeseries
 
-> ArduinoDevicev2propertyvalues DevicesV2Timeseries(ctx, id, pid, optional)
+> ArduinoDevicev2propertyvalues DevicesV2Timeseries(ctx, idpidoptional)
 
 timeseries devices_v2
 
@@ -279,8 +279,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **limit** | **optional.Int32**| The number of properties to select | 
- **start** | **optional.String**| The time at which to start selecting properties | 
+ **limit** | **optional.**| The number of properties to select | 
+ **start** | **optional.**| The time at which to start selecting properties | 
 
 ### Return type
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Update
 
-> ArduinoDevicev2 DevicesV2Update(ctx, id, devicev2)
+> ArduinoDevicev2 DevicesV2Update(ctx, iddevicev2)
 
 update devices_v2
 
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2UpdateProperties
 
-> DevicesV2UpdateProperties(ctx, id, propertiesValues)
+> DevicesV2UpdateProperties(ctx, idpropertiesValues)
 
 updateProperties devices_v2
 

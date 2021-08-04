@@ -96,7 +96,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx _context.Context, batchQuery
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError
@@ -193,7 +192,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx _context.Context, batchQu
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError
@@ -290,7 +288,6 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx _context.Context
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ModelError

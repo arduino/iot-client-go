@@ -34,7 +34,7 @@ Creates a new cert associated to a device. The csr is signed and saved in databa
  * @param createDevicesV2CertsPayload
 @return ArduinoDevicev2Cert
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsCreate(ctx _context.Context, id string, createDevicesV2CertsPayload CreateDevicesV2CertsPayload) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
+func (a *DevicesV2CertsApiService) DevicesV2CertsCreate(ctx _context.Context, id stringcreateDevicesV2CertsPayload CreateDevicesV2CertsPayload) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -100,7 +100,6 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsCreate(ctx _context.Context, id
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -133,7 +132,7 @@ Removes a cert associated to a device
  * @param cid The id of the cert
  * @param id The id of the device
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsDelete(ctx _context.Context, cid string, id string) (*_nethttp.Response, error) {
+func (a *DevicesV2CertsApiService) DevicesV2CertsDelete(ctx _context.Context, cid stringid string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -300,7 +299,7 @@ Returns the cert requested by the user
  * @param id The id of the device
 @return ArduinoDevicev2Cert
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsShow(ctx _context.Context, cid string, id string) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
+func (a *DevicesV2CertsApiService) DevicesV2CertsShow(ctx _context.Context, cid stringid string) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -391,7 +390,7 @@ Updates a cert associated to a device. The csr is signed and saved in database. 
  * @param devicev2Cert
 @return ArduinoDevicev2Cert
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsUpdate(ctx _context.Context, cid string, id string, devicev2Cert Devicev2Cert) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
+func (a *DevicesV2CertsApiService) DevicesV2CertsUpdate(ctx _context.Context, cid stringid stringdevicev2Cert Devicev2Cert) (ArduinoDevicev2Cert, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -459,7 +458,6 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsUpdate(ctx _context.Context, ci
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

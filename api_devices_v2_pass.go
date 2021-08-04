@@ -16,7 +16,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -34,7 +33,7 @@ Check if the password matches.
  * @param id The id of the device
  * @param checkDevicesV2PassPayload
 */
-func (a *DevicesV2PassApiService) DevicesV2PassCheck(ctx _context.Context, id string, checkDevicesV2PassPayload CheckDevicesV2PassPayload) (*_nethttp.Response, error) {
+func (a *DevicesV2PassApiService) DevicesV2PassCheck(ctx _context.Context, id stringcheckDevicesV2PassPayload CheckDevicesV2PassPayload) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -99,7 +98,6 @@ func (a *DevicesV2PassApiService) DevicesV2PassCheck(ctx _context.Context, id st
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -194,7 +192,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassDelete(ctx _context.Context, id s
 
 // DevicesV2PassGetOpts Optional parameters for the method 'DevicesV2PassGet'
 type DevicesV2PassGetOpts struct {
-    SuggestedPassword optional.Bool
+    SuggestedPassword optional.
 }
 
 /*
@@ -203,10 +201,10 @@ Returns whether the password for this device is set or not. It doesn&#39;t retur
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
  * @param optional nil or *DevicesV2PassGetOpts - Optional Parameters:
- * @param "SuggestedPassword" (optional.Bool) -  If true, return a suggested password
+ * @param "SuggestedPassword" (optional.) -  If true, return a suggested password
 @return ArduinoDevicev2Pass
 */
-func (a *DevicesV2PassApiService) DevicesV2PassGet(ctx _context.Context, id string, localVarOptionals *DevicesV2PassGetOpts) (ArduinoDevicev2Pass, *_nethttp.Response, error) {
+func (a *DevicesV2PassApiService) DevicesV2PassGet(ctx _context.Context, id stringlocalVarOptionals *DevicesV2PassGetOpts) (ArduinoDevicev2Pass, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -297,7 +295,7 @@ Sets the password for the device. It can never be read back.
  * @param devicev2Pass
 @return ArduinoDevicev2Pass
 */
-func (a *DevicesV2PassApiService) DevicesV2PassSet(ctx _context.Context, id string, devicev2Pass Devicev2Pass) (ArduinoDevicev2Pass, *_nethttp.Response, error) {
+func (a *DevicesV2PassApiService) DevicesV2PassSet(ctx _context.Context, id stringdevicev2Pass Devicev2Pass) (ArduinoDevicev2Pass, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -363,7 +361,6 @@ func (a *DevicesV2PassApiService) DevicesV2PassSet(ctx _context.Context, id stri
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

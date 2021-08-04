@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## DevicesV2CertsCreate
 
-> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, id, createDevicesV2CertsPayload)
+> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, idcreateDevicesV2CertsPayload)
 
 create devices_v2_certs
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsDelete
 
-> DevicesV2CertsDelete(ctx, cid, id)
+> DevicesV2CertsDelete(ctx, cidid)
 
 delete devices_v2_certs
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsShow
 
-> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cid, id)
+> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cidid)
 
 show devices_v2_certs
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsUpdate
 
-> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cid, id, devicev2Cert)
+> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cididdevicev2Cert)
 
 update devices_v2_certs
 

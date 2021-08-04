@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DevicesV2PassCheck
 
-> DevicesV2PassCheck(ctx, id, checkDevicesV2PassPayload)
+> DevicesV2PassCheck(ctx, idcheckDevicesV2PassPayload)
 
 check devices_v2_pass
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassGet
 
-> ArduinoDevicev2Pass DevicesV2PassGet(ctx, id, optional)
+> ArduinoDevicev2Pass DevicesV2PassGet(ctx, idoptional)
 
 get devices_v2_pass
 
@@ -105,7 +105,7 @@ Optional parameters are passed through a pointer to a DevicesV2PassGetOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **suggestedPassword** | **optional.Bool**| If true, return a suggested password | 
+ **suggestedPassword** | **optional.**| If true, return a suggested password | 
 
 ### Return type
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassSet
 
-> ArduinoDevicev2Pass DevicesV2PassSet(ctx, id, devicev2Pass)
+> ArduinoDevicev2Pass DevicesV2PassSet(ctx, iddevicev2Pass)
 
 set devices_v2_pass
 

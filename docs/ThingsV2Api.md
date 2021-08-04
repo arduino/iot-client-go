@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## ThingsV2Create
 
-> ArduinoThing ThingsV2Create(ctx, createThingsV2Payload, optional)
+> ArduinoThing ThingsV2Create(ctx, createThingsV2Payloadoptional)
 
 create things_v2
 
@@ -40,7 +40,7 @@ Optional parameters are passed through a pointer to a ThingsV2CreateOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
+ **force** | **optional.**| If true, detach device from the other thing, and attach to this thing | 
 
 ### Return type
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2CreateSketch
 
-> ArduinoThing ThingsV2CreateSketch(ctx, id, thingSketch)
+> ArduinoThing ThingsV2CreateSketch(ctx, idthingSketch)
 
 createSketch things_v2
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Delete
 
-> ThingsV2Delete(ctx, id, optional)
+> ThingsV2Delete(ctx, idoptional)
 
 delete things_v2
 
@@ -120,7 +120,7 @@ Optional parameters are passed through a pointer to a ThingsV2DeleteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, hard delete the thing | 
+ **force** | **optional.**| If true, hard delete the thing | 
 
 ### Return type
 
@@ -195,11 +195,11 @@ Optional parameters are passed through a pointer to a ThingsV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the things | 
- **deviceId** | **optional.String**| The id of the device you want to filter | 
+ **acrossUserIds** | **optional.**| If true, returns all the things | 
+ **deviceId** | **optional.**| The id of the device you want to filter | 
  **ids** | [**optional.Interface of []string**](string.md)| Filter only the desired things | 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | 
- **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | 
+ **showDeleted** | **optional.**| If true, shows the soft deleted things | 
+ **showProperties** | **optional.**| If true, returns things with their properties, and last values | 
 
 ### Return type
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Show
 
-> ArduinoThing ThingsV2Show(ctx, id, optional)
+> ArduinoThing ThingsV2Show(ctx, idoptional)
 
 show things_v2
 
@@ -244,7 +244,7 @@ Optional parameters are passed through a pointer to a ThingsV2ShowOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | 
+ **showDeleted** | **optional.**| If true, shows the soft deleted thing | 
 
 ### Return type
 
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Update
 
-> ArduinoThing ThingsV2Update(ctx, id, thing, optional)
+> ArduinoThing ThingsV2Update(ctx, idthingoptional)
 
 update things_v2
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
+ **force** | **optional.**| If true, detach device from the other thing, and attach to this thing | 
 
 ### Return type
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2UpdateSketch
 
-> ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId, optional)
+> ArduinoThing ThingsV2UpdateSketch(ctx, idsketchIdoptional)
 
 updateSketch things_v2
 

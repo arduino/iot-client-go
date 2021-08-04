@@ -85,7 +85,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api2.arduino.cc/iot",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI/1.3.2/go",
+		UserAgent:     "OpenAPI/1.3.5/go",
 		Debug:         false,
 		Servers:       []ServerConfiguration{
 			{

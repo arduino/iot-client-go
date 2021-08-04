@@ -16,7 +16,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -35,7 +34,7 @@ Creates a new property associated to a thing
  * @param property PropertyPayload describes a property of a thing. No field is mandatory
 @return ArduinoProperty
 */
-func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id string, property Property) (ArduinoProperty, *_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id stringproperty Property) (ArduinoProperty, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -101,7 +100,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
@@ -111,7 +109,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
@@ -121,7 +118,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -149,7 +145,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx _context.Context, id str
 
 // PropertiesV2DeleteOpts Optional parameters for the method 'PropertiesV2Delete'
 type PropertiesV2DeleteOpts struct {
-    Force optional.Bool
+    Force optional.
 }
 
 /*
@@ -159,9 +155,9 @@ Removes a property associated to a thing
  * @param id The id of the thing
  * @param pid The id of the property
  * @param optional nil or *PropertiesV2DeleteOpts - Optional Parameters:
- * @param "Force" (optional.Bool) -  If true, hard delete the property
+ * @param "Force" (optional.) -  If true, hard delete the property
 */
-func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id string, pid string, localVarOptionals *PropertiesV2DeleteOpts) (*_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id stringpid stringlocalVarOptionals *PropertiesV2DeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -229,7 +225,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -248,7 +243,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx _context.Context, id str
 
 // PropertiesV2ListOpts Optional parameters for the method 'PropertiesV2List'
 type PropertiesV2ListOpts struct {
-    ShowDeleted optional.Bool
+    ShowDeleted optional.
 }
 
 /*
@@ -257,10 +252,10 @@ Returns the list of properties associated to the thing
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param optional nil or *PropertiesV2ListOpts - Optional Parameters:
- * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted properties
+ * @param "ShowDeleted" (optional.) -  If true, shows the soft deleted properties
 @return []ArduinoProperty
 */
-func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id string, localVarOptionals *PropertiesV2ListOpts) ([]ArduinoProperty, *_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id stringlocalVarOptionals *PropertiesV2ListOpts) ([]ArduinoProperty, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -327,7 +322,6 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ModelError
@@ -337,7 +331,6 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -371,7 +364,7 @@ Publish a property value to MQTT
  * @param pid The id of the property
  * @param propertyValue PropertyValuePayload describes a property value
 */
-func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id string, pid string, propertyValue PropertyValue) (*_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id stringpid stringpropertyValue PropertyValue) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -438,7 +431,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
@@ -448,7 +440,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -467,7 +458,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx _context.Context, id st
 
 // PropertiesV2ShowOpts Optional parameters for the method 'PropertiesV2Show'
 type PropertiesV2ShowOpts struct {
-    ShowDeleted optional.Bool
+    ShowDeleted optional.
 }
 
 /*
@@ -477,10 +468,10 @@ Returns the property requested by the user
  * @param id The id of the thing
  * @param pid The id of the property
  * @param optional nil or *PropertiesV2ShowOpts - Optional Parameters:
- * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted properties
+ * @param "ShowDeleted" (optional.) -  If true, shows the soft deleted properties
 @return ArduinoProperty
 */
-func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id string, pid string, localVarOptionals *PropertiesV2ShowOpts) (ArduinoProperty, *_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id stringpid stringlocalVarOptionals *PropertiesV2ShowOpts) (ArduinoProperty, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -549,7 +540,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ModelError
@@ -559,7 +549,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx _context.Context, id strin
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
@@ -594,7 +583,7 @@ Updates a property associated to a thing
  * @param property PropertyPayload describes a property of a thing. No field is mandatory
 @return ArduinoProperty
 */
-func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id string, pid string, property Property) (ArduinoProperty, *_nethttp.Response, error) {
+func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id stringpid stringproperty Property) (ArduinoProperty, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -662,7 +651,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
@@ -672,7 +660,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ModelError
@@ -682,7 +669,6 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx _context.Context, id str
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

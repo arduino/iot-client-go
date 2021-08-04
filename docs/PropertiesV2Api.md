@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## PropertiesV2Create
 
-> ArduinoProperty PropertiesV2Create(ctx, id, property)
+> ArduinoProperty PropertiesV2Create(ctx, idproperty)
 
 create properties_v2
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Delete
 
-> PropertiesV2Delete(ctx, id, pid, optional)
+> PropertiesV2Delete(ctx, idpidoptional)
 
 delete properties_v2
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **force** | **optional.Bool**| If true, hard delete the property | 
+ **force** | **optional.**| If true, hard delete the property | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2List
 
-> []ArduinoProperty PropertiesV2List(ctx, id, optional)
+> []ArduinoProperty PropertiesV2List(ctx, idoptional)
 
 list properties_v2
 
@@ -120,7 +120,7 @@ Optional parameters are passed through a pointer to a PropertiesV2ListOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | 
+ **showDeleted** | **optional.**| If true, shows the soft deleted properties | 
 
 ### Return type
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Publish
 
-> PropertiesV2Publish(ctx, id, pid, propertyValue)
+> PropertiesV2Publish(ctx, idpidpropertyValue)
 
 publish properties_v2
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Show
 
-> ArduinoProperty PropertiesV2Show(ctx, id, pid, optional)
+> ArduinoProperty PropertiesV2Show(ctx, idpidoptional)
 
 show properties_v2
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | 
+ **showDeleted** | **optional.**| If true, shows the soft deleted properties | 
 
 ### Return type
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Update
 
-> ArduinoProperty PropertiesV2Update(ctx, id, pid, property)
+> ArduinoProperty PropertiesV2Update(ctx, idpidproperty)
 
 update properties_v2
 
