@@ -37,7 +37,7 @@ func testCreateDevice(t *testing.T) ArduinoDevicev2 {
 }
 
 func testCreateThing(t *testing.T, name string) ArduinoThing {
-	thingPayload := CreateThingsV2Payload{
+	thingPayload := Thing{
 		Name: name,
 	}
 	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
@@ -214,7 +214,7 @@ func TestThingsLimit(t *testing.T) {
 	// Create 5 things
 	things := make([]ArduinoThing, 0)
 	for k := 0; k < 5; k++ {
-		thingPayload := CreateThingsV2Payload{
+		thingPayload := Thing{
 			Name: fmt.Sprintf("TestThing-%d", k),
 		}
 		thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
@@ -224,7 +224,7 @@ func TestThingsLimit(t *testing.T) {
 	}
 
 	// Create the 6th thing over limit
-	thingPayload := CreateThingsV2Payload{
+	thingPayload := Thing{
 		Name: "TestThing-6",
 	}
 	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
