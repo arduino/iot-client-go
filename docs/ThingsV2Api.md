@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## ThingsV2Create
 
-> ArduinoThing ThingsV2Create(ctx, createThingsV2Payload, optional)
+> ArduinoThing ThingsV2Create(ctx, thing, optional)
 
 create things_v2
 
@@ -29,7 +29,7 @@ Creates a new thing associated to the user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**createThingsV2Payload** | [**CreateThingsV2Payload**](CreateThingsV2Payload.md)| ThingPayload describes a thing | 
+**thing** | [**Thing**](Thing.md)| ThingPayload describes a thing | 
  **optional** | ***ThingsV2CreateOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters

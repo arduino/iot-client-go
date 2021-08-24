@@ -34,10 +34,14 @@ type ArduinoProperty struct {
 	Permission string `json:"permission"`
 	// If true, data will persist into a timeseries database
 	Persist bool `json:"persist,omitempty"`
+	// The id of the sync pool
+	SyncId string `json:"sync_id,omitempty"`
 	// The integer id of the property
 	Tag float64 `json:"tag,omitempty"`
 	// The id of the thing
 	ThingId string `json:"thing_id"`
+	// The name of the associated thing
+	ThingName string `json:"thing_name,omitempty"`
 	// The type of the property
 	Type string `json:"type"`
 	// The update frequency in seconds, or the amount of the property has to change in order to trigger an update
