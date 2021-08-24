@@ -24,18 +24,31 @@ type ArduinoDevicev2 struct {
 	Href string `json:"href"`
 	// The arn of the device
 	Id string `json:"id"`
+	// The label of the device
+	Label string `json:"label"`
 	// Last activity date
 	LastActivityAt time.Time `json:"last_activity_at,omitempty"`
+	// The latest version of the NINA/WIFI101 firmware available for this device
+	LatestWifiFwVersion string `json:"latest_wifi_fw_version,omitempty"`
 	// The metadata of the device
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
 	Name string `json:"name"`
+	// True if the device type is ready to receive OTA updated
+	OtaAvailable bool `json:"ota_available,omitempty"`
+	// True if the device type is OTA compatible
+	OtaCompatible bool `json:"ota_compatible,omitempty"`
+	// The required version of the NINA/WIFI101 firmware needed by IoT Cloud
+	RequiredWifiFwVersion string `json:"required_wifi_fw_version,omitempty"`
 	// The serial uuid of the device
 	Serial string `json:"serial"`
+	Thing ArduinoThing `json:"thing,omitempty"`
 	// The type of the device
 	Type string `json:"type"`
 	// The id of the user
 	UserId string `json:"user_id"`
 	// ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view)
 	Webhooks []ArduinoDevicev2Webhook `json:"webhooks,omitempty"`
+	// The version of the NINA/WIFI101 firmware running on the device
+	WifiFwVersion string `json:"wifi_fw_version,omitempty"`
 }

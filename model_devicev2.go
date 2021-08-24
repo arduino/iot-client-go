@@ -21,4 +21,6 @@ type Devicev2 struct {
 	Type string `json:"type,omitempty"`
 	// The user_id associated to the device. If absent it will be inferred from the authentication header
 	UserId string `json:"user_id,omitempty"`
+	// The version of the NINA/WIFI101 firmware running on the device
+	WifiFwVersion string `json:"wifi_fw_version,omitempty"`
 }

@@ -3,7 +3,6 @@ package iot
 import (
 	"context"
 	"flag"
-	"fmt"
 	"log"
 	"net/url"
 	"os"
@@ -37,7 +36,7 @@ func testCreateDevice(t *testing.T) ArduinoDevicev2 {
 }
 
 func testCreateThing(t *testing.T, name string) ArduinoThing {
-	thingPayload := CreateThingsV2Payload{
+	thingPayload := Thing{
 		Name: name,
 	}
 	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
@@ -208,34 +207,6 @@ func TestThingsAPI(t *testing.T) {
 	// Delete device
 	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id)
 	assert.NoError(t, err, "No errors deleting device")
-}
-
-func TestThingsLimit(t *testing.T) {
-	// Create 5 things
-	things := make([]ArduinoThing, 0)
-	for k := 0; k < 5; k++ {
-		thingPayload := CreateThingsV2Payload{
-			Name: fmt.Sprintf("TestThing-%d", k),
-		}
-		thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
-		assert.NoError(t, err, "No errors creating thing")
-		assert.Equal(t, thingPayload.Name, thing.Name, "Thing name was correctly set")
-		things = append(things, thing)
-	}
-
-	// Create the 6th thing over limit
-	thingPayload := CreateThingsV2Payload{
-		Name: "TestThing-6",
-	}
-	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
-	assert.EqualError(t, err, "412 Precondition Failed", "Cannot create over 5 things")
-	assert.Equal(t, ArduinoThing{}, thing, "Thing is empty")
-
-	// Delete things
-	for _, thing := range things {
-		_, err := client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id, nil)
-		assert.NoError(t, err, "No errors deleting thing")
-	}
 }
 
 func TestProperties(t *testing.T) {

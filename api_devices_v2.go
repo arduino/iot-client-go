@@ -100,16 +100,6 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 412 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -462,6 +452,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 // DevicesV2ListOpts Optional parameters for the method 'DevicesV2List'
 type DevicesV2ListOpts struct {
     AcrossUserIds optional.Bool
+    Serial optional.String
 }
 
 /*
@@ -470,6 +461,7 @@ Returns the list of devices associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DevicesV2ListOpts - Optional Parameters:
  * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the devices
+ * @param "Serial" (optional.String) -  Filter by device serial number
 @return []ArduinoDevicev2
 */
 func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOptionals *DevicesV2ListOpts) ([]ArduinoDevicev2, *_nethttp.Response, error) {
@@ -490,6 +482,9 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 
 	if localVarOptionals != nil && localVarOptionals.AcrossUserIds.IsSet() {
 		localVarQueryParams.Add("across_user_ids", parameterToString(localVarOptionals.AcrossUserIds.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Serial.IsSet() {
+		localVarQueryParams.Add("serial", parameterToString(localVarOptionals.Serial.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -741,6 +736,16 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id strin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -852,16 +857,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

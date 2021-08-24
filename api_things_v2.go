@@ -37,12 +37,12 @@ type ThingsV2CreateOpts struct {
 ThingsV2Create create things_v2
 Creates a new thing associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param createThingsV2Payload ThingPayload describes a thing
+ * @param thing ThingPayload describes a thing
  * @param optional nil or *ThingsV2CreateOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2Payload CreateThingsV2Payload, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thing Thing, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -79,7 +79,7 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, createThingsV2
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &createThingsV2Payload
+	localVarPostBody = &thing
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -753,6 +753,16 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -14,8 +14,10 @@ Name | Type | Description | Notes
 **Name** | **string** | The friendly name of the property | 
 **Permission** | **string** | The permission of the property | 
 **Persist** | **bool** | If true, data will persist into a timeseries database | [optional] 
+**SyncId** | **string** | The id of the sync pool | [optional] 
 **Tag** | **float64** | The integer id of the property | [optional] 
 **ThingId** | **string** | The id of the thing | 
+**ThingName** | **string** | The name of the associated thing | [optional] 
 **Type** | **string** | The type of the property | 
 **UpdateParameter** | **float64** | The update frequency in seconds, or the amount of the property has to change in order to trigger an update | [optional] 
 **UpdateStrategy** | **string** | The update strategy for the property value | 
