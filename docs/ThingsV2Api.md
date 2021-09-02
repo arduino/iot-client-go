@@ -40,7 +40,7 @@ Optional parameters are passed through a pointer to a ThingsV2CreateOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
+ **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
 
 ### Return type
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -120,7 +120,7 @@ Optional parameters are passed through a pointer to a ThingsV2DeleteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, hard delete the thing | 
+ **force** | **optional.Bool**| If true, hard delete the thing | [default to false]
 
 ### Return type
 
@@ -195,11 +195,11 @@ Optional parameters are passed through a pointer to a ThingsV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the things | 
+ **acrossUserIds** | **optional.Bool**| If true, returns all the things | [default to false]
  **deviceId** | **optional.String**| The id of the device you want to filter | 
  **ids** | [**optional.Interface of []string**](string.md)| Filter only the desired things | 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | 
- **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | 
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | [default to false]
+ **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | [default to false]
 
 ### Return type
 
@@ -244,7 +244,7 @@ Optional parameters are passed through a pointer to a ThingsV2ShowOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | 
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | [default to false]
 
 ### Return type
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | 
+ **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
 
 ### Return type
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

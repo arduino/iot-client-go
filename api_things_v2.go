@@ -62,7 +62,7 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thing Thing, l
 		localVarQueryParams.Add("force", parameterToString(localVarOptionals.Force.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -182,7 +182,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -713,7 +713,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 		localVarQueryParams.Add("force", parameterToString(localVarOptionals.Force.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -842,7 +842,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
