@@ -53,6 +53,8 @@ type APIClient struct {
 
 	DevicesV2CertsApi *DevicesV2CertsApiService
 
+	DevicesV2OtaApi *DevicesV2OtaApiService
+
 	DevicesV2PassApi *DevicesV2PassApiService
 
 	PropertiesV2Api *PropertiesV2ApiService
@@ -80,6 +82,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.DevicesV2Api = (*DevicesV2ApiService)(&c.common)
 	c.DevicesV2CertsApi = (*DevicesV2CertsApiService)(&c.common)
+	c.DevicesV2OtaApi = (*DevicesV2OtaApiService)(&c.common)
 	c.DevicesV2PassApi = (*DevicesV2PassApiService)(&c.common)
 	c.PropertiesV2Api = (*PropertiesV2ApiService)(&c.common)
 	c.SeriesV2Api = (*SeriesV2ApiService)(&c.common)

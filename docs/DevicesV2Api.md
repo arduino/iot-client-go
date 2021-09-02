@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -155,7 +155,7 @@ Optional parameters are passed through a pointer to a DevicesV2GetPropertiesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | 
+ **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | [default to false]
 
 ### Return type
 
@@ -198,7 +198,7 @@ Optional parameters are passed through a pointer to a DevicesV2ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the devices | 
+ **acrossUserIds** | **optional.Bool**| If true, returns all the devices | [default to false]
  **serial** | **optional.String**| Filter by device serial number | 
 
 ### Return type
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
