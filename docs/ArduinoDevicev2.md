@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **OtaCompatible** | **bool** | True if the device type is OTA compatible | [optional] 
 **RequiredWifiFwVersion** | **string** | The required version of the NINA/WIFI101 firmware needed by IoT Cloud | [optional] 
 **Serial** | **string** | The serial uuid of the device | 
+**Tags** | **map[string]interface{}** | Tags belonging to the device | [optional] 
 **Thing** | [**ArduinoThing**](ArduinoThing.md) |  | [optional] 
 **Type** | **string** | The type of the device | 
 **UserId** | **string** | The id of the user | 

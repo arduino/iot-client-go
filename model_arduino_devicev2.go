@@ -42,6 +42,8 @@ type ArduinoDevicev2 struct {
 	RequiredWifiFwVersion string `json:"required_wifi_fw_version,omitempty"`
 	// The serial uuid of the device
 	Serial string `json:"serial"`
+	// Tags belonging to the device
+	Tags map[string]interface{} `json:"tags,omitempty"`
 	Thing ArduinoThing `json:"thing,omitempty"`
 	// The type of the device
 	Type string `json:"type"`

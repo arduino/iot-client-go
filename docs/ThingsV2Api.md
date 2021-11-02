@@ -200,6 +200,7 @@ Name | Type | Description  | Notes
  **ids** | [**optional.Interface of []string**](string.md)| Filter only the desired things | 
  **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | [default to false]
  **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | [default to false]
+ **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
 
 ### Return type
 

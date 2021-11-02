@@ -59,11 +59,15 @@ type APIClient struct {
 
 	DevicesV2PassApi *DevicesV2PassApiService
 
+	DevicesV2TagsApi *DevicesV2TagsApiService
+
 	PropertiesV2Api *PropertiesV2ApiService
 
 	SeriesV2Api *SeriesV2ApiService
 
 	ThingsV2Api *ThingsV2ApiService
+
+	ThingsV2TagsApi *ThingsV2TagsApiService
 }
 
 type service struct {
@@ -87,9 +91,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DevicesV2CertsApi = (*DevicesV2CertsApiService)(&c.common)
 	c.DevicesV2OtaApi = (*DevicesV2OtaApiService)(&c.common)
 	c.DevicesV2PassApi = (*DevicesV2PassApiService)(&c.common)
+	c.DevicesV2TagsApi = (*DevicesV2TagsApiService)(&c.common)
 	c.PropertiesV2Api = (*PropertiesV2ApiService)(&c.common)
 	c.SeriesV2Api = (*SeriesV2ApiService)(&c.common)
 	c.ThingsV2Api = (*ThingsV2ApiService)(&c.common)
+	c.ThingsV2TagsApi = (*ThingsV2TagsApiService)(&c.common)
 
 	return c
 }

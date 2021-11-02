@@ -454,6 +454,7 @@ type ThingsV2ListOpts struct {
     Ids optional.Interface
     ShowDeleted optional.Bool
     ShowProperties optional.Bool
+    Tags optional.Interface
 }
 
 /*
@@ -466,6 +467,7 @@ Returns the list of things associated to the user
  * @param "Ids" (optional.Interface of []string) -  Filter only the desired things
  * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted things
  * @param "ShowProperties" (optional.Bool) -  If true, returns things with their properties, and last values
+ * @param "Tags" (optional.Interface of []string) -  Filter by tags
 @return []ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptionals *ThingsV2ListOpts) ([]ArduinoThing, *_nethttp.Response, error) {
@@ -507,6 +509,17 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 	if localVarOptionals != nil && localVarOptionals.ShowProperties.IsSet() {
 		localVarQueryParams.Add("show_properties", parameterToString(localVarOptionals.ShowProperties.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
+		t:=localVarOptionals.Tags.Value()
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -544,6 +557,16 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

@@ -200,6 +200,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acrossUserIds** | **optional.Bool**| If true, returns all the devices | [default to false]
  **serial** | **optional.String**| Filter by device serial number | 
+ **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
 
 ### Return type
 

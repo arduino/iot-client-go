@@ -17,6 +17,7 @@ import (
 	_neturl "net/url"
 	"strings"
 	"github.com/antihax/optional"
+	"reflect"
 )
 
 // Linger please
@@ -453,6 +454,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 type DevicesV2ListOpts struct {
     AcrossUserIds optional.Bool
     Serial optional.String
+    Tags optional.Interface
 }
 
 /*
@@ -462,6 +464,7 @@ Returns the list of devices associated to the user
  * @param optional nil or *DevicesV2ListOpts - Optional Parameters:
  * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the devices
  * @param "Serial" (optional.String) -  Filter by device serial number
+ * @param "Tags" (optional.Interface of []string) -  Filter by tags
 @return []ArduinoDevicev2
 */
 func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOptionals *DevicesV2ListOpts) ([]ArduinoDevicev2, *_nethttp.Response, error) {
@@ -485,6 +488,17 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 	}
 	if localVarOptionals != nil && localVarOptionals.Serial.IsSet() {
 		localVarQueryParams.Add("serial", parameterToString(localVarOptionals.Serial.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
+		t:=localVarOptionals.Tags.Value()
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -523,6 +537,16 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError

@@ -499,6 +499,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter by tags
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            maxLength: 129
+            pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -506,6 +518,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Collection'
           description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
         "401":
           content:
             application/json:
@@ -1442,6 +1460,140 @@ paths:
       summary: timeseries devices_v2
       tags:
       - devices_v2
+  /v2/devices/{id}/tags:
+    get:
+      description: List tags associated to the device.
+      operationId: devices_v2_tags#list
+      parameters:
+      - description: The id of the device
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: list devices_v2_tags
+      tags:
+      - devices_v2_tags
+    put:
+      description: Creates or updates a tag associated to the device.
+      operationId: devices_v2_tags#upsert
+      parameters:
+      - description: The id of the device
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/tag'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: upsert devices_v2_tags
+      tags:
+      - devices_v2_tags
+  /v2/devices/{id}/tags/{key}:
+    delete:
+      description: Delete a tag associated to the device given its key.
+      operationId: devices_v2_tags#delete
+      parameters:
+      - description: The id of the device
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The key of the tag
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9_.@-]+$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete devices_v2_tags
+      tags:
+      - devices_v2_tags
   /v2/series/batch_query:
     post:
       description: Returns the batch of time-series data
@@ -1670,6 +1822,18 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: Filter by tags
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            maxLength: 129
+            pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -1677,6 +1841,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ArduinoThingCollection'
           description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
         "401":
           description: Unauthorized
         "500":
@@ -2276,7 +2446,7 @@ paths:
     get:
       description: 'Get numerical property''s historic data binned on a specified
         time interval (note: the total number of data points should NOT be greater
-        than 1000 otherwise the result could be truncated)'
+        than 1000 otherwise the result will be truncated)'
       operationId: properties_v2#timeseries
       parameters:
       - description: Whether data's ordering (by time) should be descending
@@ -2305,13 +2475,13 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Binning interval in seconds (ex. 15mins are 15*60)
+      - description: 'Binning interval in seconds (defaut: the smallest possible value
+          compatibly with the limit of 1000 data points in the response)'
         explode: true
         in: query
         name: interval
         required: false
         schema:
-          default: 1800
           minimum: 1
           type: integer
         style: form
@@ -2519,6 +2689,139 @@ paths:
       summary: updateSketch things_v2
       tags:
       - things_v2
+  /v2/things/{id}/tags:
+    get:
+      description: List tags associated to the thing.
+      operationId: things_v2_tags#list
+      parameters:
+      - description: The id of the thing
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: list things_v2_tags
+      tags:
+      - things_v2_tags
+    put:
+      description: Creates or updates a tag associated to the thing.
+      operationId: things_v2_tags#upsert
+      parameters:
+      - description: The id of the thing
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/tag'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: upsert things_v2_tags
+      tags:
+      - things_v2_tags
+  /v2/things/{id}/tags/{key}:
+    delete:
+      description: Delete a tag associated to the thing given its key.
+      operationId: things_v2_tags#delete
+      parameters:
+      - description: The id of the thing
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The key of the tag
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          maxLength: 64
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete things_v2_tags
+      tags:
+      - things_v2_tags
 components:
   callbacks: {}
   examples: {}
@@ -2756,6 +3059,8 @@ components:
         label: label
         type: type
         required_wifi_fw_version: required_wifi_fw_version
+        tags:
+          key: '{}'
         latest_wifi_fw_version: latest_wifi_fw_version
         serial: serial
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2776,6 +3081,8 @@ components:
           sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           deleted_at: 2000-01-23T04:56:07.000+00:00
+          tags:
+            key: '{}'
           properties_count: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
           user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2886,6 +3193,10 @@ components:
         serial:
           description: The serial uuid of the device
           type: string
+        tags:
+          additionalProperties: true
+          description: Tags belonging to the device
+          type: object
         thing:
           $ref: '#/components/schemas/ArduinoThing'
         type:
@@ -3809,6 +4120,23 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.series.response+json;
         view=default'
       type: object
+    ArduinoTags:
+      description: ArduinoTags media type (default view)
+      example:
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/tag'
+          type: array
+      required:
+      - tags
+      title: 'Mediatype identifier: application/vnd.arduino.tags+json; view=default'
+      type: object
     ArduinoThing:
       description: ArduinoThing media type (default view)
       example:
@@ -3817,6 +4145,8 @@ components:
         sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
         deleted_at: 2000-01-23T04:56:07.000+00:00
+        tags:
+          key: '{}'
         properties_count: 5
         updated_at: 2000-01-23T04:56:07.000+00:00
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3904,6 +4234,10 @@ components:
           description: The id of the attached sketch
           format: uuid
           type: string
+        tags:
+          additionalProperties: true
+          description: Tags of the thing
+          type: object
         updated_at:
           description: Update date of the thing
           format: date-time
@@ -4776,6 +5110,26 @@ components:
           description: The message the user want to send to the dashboard owner
           type: string
       title: sharerequest
+      type: object
+    tag:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Key of the tag
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9_.@-]+$
+          type: string
+        value:
+          description: Value of the tag
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9_.@-]+$
+          type: string
+      required:
+      - key
+      - value
+      title: tag
       type: object
     thing:
       description: ThingPayload describes a thing

@@ -595,14 +595,14 @@ type PropertiesV2TimeseriesOpts struct {
 
 /*
 PropertiesV2Timeseries timeseries properties_v2
-Get numerical property&#39;s historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result could be truncated)
+Get numerical property&#39;s historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result will be truncated)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param pid ID of a numerical property
  * @param optional nil or *PropertiesV2TimeseriesOpts - Optional Parameters:
  * @param "Desc" (optional.Bool) -  Whether data's ordering (by time) should be descending
  * @param "From" (optional.String) -  Get data with a timestamp >= to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)
- * @param "Interval" (optional.Int32) -  Binning interval in seconds (ex. 15mins are 15*60)
+ * @param "Interval" (optional.Int32) -  Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response)
  * @param "To" (optional.String) -  Get data with a timestamp < to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)
 @return ArduinoTimeseriesmedia
 */
