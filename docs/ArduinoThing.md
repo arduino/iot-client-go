@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Properties** | [**[]ArduinoProperty**](ArduinoProperty.md) | ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view) | [optional] 
 **PropertiesCount** | **int64** | The number of properties of the thing | [optional] 
 **SketchId** | **string** | The id of the attached sketch | [optional] 
+**Tags** | **map[string]interface{}** | Tags of the thing | [optional] 
 **UpdatedAt** | [**time.Time**](time.Time.md) | Update date of the thing | [optional] 
 **UserId** | **string** | The user id of the owner | 
 **WebhookActive** | **bool** | Webhook uri | [optional] 

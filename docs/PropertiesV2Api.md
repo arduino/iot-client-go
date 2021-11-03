@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 timeseries properties_v2
 
-Get numerical property's historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result could be truncated)
+Get numerical property's historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result will be truncated)
 
 ### Required Parameters
 
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
  **desc** | **optional.Bool**| Whether data&#39;s ordering (by time) should be descending | [default to false]
  **from** | **optional.String**| Get data with a timestamp &gt;&#x3D; to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
- **interval** | **optional.Int32**| Binning interval in seconds (ex. 15mins are 15*60) | [default to 1800]
+ **interval** | **optional.Int32**| Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response) | 
  **to** | **optional.String**| Get data with a timestamp &lt; to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
 
 ### Return type
