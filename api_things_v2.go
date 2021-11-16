@@ -37,12 +37,12 @@ type ThingsV2CreateOpts struct {
 ThingsV2Create create things_v2
 Creates a new thing associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param thing ThingPayload describes a thing
+ * @param thingCreate Payload to create a new thing
  * @param optional nil or *ThingsV2CreateOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thing Thing, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thingCreate ThingCreate, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -79,7 +79,7 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thing Thing, l
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &thing
+	localVarPostBody = &thingCreate
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -709,12 +709,12 @@ ThingsV2Update update things_v2
 Updates a thing associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
- * @param thing ThingPayload describes a thing
+ * @param thingUpdate Payload to update an existing thing
  * @param optional nil or *ThingsV2UpdateOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thing Thing, localVarOptionals *ThingsV2UpdateOpts) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thingUpdate ThingUpdate, localVarOptionals *ThingsV2UpdateOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -753,7 +753,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &thing
+	localVarPostBody = &thingUpdate
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

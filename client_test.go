@@ -36,7 +36,7 @@ func testCreateDevice(t *testing.T) ArduinoDevicev2 {
 }
 
 func testCreateThing(t *testing.T, name string) ArduinoThing {
-	thingPayload := Thing{
+	thingPayload := ThingCreate{
 		Name: name,
 	}
 	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
@@ -46,7 +46,7 @@ func testCreateThing(t *testing.T, name string) ArduinoThing {
 }
 
 func testAttachDeviceThing(t *testing.T, thingID, deviceID string) ArduinoThing {
-	thing, _, err := client.ThingsV2Api.ThingsV2Update(ctx, thingID, Thing{
+	thing, _, err := client.ThingsV2Api.ThingsV2Update(ctx, thingID, ThingUpdate{
 		DeviceId: deviceID,
 	}, nil)
 	assert.NoError(t, err, "No errors updating thing")
