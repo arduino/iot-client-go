@@ -34,6 +34,8 @@ type ArduinoThing struct {
 	SketchId string `json:"sketch_id,omitempty"`
 	// Tags of the thing
 	Tags map[string]interface{} `json:"tags,omitempty"`
+	// Time zone of the thing
+	Timezone string `json:"timezone"`
 	// Update date of the thing
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// The user id of the owner

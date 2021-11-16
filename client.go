@@ -61,6 +61,10 @@ type APIClient struct {
 
 	DevicesV2TagsApi *DevicesV2TagsApiService
 
+	LoraDevicesV1Api *LoraDevicesV1ApiService
+
+	LoraFreqPlanV1Api *LoraFreqPlanV1ApiService
+
 	PropertiesV2Api *PropertiesV2ApiService
 
 	SeriesV2Api *SeriesV2ApiService
@@ -92,6 +96,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DevicesV2OtaApi = (*DevicesV2OtaApiService)(&c.common)
 	c.DevicesV2PassApi = (*DevicesV2PassApiService)(&c.common)
 	c.DevicesV2TagsApi = (*DevicesV2TagsApiService)(&c.common)
+	c.LoraDevicesV1Api = (*LoraDevicesV1ApiService)(&c.common)
+	c.LoraFreqPlanV1Api = (*LoraFreqPlanV1ApiService)(&c.common)
 	c.PropertiesV2Api = (*PropertiesV2ApiService)(&c.common)
 	c.SeriesV2Api = (*SeriesV2ApiService)(&c.common)
 	c.ThingsV2Api = (*ThingsV2ApiService)(&c.common)

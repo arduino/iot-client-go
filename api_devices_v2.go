@@ -33,7 +33,7 @@ DevicesV2Create create devices_v2
 Creates a new device associated to the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param createDevicesV2Payload DeviceV2 describes a device.
-@return ArduinoDevicev2 
+@return ArduinoDevicev2
 */
 func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevicesV2Payload CreateDevicesV2Payload) (ArduinoDevicev2, *_nethttp.Response, error) {
 	var (

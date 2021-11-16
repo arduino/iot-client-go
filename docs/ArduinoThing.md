@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **PropertiesCount** | **int64** | The number of properties of the thing | [optional] 
 **SketchId** | **string** | The id of the attached sketch | [optional] 
 **Tags** | **map[string]interface{}** | Tags of the thing | [optional] 
+**Timezone** | **string** | Time zone of the thing | 
 **UpdatedAt** | [**time.Time**](time.Time.md) | Update date of the thing | [optional] 
 **UserId** | **string** | The user id of the owner | 
 **WebhookActive** | **bool** | Webhook uri | [optional] 

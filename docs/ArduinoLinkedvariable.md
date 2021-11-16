@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Permission** | **string** | The permission of the linked variable | 
 **ThingId** | **string** | The id of the related thing | 
 **ThingName** | **string** | The name of the related thing | 
+**ThingTimezone** | [**ArduinoTimezone**](ArduinoTimezone.md) |  | [optional] 
 **Type** | **string** | The type of the variable | 
 **VariableName** | **string** | The name of the variable in the code | 
 

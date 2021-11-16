@@ -28,6 +28,7 @@ type ArduinoLinkedvariable struct {
 	ThingId string `json:"thing_id"`
 	// The name of the related thing
 	ThingName string `json:"thing_name"`
+	ThingTimezone ArduinoTimezone `json:"thing_timezone,omitempty"`
 	// The type of the variable
 	Type string `json:"type"`
 	// The name of the variable in the code
