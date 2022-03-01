@@ -71,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **async** | **optional.Bool**| If false, wait for the full OTA process, until it gets a result from the device | [default to true]
  **expireInMins** | **optional.Int32**| Binary expire time in minutes, default 10 mins | [default to 10]
 
 ### Return type

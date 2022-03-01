@@ -11,5 +11,7 @@
 package iot
 // PropertiesValues struct for PropertiesValues
 type PropertiesValues struct {
+	// If true, send property values to device's input topic.
+	Input bool `json:"input,omitempty"`
 	Properties []PropertiesValue `json:"properties"`
 }

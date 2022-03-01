@@ -6,7 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | [**time.Time**](time.Time.md) | Creation date of the thing | [optional] 
 **DeletedAt** | [**time.Time**](time.Time.md) | Delete date of the thing | [optional] 
-**DeviceId** | **string** | The arn of the device | [optional] 
+**DeviceFqbn** | **string** | The fqbn of the attached device, if any | [optional] 
+**DeviceId** | **string** | The id of the device | [optional] 
+**DeviceName** | **string** | The name of the attached device, if any | [optional] 
+**DeviceType** | **string** | The type of the attached device, if any | [optional] 
 **Href** | **string** | The api reference of this thing | 
 **Id** | **string** | The id of the thing | 
 **Name** | **string** | The friendly name of the thing | 

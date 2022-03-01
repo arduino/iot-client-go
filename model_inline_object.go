@@ -14,6 +14,8 @@ import (
 )
 // InlineObject struct for InlineObject
 type InlineObject struct {
+	// If false, wait for the full OTA process, until it gets a result from the device
+	Async bool `json:"async,omitempty"`
 	// Binary expire time in minutes, default 10 mins
 	ExpireInMins int32 `json:"expire_in_mins,omitempty"`
 	// OTA file
