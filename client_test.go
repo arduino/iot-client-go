@@ -266,7 +266,7 @@ func TestProperties(t *testing.T) {
 	assert.NoError(t, err, "No errors publishing property")
 
 	// Wait for data pipeline ingest the last value
-	time.Sleep(10 * time.Second)
+	time.Sleep(20 * time.Second)
 
 	// Get Last value
 	property, _, err = client.PropertiesV2Api.PropertiesV2Show(ctx, thing.Id, property.Id, nil)
