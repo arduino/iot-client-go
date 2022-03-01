@@ -1068,6 +1068,12 @@ paths:
           multipart/form-data:
             schema:
               properties:
+                async:
+                  default: true
+                  description: If false, wait for the full OTA process, until it gets
+                    a result from the device
+                  type: boolean
+                  x-formData-name: async
                 expire_in_mins:
                   default: 10
                   description: Binary expire time in minutes, default 10 mins
@@ -1084,6 +1090,8 @@ paths:
               - ota_file
               type: object
       responses:
+        "200":
+          description: OK
         "202":
           description: Accepted
         "400":
@@ -2992,6 +3000,7 @@ components:
             thing_timezone:
               offset: 1
               name: name
+              until: 2000-01-23T04:56:07.000+00:00
             thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             permission: permission
@@ -3004,6 +3013,7 @@ components:
             thing_timezone:
               offset: 1
               name: name
+              until: 2000-01-23T04:56:07.000+00:00
             thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             permission: permission
@@ -3033,6 +3043,7 @@ components:
             thing_timezone:
               offset: 1
               name: name
+              until: 2000-01-23T04:56:07.000+00:00
             thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             permission: permission
@@ -3045,6 +3056,7 @@ components:
             thing_timezone:
               offset: 1
               name: name
+              until: 2000-01-23T04:56:07.000+00:00
             thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             name: name
             permission: permission
@@ -3139,14 +3151,17 @@ components:
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         thing:
+          device_fqbn: device_fqbn
           device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           timezone: timezone
           webhook_uri: webhook_uri
           sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
+          device_type: device_type
           deleted_at: 2000-01-23T04:56:07.000+00:00
           tags:
             key: '{}'
+          device_name: device_name
           properties_count: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
           user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3671,6 +3686,7 @@ components:
         thing_timezone:
           offset: 1
           name: name
+          until: 2000-01-23T04:56:07.000+00:00
         thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         permission: permission
@@ -4279,14 +4295,17 @@ components:
     ArduinoThing:
       description: ArduinoThing media type (default view)
       example:
+        device_fqbn: device_fqbn
         device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         timezone: timezone
         webhook_uri: webhook_uri
         sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
+        device_type: device_type
         deleted_at: 2000-01-23T04:56:07.000+00:00
         tags:
           key: '{}'
+        device_name: device_name
         properties_count: 5
         updated_at: 2000-01-23T04:56:07.000+00:00
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4344,9 +4363,18 @@ components:
           description: Delete date of the thing
           format: date-time
           type: string
+        device_fqbn:
+          description: The fqbn of the attached device, if any
+          type: string
         device_id:
-          description: The arn of the device
+          description: The id of the device
           format: uuid
+          type: string
+        device_name:
+          description: The name of the attached device, if any
+          type: string
+        device_type:
+          description: The type of the attached device, if any
           type: string
         href:
           description: The api reference of this thing
@@ -4434,6 +4462,7 @@ components:
       example:
         offset: 1
         name: name
+        until: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
           description: Name of the time zone.
@@ -4442,6 +4471,10 @@ components:
           description: Current UTC DST offset in seconds.
           format: int64
           type: integer
+        until:
+          description: Date until the offset is valid.
+          format: date-time
+          type: string
       required:
       - name
       - offset
@@ -4475,6 +4508,7 @@ components:
           thing_timezone:
             offset: 1
             name: name
+            until: 2000-01-23T04:56:07.000+00:00
           thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           permission: permission
@@ -4487,6 +4521,7 @@ components:
           thing_timezone:
             offset: 1
             name: name
+            until: 2000-01-23T04:56:07.000+00:00
           thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           permission: permission
@@ -5216,6 +5251,10 @@ components:
       type: object
     propertiesValues:
       properties:
+        input:
+          default: false
+          description: If true, send property values to device's input topic.
+          type: boolean
         properties:
           items:
             $ref: '#/components/schemas/propertiesValue'
@@ -5571,6 +5610,12 @@ components:
       type: object
     inline_object:
       properties:
+        async:
+          default: true
+          description: If false, wait for the full OTA process, until it gets a result
+            from the device
+          type: boolean
+          x-formData-name: async
         expire_in_mins:
           default: 10
           description: Binary expire time in minutes, default 10 mins

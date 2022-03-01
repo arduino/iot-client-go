@@ -149,6 +149,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaSend(ctx _context.Context, id strin
 
 // DevicesV2OtaUploadOpts Optional parameters for the method 'DevicesV2OtaUpload'
 type DevicesV2OtaUploadOpts struct {
+    Async optional.Bool
     ExpireInMins optional.Int32
 }
 
@@ -159,6 +160,7 @@ Upload a binary and send it to a device
  * @param id The id of the device
  * @param otaFile OTA file
  * @param optional nil or *DevicesV2OtaUploadOpts - Optional Parameters:
+ * @param "Async" (optional.Bool) -  If false, wait for the full OTA process, until it gets a result from the device
  * @param "ExpireInMins" (optional.Int32) -  Binary expire time in minutes, default 10 mins
 */
 func (a *DevicesV2OtaApiService) DevicesV2OtaUpload(ctx _context.Context, id string, otaFile *os.File, localVarOptionals *DevicesV2OtaUploadOpts) (*_nethttp.Response, error) {
@@ -194,6 +196,9 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUpload(ctx _context.Context, id str
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.Async.IsSet() {
+		localVarFormParams.Add("async", parameterToString(localVarOptionals.Async.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ExpireInMins.IsSet() {
 		localVarFormParams.Add("expire_in_mins", parameterToString(localVarOptionals.ExpireInMins.Value(), ""))
