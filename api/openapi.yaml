@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  description: |2- 
+  description: |2-
 
     Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:
 
