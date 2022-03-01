@@ -18,8 +18,14 @@ type ArduinoThing struct {
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	// Delete date of the thing
 	DeletedAt time.Time `json:"deleted_at,omitempty"`
-	// The arn of the device
+	// The fqbn of the attached device, if any
+	DeviceFqbn string `json:"device_fqbn,omitempty"`
+	// The id of the device
 	DeviceId string `json:"device_id,omitempty"`
+	// The name of the attached device, if any
+	DeviceName string `json:"device_name,omitempty"`
+	// The type of the attached device, if any
+	DeviceType string `json:"device_type,omitempty"`
 	// The api reference of this thing
 	Href string `json:"href"`
 	// The id of the thing
