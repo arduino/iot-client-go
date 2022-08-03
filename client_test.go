@@ -27,7 +27,7 @@ func testCreateDevice(t *testing.T) ArduinoDevicev2 {
 		Type: "mkr1000",
 	}
 
-	device, _, err := client.DevicesV2Api.DevicesV2Create(ctx, devicePayload)
+	device, _, err := client.DevicesV2Api.DevicesV2Create(ctx, devicePayload, nil)
 	assert.NoError(t, err, "No errors creating device")
 	assert.Equal(t, devicePayload.Name, device.Name, "Device name was correctly set")
 	assert.Equal(t, devicePayload.Type, device.Type, "Device type was correctly set")
@@ -111,7 +111,7 @@ func cleanup() {
 	}
 
 	for _, d := range devices {
-		_, err = client.DevicesV2Api.DevicesV2Delete(ctx, d.Id)
+		_, err = client.DevicesV2Api.DevicesV2Delete(ctx, d.Id, nil)
 		if err != nil {
 			panic(err)
 		}
@@ -144,7 +144,7 @@ func TestDevicesAPI(t *testing.T) {
 	device := testCreateDevice(t)
 
 	// Show device
-	newDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id)
+	newDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id, nil)
 	assert.NoError(t, err, "No errors showing device")
 	assert.Equal(t, device.Name, newDevice.Name, "Device Name is correct")
 	assert.Equal(t, device.Type, newDevice.Type, "Device ID is correct")
@@ -159,12 +159,12 @@ func TestDevicesAPI(t *testing.T) {
 	newName := "TestDevice2"
 	device, _, err = client.DevicesV2Api.DevicesV2Update(ctx, device.Id, Devicev2{
 		Name: newName,
-	})
+	}, nil)
 	assert.NoError(t, err, "No error updating device")
 	assert.Equal(t, newName, device.Name, "Name was updated correctly")
 
 	// Delete device
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
 	assert.NoError(t, err, "No errors deleting device")
 
 	// Ensure device list is empty
@@ -173,7 +173,7 @@ func TestDevicesAPI(t *testing.T) {
 	assert.Equal(t, 0, len(devices), "Device list is empty")
 
 	// Try to get the no more existing device
-	device, _, err = client.DevicesV2Api.DevicesV2Show(ctx, device.Id)
+	device, _, err = client.DevicesV2Api.DevicesV2Show(ctx, device.Id, nil)
 	assert.EqualError(t, err, "401 Unauthorized", "Error should be unauthorized")
 	assert.Equal(t, ArduinoDevicev2{}, device, "Device should be empty")
 }
@@ -205,7 +205,7 @@ func TestThingsAPI(t *testing.T) {
 	assert.Equal(t, ArduinoThing{}, thing, "Thing should be empty")
 
 	// Delete device
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
 	assert.NoError(t, err, "No errors deleting device")
 }
 
@@ -234,7 +234,7 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyPayload.UpdateStrategy, property.UpdateStrategy, "Property update strategy was set correctly")
 
 	// Generate a sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id, ThingSketch{})
+	thing, _, err = client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id, ThingSketch{}, nil)
 	assert.NoError(t, err, "No errors creating sketch")
 	assert.NotNil(t, thing.SketchId, "Sketch ID is not null")
 
@@ -320,7 +320,7 @@ func TestProperties(t *testing.T) {
 	assert.NoError(t, err, "No errors getting raw series last value")
 
 	// Delete sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2DeleteSketch(ctx, thing.Id)
+	thing, _, err = client.ThingsV2Api.ThingsV2DeleteSketch(ctx, thing.Id, nil)
 	assert.NoError(t, err, "No errors updating sketch")
 	assert.Equal(t, "", thing.SketchId, "Sketch ID is empty")
 
@@ -329,7 +329,7 @@ func TestProperties(t *testing.T) {
 	assert.NoError(t, err, "No errors deleting property")
 
 	// Delete device and thing
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
 	assert.NoError(t, err, "No errors deleting device")
 
 	_, err = client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id, nil)
