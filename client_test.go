@@ -266,7 +266,7 @@ func TestProperties(t *testing.T) {
 	assert.NoError(t, err, "No errors publishing property")
 
 	// Wait for data pipeline ingest the last value
-	time.Sleep(60 * time.Second)
+	time.Sleep(25 * time.Second)
 
 	// Get Last value
 	property, _, err = client.PropertiesV2Api.PropertiesV2Show(ctx, thing.Id, property.Id, nil)
@@ -274,15 +274,14 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyValue, property.LastValue, "Last value is correct")
 
 	// Get value from series batch query
-	request := BatchQueryRequestMediaV1{
+	request := BatchQueryRawRequestMediaV1{
 		From:        time.Now().Add(-60 * time.Second),
 		To:          time.Now(),
-		Interval:    1,
 		SeriesLimit: 1000,
 		Q:           "property." + property.Id,
 	}
-	batch, _, err := client.SeriesV2Api.SeriesV2BatchQuery(ctx, BatchQueryRequestsMediaV1{
-		Requests: []BatchQueryRequestMediaV1{
+	batch, _, err := client.SeriesV2Api.SeriesV2BatchQueryRaw(ctx, BatchQueryRawRequestsMediaV1{
+		Requests: []BatchQueryRawRequestMediaV1{
 			request,
 		},
 	})
