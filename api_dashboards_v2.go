@@ -27,14 +27,21 @@ var (
 // DashboardsV2ApiService DashboardsV2Api service
 type DashboardsV2ApiService service
 
+// DashboardsV2CreateOpts Optional parameters for the method 'DashboardsV2Create'
+type DashboardsV2CreateOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Create create dashboards_v2
 Create a new dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardv2 DashboardV2Payload describes a dashboard
+ * @param optional nil or *DashboardsV2CreateOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDashboardv2
 */
-func (a *DashboardsV2ApiService) DashboardsV2Create(ctx _context.Context, dashboardv2 Dashboardv2) (ArduinoDashboardv2, *_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Create(ctx _context.Context, dashboardv2 Dashboardv2, localVarOptionals *DashboardsV2CreateOpts) (ArduinoDashboardv2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -66,6 +73,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Create(ctx _context.Context, dashbo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &dashboardv2
@@ -134,13 +144,20 @@ func (a *DashboardsV2ApiService) DashboardsV2Create(ctx _context.Context, dashbo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DashboardsV2DeleteOpts Optional parameters for the method 'DashboardsV2Delete'
+type DashboardsV2DeleteOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Delete delete dashboards_v2
 Delete a dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
+ * @param optional nil or *DashboardsV2DeleteOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx _context.Context, id string) (*_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx _context.Context, id string, localVarOptionals *DashboardsV2DeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -173,6 +190,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx _context.Context, id str
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -230,14 +250,21 @@ func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx _context.Context, id str
 	return localVarHTTPResponse, nil
 }
 
+// DashboardsV2DeleteShareOpts Optional parameters for the method 'DashboardsV2DeleteShare'
+type DashboardsV2DeleteShareOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2DeleteShare deleteShare dashboards_v2
 Delete a user the dashboard has been shared with
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
  * @param userId The id of the user
+ * @param optional nil or *DashboardsV2DeleteShareOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx _context.Context, id string, userId string) (*_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx _context.Context, id string, userId string, localVarOptionals *DashboardsV2DeleteShareOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -273,6 +300,9 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx _context.Context, i
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -329,6 +359,11 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx _context.Context, i
 	return localVarHTTPResponse, nil
 }
 
+// DashboardsV2LinkOpts Optional parameters for the method 'DashboardsV2Link'
+type DashboardsV2LinkOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Link link dashboards_v2
 Link or detach widget variables
@@ -336,9 +371,11 @@ Link or detach widget variables
  * @param id The id of the dashboard
  * @param widgetId The id of the widget
  * @param widgetlink
+ * @param optional nil or *DashboardsV2LinkOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoVariableslinks
 */
-func (a *DashboardsV2ApiService) DashboardsV2Link(ctx _context.Context, id string, widgetId string, widgetlink Widgetlink) (ArduinoVariableslinks, *_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Link(ctx _context.Context, id string, widgetId string, widgetlink Widgetlink, localVarOptionals *DashboardsV2LinkOpts) (ArduinoVariableslinks, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -374,6 +411,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Link(ctx _context.Context, id strin
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &widgetlink
@@ -446,6 +486,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Link(ctx _context.Context, id strin
 type DashboardsV2ListOpts struct {
     Name optional.String
     UserId optional.String
+    XOrganization optional.String
 }
 
 /*
@@ -455,6 +496,7 @@ Returns the list of dashboards
  * @param optional nil or *DashboardsV2ListOpts - Optional Parameters:
  * @param "Name" (optional.String) -  The name of the dashboard
  * @param "UserId" (optional.String) -  The user_id of the dashboard's owner
+ * @param "XOrganization" (optional.String) - 
 @return []ArduinoDashboardv2
 */
 func (a *DashboardsV2ApiService) DashboardsV2List(ctx _context.Context, localVarOptionals *DashboardsV2ListOpts) ([]ArduinoDashboardv2, *_nethttp.Response, error) {
@@ -495,6 +537,9 @@ func (a *DashboardsV2ApiService) DashboardsV2List(ctx _context.Context, localVar
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -551,14 +596,21 @@ func (a *DashboardsV2ApiService) DashboardsV2List(ctx _context.Context, localVar
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DashboardsV2ListSharesOpts Optional parameters for the method 'DashboardsV2ListShares'
+type DashboardsV2ListSharesOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2ListShares listShares dashboards_v2
 List of users the dashboard has been shared with
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
+ * @param optional nil or *DashboardsV2ListSharesOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return []ArduinoDashboardshare
 */
-func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx _context.Context, id string) ([]ArduinoDashboardshare, *_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx _context.Context, id string, localVarOptionals *DashboardsV2ListSharesOpts) ([]ArduinoDashboardshare, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -592,6 +644,9 @@ func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx _context.Context, id
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -658,14 +713,21 @@ func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx _context.Context, id
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DashboardsV2RequestAccessOpts Optional parameters for the method 'DashboardsV2RequestAccess'
+type DashboardsV2RequestAccessOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2RequestAccess requestAccess dashboards_v2
 Request access to a dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
  * @param sharerequest
+ * @param optional nil or *DashboardsV2RequestAccessOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx _context.Context, id string, sharerequest Sharerequest) (*_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx _context.Context, id string, sharerequest Sharerequest, localVarOptionals *DashboardsV2RequestAccessOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -698,6 +760,9 @@ func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx _context.Context,
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &sharerequest
@@ -757,14 +822,21 @@ func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx _context.Context,
 	return localVarHTTPResponse, nil
 }
 
+// DashboardsV2ShareOpts Optional parameters for the method 'DashboardsV2Share'
+type DashboardsV2ShareOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Share share dashboards_v2
 Share a dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
  * @param dashboardshare
+ * @param optional nil or *DashboardsV2ShareOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DashboardsV2ApiService) DashboardsV2Share(ctx _context.Context, id string, dashboardshare Dashboardshare) (*_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Share(ctx _context.Context, id string, dashboardshare Dashboardshare, localVarOptionals *DashboardsV2ShareOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -797,6 +869,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Share(ctx _context.Context, id stri
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &dashboardshare
@@ -856,14 +931,21 @@ func (a *DashboardsV2ApiService) DashboardsV2Share(ctx _context.Context, id stri
 	return localVarHTTPResponse, nil
 }
 
+// DashboardsV2ShowOpts Optional parameters for the method 'DashboardsV2Show'
+type DashboardsV2ShowOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Show show dashboards_v2
 Show a dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
+ * @param optional nil or *DashboardsV2ShowOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDashboardv2
 */
-func (a *DashboardsV2ApiService) DashboardsV2Show(ctx _context.Context, id string) (ArduinoDashboardv2, *_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Show(ctx _context.Context, id string, localVarOptionals *DashboardsV2ShowOpts) (ArduinoDashboardv2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -897,6 +979,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Show(ctx _context.Context, id strin
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -953,15 +1038,22 @@ func (a *DashboardsV2ApiService) DashboardsV2Show(ctx _context.Context, id strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DashboardsV2UpdateOpts Optional parameters for the method 'DashboardsV2Update'
+type DashboardsV2UpdateOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DashboardsV2Update update dashboards_v2
 Updates an existing dashboard
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the dashboard
  * @param dashboardv2 DashboardV2Payload describes a dashboard
+ * @param optional nil or *DashboardsV2UpdateOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDashboardv2
 */
-func (a *DashboardsV2ApiService) DashboardsV2Update(ctx _context.Context, id string, dashboardv2 Dashboardv2) (ArduinoDashboardv2, *_nethttp.Response, error) {
+func (a *DashboardsV2ApiService) DashboardsV2Update(ctx _context.Context, id string, dashboardv2 Dashboardv2, localVarOptionals *DashboardsV2UpdateOpts) (ArduinoDashboardv2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -995,6 +1087,9 @@ func (a *DashboardsV2ApiService) DashboardsV2Update(ctx _context.Context, id str
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &dashboardv2

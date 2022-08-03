@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## DevicesV2Create
 
-> ArduinoDevicev2 DevicesV2Create(ctx, createDevicesV2Payload)
+> ArduinoDevicev2 DevicesV2Create(ctx, createDevicesV2Payload, optional)
 
 create devices_v2
 
@@ -31,6 +31,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **createDevicesV2Payload** | [**CreateDevicesV2Payload**](CreateDevicesV2Payload.md)| DeviceV2 describes a device. | 
+ **optional** | ***DevicesV2CreateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2CreateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -52,7 +63,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Delete
 
-> DevicesV2Delete(ctx, id)
+> DevicesV2Delete(ctx, id, optional)
 
 delete devices_v2
 
@@ -65,6 +76,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the device | 
+ **optional** | ***DevicesV2DeleteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2DeleteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -111,6 +133,7 @@ Name | Type | Description  | Notes
 
  **limit** | **optional.Int32**| The number of events to select | 
  **start** | **optional.String**| The time at which to start selecting events | 
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -156,6 +179,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | [default to false]
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -201,6 +225,7 @@ Name | Type | Description  | Notes
  **acrossUserIds** | **optional.Bool**| If true, returns all the devices | [default to false]
  **serial** | **optional.String**| Filter by device serial number | 
  **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -222,7 +247,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Show
 
-> ArduinoDevicev2 DevicesV2Show(ctx, id)
+> ArduinoDevicev2 DevicesV2Show(ctx, id, optional)
 
 show devices_v2
 
@@ -235,6 +260,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the device | 
+ **optional** | ***DevicesV2ShowOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2ShowOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -283,6 +319,7 @@ Name | Type | Description  | Notes
 
  **limit** | **optional.Int32**| The number of properties to select | 
  **start** | **optional.String**| The time at which to start selecting properties | 
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -304,7 +341,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Update
 
-> ArduinoDevicev2 DevicesV2Update(ctx, id, devicev2)
+> ArduinoDevicev2 DevicesV2Update(ctx, id, devicev2, optional)
 
 update devices_v2
 
@@ -318,6 +355,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the device | 
 **devicev2** | [**Devicev2**](Devicev2.md)| DeviceV2 describes a device. | 
+ **optional** | ***DevicesV2UpdateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2UpdateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -339,7 +388,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2UpdateProperties
 
-> DevicesV2UpdateProperties(ctx, id, propertiesValues)
+> DevicesV2UpdateProperties(ctx, id, propertiesValues, optional)
 
 updateProperties devices_v2
 
@@ -353,6 +402,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the device | 
 **propertiesValues** | [**PropertiesValues**](PropertiesValues.md)|  | 
+ **optional** | ***DevicesV2UpdatePropertiesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DevicesV2UpdatePropertiesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 

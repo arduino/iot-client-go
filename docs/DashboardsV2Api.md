@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## DashboardsV2Create
 
-> ArduinoDashboardv2 DashboardsV2Create(ctx, dashboardv2)
+> ArduinoDashboardv2 DashboardsV2Create(ctx, dashboardv2, optional)
 
 create dashboards_v2
 
@@ -32,6 +32,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardv2** | [**Dashboardv2**](Dashboardv2.md)| DashboardV2Payload describes a dashboard | 
+ **optional** | ***DashboardsV2CreateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2CreateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -53,7 +64,7 @@ No authorization required
 
 ## DashboardsV2Delete
 
-> DashboardsV2Delete(ctx, id)
+> DashboardsV2Delete(ctx, id, optional)
 
 delete dashboards_v2
 
@@ -66,6 +77,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
+ **optional** | ***DashboardsV2DeleteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2DeleteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -87,7 +109,7 @@ No authorization required
 
 ## DashboardsV2DeleteShare
 
-> DashboardsV2DeleteShare(ctx, id, userId)
+> DashboardsV2DeleteShare(ctx, id, userId, optional)
 
 deleteShare dashboards_v2
 
@@ -101,6 +123,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
 **userId** | **string**| The id of the user | 
+ **optional** | ***DashboardsV2DeleteShareOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2DeleteShareOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -122,7 +156,7 @@ No authorization required
 
 ## DashboardsV2Link
 
-> ArduinoVariableslinks DashboardsV2Link(ctx, id, widgetId, widgetlink)
+> ArduinoVariableslinks DashboardsV2Link(ctx, id, widgetId, widgetlink, optional)
 
 link dashboards_v2
 
@@ -137,6 +171,19 @@ Name | Type | Description  | Notes
 **id** | **string**| The id of the dashboard | 
 **widgetId** | **string**| The id of the widget | 
 **widgetlink** | [**Widgetlink**](Widgetlink.md)|  | 
+ **optional** | ***DashboardsV2LinkOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2LinkOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -181,6 +228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **optional.String**| The name of the dashboard | 
  **userId** | **optional.String**| The user_id of the dashboard&#39;s owner | 
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -202,7 +250,7 @@ No authorization required
 
 ## DashboardsV2ListShares
 
-> []ArduinoDashboardshare DashboardsV2ListShares(ctx, id)
+> []ArduinoDashboardshare DashboardsV2ListShares(ctx, id, optional)
 
 listShares dashboards_v2
 
@@ -215,6 +263,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
+ **optional** | ***DashboardsV2ListSharesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2ListSharesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -236,7 +295,7 @@ No authorization required
 
 ## DashboardsV2RequestAccess
 
-> DashboardsV2RequestAccess(ctx, id, sharerequest)
+> DashboardsV2RequestAccess(ctx, id, sharerequest, optional)
 
 requestAccess dashboards_v2
 
@@ -250,6 +309,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
 **sharerequest** | [**Sharerequest**](Sharerequest.md)|  | 
+ **optional** | ***DashboardsV2RequestAccessOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2RequestAccessOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -271,7 +342,7 @@ No authorization required
 
 ## DashboardsV2Share
 
-> DashboardsV2Share(ctx, id, dashboardshare)
+> DashboardsV2Share(ctx, id, dashboardshare, optional)
 
 share dashboards_v2
 
@@ -285,6 +356,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
 **dashboardshare** | [**Dashboardshare**](Dashboardshare.md)|  | 
+ **optional** | ***DashboardsV2ShareOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2ShareOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -306,7 +389,7 @@ No authorization required
 
 ## DashboardsV2Show
 
-> ArduinoDashboardv2 DashboardsV2Show(ctx, id)
+> ArduinoDashboardv2 DashboardsV2Show(ctx, id, optional)
 
 show dashboards_v2
 
@@ -319,6 +402,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
+ **optional** | ***DashboardsV2ShowOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2ShowOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -340,7 +434,7 @@ No authorization required
 
 ## DashboardsV2Update
 
-> ArduinoDashboardv2 DashboardsV2Update(ctx, id, dashboardv2)
+> ArduinoDashboardv2 DashboardsV2Update(ctx, id, dashboardv2, optional)
 
 update dashboards_v2
 
@@ -354,6 +448,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the dashboard | 
 **dashboardv2** | [**Dashboardv2**](Dashboardv2.md)| DashboardV2Payload describes a dashboard | 
+ **optional** | ***DashboardsV2UpdateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DashboardsV2UpdateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 

@@ -28,14 +28,21 @@ var (
 // DevicesV2ApiService DevicesV2Api service
 type DevicesV2ApiService service
 
+// DevicesV2CreateOpts Optional parameters for the method 'DevicesV2Create'
+type DevicesV2CreateOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DevicesV2Create create devices_v2
 Creates a new device associated to the user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param createDevicesV2Payload DeviceV2 describes a device.
+ * @param optional nil or *DevicesV2CreateOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2
 */
-func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevicesV2Payload CreateDevicesV2Payload) (ArduinoDevicev2, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevicesV2Payload CreateDevicesV2Payload, localVarOptionals *DevicesV2CreateOpts) (ArduinoDevicev2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -67,6 +74,9 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &createDevicesV2Payload
@@ -135,13 +145,20 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx _context.Context, createDevice
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DevicesV2DeleteOpts Optional parameters for the method 'DevicesV2Delete'
+type DevicesV2DeleteOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DevicesV2Delete delete devices_v2
 Removes a device associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
+ * @param optional nil or *DevicesV2DeleteOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (*_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string, localVarOptionals *DevicesV2DeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -174,6 +191,9 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -225,6 +245,7 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx _context.Context, id string) (
 type DevicesV2GetEventsOpts struct {
     Limit optional.Int32
     Start optional.String
+    XOrganization optional.String
 }
 
 /*
@@ -235,6 +256,7 @@ GET device events
  * @param optional nil or *DevicesV2GetEventsOpts - Optional Parameters:
  * @param "Limit" (optional.Int32) -  The number of events to select
  * @param "Start" (optional.String) -  The time at which to start selecting events
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2EventProperties
 */
 func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string, localVarOptionals *DevicesV2GetEventsOpts) (ArduinoDevicev2EventProperties, *_nethttp.Response, error) {
@@ -277,6 +299,9 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -346,6 +371,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx _context.Context, id string
 // DevicesV2GetPropertiesOpts Optional parameters for the method 'DevicesV2GetProperties'
 type DevicesV2GetPropertiesOpts struct {
     ShowDeleted optional.Bool
+    XOrganization optional.String
 }
 
 /*
@@ -355,6 +381,7 @@ GET device properties
  * @param id The id of the device
  * @param optional nil or *DevicesV2GetPropertiesOpts - Optional Parameters:
  * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted properties
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2properties
 */
 func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id string, localVarOptionals *DevicesV2GetPropertiesOpts) (ArduinoDevicev2properties, *_nethttp.Response, error) {
@@ -394,6 +421,9 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx _context.Context, id st
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -455,6 +485,7 @@ type DevicesV2ListOpts struct {
     AcrossUserIds optional.Bool
     Serial optional.String
     Tags optional.Interface
+    XOrganization optional.String
 }
 
 /*
@@ -465,6 +496,7 @@ Returns the list of devices associated to the user
  * @param "AcrossUserIds" (optional.Bool) -  If true, returns all the devices
  * @param "Serial" (optional.String) -  Filter by device serial number
  * @param "Tags" (optional.Interface of []string) -  Filter by tags
+ * @param "XOrganization" (optional.String) - 
 @return []ArduinoDevicev2
 */
 func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOptionals *DevicesV2ListOpts) ([]ArduinoDevicev2, *_nethttp.Response, error) {
@@ -516,6 +548,9 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -582,14 +617,21 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx _context.Context, localVarOption
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DevicesV2ShowOpts Optional parameters for the method 'DevicesV2Show'
+type DevicesV2ShowOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DevicesV2Show show devices_v2
 Returns the device requested by the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
+ * @param optional nil or *DevicesV2ShowOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2
 */
-func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (ArduinoDevicev2, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string, localVarOptionals *DevicesV2ShowOpts) (ArduinoDevicev2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -623,6 +665,9 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -683,6 +728,7 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx _context.Context, id string) (Ar
 type DevicesV2TimeseriesOpts struct {
     Limit optional.Int32
     Start optional.String
+    XOrganization optional.String
 }
 
 /*
@@ -694,6 +740,7 @@ GET device properties values in a range of time
  * @param optional nil or *DevicesV2TimeseriesOpts - Optional Parameters:
  * @param "Limit" (optional.Int32) -  The number of properties to select
  * @param "Start" (optional.String) -  The time at which to start selecting properties
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2propertyvalues
 */
 func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id string, pid string, localVarOptionals *DevicesV2TimeseriesOpts) (ArduinoDevicev2propertyvalues, *_nethttp.Response, error) {
@@ -739,6 +786,9 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id strin
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -804,15 +854,22 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx _context.Context, id strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DevicesV2UpdateOpts Optional parameters for the method 'DevicesV2Update'
+type DevicesV2UpdateOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DevicesV2Update update devices_v2
 Updates a device associated to the user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
  * @param devicev2 DeviceV2 describes a device.
+ * @param optional nil or *DevicesV2UpdateOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoDevicev2
 */
-func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, devicev2 Devicev2) (ArduinoDevicev2, *_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, devicev2 Devicev2, localVarOptionals *DevicesV2UpdateOpts) (ArduinoDevicev2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -846,6 +903,9 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &devicev2
@@ -890,16 +950,6 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -924,14 +974,21 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx _context.Context, id string, d
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DevicesV2UpdatePropertiesOpts Optional parameters for the method 'DevicesV2UpdateProperties'
+type DevicesV2UpdatePropertiesOpts struct {
+    XOrganization optional.String
+}
+
 /*
 DevicesV2UpdateProperties updateProperties devices_v2
 Update device properties last values
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the device
  * @param propertiesValues
+ * @param optional nil or *DevicesV2UpdatePropertiesOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 */
-func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id string, propertiesValues PropertiesValues) (*_nethttp.Response, error) {
+func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id string, propertiesValues PropertiesValues, localVarOptionals *DevicesV2UpdatePropertiesOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -964,6 +1021,9 @@ func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx _context.Context, id
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &propertiesValues

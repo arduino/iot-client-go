@@ -34,6 +34,8 @@ type ArduinoDevicev2 struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
 	Name string `json:"name"`
+	// Id of the organization the device belongs to
+	OrganizationId string `json:"organization_id,omitempty"`
 	// True if the device type is ready to receive OTA updated
 	OtaAvailable bool `json:"ota_available,omitempty"`
 	// True if the device type is OTA compatible

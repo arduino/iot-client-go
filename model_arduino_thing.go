@@ -32,6 +32,8 @@ type ArduinoThing struct {
 	Id string `json:"id"`
 	// The friendly name of the thing
 	Name string `json:"name"`
+	// Id of the organization the thing belongs to
+	OrganizationId string `json:"organization_id,omitempty"`
 	// ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view)
 	Properties []ArduinoProperty `json:"properties,omitempty"`
 	// The number of properties of the thing

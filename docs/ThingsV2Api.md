@@ -41,6 +41,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -62,7 +63,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2CreateSketch
 
-> ArduinoThing ThingsV2CreateSketch(ctx, id, thingSketch)
+> ArduinoThing ThingsV2CreateSketch(ctx, id, thingSketch, optional)
 
 createSketch things_v2
 
@@ -76,6 +77,18 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the thing | 
 **thingSketch** | [**ThingSketch**](ThingSketch.md)| ThingSketchPayload describes a sketch of a thing | 
+ **optional** | ***ThingsV2CreateSketchOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ThingsV2CreateSketchOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -121,6 +134,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **force** | **optional.Bool**| If true, hard delete the thing | [default to false]
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -142,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## ThingsV2DeleteSketch
 
-> ArduinoThing ThingsV2DeleteSketch(ctx, id)
+> ArduinoThing ThingsV2DeleteSketch(ctx, id, optional)
 
 deleteSketch things_v2
 
@@ -153,6 +167,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string**| The id of the thing | 
+ **optional** | ***ThingsV2DeleteSketchOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ThingsV2DeleteSketchOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -201,6 +226,7 @@ Name | Type | Description  | Notes
  **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | [default to false]
  **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | [default to false]
  **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -246,6 +272,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | [default to false]
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -293,6 +320,7 @@ Name | Type | Description  | Notes
 
 
  **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 
@@ -339,6 +367,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xOrganization** | **optional.String**|  | 
  **updateSketch** | [**optional.Interface of UpdateSketch**](UpdateSketch.md)|  | 
 
 ### Return type
