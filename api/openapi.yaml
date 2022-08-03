@@ -88,6 +88,13 @@ paths:
         schema:
           type: string
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -113,6 +120,14 @@ paths:
     post:
       description: Create a new dashboard
       operationId: dashboards_v2#create
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -165,6 +180,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: OK
@@ -203,6 +225,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -236,6 +265,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -293,6 +329,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -342,6 +385,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -381,6 +431,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -441,6 +498,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: OK
@@ -485,6 +549,13 @@ paths:
         in: path
         name: widgetId
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -562,6 +633,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -595,6 +673,14 @@ paths:
     put:
       description: Creates a new device associated to the user.
       operationId: devices_v2#create
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -649,6 +735,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: OK
@@ -678,6 +771,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -717,6 +817,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -747,12 +854,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
-        "412":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-          description: Precondition Failed
         "500":
           content:
             application/json:
@@ -1019,6 +1120,13 @@ paths:
         schema:
           type: string
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1386,6 +1494,13 @@ paths:
           default: false
           type: boolean
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1419,6 +1534,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -1489,6 +1611,13 @@ paths:
         schema:
           type: string
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1893,6 +2022,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1933,6 +2069,13 @@ paths:
           default: false
           type: boolean
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2004,6 +2147,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: OK
@@ -2049,6 +2199,13 @@ paths:
           default: false
           type: boolean
         style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -2094,6 +2251,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -2601,6 +2765,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -2632,6 +2803,13 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -2698,6 +2876,13 @@ paths:
         in: path
         name: sketchId
         required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -2951,6 +3136,23 @@ components:
       - signature_asn1_y
       title: 'Mediatype identifier: application/vnd.arduino.compressedv2; view=default'
       type: object
+    ArduinoDashboardowner:
+      description: ArduinoDashboardowner media type (default view)
+      example:
+        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        username: username
+      properties:
+        user_id:
+          description: The userID of the user who created the dashboard
+          format: uuid
+          type: string
+        username:
+          description: The username of the user who created the dashboard
+          type: string
+      required:
+      - user_id
+      title: 'Mediatype identifier: application/vnd.arduino.dashboardowner+json; view=default'
+      type: object
     ArduinoDashboardshare:
       description: ArduinoDashboardshare media type (default view)
       example:
@@ -2966,7 +3168,6 @@ components:
           type: string
       required:
       - user_id
-      - username
       title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; view=default'
       type: object
     ArduinoDashboardshareCollection:
@@ -2986,6 +3187,7 @@ components:
         - user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           username: username
         updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         shared_by:
           user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3078,13 +3280,22 @@ components:
           y: 9
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           height: 0
+        created_by:
+          user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          username: username
       properties:
+        created_by:
+          $ref: '#/components/schemas/ArduinoDashboardowner'
         id:
           description: The friendly name of the dashboard
           format: uuid
           type: string
         name:
           description: The friendly name of the dashboard
+          type: string
+        organization_id:
+          description: Id of the organization the dashboard belongs to
+          format: uuid
           type: string
         shared_by:
           $ref: '#/components/schemas/ArduinoDashboardshare'
@@ -3147,6 +3358,7 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           uri: https://openapi-generator.tech
         last_activity_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3165,6 +3377,7 @@ components:
           properties_count: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
           user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3258,6 +3471,10 @@ components:
           type: object
         name:
           description: The friendly name of the device
+          type: string
+        organization_id:
+          description: Id of the organization the device belongs to
+          format: uuid
           type: string
         ota_available:
           description: True if the device type is ready to receive OTA updated
@@ -4309,6 +4526,7 @@ components:
         properties_count: 5
         updated_at: 2000-01-23T04:56:07.000+00:00
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4385,6 +4603,10 @@ components:
           type: string
         name:
           description: The friendly name of the thing
+          type: string
+        organization_id:
+          description: Id of the organization the thing belongs to
+          format: uuid
           type: string
         properties:
           description: ArduinoPropertyCollection is the media type for an array of
@@ -4886,6 +5108,7 @@ components:
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
+          - nicla_vision
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5012,7 +5235,7 @@ components:
           name: name
           update_parameter: 5.962133916683182
           permission: READ_ONLY
-          persist: false
+          persist: true
           tag: 1.4658129805029452
           variable_name: variable_name
           type: ANALOG
@@ -5022,7 +5245,7 @@ components:
           name: name
           update_parameter: 5.962133916683182
           permission: READ_ONLY
-          persist: false
+          persist: true
           tag: 1.4658129805029452
           variable_name: variable_name
           type: ANALOG
@@ -5134,6 +5357,7 @@ components:
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
+          - nicla_vision
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5271,7 +5495,7 @@ components:
         name: name
         update_parameter: 5.962133916683182
         permission: READ_ONLY
-        persist: false
+        persist: true
         tag: 1.4658129805029452
         variable_name: variable_name
         type: ANALOG
@@ -5295,7 +5519,7 @@ components:
           - READ_WRITE
           type: string
         persist:
-          default: false
+          default: true
           description: If true, data will persist into a timeseries database
           type: boolean
         tag:

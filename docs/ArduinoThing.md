@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Href** | **string** | The api reference of this thing | 
 **Id** | **string** | The id of the thing | 
 **Name** | **string** | The friendly name of the thing | 
+**OrganizationId** | **string** | Id of the organization the thing belongs to | [optional] 
 **Properties** | [**[]ArduinoProperty**](ArduinoProperty.md) | ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view) | [optional] 
 **PropertiesCount** | **int64** | The number of properties of the thing | [optional] 
 **SketchId** | **string** | The id of the attached sketch | [optional] 

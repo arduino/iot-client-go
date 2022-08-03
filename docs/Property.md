@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **MinValue** | **float64** | Minimum value of this property | [optional] 
 **Name** | **string** | The friendly name of the property | 
 **Permission** | **string** | The permission of the property | 
-**Persist** | **bool** | If true, data will persist into a timeseries database | [optional] [default to false]
+**Persist** | **bool** | If true, data will persist into a timeseries database | [optional] [default to true]
 **Tag** | **float64** | The integer id of the property | [optional] 
 **Type** | **string** | The type of the property | 
 **UpdateParameter** | **float64** | The update frequency in seconds, or the amount of the property has to change in order to trigger an update | [optional] 

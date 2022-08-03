@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **LatestWifiFwVersion** | **string** | The latest version of the NINA/WIFI101 firmware available for this device | [optional] 
 **Metadata** | **map[string]interface{}** | The metadata of the device | [optional] 
 **Name** | **string** | The friendly name of the device | 
+**OrganizationId** | **string** | Id of the organization the device belongs to | [optional] 
 **OtaAvailable** | **bool** | True if the device type is ready to receive OTA updated | [optional] 
 **OtaCompatible** | **bool** | True if the device type is OTA compatible | [optional] 
 **RequiredWifiFwVersion** | **string** | The required version of the NINA/WIFI101 firmware needed by IoT Cloud | [optional] 

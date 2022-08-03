@@ -31,6 +31,7 @@ type ThingsV2ApiService service
 // ThingsV2CreateOpts Optional parameters for the method 'ThingsV2Create'
 type ThingsV2CreateOpts struct {
     Force optional.Bool
+    XOrganization optional.String
 }
 
 /*
@@ -40,6 +41,7 @@ Creates a new thing associated to the user
  * @param thingCreate Payload to create a new thing
  * @param optional nil or *ThingsV2CreateOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thingCreate ThingCreate, localVarOptionals *ThingsV2CreateOpts) (ArduinoThing, *_nethttp.Response, error) {
@@ -77,6 +79,9 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thingCreate Th
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &thingCreate
@@ -155,15 +160,22 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx _context.Context, thingCreate Th
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ThingsV2CreateSketchOpts Optional parameters for the method 'ThingsV2CreateSketch'
+type ThingsV2CreateSketchOpts struct {
+    XOrganization optional.String
+}
+
 /*
 ThingsV2CreateSketch createSketch things_v2
 Creates a new sketch thing associated to the thing
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
  * @param thingSketch ThingSketchPayload describes a sketch of a thing
+ * @param optional nil or *ThingsV2CreateSketchOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id string, thingSketch ThingSketch) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id string, thingSketch ThingSketch, localVarOptionals *ThingsV2CreateSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -197,6 +209,9 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &thingSketch
@@ -268,6 +283,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx _context.Context, id strin
 // ThingsV2DeleteOpts Optional parameters for the method 'ThingsV2Delete'
 type ThingsV2DeleteOpts struct {
     Force optional.Bool
+    XOrganization optional.String
 }
 
 /*
@@ -277,6 +293,7 @@ Removes a thing associated to the user
  * @param id The id of the thing
  * @param optional nil or *ThingsV2DeleteOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, hard delete the thing
+ * @param "XOrganization" (optional.String) - 
 */
 func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, localVarOptionals *ThingsV2DeleteOpts) (*_nethttp.Response, error) {
 	var (
@@ -314,6 +331,9 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -361,13 +381,20 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx _context.Context, id string, loc
 	return localVarHTTPResponse, nil
 }
 
+// ThingsV2DeleteSketchOpts Optional parameters for the method 'ThingsV2DeleteSketch'
+type ThingsV2DeleteSketchOpts struct {
+    XOrganization optional.String
+}
+
 /*
 ThingsV2DeleteSketch deleteSketch things_v2
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the thing
+ * @param optional nil or *ThingsV2DeleteSketchOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoThing
 */
-func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id string) (ArduinoThing, *_nethttp.Response, error) {
+func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id string, localVarOptionals *ThingsV2DeleteSketchOpts) (ArduinoThing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -401,6 +428,9 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx _context.Context, id strin
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -455,6 +485,7 @@ type ThingsV2ListOpts struct {
     ShowDeleted optional.Bool
     ShowProperties optional.Bool
     Tags optional.Interface
+    XOrganization optional.String
 }
 
 /*
@@ -468,6 +499,7 @@ Returns the list of things associated to the user
  * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted things
  * @param "ShowProperties" (optional.Bool) -  If true, returns things with their properties, and last values
  * @param "Tags" (optional.Interface of []string) -  Filter by tags
+ * @param "XOrganization" (optional.String) - 
 @return []ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptionals *ThingsV2ListOpts) ([]ArduinoThing, *_nethttp.Response, error) {
@@ -537,6 +569,9 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -595,6 +630,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx _context.Context, localVarOptional
 // ThingsV2ShowOpts Optional parameters for the method 'ThingsV2Show'
 type ThingsV2ShowOpts struct {
     ShowDeleted optional.Bool
+    XOrganization optional.String
 }
 
 /*
@@ -604,6 +640,7 @@ Returns the thing requested by the user
  * @param id The id of the thing
  * @param optional nil or *ThingsV2ShowOpts - Optional Parameters:
  * @param "ShowDeleted" (optional.Bool) -  If true, shows the soft deleted thing
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, localVarOptionals *ThingsV2ShowOpts) (ArduinoThing, *_nethttp.Response, error) {
@@ -643,6 +680,9 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -702,6 +742,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx _context.Context, id string, local
 // ThingsV2UpdateOpts Optional parameters for the method 'ThingsV2Update'
 type ThingsV2UpdateOpts struct {
     Force optional.Bool
+    XOrganization optional.String
 }
 
 /*
@@ -712,6 +753,7 @@ Updates a thing associated to the user
  * @param thingUpdate Payload to update an existing thing
  * @param optional nil or *ThingsV2UpdateOpts - Optional Parameters:
  * @param "Force" (optional.Bool) -  If true, detach device from the other thing, and attach to this thing
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoThing
 */
 func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thingUpdate ThingUpdate, localVarOptionals *ThingsV2UpdateOpts) (ArduinoThing, *_nethttp.Response, error) {
@@ -751,6 +793,9 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &thingUpdate
@@ -831,6 +876,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx _context.Context, id string, thi
 
 // ThingsV2UpdateSketchOpts Optional parameters for the method 'ThingsV2UpdateSketch'
 type ThingsV2UpdateSketchOpts struct {
+    XOrganization optional.String
     UpdateSketch optional.Interface
 }
 
@@ -841,6 +887,7 @@ Update an existing thing sketch
  * @param id The id of the thing
  * @param sketchId The id of the sketch
  * @param optional nil or *ThingsV2UpdateSketchOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
  * @param "UpdateSketch" (optional.Interface of UpdateSketch) - 
 @return ArduinoThing
 */
@@ -880,6 +927,9 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx _context.Context, id strin
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.UpdateSketch.IsSet() {

@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreatedBy** | [**ArduinoDashboardowner**](ArduinoDashboardowner.md) |  | [optional] 
 **Id** | **string** | The friendly name of the dashboard | 
 **Name** | **string** | The friendly name of the dashboard | 
+**OrganizationId** | **string** | Id of the organization the dashboard belongs to | [optional] 
 **SharedBy** | [**ArduinoDashboardshare**](ArduinoDashboardshare.md) |  | [optional] 
 **SharedWith** | [**[]ArduinoDashboardshare**](ArduinoDashboardshare.md) | ArduinoDashboardshareCollection is the media type for an array of ArduinoDashboardshare (default view) | [optional] 
 **UpdatedAt** | [**time.Time**](time.Time.md) | Last update date | 

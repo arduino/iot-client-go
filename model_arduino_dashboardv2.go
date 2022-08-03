@@ -14,10 +14,13 @@ import (
 )
 // ArduinoDashboardv2 Dashboard is a collection of widgets (default view)
 type ArduinoDashboardv2 struct {
+	CreatedBy ArduinoDashboardowner `json:"created_by,omitempty"`
 	// The friendly name of the dashboard
 	Id string `json:"id"`
 	// The friendly name of the dashboard
 	Name string `json:"name"`
+	// Id of the organization the dashboard belongs to
+	OrganizationId string `json:"organization_id,omitempty"`
 	SharedBy ArduinoDashboardshare `json:"shared_by,omitempty"`
 	// ArduinoDashboardshareCollection is the media type for an array of ArduinoDashboardshare (default view)
 	SharedWith []ArduinoDashboardshare `json:"shared_with,omitempty"`
