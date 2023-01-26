@@ -15,6 +15,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -25,14 +26,21 @@ var (
 // LoraDevicesV1ApiService LoraDevicesV1Api service
 type LoraDevicesV1ApiService service
 
+// LoraDevicesV1CreateOpts Optional parameters for the method 'LoraDevicesV1Create'
+type LoraDevicesV1CreateOpts struct {
+    XOrganization optional.String
+}
+
 /*
 LoraDevicesV1Create create lora_devices_v1
 Create a new lora device. Its info are saved on our database, and on the lora provider network. Creates a device_v2 automatically
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param createLoraDevicesV1Payload
+ * @param optional nil or *LoraDevicesV1CreateOpts - Optional Parameters:
+ * @param "XOrganization" (optional.String) - 
 @return ArduinoLoradevicev1
 */
-func (a *LoraDevicesV1ApiService) LoraDevicesV1Create(ctx _context.Context, createLoraDevicesV1Payload CreateLoraDevicesV1Payload) (ArduinoLoradevicev1, *_nethttp.Response, error) {
+func (a *LoraDevicesV1ApiService) LoraDevicesV1Create(ctx _context.Context, createLoraDevicesV1Payload CreateLoraDevicesV1Payload, localVarOptionals *LoraDevicesV1CreateOpts) (ArduinoLoradevicev1, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -64,6 +72,9 @@ func (a *LoraDevicesV1ApiService) LoraDevicesV1Create(ctx _context.Context, crea
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XOrganization.IsSet() {
+		localVarHeaderParams["X-Organization"] = parameterToString(localVarOptionals.XOrganization.Value(), "")
 	}
 	// body params
 	localVarPostBody = &createLoraDevicesV1Payload

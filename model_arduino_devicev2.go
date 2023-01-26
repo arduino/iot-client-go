@@ -14,6 +14,8 @@ import (
 )
 // ArduinoDevicev2 ArduinoDevicev2 media type (default view)
 type ArduinoDevicev2 struct {
+	// The type of the connections selected by the user when multiple connections are available
+	ConnectionType string `json:"connection_type,omitempty"`
 	// Creation date of the device
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	// ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view)
@@ -34,6 +36,8 @@ type ArduinoDevicev2 struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
 	Name string `json:"name"`
+	// True if the device type can not have an associated sketch
+	NoSketch bool `json:"no_sketch,omitempty"`
 	// Id of the organization the device belongs to
 	OrganizationId string `json:"organization_id,omitempty"`
 	// True if the device type is ready to receive OTA updated

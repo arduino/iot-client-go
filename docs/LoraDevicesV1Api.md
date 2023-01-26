@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## LoraDevicesV1Create
 
-> ArduinoLoradevicev1 LoraDevicesV1Create(ctx, createLoraDevicesV1Payload)
+> ArduinoLoradevicev1 LoraDevicesV1Create(ctx, createLoraDevicesV1Payload, optional)
 
 create lora_devices_v1
 
@@ -23,6 +23,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **createLoraDevicesV1Payload** | [**CreateLoraDevicesV1Payload**](CreateLoraDevicesV1Payload.md)|  | 
+ **optional** | ***LoraDevicesV1CreateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a LoraDevicesV1CreateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **optional.String**|  | 
 
 ### Return type
 

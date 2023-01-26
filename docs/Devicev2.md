@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ConnectionType** | **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **Fqbn** | **string** | The fully qualified board name | [optional] 
 **Name** | **string** | The friendly name of the device | [optional] 
 **Serial** | **string** | The serial uuid of the device | [optional] 
