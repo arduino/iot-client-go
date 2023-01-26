@@ -19,6 +19,14 @@ paths:
       description: Create a new lora device. Its info are saved on our database, and
         on the lora provider network. Creates a device_v2 automatically
       operationId: lora_devices_v1#create
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -3336,8 +3344,10 @@ components:
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
       example:
+        no_sketch: true
         metadata:
           key: '{}'
+        connection_type: wifi
         fqbn: fqbn
         created_at: 2000-01-23T04:56:07.000+00:00
         ota_compatible: true
@@ -3432,6 +3442,17 @@ components:
           value: ""
         ota_available: true
       properties:
+        connection_type:
+          description: The type of the connections selected by the user when multiple
+            connections are available
+          enum:
+          - wifi
+          - eth
+          - wifiandsecret
+          - gsm
+          - nb
+          - lora
+          type: string
         created_at:
           description: Creation date of the device
           format: date-time
@@ -3472,6 +3493,9 @@ components:
         name:
           description: The friendly name of the device
           type: string
+        no_sketch:
+          description: True if the device type can not have an associated sketch
+          type: boolean
         organization_id:
           description: Id of the organization the device belongs to
           format: uuid
@@ -5074,6 +5098,7 @@ components:
     CreateDevicesV2Payload:
       description: DeviceV2 describes a device.
       example:
+        connection_type: wifi
         serial: serial
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fqbn: fqbn
@@ -5081,6 +5106,17 @@ components:
         wifi_fw_version: wifi_fw_version
         type: mkrwifi1010
       properties:
+        connection_type:
+          description: The type of the connections selected by the user when multiple
+            connections are available
+          enum:
+          - wifi
+          - eth
+          - wifiandsecret
+          - gsm
+          - nb
+          - lora
+          type: string
         fqbn:
           description: The fully qualified board name
           type: string
@@ -5109,6 +5145,9 @@ components:
           - envie_m7
           - nanorp2040connect
           - nicla_vision
+          - phone
+          - portenta_x8
+          - opta
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5330,6 +5369,17 @@ components:
     devicev2:
       description: DeviceV2 describes a device.
       properties:
+        connection_type:
+          description: The type of the connections selected by the user when multiple
+            connections are available
+          enum:
+          - wifi
+          - eth
+          - wifiandsecret
+          - gsm
+          - nb
+          - lora
+          type: string
         fqbn:
           description: The fully qualified board name
           type: string
@@ -5358,6 +5408,9 @@ components:
           - envie_m7
           - nanorp2040connect
           - nicla_vision
+          - phone
+          - portenta_x8
+          - opta
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be

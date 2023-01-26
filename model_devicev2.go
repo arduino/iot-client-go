@@ -11,6 +11,8 @@
 package iot
 // Devicev2 DeviceV2 describes a device.
 type Devicev2 struct {
+	// The type of the connections selected by the user when multiple connections are available
+	ConnectionType string `json:"connection_type,omitempty"`
 	// The fully qualified board name
 	Fqbn string `json:"fqbn,omitempty"`
 	// The friendly name of the device

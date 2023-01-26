@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ConnectionType** | **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **CreatedAt** | [**time.Time**](time.Time.md) | Creation date of the device | [optional] 
 **Events** | [**[]ArduinoDevicev2SimpleProperties**](ArduinoDevicev2SimpleProperties.md) | ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view) | [optional] 
 **Fqbn** | **string** | The fully qualified board name | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **LatestWifiFwVersion** | **string** | The latest version of the NINA/WIFI101 firmware available for this device | [optional] 
 **Metadata** | **map[string]interface{}** | The metadata of the device | [optional] 
 **Name** | **string** | The friendly name of the device | 
+**NoSketch** | **bool** | True if the device type can not have an associated sketch | [optional] 
 **OrganizationId** | **string** | Id of the organization the device belongs to | [optional] 
 **OtaAvailable** | **bool** | True if the device type is ready to receive OTA updated | [optional] 
 **OtaCompatible** | **bool** | True if the device type is OTA compatible | [optional] 
