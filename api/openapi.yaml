@@ -122,6 +122,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: list dashboards_v2
       tags:
       - dashboards_v2
@@ -172,6 +174,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: create dashboards_v2
       tags:
       - dashboards_v2
@@ -218,6 +222,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: delete dashboards_v2
       tags:
       - dashboards_v2
@@ -261,6 +267,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: show dashboards_v2
       tags:
       - dashboards_v2
@@ -321,6 +329,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: update dashboards_v2
       tags:
       - dashboards_v2
@@ -377,6 +387,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: requestAccess dashboards_v2
       tags:
       - dashboards_v2
@@ -427,6 +439,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: listShares dashboards_v2
       tags:
       - dashboards_v2
@@ -482,6 +496,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: share dashboards_v2
       tags:
       - dashboards_v2
@@ -536,6 +552,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: deleteShare dashboards_v2
       tags:
       - dashboards_v2
@@ -604,6 +622,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: link dashboards_v2
       tags:
       - dashboards_v2
@@ -5148,6 +5168,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5411,6 +5432,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
