@@ -11,20 +11,55 @@ Method | HTTP request | Description
 
 ## DevicesV2OtaSend
 
-> DevicesV2OtaSend(ctx, id, devicev2Otabinaryurl)
+> DevicesV2OtaSend(ctx, id).Devicev2Otabinaryurl(devicev2Otabinaryurl).Execute()
 
 send devices_v2_ota
 
-Send a binary url to a device
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    devicev2Otabinaryurl := *openapiclient.NewDevicev2Otabinaryurl("BinaryKey_example") // Devicev2Otabinaryurl | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2OtaApi.DevicesV2OtaSend(context.Background(), id).Devicev2Otabinaryurl(devicev2Otabinaryurl).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2OtaApi.DevicesV2OtaSend``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**devicev2Otabinaryurl** | [**Devicev2Otabinaryurl**](Devicev2Otabinaryurl.md)|  | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2OtaSendRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **devicev2Otabinaryurl** | [**Devicev2Otabinaryurl**](Devicev2Otabinaryurl.md) |  | 
 
 ### Return type
 
@@ -46,33 +81,59 @@ Name | Type | Description  | Notes
 
 ## DevicesV2OtaUpload
 
-> DevicesV2OtaUpload(ctx, id, otaFile, optional)
+> DevicesV2OtaUpload(ctx, id).OtaFile(otaFile).Async(async).ExpireInMins(expireInMins).Execute()
 
 upload devices_v2_ota
 
-Upload a binary and send it to a device
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    otaFile := os.NewFile(1234, "some_file") // *os.File | OTA file
+    async := true // bool | If false, wait for the full OTA process, until it gets a result from the device (optional) (default to true)
+    expireInMins := int32(56) // int32 | Binary expire time in minutes, default 10 mins (optional) (default to 10)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2OtaApi.DevicesV2OtaUpload(context.Background(), id).OtaFile(otaFile).Async(async).ExpireInMins(expireInMins).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2OtaApi.DevicesV2OtaUpload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**otaFile** | ***os.File*****os.File**| OTA file | 
- **optional** | ***DevicesV2OtaUploadOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2OtaUploadOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2OtaUploadRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **async** | **optional.Bool**| If false, wait for the full OTA process, until it gets a result from the device | [default to true]
- **expireInMins** | **optional.Int32**| Binary expire time in minutes, default 10 mins | [default to 10]
+ **otaFile** | ***os.File** | OTA file | 
+ **async** | **bool** | If false, wait for the full OTA process, until it gets a result from the device | [default to true]
+ **expireInMins** | **int32** | Binary expire time in minutes, default 10 mins | [default to 10]
 
 ### Return type
 

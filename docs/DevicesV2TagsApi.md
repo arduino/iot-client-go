@@ -12,20 +12,56 @@ Method | HTTP request | Description
 
 ## DevicesV2TagsDelete
 
-> DevicesV2TagsDelete(ctx, id, key)
+> DevicesV2TagsDelete(ctx, id, key).Execute()
 
 delete devices_v2_tags
 
-Delete a tag associated to the device given its key.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    key := "key_example" // string | The key of the tag
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2TagsApi.DevicesV2TagsDelete(context.Background(), id, key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsApi.DevicesV2TagsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**key** | **string**| The key of the tag | 
+**id** | **string** | The id of the device | 
+**key** | **string** | The key of the tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2TagsDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -47,19 +83,55 @@ Name | Type | Description  | Notes
 
 ## DevicesV2TagsList
 
-> ArduinoTags DevicesV2TagsList(ctx, id)
+> ArduinoTags DevicesV2TagsList(ctx, id).Execute()
 
 list devices_v2_tags
 
-List tags associated to the device.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2TagsApi.DevicesV2TagsList(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsApi.DevicesV2TagsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2TagsList`: ArduinoTags
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2TagsApi.DevicesV2TagsList`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2TagsListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -81,20 +153,55 @@ Name | Type | Description  | Notes
 
 ## DevicesV2TagsUpsert
 
-> DevicesV2TagsUpsert(ctx, id, tag)
+> DevicesV2TagsUpsert(ctx, id).Tag(tag).Execute()
 
 upsert devices_v2_tags
 
-Creates or updates a tag associated to the device.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    tag := *openapiclient.NewTag("Key_example", "Value_example") // Tag | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2TagsApi.DevicesV2TagsUpsert(context.Background(), id).Tag(tag).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsApi.DevicesV2TagsUpsert``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**tag** | [**Tag**](Tag.md)|  | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2TagsUpsertRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tag** | [**Tag**](Tag.md) |  | 
 
 ### Return type
 

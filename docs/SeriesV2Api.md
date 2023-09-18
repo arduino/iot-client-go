@@ -13,19 +13,52 @@ Method | HTTP request | Description
 
 ## SeriesV2BatchQuery
 
-> ArduinoSeriesBatch SeriesV2BatchQuery(ctx, batchQueryRequestsMediaV1)
+> ArduinoSeriesBatch SeriesV2BatchQuery(ctx).BatchQueryRequestsMediaV1(batchQueryRequestsMediaV1).Execute()
 
 batch_query series_v2
 
-Returns the batch of time-series data
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    batchQueryRequestsMediaV1 := *openapiclient.NewBatchQueryRequestsMediaV1([]openapiclient.BatchQueryRequestMediaV1{*openapiclient.NewBatchQueryRequestMediaV1(time.Now(), "Q_example", time.Now())}, int64(123)) // BatchQueryRequestsMediaV1 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SeriesV2Api.SeriesV2BatchQuery(context.Background()).BatchQueryRequestsMediaV1(batchQueryRequestsMediaV1).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SeriesV2Api.SeriesV2BatchQuery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SeriesV2BatchQuery`: ArduinoSeriesBatch
+    fmt.Fprintf(os.Stdout, "Response from `SeriesV2Api.SeriesV2BatchQuery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**batchQueryRequestsMediaV1** | [**BatchQueryRequestsMediaV1**](BatchQueryRequestsMediaV1.md)|  | 
+ **batchQueryRequestsMediaV1** | [**BatchQueryRequestsMediaV1**](BatchQueryRequestsMediaV1.md) |  | 
 
 ### Return type
 
@@ -47,19 +80,51 @@ Name | Type | Description  | Notes
 
 ## SeriesV2BatchQueryRaw
 
-> ArduinoSeriesRawBatch SeriesV2BatchQueryRaw(ctx, batchQueryRawRequestsMediaV1)
+> ArduinoSeriesRawBatch SeriesV2BatchQueryRaw(ctx).BatchQueryRawRequestsMediaV1(batchQueryRawRequestsMediaV1).Execute()
 
 batch_query_raw series_v2
 
-Returns the batch of time-series data raw
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    batchQueryRawRequestsMediaV1 := *openapiclient.NewBatchQueryRawRequestsMediaV1([]openapiclient.BatchQueryRawRequestMediaV1{*openapiclient.NewBatchQueryRawRequestMediaV1("Q_example")}, int64(123)) // BatchQueryRawRequestsMediaV1 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SeriesV2Api.SeriesV2BatchQueryRaw(context.Background()).BatchQueryRawRequestsMediaV1(batchQueryRawRequestsMediaV1).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SeriesV2Api.SeriesV2BatchQueryRaw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SeriesV2BatchQueryRaw`: ArduinoSeriesRawBatch
+    fmt.Fprintf(os.Stdout, "Response from `SeriesV2Api.SeriesV2BatchQueryRaw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRawRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**batchQueryRawRequestsMediaV1** | [**BatchQueryRawRequestsMediaV1**](BatchQueryRawRequestsMediaV1.md)|  | 
+ **batchQueryRawRequestsMediaV1** | [**BatchQueryRawRequestsMediaV1**](BatchQueryRawRequestsMediaV1.md) |  | 
 
 ### Return type
 
@@ -81,19 +146,51 @@ Name | Type | Description  | Notes
 
 ## SeriesV2BatchQueryRawLastValue
 
-> ArduinoSeriesRawBatchLastvalue SeriesV2BatchQueryRawLastValue(ctx, batchLastValueRequestsMediaV1)
+> ArduinoSeriesRawBatchLastvalue SeriesV2BatchQueryRawLastValue(ctx).BatchLastValueRequestsMediaV1(batchLastValueRequestsMediaV1).Execute()
 
 batch_query_raw_last_value series_v2
 
-Returns the batch of time-series data raw
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    batchLastValueRequestsMediaV1 := *openapiclient.NewBatchLastValueRequestsMediaV1([]openapiclient.BatchQueryRawLastValueRequestMediaV1{*openapiclient.NewBatchQueryRawLastValueRequestMediaV1("PropertyId_example", "ThingId_example")}) // BatchLastValueRequestsMediaV1 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SeriesV2Api.SeriesV2BatchQueryRawLastValue(context.Background()).BatchLastValueRequestsMediaV1(batchLastValueRequestsMediaV1).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SeriesV2Api.SeriesV2BatchQueryRawLastValue``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SeriesV2BatchQueryRawLastValue`: ArduinoSeriesRawBatchLastvalue
+    fmt.Fprintf(os.Stdout, "Response from `SeriesV2Api.SeriesV2BatchQueryRawLastValue`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRawLastValueRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**batchLastValueRequestsMediaV1** | [**BatchLastValueRequestsMediaV1**](BatchLastValueRequestsMediaV1.md)|  | 
+ **batchLastValueRequestsMediaV1** | [**BatchLastValueRequestsMediaV1**](BatchLastValueRequestsMediaV1.md) |  | 
 
 ### Return type
 
@@ -115,19 +212,50 @@ Name | Type | Description  | Notes
 
 ## SeriesV2HistoricData
 
-> SeriesV2HistoricData(ctx, historicDataRequest)
+> SeriesV2HistoricData(ctx).HistoricDataRequest(historicDataRequest).Execute()
 
 historic_data series_v2
 
-Request sending of historical data of properties by email
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    historicDataRequest := *openapiclient.NewHistoricDataRequest(time.Now(), []string{"Properties_example"}, time.Now()) // HistoricDataRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.SeriesV2Api.SeriesV2HistoricData(context.Background()).HistoricDataRequest(historicDataRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SeriesV2Api.SeriesV2HistoricData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSeriesV2HistoricDataRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**historicDataRequest** | [**HistoricDataRequest**](HistoricDataRequest.md)|  | 
+ **historicDataRequest** | [**HistoricDataRequest**](HistoricDataRequest.md) |  | 
 
 ### Return type
 

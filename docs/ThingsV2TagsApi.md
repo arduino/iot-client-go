@@ -12,20 +12,56 @@ Method | HTTP request | Description
 
 ## ThingsV2TagsDelete
 
-> ThingsV2TagsDelete(ctx, id, key)
+> ThingsV2TagsDelete(ctx, id, key).Execute()
 
 delete things_v2_tags
 
-Delete a tag associated to the thing given its key.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    key := "key_example" // string | The key of the tag
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ThingsV2TagsApi.ThingsV2TagsDelete(context.Background(), id, key).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2TagsApi.ThingsV2TagsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
-**key** | **string**| The key of the tag | 
+**id** | **string** | The id of the thing | 
+**key** | **string** | The key of the tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2TagsDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -47,19 +83,55 @@ Name | Type | Description  | Notes
 
 ## ThingsV2TagsList
 
-> ArduinoTags ThingsV2TagsList(ctx, id)
+> ArduinoTags ThingsV2TagsList(ctx, id).Execute()
 
 list things_v2_tags
 
-List tags associated to the thing.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2TagsApi.ThingsV2TagsList(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2TagsApi.ThingsV2TagsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2TagsList`: ArduinoTags
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2TagsApi.ThingsV2TagsList`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
+**id** | **string** | The id of the thing | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2TagsListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -81,20 +153,55 @@ Name | Type | Description  | Notes
 
 ## ThingsV2TagsUpsert
 
-> ThingsV2TagsUpsert(ctx, id, tag)
+> ThingsV2TagsUpsert(ctx, id).Tag(tag).Execute()
 
 upsert things_v2_tags
 
-Creates or updates a tag associated to the thing.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    tag := *openapiclient.NewTag("Key_example", "Value_example") // Tag | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ThingsV2TagsApi.ThingsV2TagsUpsert(context.Background(), id).Tag(tag).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2TagsApi.ThingsV2TagsUpsert``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
-**tag** | [**Tag**](Tag.md)|  | 
+**id** | **string** | The id of the thing | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2TagsUpsertRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tag** | [**Tag**](Tag.md) |  | 
 
 ### Return type
 

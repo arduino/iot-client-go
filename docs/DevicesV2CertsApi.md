@@ -14,20 +14,67 @@ Method | HTTP request | Description
 
 ## DevicesV2CertsCreate
 
-> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, id, createDevicesV2CertsPayload)
+> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).Execute()
 
 create devices_v2_certs
 
-Creates a new cert associated to a device. The csr is signed and saved in database. The CommonName will be replaced with the device id.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    createDevicesV2CertsPayload := *openapiclient.NewCreateDevicesV2CertsPayload("-----BEGIN CERTIFICATE-----
+			MIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl
+			MQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL
+			EwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA
+			ZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I
+			+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP
+			upd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w
+			bGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8
+			oiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=
+			-----END CERTIFICATE-----
+			", false) // CreateDevicesV2CertsPayload | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2CertsApi.DevicesV2CertsCreate(context.Background(), id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsApi.DevicesV2CertsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2CertsCreate`: ArduinoDevicev2Cert
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2CertsApi.DevicesV2CertsCreate`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**createDevicesV2CertsPayload** | [**CreateDevicesV2CertsPayload**](CreateDevicesV2CertsPayload.md)|  | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CertsCreateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createDevicesV2CertsPayload** | [**CreateDevicesV2CertsPayload**](CreateDevicesV2CertsPayload.md) |  | 
 
 ### Return type
 
@@ -49,20 +96,56 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsDelete
 
-> DevicesV2CertsDelete(ctx, cid, id)
+> DevicesV2CertsDelete(ctx, cid, id).Execute()
 
 delete devices_v2_certs
 
-Removes a cert associated to a device
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    cid := "cid_example" // string | The id of the cert
+    id := "id_example" // string | The id of the device
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2CertsApi.DevicesV2CertsDelete(context.Background(), cid, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsApi.DevicesV2CertsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cid** | **string**| The id of the cert | 
-**id** | **string**| The id of the device | 
+**cid** | **string** | The id of the cert | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CertsDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -84,19 +167,55 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsList
 
-> []ArduinoDevicev2Cert DevicesV2CertsList(ctx, id)
+> []ArduinoDevicev2Cert DevicesV2CertsList(ctx, id).Execute()
 
 list devices_v2_certs
 
-Returns the list of certs associated to the device
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2CertsApi.DevicesV2CertsList(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsApi.DevicesV2CertsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2CertsList`: []ArduinoDevicev2Cert
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2CertsApi.DevicesV2CertsList`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CertsListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -118,20 +237,58 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsShow
 
-> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cid, id)
+> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cid, id).Execute()
 
 show devices_v2_certs
 
-Returns the cert requested by the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    cid := "cid_example" // string | The id of the cert
+    id := "id_example" // string | The id of the device
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2CertsApi.DevicesV2CertsShow(context.Background(), cid, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsApi.DevicesV2CertsShow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2CertsShow`: ArduinoDevicev2Cert
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2CertsApi.DevicesV2CertsShow`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cid** | **string**| The id of the cert | 
-**id** | **string**| The id of the device | 
+**cid** | **string** | The id of the cert | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CertsShowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -153,21 +310,60 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsUpdate
 
-> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cid, id, devicev2Cert)
+> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cid, id).Devicev2Cert(devicev2Cert).Execute()
 
 update devices_v2_certs
 
-Updates a cert associated to a device. The csr is signed and saved in database. The CommonName will be replaced with the device id.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    cid := "cid_example" // string | The id of the cert
+    id := "id_example" // string | The id of the device
+    devicev2Cert := *openapiclient.NewDevicev2Cert() // Devicev2Cert | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2CertsApi.DevicesV2CertsUpdate(context.Background(), cid, id).Devicev2Cert(devicev2Cert).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsApi.DevicesV2CertsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2CertsUpdate`: ArduinoDevicev2Cert
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2CertsApi.DevicesV2CertsUpdate`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cid** | **string**| The id of the cert | 
-**id** | **string**| The id of the device | 
-**devicev2Cert** | [**Devicev2Cert**](Devicev2Cert.md)|  | 
+**cid** | **string** | The id of the cert | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CertsUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **devicev2Cert** | [**Devicev2Cert**](Devicev2Cert.md) |  | 
 
 ### Return type
 

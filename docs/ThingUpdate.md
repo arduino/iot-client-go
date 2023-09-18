@@ -4,13 +4,208 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeviceId** | **string** | The arn of the associated device | [optional] 
-**Id** | **string** | The id of the thing | [optional] 
-**Name** | **string** | The friendly name of the thing | [optional] 
-**Properties** | [**[]Property**](property.md) | The properties of the thing | [optional] 
-**Timezone** | **string** | A time zone name. Check /v2/timezones for a list of valid names. | [optional] 
-**WebhookActive** | **bool** | Webhook uri | [optional] 
-**WebhookUri** | **string** | Webhook uri | [optional] 
+**DeviceId** | Pointer to **string** | The arn of the associated device | [optional] 
+**Id** | Pointer to **string** | The id of the thing | [optional] 
+**Name** | Pointer to **string** | The friendly name of the thing | [optional] 
+**Properties** | Pointer to [**[]Property**](Property.md) | The properties of the thing | [optional] 
+**Timezone** | Pointer to **string** | A time zone name. Check /v2/timezones for a list of valid names. | [optional] 
+**WebhookActive** | Pointer to **bool** | Webhook uri | [optional] 
+**WebhookUri** | Pointer to **string** | Webhook uri | [optional] 
+
+## Methods
+
+### NewThingUpdate
+
+`func NewThingUpdate() *ThingUpdate`
+
+NewThingUpdate instantiates a new ThingUpdate object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewThingUpdateWithDefaults
+
+`func NewThingUpdateWithDefaults() *ThingUpdate`
+
+NewThingUpdateWithDefaults instantiates a new ThingUpdate object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetDeviceId
+
+`func (o *ThingUpdate) GetDeviceId() string`
+
+GetDeviceId returns the DeviceId field if non-nil, zero value otherwise.
+
+### GetDeviceIdOk
+
+`func (o *ThingUpdate) GetDeviceIdOk() (*string, bool)`
+
+GetDeviceIdOk returns a tuple with the DeviceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceId
+
+`func (o *ThingUpdate) SetDeviceId(v string)`
+
+SetDeviceId sets DeviceId field to given value.
+
+### HasDeviceId
+
+`func (o *ThingUpdate) HasDeviceId() bool`
+
+HasDeviceId returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *ThingUpdate) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ThingUpdate) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ThingUpdate) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ThingUpdate) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ThingUpdate) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ThingUpdate) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ThingUpdate) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *ThingUpdate) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetProperties
+
+`func (o *ThingUpdate) GetProperties() []Property`
+
+GetProperties returns the Properties field if non-nil, zero value otherwise.
+
+### GetPropertiesOk
+
+`func (o *ThingUpdate) GetPropertiesOk() (*[]Property, bool)`
+
+GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProperties
+
+`func (o *ThingUpdate) SetProperties(v []Property)`
+
+SetProperties sets Properties field to given value.
+
+### HasProperties
+
+`func (o *ThingUpdate) HasProperties() bool`
+
+HasProperties returns a boolean if a field has been set.
+
+### GetTimezone
+
+`func (o *ThingUpdate) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *ThingUpdate) GetTimezoneOk() (*string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimezone
+
+`func (o *ThingUpdate) SetTimezone(v string)`
+
+SetTimezone sets Timezone field to given value.
+
+### HasTimezone
+
+`func (o *ThingUpdate) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### GetWebhookActive
+
+`func (o *ThingUpdate) GetWebhookActive() bool`
+
+GetWebhookActive returns the WebhookActive field if non-nil, zero value otherwise.
+
+### GetWebhookActiveOk
+
+`func (o *ThingUpdate) GetWebhookActiveOk() (*bool, bool)`
+
+GetWebhookActiveOk returns a tuple with the WebhookActive field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebhookActive
+
+`func (o *ThingUpdate) SetWebhookActive(v bool)`
+
+SetWebhookActive sets WebhookActive field to given value.
+
+### HasWebhookActive
+
+`func (o *ThingUpdate) HasWebhookActive() bool`
+
+HasWebhookActive returns a boolean if a field has been set.
+
+### GetWebhookUri
+
+`func (o *ThingUpdate) GetWebhookUri() string`
+
+GetWebhookUri returns the WebhookUri field if non-nil, zero value otherwise.
+
+### GetWebhookUriOk
+
+`func (o *ThingUpdate) GetWebhookUriOk() (*string, bool)`
+
+GetWebhookUriOk returns a tuple with the WebhookUri field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebhookUri
+
+`func (o *ThingUpdate) SetWebhookUri(v string)`
+
+SetWebhookUri sets WebhookUri field to given value.
+
+### HasWebhookUri
+
+`func (o *ThingUpdate) HasWebhookUri() bool`
+
+HasWebhookUri returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
