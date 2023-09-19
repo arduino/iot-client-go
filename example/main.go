@@ -34,14 +34,14 @@ func main() {
 	log.Printf("Got an access token, will expire on %s", tok.Expiry)
 
 	// We use the token to create a context that will be passed to any API call
-	ctx := context.WithValue(context.Background(), iot.ContextAccessToken, tok.AccessToken)
+	ctx := context.WithValue(context.Background(), iot.ContextOAuth2, tok.AccessToken)
 
 	// Create an instance of the iot-api Go client, we pass an empty config
 	// because defaults are ok
 	client := iot.NewAPIClient(iot.NewConfiguration())
 
 	// Get the list of devices for the current user
-	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx, nil)
+	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx).Execute()
 	if err != nil {
 		log.Fatalf("Error getting devices, %v", err)
 	}
