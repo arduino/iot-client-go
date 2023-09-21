@@ -92,7 +92,7 @@ func (a *LoraDevicesV1ApiService) LoraDevicesV1CreateExecute(r ApiLoraDevicesV1C
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.loradevicev1+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

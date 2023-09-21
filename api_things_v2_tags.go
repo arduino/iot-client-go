@@ -87,7 +87,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsDeleteExecute(r ApiThingsV2TagsDele
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -213,7 +213,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsListExecute(r ApiThingsV2TagsListRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.tags+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -344,7 +344,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsUpsertExecute(r ApiThingsV2TagsUpse
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -77,7 +77,7 @@ func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.lorafreqplansv1+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -91,7 +91,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsCreateExecute(r ApiDevicesV2Cer
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.devicev2.cert+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -219,7 +219,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsDeleteExecute(r ApiDevicesV2Cer
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -323,7 +323,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsListExecute(r ApiDevicesV2Certs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.devicev2.cert+json; type=collection", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -440,7 +440,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsShowExecute(r ApiDevicesV2Certs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.devicev2.cert+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -566,7 +566,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsUpdateExecute(r ApiDevicesV2Cer
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.devicev2.cert+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

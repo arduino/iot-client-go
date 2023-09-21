@@ -90,7 +90,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -262,7 +262,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUplo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
