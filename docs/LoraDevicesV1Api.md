@@ -10,30 +10,53 @@ Method | HTTP request | Description
 
 ## LoraDevicesV1Create
 
-> ArduinoLoradevicev1 LoraDevicesV1Create(ctx, createLoraDevicesV1Payload, optional)
+> ArduinoLoradevicev1 LoraDevicesV1Create(ctx).CreateLoraDevicesV1Payload(createLoraDevicesV1Payload).XOrganization(xOrganization).Execute()
 
 create lora_devices_v1
 
-Create a new lora device. Its info are saved on our database, and on the lora provider network. Creates a device_v2 automatically
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    createLoraDevicesV1Payload := *openapiclient.NewCreateLoraDevicesV1Payload("App_example", "Eui_example", "FrequencyPlan_example", "Name_example", "Type_example", "UserId_example") // CreateLoraDevicesV1Payload | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.LoraDevicesV1Api.LoraDevicesV1Create(context.Background()).CreateLoraDevicesV1Payload(createLoraDevicesV1Payload).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LoraDevicesV1Api.LoraDevicesV1Create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `LoraDevicesV1Create`: ArduinoLoradevicev1
+    fmt.Fprintf(os.Stdout, "Response from `LoraDevicesV1Api.LoraDevicesV1Create`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoraDevicesV1CreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**createLoraDevicesV1Payload** | [**CreateLoraDevicesV1Payload**](CreateLoraDevicesV1Payload.md)|  | 
- **optional** | ***LoraDevicesV1CreateOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a LoraDevicesV1CreateOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xOrganization** | **optional.String**|  | 
+ **createLoraDevicesV1Payload** | [**CreateLoraDevicesV1Payload**](CreateLoraDevicesV1Payload.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

@@ -13,20 +13,55 @@ Method | HTTP request | Description
 
 ## DevicesV2PassCheck
 
-> DevicesV2PassCheck(ctx, id, checkDevicesV2PassPayload)
+> DevicesV2PassCheck(ctx, id).CheckDevicesV2PassPayload(checkDevicesV2PassPayload).Execute()
 
 check devices_v2_pass
 
-Check if the password matches.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    checkDevicesV2PassPayload := *openapiclient.NewCheckDevicesV2PassPayload("Password_example") // CheckDevicesV2PassPayload | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2PassApi.DevicesV2PassCheck(context.Background(), id).CheckDevicesV2PassPayload(checkDevicesV2PassPayload).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassApi.DevicesV2PassCheck``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**checkDevicesV2PassPayload** | [**CheckDevicesV2PassPayload**](CheckDevicesV2PassPayload.md)|  | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2PassCheckRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **checkDevicesV2PassPayload** | [**CheckDevicesV2PassPayload**](CheckDevicesV2PassPayload.md) |  | 
 
 ### Return type
 
@@ -48,19 +83,53 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassDelete
 
-> DevicesV2PassDelete(ctx, id)
+> DevicesV2PassDelete(ctx, id).Execute()
 
 delete devices_v2_pass
 
-Removes the password for the device.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2PassApi.DevicesV2PassDelete(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassApi.DevicesV2PassDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2PassDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -82,30 +151,57 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassGet
 
-> ArduinoDevicev2Pass DevicesV2PassGet(ctx, id, optional)
+> ArduinoDevicev2Pass DevicesV2PassGet(ctx, id).SuggestedPassword(suggestedPassword).Execute()
 
 get devices_v2_pass
 
-Returns whether the password for this device is set or not. It doesn't return the password.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    suggestedPassword := true // bool | If true, return a suggested password (optional) (default to false)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2PassApi.DevicesV2PassGet(context.Background(), id).SuggestedPassword(suggestedPassword).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassApi.DevicesV2PassGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2PassGet`: ArduinoDevicev2Pass
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2PassApi.DevicesV2PassGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
- **optional** | ***DevicesV2PassGetOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2PassGetOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2PassGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **suggestedPassword** | **optional.Bool**| If true, return a suggested password | [default to false]
+ **suggestedPassword** | **bool** | If true, return a suggested password | [default to false]
 
 ### Return type
 
@@ -127,20 +223,57 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassSet
 
-> ArduinoDevicev2Pass DevicesV2PassSet(ctx, id, devicev2Pass)
+> ArduinoDevicev2Pass DevicesV2PassSet(ctx, id).Devicev2Pass(devicev2Pass).Execute()
 
 set devices_v2_pass
 
-Sets the password for the device. It can never be read back.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    devicev2Pass := *openapiclient.NewDevicev2Pass() // Devicev2Pass | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2PassApi.DevicesV2PassSet(context.Background(), id).Devicev2Pass(devicev2Pass).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassApi.DevicesV2PassSet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2PassSet`: ArduinoDevicev2Pass
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2PassApi.DevicesV2PassSet`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**devicev2Pass** | [**Devicev2Pass**](Devicev2Pass.md)|  | 
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2PassSetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **devicev2Pass** | [**Devicev2Pass**](Devicev2Pass.md) |  | 
 
 ### Return type
 

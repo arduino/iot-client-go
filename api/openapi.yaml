@@ -16,8 +16,8 @@ servers:
 paths:
   /v1/lora-devices/:
     put:
-      description: Create a new lora device. Its info are saved on our database, and
-        on the lora provider network. Creates a device_v2 automatically
+      description: "Create a new lora device. Its info are saved on our database,\
+        \ and on the lora provider network. Creates a device_v2 automatically"
       operationId: lora_devices_v1#create
       parameters:
       - explode: false
@@ -85,7 +85,7 @@ paths:
         required: false
         schema:
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         style: form
       - description: The user_id of the dashboard's owner
@@ -122,6 +122,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: list dashboards_v2
       tags:
       - dashboards_v2
@@ -172,6 +174,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: create dashboards_v2
       tags:
       - dashboards_v2
@@ -218,6 +222,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: delete dashboards_v2
       tags:
       - dashboards_v2
@@ -261,6 +267,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: show dashboards_v2
       tags:
       - dashboards_v2
@@ -321,6 +329,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: update dashboards_v2
       tags:
       - dashboards_v2
@@ -377,6 +387,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: requestAccess dashboards_v2
       tags:
       - dashboards_v2
@@ -427,6 +439,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: listShares dashboards_v2
       tags:
       - dashboards_v2
@@ -482,6 +496,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: share dashboards_v2
       tags:
       - dashboards_v2
@@ -536,6 +552,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: deleteShare dashboards_v2
       tags:
       - dashboards_v2
@@ -604,6 +622,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
+      security:
+      - oauth2: []
       summary: link dashboards_v2
       tags:
       - dashboards_v2
@@ -612,7 +632,7 @@ paths:
       description: Returns the list of devices associated to the user
       operationId: devices_v2#list
       parameters:
-      - description: If true, returns all the devices
+      - description: "If true, returns all the devices"
         explode: true
         in: query
         name: across_user_ids
@@ -637,7 +657,7 @@ paths:
         schema:
           items:
             maxLength: 129
-            pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
+            pattern: "^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$"
             type: string
           type: array
         style: form
@@ -1179,32 +1199,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           multipart/form-data:
             schema:
-              properties:
-                async:
-                  default: true
-                  description: If false, wait for the full OTA process, until it gets
-                    a result from the device
-                  type: boolean
-                  x-formData-name: async
-                expire_in_mins:
-                  default: 10
-                  description: Binary expire time in minutes, default 10 mins
-                  type: integer
-                  x-formData-name: expire_in_mins
-                ota_file:
-                  description: OTA file
-                  format: binary
-                  required:
-                  - ota_file
-                  type: string
-                  x-formData-name: ota_file
-              required:
-              - ota_file
-              type: object
+              $ref: '#/components/schemas/devices_v2_ota_upload_request'
       responses:
         "200":
           description: OK
@@ -1355,7 +1353,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: If true, return a suggested password
+      - description: "If true, return a suggested password"
         explode: true
         in: query
         name: suggested_password
@@ -1493,7 +1491,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: If true, shows the soft deleted properties
+      - description: "If true, shows the soft deleted properties"
         explode: true
         in: query
         name: show_deleted
@@ -1761,7 +1759,7 @@ paths:
         required: true
         schema:
           maxLength: 64
-          pattern: ^[a-zA-Z0-9_.@-]+$
+          pattern: "^[a-zA-Z0-9_.@-]+$"
           type: string
         style: simple
       responses:
@@ -1973,7 +1971,7 @@ paths:
       description: Returns the list of things associated to the user
       operationId: things_v2#list
       parameters:
-      - description: If true, returns all the things
+      - description: "If true, returns all the things"
         explode: true
         in: query
         name: across_user_ids
@@ -2000,7 +1998,7 @@ paths:
             type: string
           type: array
         style: form
-      - description: If true, shows the soft deleted things
+      - description: "If true, shows the soft deleted things"
         explode: true
         in: query
         name: show_deleted
@@ -2009,7 +2007,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: If true, returns things with their properties, and last values
+      - description: "If true, returns things with their properties, and last values"
         explode: true
         in: query
         name: show_properties
@@ -2026,7 +2024,7 @@ paths:
         schema:
           items:
             maxLength: 129
-            pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
+            pattern: "^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$"
             type: string
           type: array
         style: form
@@ -2067,8 +2065,8 @@ paths:
       description: Creates a new thing associated to the user
       operationId: things_v2#create
       parameters:
-      - description: If true, detach device from the other thing, and attach to this
-          thing
+      - description: "If true, detach device from the other thing, and attach to this\
+          \ thing"
         explode: true
         in: query
         name: force
@@ -2138,7 +2136,7 @@ paths:
       description: Removes a thing associated to the user
       operationId: things_v2#delete
       parameters:
-      - description: If true, hard delete the thing
+      - description: "If true, hard delete the thing"
         explode: true
         in: query
         name: force
@@ -2198,7 +2196,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: If true, shows the soft deleted thing
+      - description: "If true, shows the soft deleted thing"
         explode: true
         in: query
         name: show_deleted
@@ -2244,8 +2242,8 @@ paths:
       description: Updates a thing associated to the user
       operationId: things_v2#update
       parameters:
-      - description: If true, detach device from the other thing, and attach to this
-          thing
+      - description: "If true, detach device from the other thing, and attach to this\
+          \ thing"
         explode: true
         in: query
         name: force
@@ -2333,7 +2331,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: If true, shows the soft deleted properties
+      - description: "If true, shows the soft deleted properties"
         explode: true
         in: query
         name: show_deleted
@@ -2439,7 +2437,7 @@ paths:
       description: Removes a property associated to a thing
       operationId: properties_v2#delete
       parameters:
-      - description: If true, hard delete the property
+      - description: "If true, hard delete the property"
         explode: true
         in: query
         name: force
@@ -2506,7 +2504,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: If true, shows the soft deleted properties
+      - description: "If true, shows the soft deleted properties"
         explode: true
         in: query
         name: show_deleted
@@ -2675,9 +2673,9 @@ paths:
       - properties_v2
   /v2/things/{id}/properties/{pid}/timeseries:
     get:
-      description: 'Get numerical property''s historic data binned on a specified
-        time interval (note: the total number of data points should NOT be greater
-        than 1000 otherwise the result will be truncated)'
+      description: "Get numerical property's historic data binned on a specified time\
+        \ interval (note: the total number of data points should NOT be greater than\
+        \ 1000 otherwise the result will be truncated)"
       operationId: properties_v2#timeseries
       parameters:
       - description: Whether data's ordering (by time) should be descending
@@ -2689,8 +2687,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: 'Get data with a timestamp >= to this date (default: 2 weeks
-          ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
+      - description: "Get data with a timestamp >= to this date (default: 2 weeks\
+          \ ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)"
         explode: true
         in: query
         name: from
@@ -2706,8 +2704,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: 'Binning interval in seconds (defaut: the smallest possible value
-          compatibly with the limit of 1000 data points in the response)'
+      - description: "Binning interval in seconds (defaut: the smallest possible value\
+          \ compatibly with the limit of 1000 data points in the response)"
         explode: true
         in: query
         name: interval
@@ -2724,8 +2722,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: 'Get data with a timestamp < to this date (default: now, min:
-          1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
+      - description: "Get data with a timestamp < to this date (default: now, min:\
+          \ 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)"
         explode: true
         in: query
         name: to
@@ -3080,12 +3078,7 @@ components:
   headers: {}
   links: {}
   parameters: {}
-  requestBodies:
-    inline_object:
-      content:
-        multipart/form-data:
-          schema:
-            $ref: '#/components/schemas/inline_object'
+  requestBodies: {}
   responses:
     Accepted:
       description: Accepted
@@ -3142,7 +3135,7 @@ components:
       - signature
       - signature_asn1_x
       - signature_asn1_y
-      title: 'Mediatype identifier: application/vnd.arduino.compressedv2; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.compressedv2; view=default"
       type: object
     ArduinoDashboardowner:
       description: ArduinoDashboardowner media type (default view)
@@ -3159,7 +3152,7 @@ components:
           type: string
       required:
       - user_id
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardowner+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.dashboardowner+json; view=default"
       type: object
     ArduinoDashboardshare:
       description: ArduinoDashboardshare media type (default view)
@@ -3176,15 +3169,15 @@ components:
           type: string
       required:
       - user_id
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.dashboardshare+json; view=default"
       type: object
     ArduinoDashboardshareCollection:
       description: ArduinoDashboardshareCollection is the media type for an array
         of ArduinoDashboardshare (default view)
       items:
         $ref: '#/components/schemas/ArduinoDashboardshare'
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.dashboardshare+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoDashboardv2:
       description: Dashboard is a collection of widgets (default view)
@@ -3231,18 +3224,18 @@ components:
             variable_name: variable_name
             last_value_updated_at: 2000-01-23T04:56:07.000+00:00
             type: type
-          type: slider, gauge
+          type: "slider, gauge"
           x_mobile: 7
           width_mobile: 5
           has_permission_incompatibility: true
           has_unlinked_variable: true
           name: name
           options:
-            key: '{}'
+            key: ""
           width: 5
           x: 2
           has_type_incompatibility: true
-          y: 9
+          "y": 9
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           height: 0
         - height_mobile: 6
@@ -3274,18 +3267,18 @@ components:
             variable_name: variable_name
             last_value_updated_at: 2000-01-23T04:56:07.000+00:00
             type: type
-          type: slider, gauge
+          type: "slider, gauge"
           x_mobile: 7
           width_mobile: 5
           has_permission_incompatibility: true
           has_unlinked_variable: true
           name: name
           options:
-            key: '{}'
+            key: ""
           width: 5
           x: 2
           has_type_incompatibility: true
-          y: 9
+          "y": 9
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           height: 0
         created_by:
@@ -3312,8 +3305,8 @@ components:
             of ArduinoDashboardshare (default view)
           items:
             $ref: '#/components/schemas/ArduinoDashboardshare'
-          title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.dashboardshare+json;\
+            \ type=collection; view=default"
           type: array
         updated_at:
           description: Last update date
@@ -3324,29 +3317,29 @@ components:
             ArduinoWidgetv2 (default view)
           items:
             $ref: '#/components/schemas/ArduinoWidgetv2'
-          title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;
-            view=default'
+          title: "Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;\
+            \ view=default"
           type: array
       required:
       - id
       - name
       - updated_at
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardv2+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.dashboardv2+json; view=default"
       type: object
     ArduinoDashboardv2Collection:
       description: ArduinoDashboardv2Collection is the media type for an array of
         ArduinoDashboardv2 (default view)
       items:
         $ref: '#/components/schemas/ArduinoDashboardv2'
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardv2+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.dashboardv2+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
       example:
         no_sketch: true
         metadata:
-          key: '{}'
+          key: ""
         connection_type: wifi
         fqbn: fqbn
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -3356,7 +3349,7 @@ components:
         type: type
         required_wifi_fw_version: required_wifi_fw_version
         tags:
-          key: '{}'
+          key: ""
         latest_wifi_fw_version: latest_wifi_fw_version
         serial: serial
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3382,7 +3375,7 @@ components:
           device_type: device_type
           deleted_at: 2000-01-23T04:56:07.000+00:00
           tags:
-            key: '{}'
+            key: ""
           device_name: device_name
           properties_count: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3462,8 +3455,8 @@ components:
             for an array of ArduinoDevicev2SimpleProperties (default view)
           items:
             $ref: '#/components/schemas/ArduinoDevicev2SimpleProperties'
-          title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;\
+            \ type=collection; view=default"
           type: array
         fqbn:
           description: The fully qualified board name
@@ -3531,8 +3524,8 @@ components:
             of ArduinoDevicev2Webhook (default view)
           items:
             $ref: '#/components/schemas/ArduinoDevicev2Webhook'
-          title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;\
+            \ type=collection; view=default"
           type: array
         wifi_fw_version:
           description: The version of the NINA/WIFI101 firmware running on the device
@@ -3545,7 +3538,7 @@ components:
       - serial
       - type
       - user_id
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2+json; view=default"
       type: object
     ArduinoDevicev2Cert:
       description: DeviceCertV2 describes a certificate associated to the device (default
@@ -3615,23 +3608,23 @@ components:
       - href
       - id
       - pem
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.cert+json; view=default"
       type: object
     ArduinoDevicev2CertCollection:
       description: ArduinoDevicev2CertCollection is the media type for an array of
         ArduinoDevicev2Cert (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Cert'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.cert+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoDevicev2Collection:
       description: ArduinoDevicev2Collection is the media type for an array of ArduinoDevicev2
         (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoDevicev2EventProperties:
       description: ArduinoDevicev2EventProperties media type (default view)
@@ -3650,8 +3643,8 @@ components:
             for an array of ArduinoDevicev2SimpleProperties (default view)
           items:
             $ref: '#/components/schemas/ArduinoDevicev2SimpleProperties'
-          title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;\
+            \ type=collection; view=default"
           type: array
         id:
           description: The device of the property
@@ -3660,8 +3653,8 @@ components:
       required:
       - events
       - id
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json;\
+        \ view=default"
       type: object
     ArduinoDevicev2Pass:
       description: DeviceCertV2 describes a password associated to a device (default
@@ -3678,7 +3671,7 @@ components:
           type: string
       required:
       - set
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.pass+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.pass+json; view=default"
       type: object
     ArduinoDevicev2SimpleProperties:
       description: ArduinoDevicev2SimpleProperties media type (default view)
@@ -3700,16 +3693,16 @@ components:
       - name
       - updated_at
       - value
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;\
+        \ view=default"
       type: object
     ArduinoDevicev2SimplePropertiesCollection:
       description: ArduinoDevicev2SimplePropertiesCollection is the media type for
         an array of ArduinoDevicev2SimpleProperties (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2SimpleProperties'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
-        type=collection; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;\
+        \ type=collection; view=default"
       type: array
     ArduinoDevicev2Webhook:
       description: DeviceWebhookV2 describes a webhook associated to the device (default
@@ -3734,16 +3727,16 @@ components:
       required:
       - id
       - uri
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;\
+        \ view=default"
       type: object
     ArduinoDevicev2WebhookCollection:
       description: ArduinoDevicev2WebhookCollection is the media type for an array
         of ArduinoDevicev2Webhook (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Webhook'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
-        type=collection; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;\
+        \ type=collection; view=default"
       type: array
     ArduinoDevicev2properties:
       description: ArduinoDevicev2properties media type (default view)
@@ -3806,8 +3799,8 @@ components:
             ArduinoProperty (default view)
           items:
             $ref: '#/components/schemas/ArduinoProperty'
-          title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection;
-            view=default'
+          title: "Mediatype identifier: application/vnd.arduino.property+json; type=collection;\
+            \ view=default"
           type: array
         user_id:
           description: The user id of the owner
@@ -3818,8 +3811,8 @@ components:
       - deviceId
       - properties
       - user_id
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2properties+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2properties+json;\
+        \ view=default"
       type: object
     ArduinoDevicev2propertyvalue:
       description: ArduinoDevicev2propertyvalue media type (default view)
@@ -3845,16 +3838,16 @@ components:
           type: string
         value:
           $ref: '#/components/schemas/ArduinoDevicev2propertyvalue_value'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;\
+        \ view=default"
       type: object
     ArduinoDevicev2propertyvalueCollection:
       description: ArduinoDevicev2propertyvalueCollection is the media type for an
         array of ArduinoDevicev2propertyvalue (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2propertyvalue'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;
-        type=collection; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;\
+        \ type=collection; view=default"
       type: array
     ArduinoDevicev2propertyvalues:
       description: ArduinoDevicev2propertyvalues media type (default view)
@@ -3908,16 +3901,16 @@ components:
             an array of ArduinoDevicev2propertyvalue (default view)
           items:
             $ref: '#/components/schemas/ArduinoDevicev2propertyvalue'
-          title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;\
+            \ type=collection; view=default"
           type: array
       required:
       - id
       - last_evaluated_key
       - name
       - values
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalues+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2propertyvalues+json;\
+        \ view=default"
       type: object
     ArduinoLinkedvariable:
       description: ArduinoLinkedvariable media type (default view)
@@ -3975,15 +3968,15 @@ components:
       - thing_name
       - type
       - variable_name
-      title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.linkedvariable+json; view=default"
       type: object
     ArduinoLinkedvariableCollection:
       description: ArduinoLinkedvariableCollection is the media type for an array
         of ArduinoLinkedvariable (default view)
       items:
         $ref: '#/components/schemas/ArduinoLinkedvariable'
-      title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.linkedvariable+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoLoradevicev1:
       description: ArduinoLoradevicev1 media type (default view)
@@ -4012,7 +4005,7 @@ components:
       - app_key
       - device_id
       - eui
-      title: 'Mediatype identifier: application/vnd.arduino.loradevicev1+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.loradevicev1+json; view=default"
       type: object
     ArduinoLorafreqplansv1:
       description: ArduinoLorafreqplansv1 media type (default view)
@@ -4030,8 +4023,8 @@ components:
           items:
             $ref: '#/components/schemas/ArduinoLorafreqplanv1'
           type: array
-      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplansv1+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.lorafreqplansv1+json;\
+        \ view=default"
       type: object
     ArduinoLorafreqplanv1:
       description: ArduinoLorafreqplanv1 media type (default view)
@@ -4053,7 +4046,7 @@ components:
       - advanced
       - id
       - name
-      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplanv1+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.lorafreqplanv1+json; view=default"
       type: object
     ArduinoProperty:
       description: ArduinoProperty media type (default view)
@@ -4111,7 +4104,7 @@ components:
           description: The permission of the property
           type: string
         persist:
-          description: If true, data will persist into a timeseries database
+          description: "If true, data will persist into a timeseries database"
           type: boolean
         sync_id:
           description: The id of the sync pool
@@ -4132,8 +4125,8 @@ components:
           description: The type of the property
           type: string
         update_parameter:
-          description: The update frequency in seconds, or the amount of the property
-            has to change in order to trigger an update
+          description: "The update frequency in seconds, or the amount of the property\
+            \ has to change in order to trigger an update"
           format: double
           type: number
         update_strategy:
@@ -4158,15 +4151,15 @@ components:
       - thing_id
       - type
       - update_strategy
-      title: 'Mediatype identifier: application/vnd.arduino.property+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.property+json; view=default"
       type: object
     ArduinoPropertyCollection:
       description: ArduinoPropertyCollection is the media type for an array of ArduinoProperty
         (default view)
       items:
         $ref: '#/components/schemas/ArduinoProperty'
-      title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.property+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoSeriesBatch:
       description: ArduinoSeriesBatch media type (default view)
@@ -4216,7 +4209,7 @@ components:
       required:
       - resp_version
       - responses
-      title: 'Mediatype identifier: application/vnd.arduino.series.batch+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.batch+json; view=default"
       type: object
     ArduinoSeriesRawBatch:
       description: ArduinoSeriesRawBatch media type (default view)
@@ -4270,8 +4263,8 @@ components:
       required:
       - resp_version
       - responses
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.raw.batch+json;\
+        \ view=default"
       type: object
     ArduinoSeriesRawBatchLastvalue:
       description: ArduinoSeriesRawBatchLastvalue media type (default view)
@@ -4308,8 +4301,8 @@ components:
       required:
       - responses
       - status
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch.lastvalue+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.raw.batch.lastvalue+json;\
+        \ view=default"
       type: object
     ArduinoSeriesRawLastValueResponse:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
@@ -4343,7 +4336,7 @@ components:
             type: string
           type: array
         values:
-          description: Values can be in Float, String, Bool, Object
+          description: "Values can be in Float, String, Bool, Object"
           items: {}
           type: array
       required:
@@ -4352,8 +4345,8 @@ components:
       - thing_id
       - times
       - values
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.last.value.response+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.raw.last.value.response+json;\
+        \ view=default"
       type: object
     ArduinoSeriesRawResponse:
       description: ArduinoSeriesRawResponse media type (default view)
@@ -4421,7 +4414,7 @@ components:
           format: date-time
           type: string
         values:
-          description: Values can be in Float, String, Bool, Object
+          description: "Values can be in Float, String, Bool, Object"
           items: {}
           type: array
       required:
@@ -4435,8 +4428,8 @@ components:
       - times
       - to_date
       - values
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.response+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.raw.response+json;\
+        \ view=default"
       type: object
     ArduinoSeriesResponse:
       description: ArduinoSeriesResponse media type (default view)
@@ -4513,8 +4506,8 @@ components:
       - times
       - to_date
       - values
-      title: 'Mediatype identifier: application/vnd.arduino.series.response+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.series.response+json;\
+        \ view=default"
       type: object
     ArduinoTags:
       description: ArduinoTags media type (default view)
@@ -4531,7 +4524,7 @@ components:
           type: array
       required:
       - tags
-      title: 'Mediatype identifier: application/vnd.arduino.tags+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.tags+json; view=default"
       type: object
     ArduinoThing:
       description: ArduinoThing media type (default view)
@@ -4545,7 +4538,7 @@ components:
         device_type: device_type
         deleted_at: 2000-01-23T04:56:07.000+00:00
         tags:
-          key: '{}'
+          key: ""
         device_name: device_name
         properties_count: 5
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4606,17 +4599,17 @@ components:
           format: date-time
           type: string
         device_fqbn:
-          description: The fqbn of the attached device, if any
+          description: "The fqbn of the attached device, if any"
           type: string
         device_id:
           description: The id of the device
           format: uuid
           type: string
         device_name:
-          description: The name of the attached device, if any
+          description: "The name of the attached device, if any"
           type: string
         device_type:
-          description: The type of the attached device, if any
+          description: "The type of the attached device, if any"
           type: string
         href:
           description: The api reference of this thing
@@ -4637,8 +4630,8 @@ components:
             ArduinoProperty (default view)
           items:
             $ref: '#/components/schemas/ArduinoProperty'
-          title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection;
-            view=default'
+          title: "Mediatype identifier: application/vnd.arduino.property+json; type=collection;\
+            \ view=default"
           type: array
         properties_count:
           description: The number of properties of the thing
@@ -4675,15 +4668,15 @@ components:
       - name
       - timezone
       - user_id
-      title: 'Mediatype identifier: application/vnd.arduino.thing+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.thing+json; view=default"
       type: object
     ArduinoThingCollection:
       description: ArduinoThingCollection is the media type for an array of ArduinoThing
         (default view)
       items:
         $ref: '#/components/schemas/ArduinoThing'
-      title: 'Mediatype identifier: application/vnd.arduino.thing+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.thing+json; type=collection;\
+        \ view=default"
       type: array
     ArduinoTimeseriesmedia:
       description: ArduinoTimeseriesmedia media type (default view)
@@ -4700,8 +4693,8 @@ components:
           type: array
       required:
       - data
-      title: 'Mediatype identifier: application/vnd.arduino.timeseriesmedia+json;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.timeseriesmedia+json;\
+        \ view=default"
       type: object
     ArduinoTimezone:
       description: ArduinoTimezone media type (default view)
@@ -4724,7 +4717,7 @@ components:
       required:
       - name
       - offset
-      title: 'Mediatype identifier: application/vnd.arduino.timezone+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.timezone+json; view=default"
       type: object
     ArduinoVariableslinks:
       description: ArduinoVariableslinks media type (default view)
@@ -4741,7 +4734,7 @@ components:
           type: array
       required:
       - variables
-      title: 'Mediatype identifier: application/vnd.arduino.variableslinks+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.variableslinks+json; view=default"
       type: object
     ArduinoWidgetv2:
       description: Widget describes a dashboard widget (default view)
@@ -4775,18 +4768,18 @@ components:
           variable_name: variable_name
           last_value_updated_at: 2000-01-23T04:56:07.000+00:00
           type: type
-        type: slider, gauge
+        type: "slider, gauge"
         x_mobile: 7
         width_mobile: 5
         has_permission_incompatibility: true
         has_unlinked_variable: true
         name: name
         options:
-          key: '{}'
+          key: ""
         width: 5
         x: 2
         has_type_incompatibility: true
-        y: 9
+        "y": 9
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         height: 0
       properties:
@@ -4810,7 +4803,7 @@ components:
           format: int64
           type: integer
         id:
-          description: The UUID of the widget, set by client
+          description: "The UUID of the widget, set by client"
           format: uuid
           type: string
         name:
@@ -4823,15 +4816,15 @@ components:
         type:
           description: The type of the widget
           enum:
-          - slider, gauge
+          - "slider, gauge"
           type: string
         variables:
           description: ArduinoLinkedvariableCollection is the media type for an array
             of ArduinoLinkedvariable (default view)
           items:
             $ref: '#/components/schemas/ArduinoLinkedvariable'
-          title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json;
-            type=collection; view=default'
+          title: "Mediatype identifier: application/vnd.arduino.linkedvariable+json;\
+            \ type=collection; view=default"
           type: array
         width:
           description: Widget current width for desktop
@@ -4849,7 +4842,7 @@ components:
           description: Widget x position for mobile
           format: int64
           type: integer
-        y:
+        "y":
           description: Widget y position for desktop
           format: int64
           type: integer
@@ -4865,15 +4858,15 @@ components:
       - width
       - x
       - "y"
-      title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; view=default'
+      title: "Mediatype identifier: application/vnd.arduino.widgetv2+json; view=default"
       type: object
     ArduinoWidgetv2Collection:
       description: ArduinoWidgetv2Collection is the media type for an array of ArduinoWidgetv2
         (default view)
       items:
         $ref: '#/components/schemas/ArduinoWidgetv2'
-      title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;
-        view=default'
+      title: "Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;\
+        \ view=default"
       type: array
     BatchLastValueRequestsMediaV1:
       example:
@@ -5123,12 +5116,12 @@ components:
         name:
           description: The friendly name of the device
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         serial:
           description: The serial uuid of the device
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         type:
           description: The type of the device
@@ -5148,6 +5141,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5157,7 +5151,9 @@ components:
         wifi_fw_version:
           description: The version of the NINA/WIFI101 firmware running on the device
           maxLength: 10
-          pattern: ^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\\
+            d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\
+            +([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
           type: string
       required:
       - type
@@ -5180,15 +5176,15 @@ components:
           type: string
         app_eui:
           description: The app eui of the lora device
-          pattern: '[0-9a-z]{16}'
+          pattern: "[0-9a-z]{16}"
           type: string
         app_key:
           description: The app key of the lora device
-          pattern: '[0-9a-z]{16}'
+          pattern: "[0-9a-z]{16}"
           type: string
         eui:
           description: The eui of the lora device
-          pattern: '[0-9a-z]{16}'
+          pattern: "[0-9a-z]{16}"
           type: string
         frequency_plan:
           description: 'The frequency plan required by your country '
@@ -5301,7 +5297,7 @@ components:
         name:
           description: The friendly name of the thing
           maxLength: 64
-          pattern: ^[a-zA-Z0-9_.@ -]+$
+          pattern: "^[a-zA-Z0-9_.@ -]+$"
           type: string
         properties:
           description: The properties of the thing
@@ -5357,7 +5353,7 @@ components:
         name:
           description: The friendly name of the dashboard
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         widgets:
           description: Widgets attached to this dashboard
@@ -5386,12 +5382,12 @@ components:
         name:
           description: The friendly name of the device
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         serial:
           description: The serial uuid of the device
           maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
+          pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         type:
           description: The type of the device
@@ -5411,6 +5407,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5420,7 +5417,9 @@ components:
         wifi_fw_version:
           description: The version of the NINA/WIFI101 firmware running on the device
           maxLength: 10
-          pattern: ^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\\
+            d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\
+            +([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
           type: string
       title: devicev2
       type: object
@@ -5451,16 +5450,16 @@ components:
       properties:
         async:
           default: true
-          description: If false, wait for the full OTA process, until it gets a result
-            from the device
+          description: "If false, wait for the full OTA process, until it gets a result\
+            \ from the device"
           type: boolean
         binary_key:
           description: The object key of the binary
-          pattern: ^ota/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+.ota$
+          pattern: "^ota/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+.ota$"
           type: string
         expire_in_mins:
           default: 10
-          description: Binary expire time in minutes, default 10 mins
+          description: "Binary expire time in minutes, default 10 mins"
           format: int64
           type: integer
       required:
@@ -5478,7 +5477,8 @@ components:
       description: Error response media type (default view)
       properties:
         code:
-          description: an application-specific error code, expressed as a string value.
+          description: "an application-specific error code, expressed as a string\
+            \ value."
           example: invalid_value
           type: string
         detail:
@@ -5502,7 +5502,7 @@ components:
           example: 400
           format: int64
           type: integer
-      title: 'Mediatype identifier: application/vnd.goa.error+json; view=default'
+      title: "Mediatype identifier: application/vnd.goa.error+json; view=default"
       type: object
     propertiesValue:
       properties:
@@ -5530,7 +5530,7 @@ components:
       properties:
         input:
           default: false
-          description: If true, send property values to device's input topic.
+          description: "If true, send property values to device's input topic."
           type: boolean
         properties:
           items:
@@ -5573,7 +5573,7 @@ components:
           type: string
         persist:
           default: true
-          description: If true, data will persist into a timeseries database
+          description: "If true, data will persist into a timeseries database"
           type: boolean
         tag:
           description: The integer id of the property
@@ -5695,8 +5695,8 @@ components:
           - SCHEDULE
           type: string
         update_parameter:
-          description: The update frequency in seconds, or the amount of the property
-            has to change in order to trigger an update
+          description: "The update frequency in seconds, or the amount of the property\
+            \ has to change in order to trigger an update"
           format: double
           type: number
         update_strategy:
@@ -5708,7 +5708,7 @@ components:
         variable_name:
           description: The  sketch variable name of the property
           maxLength: 64
-          pattern: ^[a-zA-Z_][a-zA-Z0-9_]*$
+          pattern: "^[a-zA-Z_][a-zA-Z0-9_]*$"
           type: string
       required:
       - name
@@ -5745,12 +5745,12 @@ components:
         key:
           description: Key of the tag
           maxLength: 64
-          pattern: ^[a-zA-Z0-9_.@-]+$
+          pattern: "^[a-zA-Z0-9_.@-]+$"
           type: string
         value:
           description: Value of the tag
           maxLength: 64
-          pattern: ^[a-zA-Z0-9_.@-]+$
+          pattern: "^[a-zA-Z0-9_.@-]+$"
           type: string
       required:
       - key
@@ -5782,7 +5782,7 @@ components:
         name:
           description: The friendly name of the thing
           maxLength: 64
-          pattern: ^[a-zA-Z0-9_.@ -]+$
+          pattern: "^[a-zA-Z0-9_.@ -]+$"
           type: string
         properties:
           description: The properties of the thing
@@ -5824,7 +5824,7 @@ components:
           format: int64
           type: integer
         id:
-          description: The UUID of the widget, set by client
+          description: "The UUID of the widget, set by client"
           format: uuid
           type: string
         name:
@@ -5858,7 +5858,7 @@ components:
           description: Widget x position for mobile
           format: int64
           type: integer
-        y:
+        "y":
           description: Widget y position for desktop
           format: int64
           type: integer
@@ -5885,17 +5885,17 @@ components:
           type: array
       title: widgetlink
       type: object
-    inline_object:
+    devices_v2_ota_upload_request:
       properties:
         async:
           default: true
-          description: If false, wait for the full OTA process, until it gets a result
-            from the device
+          description: "If false, wait for the full OTA process, until it gets a result\
+            \ from the device"
           type: boolean
           x-formData-name: async
         expire_in_mins:
           default: 10
-          description: Binary expire time in minutes, default 10 mins
+          description: "Binary expire time in minutes, default 10 mins"
           type: integer
           x-formData-name: expire_in_mins
         ota_file:
@@ -5951,6 +5951,7 @@ components:
         time:
           format: double
           type: number
+      type: object
     ArduinoDevicev2propertyvalue_value:
       example:
         seqno: 0
@@ -5974,6 +5975,7 @@ components:
           type: integer
         statistics:
           $ref: '#/components/schemas/ArduinoDevicev2propertyvalue_value_statistics'
+      type: object
     ArduinoDevicev2propertyvalues_last_evaluated_key:
       example:
         name: name
@@ -5987,6 +5989,7 @@ components:
           type: string
         name:
           type: string
+      type: object
   securitySchemes:
     oauth2:
       flows:

@@ -18,30 +18,53 @@ Method | HTTP request | Description
 
 ## DevicesV2Create
 
-> ArduinoDevicev2 DevicesV2Create(ctx, createDevicesV2Payload, optional)
+> ArduinoDevicev2 DevicesV2Create(ctx).CreateDevicesV2Payload(createDevicesV2Payload).XOrganization(xOrganization).Execute()
 
 create devices_v2
 
-Creates a new device associated to the user.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    createDevicesV2Payload := *openapiclient.NewCreateDevicesV2Payload("Type_example") // CreateDevicesV2Payload | DeviceV2 describes a device.
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2Create(context.Background()).CreateDevicesV2Payload(createDevicesV2Payload).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2Create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2Create`: ArduinoDevicev2
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2Create`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2CreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**createDevicesV2Payload** | [**CreateDevicesV2Payload**](CreateDevicesV2Payload.md)| DeviceV2 describes a device. | 
- **optional** | ***DevicesV2CreateOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DevicesV2CreateOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xOrganization** | **optional.String**|  | 
+ **createDevicesV2Payload** | [**CreateDevicesV2Payload**](CreateDevicesV2Payload.md) | DeviceV2 describes a device. | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -63,30 +86,55 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Delete
 
-> DevicesV2Delete(ctx, id, optional)
+> DevicesV2Delete(ctx, id).XOrganization(xOrganization).Execute()
 
 delete devices_v2
 
-Removes a device associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2Api.DevicesV2Delete(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2Delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
- **optional** | ***DevicesV2DeleteOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2DeleteOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2DeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -108,32 +156,61 @@ Name | Type | Description  | Notes
 
 ## DevicesV2GetEvents
 
-> ArduinoDevicev2EventProperties DevicesV2GetEvents(ctx, id, optional)
+> ArduinoDevicev2EventProperties DevicesV2GetEvents(ctx, id).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
 
 getEvents devices_v2
 
-GET device events
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    limit := int32(56) // int32 | The number of events to select (optional)
+    start := "start_example" // string | The time at which to start selecting events (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2GetEvents(context.Background(), id).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2GetEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2GetEvents`: ArduinoDevicev2EventProperties
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2GetEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
- **optional** | ***DevicesV2GetEventsOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2GetEventsOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2GetEventsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **optional.Int32**| The number of events to select | 
- **start** | **optional.String**| The time at which to start selecting events | 
- **xOrganization** | **optional.String**|  | 
+ **limit** | **int32** | The number of events to select | 
+ **start** | **string** | The time at which to start selecting events | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -155,31 +232,59 @@ Name | Type | Description  | Notes
 
 ## DevicesV2GetProperties
 
-> ArduinoDevicev2properties DevicesV2GetProperties(ctx, id, optional)
+> ArduinoDevicev2properties DevicesV2GetProperties(ctx, id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
 
 getProperties devices_v2
 
-GET device properties
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2GetProperties(context.Background(), id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2GetProperties``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2GetProperties`: ArduinoDevicev2properties
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2GetProperties`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
- **optional** | ***DevicesV2GetPropertiesOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2GetPropertiesOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2GetPropertiesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted properties | [default to false]
- **xOrganization** | **optional.String**|  | 
+ **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -201,31 +306,57 @@ Name | Type | Description  | Notes
 
 ## DevicesV2List
 
-> []ArduinoDevicev2 DevicesV2List(ctx, optional)
+> []ArduinoDevicev2 DevicesV2List(ctx).AcrossUserIds(acrossUserIds).Serial(serial).Tags(tags).XOrganization(xOrganization).Execute()
 
 list devices_v2
 
-Returns the list of devices associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    acrossUserIds := true // bool | If true, returns all the devices (optional) (default to false)
+    serial := "serial_example" // string | Filter by device serial number (optional)
+    tags := []string{"Inner_example"} // []string | Filter by tags (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2List(context.Background()).AcrossUserIds(acrossUserIds).Serial(serial).Tags(tags).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2List``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2List`: []ArduinoDevicev2
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2List`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2ListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***DevicesV2ListOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DevicesV2ListOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the devices | [default to false]
- **serial** | **optional.String**| Filter by device serial number | 
- **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
- **xOrganization** | **optional.String**|  | 
+ **acrossUserIds** | **bool** | If true, returns all the devices | [default to false]
+ **serial** | **string** | Filter by device serial number | 
+ **tags** | **[]string** | Filter by tags | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -247,30 +378,57 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Show
 
-> ArduinoDevicev2 DevicesV2Show(ctx, id, optional)
+> ArduinoDevicev2 DevicesV2Show(ctx, id).XOrganization(xOrganization).Execute()
 
 show devices_v2
 
-Returns the device requested by the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2Show(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2Show``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2Show`: ArduinoDevicev2
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2Show`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
- **optional** | ***DevicesV2ShowOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2ShowOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2ShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -292,34 +450,64 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Timeseries
 
-> ArduinoDevicev2propertyvalues DevicesV2Timeseries(ctx, id, pid, optional)
+> ArduinoDevicev2propertyvalues DevicesV2Timeseries(ctx, id, pid).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
 
 timeseries devices_v2
 
-GET device properties values in a range of time
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    pid := "pid_example" // string | The id of the property
+    limit := int32(56) // int32 | The number of properties to select (optional)
+    start := "start_example" // string | The time at which to start selecting properties (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2Timeseries(context.Background(), id, pid).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2Timeseries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2Timeseries`: ArduinoDevicev2propertyvalues
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2Timeseries`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**pid** | **string**| The id of the property | 
- **optional** | ***DevicesV2TimeseriesOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
+**pid** | **string** | The id of the property | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2TimeseriesOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2TimeseriesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **limit** | **optional.Int32**| The number of properties to select | 
- **start** | **optional.String**| The time at which to start selecting properties | 
- **xOrganization** | **optional.String**|  | 
+ **limit** | **int32** | The number of properties to select | 
+ **start** | **string** | The time at which to start selecting properties | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -341,32 +529,59 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Update
 
-> ArduinoDevicev2 DevicesV2Update(ctx, id, devicev2, optional)
+> ArduinoDevicev2 DevicesV2Update(ctx, id).Devicev2(devicev2).XOrganization(xOrganization).Execute()
 
 update devices_v2
 
-Updates a device associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    devicev2 := *openapiclient.NewDevicev2() // Devicev2 | DeviceV2 describes a device.
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2Update(context.Background(), id).Devicev2(devicev2).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2Update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2Update`: ArduinoDevicev2
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2Update`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**devicev2** | [**Devicev2**](Devicev2.md)| DeviceV2 describes a device. | 
- **optional** | ***DevicesV2UpdateOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2UpdateOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2UpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **devicev2** | [**Devicev2**](Devicev2.md) | DeviceV2 describes a device. | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -388,32 +603,57 @@ Name | Type | Description  | Notes
 
 ## DevicesV2UpdateProperties
 
-> DevicesV2UpdateProperties(ctx, id, propertiesValues, optional)
+> DevicesV2UpdateProperties(ctx, id).PropertiesValues(propertiesValues).XOrganization(xOrganization).Execute()
 
 updateProperties devices_v2
 
-Update device properties last values
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    propertiesValues := *openapiclient.NewPropertiesValues([]openapiclient.PropertiesValue{*openapiclient.NewPropertiesValue("Name_example", "Type_example", interface{}(123))}) // PropertiesValues | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DevicesV2Api.DevicesV2UpdateProperties(context.Background(), id).PropertiesValues(propertiesValues).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2UpdateProperties``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the device | 
-**propertiesValues** | [**PropertiesValues**](PropertiesValues.md)|  | 
- **optional** | ***DevicesV2UpdatePropertiesOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the device | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DevicesV2UpdatePropertiesOpts struct
+Other parameters are passed through a pointer to a apiDevicesV2UpdatePropertiesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **propertiesValues** | [**PropertiesValues**](PropertiesValues.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

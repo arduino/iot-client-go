@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"golang.org/x/oauth2"
 	cc "golang.org/x/oauth2/clientcredentials"
 )
 
@@ -22,36 +23,37 @@ var (
 )
 
 func testCreateDevice(t *testing.T) ArduinoDevicev2 {
+	deviceName := "TestDevice"
 	devicePayload := CreateDevicesV2Payload{
-		Name: "TestDevice",
+		Name: &deviceName,
 		Type: "mkr1000",
 	}
 
-	device, _, err := client.DevicesV2Api.DevicesV2Create(ctx, devicePayload, nil)
+	device, _, err := client.DevicesV2Api.DevicesV2Create(ctx).CreateDevicesV2Payload(devicePayload).Execute()
 	assert.NoError(t, err, "No errors creating device")
-	assert.Equal(t, devicePayload.Name, device.Name, "Device name was correctly set")
+	assert.Equal(t, *devicePayload.Name, device.Name, "Device name was correctly set")
 	assert.Equal(t, devicePayload.Type, device.Type, "Device type was correctly set")
 	assert.NotNil(t, device.Id, "Device ID was correctly generated")
-	return device
+	return *device
 }
 
 func testCreateThing(t *testing.T, name string) ArduinoThing {
 	thingPayload := ThingCreate{
-		Name: name,
+		Name: &name,
 	}
-	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx, thingPayload, nil)
+	thing, _, err := client.ThingsV2Api.ThingsV2Create(ctx).ThingCreate(thingPayload).Execute()
 	assert.NoError(t, err, "No errors creating thing")
-	assert.Equal(t, thingPayload.Name, thing.Name, "Thing name was correctly set")
-	return thing
+	assert.Equal(t, *thingPayload.Name, thing.Name, "Thing name was correctly set")
+	return *thing
 }
 
 func testAttachDeviceThing(t *testing.T, thingID, deviceID string) ArduinoThing {
-	thing, _, err := client.ThingsV2Api.ThingsV2Update(ctx, thingID, ThingUpdate{
-		DeviceId: deviceID,
-	}, nil)
+	thing, _, err := client.ThingsV2Api.ThingsV2Update(ctx, thingID).ThingUpdate(ThingUpdate{
+		DeviceId: &deviceID,
+	}).Execute()
 	assert.NoError(t, err, "No errors updating thing")
-	assert.Equal(t, deviceID, thing.DeviceId, "Device was correctly attached")
-	return thing
+	assert.Equal(t, deviceID, *thing.DeviceId, "Device was correctly attached")
+	return *thing
 }
 
 func TestMain(m *testing.M) {
@@ -90,7 +92,9 @@ func TestMain(m *testing.M) {
 	log.Printf("Got an access token, will expire on %s", tok.Expiry)
 
 	// We use the token to create a context that will be passed to any API call
-	ctx = context.WithValue(context.Background(), ContextAccessToken, tok.AccessToken)
+	ctx = context.WithValue(context.Background(), ContextOAuth2, oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: tok.AccessToken},
+	))
 
 	// Create an instance of the iot-api Go client, we pass an empty config
 	// because defaults are ok
@@ -105,13 +109,13 @@ func TestMain(m *testing.M) {
 func cleanup() {
 	log.Printf("Cleaning devices...")
 	// Delete devices
-	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx, nil)
+	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx).Execute()
 	if err != nil {
 		panic(err)
 	}
 
 	for _, d := range devices {
-		_, err = client.DevicesV2Api.DevicesV2Delete(ctx, d.Id, nil)
+		_, err = client.DevicesV2Api.DevicesV2Delete(ctx, d.Id).Execute()
 		if err != nil {
 			panic(err)
 		}
@@ -119,13 +123,13 @@ func cleanup() {
 
 	// Delete things
 	log.Printf("Cleaning things...")
-	things, _, err := client.ThingsV2Api.ThingsV2List(ctx, nil)
+	things, _, err := client.ThingsV2Api.ThingsV2List(ctx).Execute()
 	if err != nil {
 		panic(err)
 	}
 
 	for _, t := range things {
-		_, err = client.ThingsV2Api.ThingsV2Delete(ctx, t.Id, nil)
+		_, err = client.ThingsV2Api.ThingsV2Delete(ctx, t.Id).Execute()
 		if err != nil {
 			panic(err)
 		}
@@ -134,7 +138,7 @@ func cleanup() {
 
 func TestDevicesAPI(t *testing.T) {
 	// Get the list of devices for the current user
-	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx, nil)
+	devices, _, err := client.DevicesV2Api.DevicesV2List(ctx).Execute()
 	assert.NoError(t, err, "No errors listing devices")
 
 	// Ensure is empty
@@ -144,38 +148,38 @@ func TestDevicesAPI(t *testing.T) {
 	device := testCreateDevice(t)
 
 	// Show device
-	newDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id, nil)
+	newDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id).Execute()
 	assert.NoError(t, err, "No errors showing device")
 	assert.Equal(t, device.Name, newDevice.Name, "Device Name is correct")
 	assert.Equal(t, device.Type, newDevice.Type, "Device ID is correct")
 	assert.Equal(t, device.Id, newDevice.Id, "Device ID is correct")
 
 	// Check if there's only 1 device
-	devices, _, err = client.DevicesV2Api.DevicesV2List(ctx, nil)
+	devices, _, err = client.DevicesV2Api.DevicesV2List(ctx).Execute()
 	assert.NoError(t, err, "No errors listing devices")
 	assert.Equal(t, 1, len(devices), "Device list should contain only 1 device")
 
 	// Update device name
 	newName := "TestDevice2"
-	device, _, err = client.DevicesV2Api.DevicesV2Update(ctx, device.Id, Devicev2{
-		Name: newName,
-	}, nil)
+	updatedDevice, _, err := client.DevicesV2Api.DevicesV2Update(ctx, device.Id).Devicev2(Devicev2{
+		Name: &newName,
+	}).Execute()
 	assert.NoError(t, err, "No error updating device")
-	assert.Equal(t, newName, device.Name, "Name was updated correctly")
+	assert.Equal(t, newName, updatedDevice.Name, "Name was updated correctly")
 
 	// Delete device
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id).Execute()
 	assert.NoError(t, err, "No errors deleting device")
 
 	// Ensure device list is empty
-	devices, _, err = client.DevicesV2Api.DevicesV2List(ctx, nil)
+	devices, _, err = client.DevicesV2Api.DevicesV2List(ctx).Execute()
 	assert.NoError(t, err, "No errors listing devices")
 	assert.Equal(t, 0, len(devices), "Device list is empty")
 
 	// Try to get the no more existing device
-	device, _, err = client.DevicesV2Api.DevicesV2Show(ctx, device.Id, nil)
-	assert.EqualError(t, err, "401 Unauthorized", "Error should be unauthorized")
-	assert.Equal(t, ArduinoDevicev2{}, device, "Device should be empty")
+	storedDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id).Execute()
+	assert.Contains(t, err.Error(), "401", "Error should be unauthorized")
+	assert.Nil(t, storedDevice, "Device should be empty")
 }
 
 func TestThingsAPI(t *testing.T) {
@@ -190,22 +194,22 @@ func TestThingsAPI(t *testing.T) {
 	thing = testAttachDeviceThing(t, thing.Id, device.Id)
 
 	// Show thing
-	thing, _, err := client.ThingsV2Api.ThingsV2Show(ctx, thing.Id, nil)
+	createdThing, _, err := client.ThingsV2Api.ThingsV2Show(ctx, thing.Id).Execute()
 	assert.NoError(t, err, "No errors showing thing")
-	assert.Equal(t, thingName, thing.Name, "Name is correct")
-	assert.Equal(t, device.Id, thing.DeviceId, "Device is correct")
+	assert.Equal(t, thingName, createdThing.Name, "Name is correct")
+	assert.Equal(t, device.Id, *createdThing.DeviceId, "Device is correct")
 
 	// Delete thing
-	_, err = client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id, nil)
+	_, err = client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id).Execute()
 	assert.NoError(t, err, "No errors deleting thing")
 
 	// Try to get the no more existing thing
-	thing, _, err = client.ThingsV2Api.ThingsV2Show(ctx, thing.Id, nil)
-	assert.EqualError(t, err, "404 Not Found", "Error should be not found")
-	assert.Equal(t, ArduinoThing{}, thing, "Thing should be empty")
+	storedThing, _, err := client.ThingsV2Api.ThingsV2Show(ctx, thing.Id).Execute()
+	assert.Contains(t, err.Error(), "404", "Error should be not found")
+	assert.Nil(t, storedThing, "Thing should be empty")
 
 	// Delete device
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id).Execute()
 	assert.NoError(t, err, "No errors deleting device")
 }
 
@@ -226,7 +230,7 @@ func TestProperties(t *testing.T) {
 		Permission:     "READ_WRITE",
 		UpdateStrategy: "ON_CHANGE",
 	}
-	property, _, err := client.PropertiesV2Api.PropertiesV2Create(ctx, thing.Id, propertyPayload)
+	property, _, err := client.PropertiesV2Api.PropertiesV2Create(ctx, thing.Id).Property(propertyPayload).Execute()
 	assert.NoError(t, err, "No errors creating properties")
 	assert.Equal(t, propertyPayload.Name, property.Name, "Property name was set correctly")
 	assert.Equal(t, propertyPayload.Type, property.Type, "Property type was set correctly")
@@ -234,19 +238,20 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyPayload.UpdateStrategy, property.UpdateStrategy, "Property update strategy was set correctly")
 
 	// Generate a sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id, ThingSketch{}, nil)
+	storedThing, _, err := client.ThingsV2Api.ThingsV2CreateSketch(ctx, thing.Id).ThingSketch(ThingSketch{}).Execute()
 	assert.NoError(t, err, "No errors creating sketch")
-	assert.NotNil(t, thing.SketchId, "Sketch ID is not null")
+	assert.NotNil(t, storedThing.SketchId, "Sketch ID is not null")
 
 	// Create another property
+	persist := true
 	propertyPayload = Property{
 		Name:           "testInt2",
 		Type:           "INT",
 		Permission:     "READ_WRITE",
 		UpdateStrategy: "ON_CHANGE",
-		Persist:        true,
+		Persist:        &persist,
 	}
-	property, _, err = client.PropertiesV2Api.PropertiesV2Create(ctx, thing.Id, propertyPayload)
+	property, _, err = client.PropertiesV2Api.PropertiesV2Create(ctx, thing.Id).Property(propertyPayload).Execute()
 	assert.NoError(t, err, "No errors creating properties")
 	assert.Equal(t, propertyPayload.Name, property.Name, "Property name was set correctly")
 	assert.Equal(t, propertyPayload.Type, property.Type, "Property type was set correctly")
@@ -254,84 +259,88 @@ func TestProperties(t *testing.T) {
 	assert.Equal(t, propertyPayload.UpdateStrategy, property.UpdateStrategy, "Property update strategy was set correctly")
 
 	// Update sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2UpdateSketch(ctx, thing.Id, thing.SketchId, nil)
+	storedThing, _, err = client.ThingsV2Api.ThingsV2UpdateSketch(ctx, thing.Id, *storedThing.SketchId).Execute()
 	assert.NoError(t, err, "No errors updating sketch")
-	assert.NotNil(t, thing.SketchId, "Sketch ID is not null")
+	assert.NotNil(t, storedThing.SketchId, "Sketch ID is not null")
 
 	// Publish property
 	propertyValue := float64(100)
-	_, err = client.PropertiesV2Api.PropertiesV2Publish(ctx, thing.Id, property.Id, PropertyValue{
+	_, err = client.PropertiesV2Api.PropertiesV2Publish(ctx, thing.Id, property.Id).PropertyValue(PropertyValue{
 		Value: propertyValue,
-	})
+	}).Execute()
 	assert.NoError(t, err, "No errors publishing property")
 
 	// Wait for data pipeline ingest the last value
 	time.Sleep(25 * time.Second)
 
 	// Get Last value
-	property, _, err = client.PropertiesV2Api.PropertiesV2Show(ctx, thing.Id, property.Id, nil)
+	property, _, err = client.PropertiesV2Api.PropertiesV2Show(ctx, thing.Id, property.Id).Execute()
 	assert.NoError(t, err, "No errors showing propery")
 	assert.Equal(t, propertyValue, property.LastValue, "Last value is correct")
 
 	// Get value from series batch query
+	now := time.Now()
+	from := now.Add(-60 * time.Second)
+	limit := int64(1000)
+	sort := "ASC"
 	request := BatchQueryRawRequestMediaV1{
-		From:        time.Now().Add(-60 * time.Second),
-		To:          time.Now(),
-		SeriesLimit: 1000,
+		From:        &from,
+		To:          &now,
+		SeriesLimit: &limit,
 		Q:           "property." + property.Id,
 	}
-	batch, _, err := client.SeriesV2Api.SeriesV2BatchQueryRaw(ctx, BatchQueryRawRequestsMediaV1{
+	batch, _, err := client.SeriesV2Api.SeriesV2BatchQueryRaw(ctx).BatchQueryRawRequestsMediaV1(BatchQueryRawRequestsMediaV1{
 		Requests: []BatchQueryRawRequestMediaV1{
 			request,
 		},
-	})
+	}).Execute()
 	assert.NoError(t, err, "No errors in batch query")
 	assert.Equal(t, int64(1), batch.Responses[0].CountValues, "Only 1 value should be present")
 	assert.Equal(t, propertyValue, batch.Responses[0].Values[0], "Value should be correct")
 
 	// Get value from series batch query raw
-	batchRaw, _, err := client.SeriesV2Api.SeriesV2BatchQueryRaw(ctx, BatchQueryRawRequestsMediaV1{
+	batchRaw, _, err := client.SeriesV2Api.SeriesV2BatchQueryRaw(ctx).BatchQueryRawRequestsMediaV1(BatchQueryRawRequestsMediaV1{
 		Requests: []BatchQueryRawRequestMediaV1{
-			BatchQueryRawRequestMediaV1{
-				From:        time.Now().Add(-60 * time.Second),
-				To:          time.Now(),
+			{
+				From:        &from,
+				To:          &now,
 				Q:           "property." + property.Id,
-				SeriesLimit: 1000,
-				Sort:        "ASC",
+				SeriesLimit: &limit,
+				Sort:        &sort,
 			},
 		},
-	})
+	}).Execute()
 
 	assert.NoError(t, err, "No errors getting raw series")
 	assert.Equal(t, int64(1), batchRaw.Responses[0].CountValues, "Only 1 value should be present")
 	assert.Equal(t, propertyValue, batchRaw.Responses[0].Values[0], "Value should be correct")
 
-	batchLastValue, _, err := client.SeriesV2Api.SeriesV2BatchQueryRawLastValue(ctx, BatchLastValueRequestsMediaV1{
+	batchLastValue, _, err := client.SeriesV2Api.SeriesV2BatchQueryRawLastValue(ctx).BatchLastValueRequestsMediaV1(BatchLastValueRequestsMediaV1{
 		Requests: []BatchQueryRawLastValueRequestMediaV1{
-			BatchQueryRawLastValueRequestMediaV1{
+			{
 				PropertyId: property.Id,
 				ThingId:    thing.Id,
 			},
 		},
-	})
+	}).Execute()
 
 	assert.Equal(t, int64(1), batchLastValue.Responses[0].CountValues, "Only 1 value should be present")
 	assert.Equal(t, propertyValue, batchLastValue.Responses[0].Values[0], "Value should be correct")
 	assert.NoError(t, err, "No errors getting raw series last value")
 
 	// Delete sketch
-	thing, _, err = client.ThingsV2Api.ThingsV2DeleteSketch(ctx, thing.Id, nil)
+	storedThing, _, err = client.ThingsV2Api.ThingsV2DeleteSketch(ctx, thing.Id).Execute()
 	assert.NoError(t, err, "No errors updating sketch")
-	assert.Equal(t, "", thing.SketchId, "Sketch ID is empty")
+	assert.Nil(t, storedThing.SketchId, "Sketch ID is nil")
 
 	// Delete property
-	_, err = client.PropertiesV2Api.PropertiesV2Delete(ctx, thing.Id, property.Id, nil)
+	_, err = client.PropertiesV2Api.PropertiesV2Delete(ctx, thing.Id, property.Id).Execute()
 	assert.NoError(t, err, "No errors deleting property")
 
 	// Delete device and thing
-	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id, nil)
+	_, err = client.DevicesV2Api.DevicesV2Delete(ctx, device.Id).Execute()
 	assert.NoError(t, err, "No errors deleting device")
 
-	_, err = client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id, nil)
+	_, err = client.ThingsV2Api.ThingsV2Delete(ctx, thing.Id).Execute()
 	assert.NoError(t, err, "No errors deleting thing")
 }

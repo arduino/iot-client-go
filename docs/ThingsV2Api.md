@@ -17,31 +17,55 @@ Method | HTTP request | Description
 
 ## ThingsV2Create
 
-> ArduinoThing ThingsV2Create(ctx, thingCreate, optional)
+> ArduinoThing ThingsV2Create(ctx).ThingCreate(thingCreate).Force(force).XOrganization(xOrganization).Execute()
 
 create things_v2
 
-Creates a new thing associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    thingCreate := *openapiclient.NewThingCreate() // ThingCreate | Payload to create a new thing
+    force := true // bool | If true, detach device from the other thing, and attach to this thing (optional) (default to false)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2Create(context.Background()).ThingCreate(thingCreate).Force(force).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2Create`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2Create`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2CreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**thingCreate** | [**ThingCreate**](ThingCreate.md)| Payload to create a new thing | 
- **optional** | ***ThingsV2CreateOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ThingsV2CreateOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
- **xOrganization** | **optional.String**|  | 
+ **thingCreate** | [**ThingCreate**](ThingCreate.md) | Payload to create a new thing | 
+ **force** | **bool** | If true, detach device from the other thing, and attach to this thing | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -63,32 +87,59 @@ Name | Type | Description  | Notes
 
 ## ThingsV2CreateSketch
 
-> ArduinoThing ThingsV2CreateSketch(ctx, id, thingSketch, optional)
+> ArduinoThing ThingsV2CreateSketch(ctx, id).ThingSketch(thingSketch).XOrganization(xOrganization).Execute()
 
 createSketch things_v2
 
-Creates a new sketch thing associated to the thing
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    thingSketch := *openapiclient.NewThingSketch() // ThingSketch | ThingSketchPayload describes a sketch of a thing
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2CreateSketch(context.Background(), id).ThingSketch(thingSketch).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2CreateSketch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2CreateSketch`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2CreateSketch`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
-**thingSketch** | [**ThingSketch**](ThingSketch.md)| ThingSketchPayload describes a sketch of a thing | 
- **optional** | ***ThingsV2CreateSketchOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2CreateSketchOpts struct
+Other parameters are passed through a pointer to a apiThingsV2CreateSketchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **thingSketch** | [**ThingSketch**](ThingSketch.md) | ThingSketchPayload describes a sketch of a thing | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -110,31 +161,57 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Delete
 
-> ThingsV2Delete(ctx, id, optional)
+> ThingsV2Delete(ctx, id).Force(force).XOrganization(xOrganization).Execute()
 
 delete things_v2
 
-Removes a thing associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    force := true // bool | If true, hard delete the thing (optional) (default to false)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ThingsV2Api.ThingsV2Delete(context.Background(), id).Force(force).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
- **optional** | ***ThingsV2DeleteOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2DeleteOpts struct
+Other parameters are passed through a pointer to a apiThingsV2DeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **optional.Bool**| If true, hard delete the thing | [default to false]
- **xOrganization** | **optional.String**|  | 
+ **force** | **bool** | If true, hard delete the thing | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -156,28 +233,55 @@ Name | Type | Description  | Notes
 
 ## ThingsV2DeleteSketch
 
-> ArduinoThing ThingsV2DeleteSketch(ctx, id, optional)
+> ArduinoThing ThingsV2DeleteSketch(ctx, id).XOrganization(xOrganization).Execute()
 
 deleteSketch things_v2
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2DeleteSketch(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2DeleteSketch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2DeleteSketch`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2DeleteSketch`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
- **optional** | ***ThingsV2DeleteSketchOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2DeleteSketchOpts struct
+Other parameters are passed through a pointer to a apiThingsV2DeleteSketchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -199,34 +303,63 @@ Name | Type | Description  | Notes
 
 ## ThingsV2List
 
-> []ArduinoThing ThingsV2List(ctx, optional)
+> []ArduinoThing ThingsV2List(ctx).AcrossUserIds(acrossUserIds).DeviceId(deviceId).Ids(ids).ShowDeleted(showDeleted).ShowProperties(showProperties).Tags(tags).XOrganization(xOrganization).Execute()
 
 list things_v2
 
-Returns the list of things associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    acrossUserIds := true // bool | If true, returns all the things (optional) (default to false)
+    deviceId := "deviceId_example" // string | The id of the device you want to filter (optional)
+    ids := []string{"Inner_example"} // []string | Filter only the desired things (optional)
+    showDeleted := true // bool | If true, shows the soft deleted things (optional) (default to false)
+    showProperties := true // bool | If true, returns things with their properties, and last values (optional) (default to false)
+    tags := []string{"Inner_example"} // []string | Filter by tags (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2List(context.Background()).AcrossUserIds(acrossUserIds).DeviceId(deviceId).Ids(ids).ShowDeleted(showDeleted).ShowProperties(showProperties).Tags(tags).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2List``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2List`: []ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2List`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2ListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ThingsV2ListOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ThingsV2ListOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **acrossUserIds** | **optional.Bool**| If true, returns all the things | [default to false]
- **deviceId** | **optional.String**| The id of the device you want to filter | 
- **ids** | [**optional.Interface of []string**](string.md)| Filter only the desired things | 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted things | [default to false]
- **showProperties** | **optional.Bool**| If true, returns things with their properties, and last values | [default to false]
- **tags** | [**optional.Interface of []string**](string.md)| Filter by tags | 
- **xOrganization** | **optional.String**|  | 
+ **acrossUserIds** | **bool** | If true, returns all the things | [default to false]
+ **deviceId** | **string** | The id of the device you want to filter | 
+ **ids** | **[]string** | Filter only the desired things | 
+ **showDeleted** | **bool** | If true, shows the soft deleted things | [default to false]
+ **showProperties** | **bool** | If true, returns things with their properties, and last values | [default to false]
+ **tags** | **[]string** | Filter by tags | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -248,31 +381,59 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Show
 
-> ArduinoThing ThingsV2Show(ctx, id, optional)
+> ArduinoThing ThingsV2Show(ctx, id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
 
 show things_v2
 
-Returns the thing requested by the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    showDeleted := true // bool | If true, shows the soft deleted thing (optional) (default to false)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2Show(context.Background(), id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Show``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2Show`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2Show`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
- **optional** | ***ThingsV2ShowOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2ShowOpts struct
+Other parameters are passed through a pointer to a apiThingsV2ShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **showDeleted** | **optional.Bool**| If true, shows the soft deleted thing | [default to false]
- **xOrganization** | **optional.String**|  | 
+ **showDeleted** | **bool** | If true, shows the soft deleted thing | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -294,33 +455,61 @@ Name | Type | Description  | Notes
 
 ## ThingsV2Update
 
-> ArduinoThing ThingsV2Update(ctx, id, thingUpdate, optional)
+> ArduinoThing ThingsV2Update(ctx, id).ThingUpdate(thingUpdate).Force(force).XOrganization(xOrganization).Execute()
 
 update things_v2
 
-Updates a thing associated to the user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    thingUpdate := *openapiclient.NewThingUpdate() // ThingUpdate | Payload to update an existing thing
+    force := true // bool | If true, detach device from the other thing, and attach to this thing (optional) (default to false)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2Update(context.Background(), id).ThingUpdate(thingUpdate).Force(force).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2Update`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2Update`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
-**thingUpdate** | [**ThingUpdate**](ThingUpdate.md)| Payload to update an existing thing | 
- **optional** | ***ThingsV2UpdateOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2UpdateOpts struct
+Other parameters are passed through a pointer to a apiThingsV2UpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **force** | **optional.Bool**| If true, detach device from the other thing, and attach to this thing | [default to false]
- **xOrganization** | **optional.String**|  | 
+ **thingUpdate** | [**ThingUpdate**](ThingUpdate.md) | Payload to update an existing thing | 
+ **force** | **bool** | If true, detach device from the other thing, and attach to this thing | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -342,33 +531,62 @@ Name | Type | Description  | Notes
 
 ## ThingsV2UpdateSketch
 
-> ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId, optional)
+> ArduinoThing ThingsV2UpdateSketch(ctx, id, sketchId).XOrganization(xOrganization).UpdateSketch(updateSketch).Execute()
 
 updateSketch things_v2
 
-Update an existing thing sketch
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    sketchId := "sketchId_example" // string | The id of the sketch
+    xOrganization := "xOrganization_example" // string |  (optional)
+    updateSketch := *openapiclient.NewUpdateSketch() // UpdateSketch |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2UpdateSketch(context.Background(), id, sketchId).XOrganization(xOrganization).UpdateSketch(updateSketch).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2UpdateSketch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2UpdateSketch`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2UpdateSketch`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the thing | 
-**sketchId** | **string**| The id of the sketch | 
- **optional** | ***ThingsV2UpdateSketchOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the thing | 
+**sketchId** | **string** | The id of the sketch | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ThingsV2UpdateSketchOpts struct
+Other parameters are passed through a pointer to a apiThingsV2UpdateSketchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganization** | **optional.String**|  | 
- **updateSketch** | [**optional.Interface of UpdateSketch**](UpdateSketch.md)|  | 
+ **xOrganization** | **string** |  | 
+ **updateSketch** | [**UpdateSketch**](UpdateSketch.md) |  | 
 
 ### Return type
 

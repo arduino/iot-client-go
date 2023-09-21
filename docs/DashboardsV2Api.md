@@ -19,30 +19,53 @@ Method | HTTP request | Description
 
 ## DashboardsV2Create
 
-> ArduinoDashboardv2 DashboardsV2Create(ctx, dashboardv2, optional)
+> ArduinoDashboardv2 DashboardsV2Create(ctx).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
 
 create dashboards_v2
 
-Create a new dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Create(context.Background()).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Create`: ArduinoDashboardv2
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Create`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDashboardsV2CreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardv2** | [**Dashboardv2**](Dashboardv2.md)| DashboardV2Payload describes a dashboard | 
- **optional** | ***DashboardsV2CreateOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DashboardsV2CreateOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xOrganization** | **optional.String**|  | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -50,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -64,30 +87,55 @@ No authorization required
 
 ## DashboardsV2Delete
 
-> DashboardsV2Delete(ctx, id, optional)
+> DashboardsV2Delete(ctx, id).XOrganization(xOrganization).Execute()
 
 delete dashboards_v2
 
-Delete a dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DashboardsV2Api.DashboardsV2Delete(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
- **optional** | ***DashboardsV2DeleteOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2DeleteOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2DeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -95,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -109,32 +157,58 @@ No authorization required
 
 ## DashboardsV2DeleteShare
 
-> DashboardsV2DeleteShare(ctx, id, userId, optional)
+> DashboardsV2DeleteShare(ctx, id, userId).XOrganization(xOrganization).Execute()
 
 deleteShare dashboards_v2
 
-Delete a user the dashboard has been shared with
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    userId := "userId_example" // string | The id of the user
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DashboardsV2Api.DashboardsV2DeleteShare(context.Background(), id, userId).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2DeleteShare``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
-**userId** | **string**| The id of the user | 
- **optional** | ***DashboardsV2DeleteShareOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
+**userId** | **string** | The id of the user | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2DeleteShareOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2DeleteShareRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -142,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -156,34 +230,62 @@ No authorization required
 
 ## DashboardsV2Link
 
-> ArduinoVariableslinks DashboardsV2Link(ctx, id, widgetId, widgetlink, optional)
+> ArduinoVariableslinks DashboardsV2Link(ctx, id, widgetId).Widgetlink(widgetlink).XOrganization(xOrganization).Execute()
 
 link dashboards_v2
 
-Link or detach widget variables
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    widgetId := "widgetId_example" // string | The id of the widget
+    widgetlink := *openapiclient.NewWidgetlink() // Widgetlink | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Link(context.Background(), id, widgetId).Widgetlink(widgetlink).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Link``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Link`: ArduinoVariableslinks
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Link`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
-**widgetId** | **string**| The id of the widget | 
-**widgetlink** | [**Widgetlink**](Widgetlink.md)|  | 
- **optional** | ***DashboardsV2LinkOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
+**widgetId** | **string** | The id of the widget | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2LinkOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2LinkRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
-
- **xOrganization** | **optional.String**|  | 
+ **widgetlink** | [**Widgetlink**](Widgetlink.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -191,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -205,30 +307,55 @@ No authorization required
 
 ## DashboardsV2List
 
-> []ArduinoDashboardv2 DashboardsV2List(ctx, optional)
+> []ArduinoDashboardv2 DashboardsV2List(ctx).Name(name).UserId(userId).XOrganization(xOrganization).Execute()
 
 list dashboards_v2
 
-Returns the list of dashboards
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    name := "name_example" // string | The name of the dashboard (optional)
+    userId := "userId_example" // string | The user_id of the dashboard's owner (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2List(context.Background()).Name(name).UserId(userId).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2List``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2List`: []ArduinoDashboardv2
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2List`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDashboardsV2ListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***DashboardsV2ListOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DashboardsV2ListOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **optional.String**| The name of the dashboard | 
- **userId** | **optional.String**| The user_id of the dashboard&#39;s owner | 
- **xOrganization** | **optional.String**|  | 
+ **name** | **string** | The name of the dashboard | 
+ **userId** | **string** | The user_id of the dashboard&#39;s owner | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -236,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -250,30 +377,57 @@ No authorization required
 
 ## DashboardsV2ListShares
 
-> []ArduinoDashboardshare DashboardsV2ListShares(ctx, id, optional)
+> []ArduinoDashboardshare DashboardsV2ListShares(ctx, id).XOrganization(xOrganization).Execute()
 
 listShares dashboards_v2
 
-List of users the dashboard has been shared with
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2ListShares(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2ListShares``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2ListShares`: []ArduinoDashboardshare
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2ListShares`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
- **optional** | ***DashboardsV2ListSharesOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2ListSharesOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2ListSharesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -281,7 +435,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -295,32 +449,57 @@ No authorization required
 
 ## DashboardsV2RequestAccess
 
-> DashboardsV2RequestAccess(ctx, id, sharerequest, optional)
+> DashboardsV2RequestAccess(ctx, id).Sharerequest(sharerequest).XOrganization(xOrganization).Execute()
 
 requestAccess dashboards_v2
 
-Request access to a dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    sharerequest := *openapiclient.NewSharerequest() // Sharerequest | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DashboardsV2Api.DashboardsV2RequestAccess(context.Background(), id).Sharerequest(sharerequest).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2RequestAccess``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
-**sharerequest** | [**Sharerequest**](Sharerequest.md)|  | 
- **optional** | ***DashboardsV2RequestAccessOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2RequestAccessOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2RequestAccessRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **sharerequest** | [**Sharerequest**](Sharerequest.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -328,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -342,32 +521,57 @@ No authorization required
 
 ## DashboardsV2Share
 
-> DashboardsV2Share(ctx, id, dashboardshare, optional)
+> DashboardsV2Share(ctx, id).Dashboardshare(dashboardshare).XOrganization(xOrganization).Execute()
 
 share dashboards_v2
 
-Share a dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    dashboardshare := *openapiclient.NewDashboardshare() // Dashboardshare | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DashboardsV2Api.DashboardsV2Share(context.Background(), id).Dashboardshare(dashboardshare).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Share``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
-**dashboardshare** | [**Dashboardshare**](Dashboardshare.md)|  | 
- **optional** | ***DashboardsV2ShareOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2ShareOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2ShareRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **dashboardshare** | [**Dashboardshare**](Dashboardshare.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -375,7 +579,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -389,30 +593,57 @@ No authorization required
 
 ## DashboardsV2Show
 
-> ArduinoDashboardv2 DashboardsV2Show(ctx, id, optional)
+> ArduinoDashboardv2 DashboardsV2Show(ctx, id).XOrganization(xOrganization).Execute()
 
 show dashboards_v2
 
-Show a dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Show(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Show``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Show`: ArduinoDashboardv2
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Show`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
- **optional** | ***DashboardsV2ShowOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2ShowOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2ShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **optional.String**|  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -420,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -434,32 +665,59 @@ No authorization required
 
 ## DashboardsV2Update
 
-> ArduinoDashboardv2 DashboardsV2Update(ctx, id, dashboardv2, optional)
+> ArduinoDashboardv2 DashboardsV2Update(ctx, id).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
 
 update dashboards_v2
 
-Updates an existing dashboard
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Update(context.Background(), id).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Update`: ArduinoDashboardv2
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Update`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| The id of the dashboard | 
-**dashboardv2** | [**Dashboardv2**](Dashboardv2.md)| DashboardV2Payload describes a dashboard | 
- **optional** | ***DashboardsV2UpdateOpts** | optional parameters | nil if no parameters
+**id** | **string** | The id of the dashboard | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DashboardsV2UpdateOpts struct
+Other parameters are passed through a pointer to a apiDashboardsV2UpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **xOrganization** | **optional.String**|  | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -467,7 +725,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
