@@ -162,16 +162,4 @@ model_update_sketch.go
 model_widget.go
 model_widgetlink.go
 response.go
-test/api_dashboards_v2_test.go
-test/api_devices_v2_certs_test.go
-test/api_devices_v2_ota_test.go
-test/api_devices_v2_pass_test.go
-test/api_devices_v2_tags_test.go
-test/api_devices_v2_test.go
-test/api_lora_devices_v1_test.go
-test/api_lora_freq_plan_v1_test.go
-test/api_properties_v2_test.go
-test/api_series_v2_test.go
-test/api_things_v2_tags_test.go
-test/api_things_v2_test.go
 utils.go

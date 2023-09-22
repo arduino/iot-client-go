@@ -87,7 +87,7 @@ func (a *DevicesV2TagsApiService) DevicesV2TagsDeleteExecute(r ApiDevicesV2TagsD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -213,7 +213,7 @@ func (a *DevicesV2TagsApiService) DevicesV2TagsListExecute(r ApiDevicesV2TagsLis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.tags+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -344,7 +344,7 @@ func (a *DevicesV2TagsApiService) DevicesV2TagsUpsertExecute(r ApiDevicesV2TagsU
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

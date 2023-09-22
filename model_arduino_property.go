@@ -30,6 +30,8 @@ type ArduinoProperty struct {
 	Id string `json:"id"`
 	// Last value of this property
 	LastValue interface{} `json:"last_value,omitempty"`
+	// Indicates if the property is involved in the activation of at least a trigger
+	LinkedToTrigger *bool `json:"linked_to_trigger,omitempty"`
 	// Maximum value of this property
 	MaxValue *float64 `json:"max_value,omitempty"`
 	// Minimum value of this property
@@ -229,6 +231,38 @@ func (o *ArduinoProperty) HasLastValue() bool {
 // SetLastValue gets a reference to the given interface{} and assigns it to the LastValue field.
 func (o *ArduinoProperty) SetLastValue(v interface{}) {
 	o.LastValue = v
+}
+
+// GetLinkedToTrigger returns the LinkedToTrigger field value if set, zero value otherwise.
+func (o *ArduinoProperty) GetLinkedToTrigger() bool {
+	if o == nil || IsNil(o.LinkedToTrigger) {
+		var ret bool
+		return ret
+	}
+	return *o.LinkedToTrigger
+}
+
+// GetLinkedToTriggerOk returns a tuple with the LinkedToTrigger field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoProperty) GetLinkedToTriggerOk() (*bool, bool) {
+	if o == nil || IsNil(o.LinkedToTrigger) {
+		return nil, false
+	}
+	return o.LinkedToTrigger, true
+}
+
+// HasLinkedToTrigger returns a boolean if a field has been set.
+func (o *ArduinoProperty) HasLinkedToTrigger() bool {
+	if o != nil && !IsNil(o.LinkedToTrigger) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedToTrigger gets a reference to the given bool and assigns it to the LinkedToTrigger field.
+func (o *ArduinoProperty) SetLinkedToTrigger(v bool) {
+	o.LinkedToTrigger = &v
 }
 
 // GetMaxValue returns the MaxValue field value if set, zero value otherwise.
@@ -691,6 +725,9 @@ func (o ArduinoProperty) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	if o.LastValue != nil {
 		toSerialize["last_value"] = o.LastValue
+	}
+	if !IsNil(o.LinkedToTrigger) {
+		toSerialize["linked_to_trigger"] = o.LinkedToTrigger
 	}
 	if !IsNil(o.MaxValue) {
 		toSerialize["max_value"] = o.MaxValue
