@@ -40,7 +40,7 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.loradevicev1+json:
               schema:
                 $ref: '#/components/schemas/ArduinoLoradevicev1'
           description: Created
@@ -54,19 +54,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoLorafreqplansv1'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoLorafreqplansv1'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -106,19 +115,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2Collection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2Collection'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -152,25 +170,37 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -204,13 +234,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -218,7 +254,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -249,13 +288,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -263,7 +308,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -305,19 +353,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -325,7 +382,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -369,13 +429,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -383,7 +449,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -415,19 +484,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardshareCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardshareCollection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -435,7 +513,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -478,13 +559,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -492,7 +579,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -534,13 +624,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -548,7 +644,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -598,19 +697,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoVariableslinks'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoVariableslinks'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -618,7 +726,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -671,25 +782,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Collection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Collection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -723,25 +846,37 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: Created
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "412":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -775,13 +910,19 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -812,19 +953,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -866,25 +1016,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -909,7 +1071,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
           description: OK
@@ -919,7 +1084,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -954,13 +1122,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -970,7 +1144,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1009,7 +1186,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1041,7 +1221,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: OK
@@ -1051,7 +1234,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1094,13 +1280,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -1110,7 +1302,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1158,25 +1353,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2EventProperties'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2EventProperties'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
         "503":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -1210,7 +1417,10 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -1218,25 +1428,37 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "410":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Gone
         "412":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1274,7 +1496,10 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -1282,25 +1507,37 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "410":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Gone
         "412":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1331,7 +1568,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1365,7 +1605,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Pass'
           description: OK
@@ -1375,7 +1618,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1413,13 +1659,19 @@ paths:
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1453,13 +1705,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Pass'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -1469,7 +1727,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1510,19 +1771,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2properties'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2properties'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1565,13 +1835,19 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1627,25 +1903,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2propertyvalues'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2propertyvalues'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1670,19 +1958,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTags'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1718,19 +2015,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1767,19 +2073,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1805,19 +2120,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesBatch'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesBatch'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -1827,7 +2151,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -1853,19 +2180,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesRawBatch'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesRawBatch'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -1875,7 +2211,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -1901,13 +2240,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesRawBatchLastvalue'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesRawBatchLastvalue'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -1917,7 +2262,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -1945,19 +2293,19 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2038,13 +2386,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoThingCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThingCollection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2052,7 +2406,10 @@ paths:
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2096,13 +2453,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2110,19 +2473,28 @@ paths:
           description: Unauthorized
         "409":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Conflict
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2165,7 +2537,10 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2175,7 +2550,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2215,13 +2593,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2229,7 +2613,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2281,13 +2668,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2297,19 +2690,28 @@ paths:
           description: Not Found
         "409":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Conflict
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2343,25 +2745,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoPropertyCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoPropertyCollection'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2397,19 +2811,28 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2417,13 +2840,19 @@ paths:
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2467,7 +2896,10 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2475,7 +2907,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2516,25 +2951,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2578,31 +3025,46 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2648,13 +3110,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2662,7 +3130,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2734,13 +3205,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTimeseriesmedia'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTimeseriesmedia'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2750,7 +3227,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2781,7 +3261,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
@@ -2791,7 +3274,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2833,13 +3319,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2849,13 +3341,19 @@ paths:
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2904,13 +3402,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2918,19 +3422,28 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2955,19 +3468,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTags'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3003,19 +3525,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3051,19 +3582,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3096,14 +3636,6 @@ components:
     ArduinoCompressedv2:
       description: compressed contains the info from which to generate the certificate
         (default view)
-      example:
-        not_after: 2000-01-23T04:56:07.000+00:00
-        serial: serial
-        signature: signature
-        not_before: 2000-01-23T04:56:07.000+00:00
-        signature_asn1_x: signature_asn1_x
-        signature_asn1_y: signature_asn1_y
-        authority_key_identifier: authority_key_identifier
       properties:
         authority_key_identifier:
           description: The Authority Key Identifier of the certificate
@@ -3139,9 +3671,6 @@ components:
       type: object
     ArduinoDashboardowner:
       description: ArduinoDashboardowner media type (default view)
-      example:
-        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        username: username
       properties:
         user_id:
           description: The userID of the user who created the dashboard
@@ -3156,9 +3685,6 @@ components:
       type: object
     ArduinoDashboardshare:
       description: ArduinoDashboardshare media type (default view)
-      example:
-        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        username: username
       properties:
         user_id:
           description: The userID of the user you want to share the dashboard with
@@ -3181,109 +3707,6 @@ components:
       type: array
     ArduinoDashboardv2:
       description: Dashboard is a collection of widgets (default view)
-      example:
-        shared_with:
-        - user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          username: username
-        - user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          username: username
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        shared_by:
-          user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          username: username
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        widgets:
-        - height_mobile: 6
-          y_mobile: 3
-          variables:
-          - thing_name: thing_name
-            last_value: ""
-            thing_timezone:
-              offset: 1
-              name: name
-              until: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            permission: permission
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            variable_name: variable_name
-            last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-          - thing_name: thing_name
-            last_value: ""
-            thing_timezone:
-              offset: 1
-              name: name
-              until: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            permission: permission
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            variable_name: variable_name
-            last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-          type: "slider, gauge"
-          x_mobile: 7
-          width_mobile: 5
-          has_permission_incompatibility: true
-          has_unlinked_variable: true
-          name: name
-          options:
-            key: ""
-          width: 5
-          x: 2
-          has_type_incompatibility: true
-          "y": 9
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          height: 0
-        - height_mobile: 6
-          y_mobile: 3
-          variables:
-          - thing_name: thing_name
-            last_value: ""
-            thing_timezone:
-              offset: 1
-              name: name
-              until: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            permission: permission
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            variable_name: variable_name
-            last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-          - thing_name: thing_name
-            last_value: ""
-            thing_timezone:
-              offset: 1
-              name: name
-              until: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            permission: permission
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            variable_name: variable_name
-            last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-          type: "slider, gauge"
-          x_mobile: 7
-          width_mobile: 5
-          has_permission_incompatibility: true
-          has_unlinked_variable: true
-          name: name
-          options:
-            key: ""
-          width: 5
-          x: 2
-          has_type_incompatibility: true
-          "y": 9
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          height: 0
-        created_by:
-          user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          username: username
       properties:
         created_by:
           $ref: '#/components/schemas/ArduinoDashboardowner'
@@ -3336,104 +3759,6 @@ components:
       type: array
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
-      example:
-        no_sketch: true
-        metadata:
-          key: ""
-        connection_type: wifi
-        fqbn: fqbn
-        created_at: 2000-01-23T04:56:07.000+00:00
-        ota_compatible: true
-        wifi_fw_version: wifi_fw_version
-        label: label
-        type: type
-        required_wifi_fw_version: required_wifi_fw_version
-        tags:
-          key: ""
-        latest_wifi_fw_version: latest_wifi_fw_version
-        serial: serial
-        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        webhooks:
-        - active: true
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          uri: https://openapi-generator.tech
-        - active: true
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          uri: https://openapi-generator.tech
-        last_activity_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        href: href
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        thing:
-          device_fqbn: device_fqbn
-          device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          timezone: timezone
-          webhook_uri: webhook_uri
-          sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          device_type: device_type
-          deleted_at: 2000-01-23T04:56:07.000+00:00
-          tags:
-            key: ""
-          device_name: device_name
-          properties_count: 5
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          href: href
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          webhook_active: true
-          properties:
-          - last_value: ""
-            created_at: 2000-01-23T04:56:07.000+00:00
-            permission: permission
-            type: type
-            deleted_at: 2000-01-23T04:56:07.000+00:00
-            value_updated_at: 2000-01-23T04:56:07.000+00:00
-            min_value: 6.027456183070403
-            thing_name: thing_name
-            update_strategy: update_strategy
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            update_parameter: 5.962133916683182
-            href: href
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            persist: true
-            tag: 1.4658129805029452
-            variable_name: variable_name
-            sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            max_value: 0.8008281904610115
-          - last_value: ""
-            created_at: 2000-01-23T04:56:07.000+00:00
-            permission: permission
-            type: type
-            deleted_at: 2000-01-23T04:56:07.000+00:00
-            value_updated_at: 2000-01-23T04:56:07.000+00:00
-            min_value: 6.027456183070403
-            thing_name: thing_name
-            update_strategy: update_strategy
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            update_parameter: 5.962133916683182
-            href: href
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            persist: true
-            tag: 1.4658129805029452
-            variable_name: variable_name
-            sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            max_value: 0.8008281904610115
-        events:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          value: ""
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          value: ""
-        ota_available: true
       properties:
         connection_type:
           description: The type of the connections selected by the user when multiple
@@ -3543,28 +3868,6 @@ components:
     ArduinoDevicev2Cert:
       description: DeviceCertV2 describes a certificate associated to the device (default
         view)
-      example:
-        der: der
-        device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\
-          \t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\
-          \t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\
-          \t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\
-          \t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\
-          \t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\
-          \t\t\tFQIDAQAB\n\t\t\t-----END CERTIFICATE-----"
-        compressed:
-          not_after: 2000-01-23T04:56:07.000+00:00
-          serial: serial
-          signature: signature
-          not_before: 2000-01-23T04:56:07.000+00:00
-          signature_asn1_x: signature_asn1_x
-          signature_asn1_y: signature_asn1_y
-          authority_key_identifier: authority_key_identifier
-        href: href
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        ca: ca
-        enabled: true
       properties:
         ca:
           description: The Certification Authority used to sign the certificate
@@ -3628,15 +3931,6 @@ components:
       type: array
     ArduinoDevicev2EventProperties:
       description: ArduinoDevicev2EventProperties media type (default view)
-      example:
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        events:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          value: ""
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          value: ""
       properties:
         events:
           description: ArduinoDevicev2SimplePropertiesCollection is the media type
@@ -3659,9 +3953,6 @@ components:
     ArduinoDevicev2Pass:
       description: DeviceCertV2 describes a password associated to a device (default
         view)
-      example:
-        set: true
-        suggested_password: suggested_password
       properties:
         set:
           description: Whether the password is set or not
@@ -3675,10 +3966,6 @@ components:
       type: object
     ArduinoDevicev2SimpleProperties:
       description: ArduinoDevicev2SimpleProperties media type (default view)
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        name: name
-        value: ""
       properties:
         name:
           description: The name of the property
@@ -3707,10 +3994,6 @@ components:
     ArduinoDevicev2Webhook:
       description: DeviceWebhookV2 describes a webhook associated to the device (default
         view)
-      example:
-        active: true
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        uri: https://openapi-generator.tech
       properties:
         active:
           default: true
@@ -3740,51 +4023,6 @@ components:
       type: array
     ArduinoDevicev2properties:
       description: ArduinoDevicev2properties media type (default view)
-      example:
-        data_retention_days: 0.8008281904610115
-        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        deviceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        properties:
-        - last_value: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
-          permission: permission
-          type: type
-          deleted_at: 2000-01-23T04:56:07.000+00:00
-          value_updated_at: 2000-01-23T04:56:07.000+00:00
-          min_value: 6.027456183070403
-          thing_name: thing_name
-          update_strategy: update_strategy
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          update_parameter: 5.962133916683182
-          href: href
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          persist: true
-          tag: 1.4658129805029452
-          variable_name: variable_name
-          sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          max_value: 0.8008281904610115
-        - last_value: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
-          permission: permission
-          type: type
-          deleted_at: 2000-01-23T04:56:07.000+00:00
-          value_updated_at: 2000-01-23T04:56:07.000+00:00
-          min_value: 6.027456183070403
-          thing_name: thing_name
-          update_strategy: update_strategy
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          update_parameter: 5.962133916683182
-          href: href
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          persist: true
-          tag: 1.4658129805029452
-          variable_name: variable_name
-          sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          max_value: 0.8008281904610115
       properties:
         data_retention_days:
           description: How many days the data will be kept
@@ -3816,22 +4054,6 @@ components:
       type: object
     ArduinoDevicev2propertyvalue:
       description: ArduinoDevicev2propertyvalue media type (default view)
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        value:
-          seqno: 0
-          payload: payload
-          statistics:
-            rssi: 7.061401241503109
-            sf: 3.616076749251911
-            modBW: 2.3021358869347655
-            seqno: 9.301444243932576
-            snr: 2.027123023002322
-            channel: 1.4658129805029452
-            freq: 5.637376656633329
-            duplicate: 5.962133916683182
-            time: 4.145608029883936
-            adr: 6.027456183070403
       properties:
         created_at:
           format: date-time
@@ -3851,44 +4073,6 @@ components:
       type: array
     ArduinoDevicev2propertyvalues:
       description: ArduinoDevicev2propertyvalues media type (default view)
-      example:
-        last_evaluated_key:
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-        values:
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          value:
-            seqno: 0
-            payload: payload
-            statistics:
-              rssi: 7.061401241503109
-              sf: 3.616076749251911
-              modBW: 2.3021358869347655
-              seqno: 9.301444243932576
-              snr: 2.027123023002322
-              channel: 1.4658129805029452
-              freq: 5.637376656633329
-              duplicate: 5.962133916683182
-              time: 4.145608029883936
-              adr: 6.027456183070403
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          value:
-            seqno: 0
-            payload: payload
-            statistics:
-              rssi: 7.061401241503109
-              sf: 3.616076749251911
-              modBW: 2.3021358869347655
-              seqno: 9.301444243932576
-              snr: 2.027123023002322
-              channel: 1.4658129805029452
-              freq: 5.637376656633329
-              duplicate: 5.962133916683182
-              time: 4.145608029883936
-              adr: 6.027456183070403
-        name: name
-        id: id
       properties:
         id:
           type: string
@@ -3914,20 +4098,6 @@ components:
       type: object
     ArduinoLinkedvariable:
       description: ArduinoLinkedvariable media type (default view)
-      example:
-        thing_name: thing_name
-        last_value: ""
-        thing_timezone:
-          offset: 1
-          name: name
-          until: 2000-01-23T04:56:07.000+00:00
-        thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        permission: permission
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        variable_name: variable_name
-        last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-        type: type
       properties:
         id:
           description: The id of the linked variable
@@ -3980,11 +4150,6 @@ components:
       type: array
     ArduinoLoradevicev1:
       description: ArduinoLoradevicev1 media type (default view)
-      example:
-        app_key: app_key
-        device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        eui: "71619230301"
-        app_eui: app_eui
       properties:
         app_eui:
           description: The eui of the app
@@ -4009,14 +4174,6 @@ components:
       type: object
     ArduinoLorafreqplansv1:
       description: ArduinoLorafreqplansv1 media type (default view)
-      example:
-        frequency_plans:
-        - advanced: true
-          name: name
-          id: id
-        - advanced: true
-          name: name
-          id: id
       properties:
         frequency_plans:
           description: The list of frequency plans
@@ -4028,10 +4185,6 @@ components:
       type: object
     ArduinoLorafreqplanv1:
       description: ArduinoLorafreqplanv1 media type (default view)
-      example:
-        advanced: true
-        name: name
-        id: id
       properties:
         advanced:
           description: Frequency plan only for advanced users
@@ -4050,27 +4203,6 @@ components:
       type: object
     ArduinoProperty:
       description: ArduinoProperty media type (default view)
-      example:
-        last_value: ""
-        created_at: 2000-01-23T04:56:07.000+00:00
-        permission: permission
-        type: type
-        deleted_at: 2000-01-23T04:56:07.000+00:00
-        value_updated_at: 2000-01-23T04:56:07.000+00:00
-        min_value: 6.027456183070403
-        thing_name: thing_name
-        update_strategy: update_strategy
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        update_parameter: 5.962133916683182
-        href: href
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        persist: true
-        tag: 1.4658129805029452
-        variable_name: variable_name
-        sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        max_value: 0.8008281904610115
       properties:
         created_at:
           description: Creation date of the property
@@ -4089,6 +4221,10 @@ components:
           type: string
         last_value:
           description: Last value of this property
+        linked_to_trigger:
+          description: Indicates if the property is involved in the activation of
+            at least a trigger
+          type: boolean
         max_value:
           description: Maximum value of this property
           format: double
@@ -4163,39 +4299,6 @@ components:
       type: array
     ArduinoSeriesBatch:
       description: ArduinoSeriesBatch media type (default view)
-      example:
-        resp_version: 0
-        responses:
-        - count_values: 6
-          resp_version: 5
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          series_limit: 5
-          from_date: 2000-01-23T04:56:07.000+00:00
-          to_date: 2000-01-23T04:56:07.000+00:00
-          query: query
-          values:
-          - 2.3021358869347655
-          - 2.3021358869347655
-          interval: 1
-          message: message
-          status: status
-        - count_values: 6
-          resp_version: 5
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          series_limit: 5
-          from_date: 2000-01-23T04:56:07.000+00:00
-          to_date: 2000-01-23T04:56:07.000+00:00
-          query: query
-          values:
-          - 2.3021358869347655
-          - 2.3021358869347655
-          interval: 1
-          message: message
-          status: status
       properties:
         resp_version:
           description: Response version
@@ -4213,43 +4316,6 @@ components:
       type: object
     ArduinoSeriesRawBatch:
       description: ArduinoSeriesRawBatch media type (default view)
-      example:
-        resp_version: 0
-        responses:
-        - count_values: 6
-          resp_version: 1
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          series_limit: 5
-          from_date: 2000-01-23T04:56:07.000+00:00
-          to_date: 2000-01-23T04:56:07.000+00:00
-          series:
-            metric: metric
-          query: query
-          values:
-          - ""
-          - ""
-          sort: ASC
-          message: message
-          status: status
-        - count_values: 6
-          resp_version: 1
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          series_limit: 5
-          from_date: 2000-01-23T04:56:07.000+00:00
-          to_date: 2000-01-23T04:56:07.000+00:00
-          series:
-            metric: metric
-          query: query
-          values:
-          - ""
-          - ""
-          sort: ASC
-          message: message
-          status: status
       properties:
         resp_version:
           description: Response version
@@ -4268,27 +4334,6 @@ components:
       type: object
     ArduinoSeriesRawBatchLastvalue:
       description: ArduinoSeriesRawBatchLastvalue media type (default view)
-      example:
-        responses:
-        - count_values: 0
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          values:
-          - ""
-          - ""
-          property_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - count_values: 0
-          times:
-          - 2000-01-23T04:56:07.000+00:00
-          - 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          values:
-          - ""
-          - ""
-          property_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        status: status
       properties:
         responses:
           description: Responses of the request
@@ -4306,16 +4351,6 @@ components:
       type: object
     ArduinoSeriesRawLastValueResponse:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
-      example:
-        count_values: 0
-        times:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        values:
-        - ""
-        - ""
-        property_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         count_values:
           description: Total number of values in the array 'values'
@@ -4350,24 +4385,6 @@ components:
       type: object
     ArduinoSeriesRawResponse:
       description: ArduinoSeriesRawResponse media type (default view)
-      example:
-        count_values: 6
-        resp_version: 1
-        times:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        series_limit: 5
-        from_date: 2000-01-23T04:56:07.000+00:00
-        to_date: 2000-01-23T04:56:07.000+00:00
-        series:
-          metric: metric
-        query: query
-        values:
-        - ""
-        - ""
-        sort: ASC
-        message: message
-        status: status
       properties:
         count_values:
           description: Total number of values in the array 'values'
@@ -4433,22 +4450,6 @@ components:
       type: object
     ArduinoSeriesResponse:
       description: ArduinoSeriesResponse media type (default view)
-      example:
-        count_values: 6
-        resp_version: 5
-        times:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        series_limit: 5
-        from_date: 2000-01-23T04:56:07.000+00:00
-        to_date: 2000-01-23T04:56:07.000+00:00
-        query: query
-        values:
-        - 2.3021358869347655
-        - 2.3021358869347655
-        interval: 1
-        message: message
-        status: status
       properties:
         count_values:
           description: Total number of values in the array 'values'
@@ -4511,12 +4512,6 @@ components:
       type: object
     ArduinoTags:
       description: ArduinoTags media type (default view)
-      example:
-        tags:
-        - value: value
-          key: key
-        - value: value
-          key: key
       properties:
         tags:
           items:
@@ -4528,67 +4523,6 @@ components:
       type: object
     ArduinoThing:
       description: ArduinoThing media type (default view)
-      example:
-        device_fqbn: device_fqbn
-        device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        timezone: timezone
-        webhook_uri: webhook_uri
-        sketch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
-        device_type: device_type
-        deleted_at: 2000-01-23T04:56:07.000+00:00
-        tags:
-          key: ""
-        device_name: device_name
-        properties_count: 5
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        href: href
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        webhook_active: true
-        properties:
-        - last_value: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
-          permission: permission
-          type: type
-          deleted_at: 2000-01-23T04:56:07.000+00:00
-          value_updated_at: 2000-01-23T04:56:07.000+00:00
-          min_value: 6.027456183070403
-          thing_name: thing_name
-          update_strategy: update_strategy
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          update_parameter: 5.962133916683182
-          href: href
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          persist: true
-          tag: 1.4658129805029452
-          variable_name: variable_name
-          sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          max_value: 0.8008281904610115
-        - last_value: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
-          permission: permission
-          type: type
-          deleted_at: 2000-01-23T04:56:07.000+00:00
-          value_updated_at: 2000-01-23T04:56:07.000+00:00
-          min_value: 6.027456183070403
-          thing_name: thing_name
-          update_strategy: update_strategy
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          update_parameter: 5.962133916683182
-          href: href
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          persist: true
-          tag: 1.4658129805029452
-          variable_name: variable_name
-          sync_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          max_value: 0.8008281904610115
       properties:
         created_at:
           description: Creation date of the thing
@@ -4680,12 +4614,6 @@ components:
       type: array
     ArduinoTimeseriesmedia:
       description: ArduinoTimeseriesmedia media type (default view)
-      example:
-        data:
-        - time: 2000-01-23T04:56:07.000+00:00
-          value: 0.8008281904610115
-        - time: 2000-01-23T04:56:07.000+00:00
-          value: 0.8008281904610115
       properties:
         data:
           items:
@@ -4698,10 +4626,6 @@ components:
       type: object
     ArduinoTimezone:
       description: ArduinoTimezone media type (default view)
-      example:
-        offset: 1
-        name: name
-        until: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
           description: Name of the time zone.
@@ -4721,10 +4645,6 @@ components:
       type: object
     ArduinoVariableslinks:
       description: ArduinoVariableslinks media type (default view)
-      example:
-        variables:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         variables:
           description: The ids of the linked variables
@@ -4738,50 +4658,6 @@ components:
       type: object
     ArduinoWidgetv2:
       description: Widget describes a dashboard widget (default view)
-      example:
-        height_mobile: 6
-        y_mobile: 3
-        variables:
-        - thing_name: thing_name
-          last_value: ""
-          thing_timezone:
-            offset: 1
-            name: name
-            until: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          permission: permission
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          variable_name: variable_name
-          last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-          type: type
-        - thing_name: thing_name
-          last_value: ""
-          thing_timezone:
-            offset: 1
-            name: name
-            until: 2000-01-23T04:56:07.000+00:00
-          thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          permission: permission
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          variable_name: variable_name
-          last_value_updated_at: 2000-01-23T04:56:07.000+00:00
-          type: type
-        type: "slider, gauge"
-        x_mobile: 7
-        width_mobile: 5
-        has_permission_incompatibility: true
-        has_unlinked_variable: true
-        name: name
-        options:
-          key: ""
-        width: 5
-        x: 2
-        has_type_incompatibility: true
-        "y": 9
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        height: 0
       properties:
         has_permission_incompatibility:
           description: True if the linked variables permissions are incompatible with
@@ -4967,8 +4843,6 @@ components:
       title: BatchQueryRawRequestsMediaV1
       type: object
     BatchQueryRawResponseSeriesMediaV1:
-      example:
-        metric: metric
       properties:
         metric:
           description: Metric name
@@ -5142,6 +5016,10 @@ components:
           - portenta_x8
           - opta
           - giga
+          - generic_device_secretkey
+          - portenta_c33
+          - unor4wifi
+          - nano_nora
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5319,9 +5197,6 @@ components:
       title: ThingCreate
       type: object
     TimeseriesDataPoint:
-      example:
-        time: 2000-01-23T04:56:07.000+00:00
-        value: 0.8008281904610115
       properties:
         time:
           description: Binning timestamp
@@ -5408,6 +5283,10 @@ components:
           - portenta_x8
           - opta
           - giga
+          - generic_device_secretkey
+          - portenta_c33
+          - unor4wifi
+          - nano_nora
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -5738,9 +5617,6 @@ components:
       title: sharerequest
       type: object
     tag:
-      example:
-        value: value
-        key: key
       properties:
         key:
           description: Key of the tag
@@ -5909,17 +5785,6 @@ components:
       - ota_file
       type: object
     ArduinoDevicev2propertyvalue_value_statistics:
-      example:
-        rssi: 7.061401241503109
-        sf: 3.616076749251911
-        modBW: 2.3021358869347655
-        seqno: 9.301444243932576
-        snr: 2.027123023002322
-        channel: 1.4658129805029452
-        freq: 5.637376656633329
-        duplicate: 5.962133916683182
-        time: 4.145608029883936
-        adr: 6.027456183070403
       properties:
         adr:
           format: double
@@ -5953,20 +5818,6 @@ components:
           type: number
       type: object
     ArduinoDevicev2propertyvalue_value:
-      example:
-        seqno: 0
-        payload: payload
-        statistics:
-          rssi: 7.061401241503109
-          sf: 3.616076749251911
-          modBW: 2.3021358869347655
-          seqno: 9.301444243932576
-          snr: 2.027123023002322
-          channel: 1.4658129805029452
-          freq: 5.637376656633329
-          duplicate: 5.962133916683182
-          time: 4.145608029883936
-          adr: 6.027456183070403
       properties:
         payload:
           type: string
@@ -5977,10 +5828,6 @@ components:
           $ref: '#/components/schemas/ArduinoDevicev2propertyvalue_value_statistics'
       type: object
     ArduinoDevicev2propertyvalues_last_evaluated_key:
-      example:
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
       properties:
         created_at:
           format: date-time

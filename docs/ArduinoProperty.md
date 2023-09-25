@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Href** | **string** | The api reference of this property | 
 **Id** | **string** | The id of the property | 
 **LastValue** | Pointer to **interface{}** | Last value of this property | [optional] 
+**LinkedToTrigger** | Pointer to **bool** | Indicates if the property is involved in the activation of at least a trigger | [optional] 
 **MaxValue** | Pointer to **float64** | Maximum value of this property | [optional] 
 **MinValue** | Pointer to **float64** | Minimum value of this property | [optional] 
 **Name** | **string** | The friendly name of the property | 
@@ -169,6 +170,31 @@ HasLastValue returns a boolean if a field has been set.
 `func (o *ArduinoProperty) UnsetLastValue()`
 
 UnsetLastValue ensures that no value is present for LastValue, not even an explicit nil
+### GetLinkedToTrigger
+
+`func (o *ArduinoProperty) GetLinkedToTrigger() bool`
+
+GetLinkedToTrigger returns the LinkedToTrigger field if non-nil, zero value otherwise.
+
+### GetLinkedToTriggerOk
+
+`func (o *ArduinoProperty) GetLinkedToTriggerOk() (*bool, bool)`
+
+GetLinkedToTriggerOk returns a tuple with the LinkedToTrigger field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedToTrigger
+
+`func (o *ArduinoProperty) SetLinkedToTrigger(v bool)`
+
+SetLinkedToTrigger sets LinkedToTrigger field to given value.
+
+### HasLinkedToTrigger
+
+`func (o *ArduinoProperty) HasLinkedToTrigger() bool`
+
+HasLinkedToTrigger returns a boolean if a field has been set.
+
 ### GetMaxValue
 
 `func (o *ArduinoProperty) GetMaxValue() float64`
