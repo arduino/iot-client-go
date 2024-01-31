@@ -30,7 +30,7 @@ type Property struct {
 	// If true, data will persist into a timeseries database
 	Persist *bool `json:"persist,omitempty"`
 	// The integer id of the property
-	Tag *float64 `json:"tag,omitempty"`
+	Tag *int64 `json:"tag,omitempty"`
 	// The type of the property
 	Type string `json:"type"`
 	// The update frequency in seconds, or the amount of the property has to change in order to trigger an update
@@ -211,9 +211,9 @@ func (o *Property) SetPersist(v bool) {
 }
 
 // GetTag returns the Tag field value if set, zero value otherwise.
-func (o *Property) GetTag() float64 {
+func (o *Property) GetTag() int64 {
 	if o == nil || IsNil(o.Tag) {
-		var ret float64
+		var ret int64
 		return ret
 	}
 	return *o.Tag
@@ -221,7 +221,7 @@ func (o *Property) GetTag() float64 {
 
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Property) GetTagOk() (*float64, bool) {
+func (o *Property) GetTagOk() (*int64, bool) {
 	if o == nil || IsNil(o.Tag) {
 		return nil, false
 	}
@@ -237,8 +237,8 @@ func (o *Property) HasTag() bool {
 	return false
 }
 
-// SetTag gets a reference to the given float64 and assigns it to the Tag field.
-func (o *Property) SetTag(v float64) {
+// SetTag gets a reference to the given int64 and assigns it to the Tag field.
+func (o *Property) SetTag(v int64) {
 	o.Tag = &v
 }
 

@@ -4,15 +4,91 @@ All URIs are relative to *https://api2.arduino.cc/iot*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ThingsV2Clone**](ThingsV2Api.md#ThingsV2Clone) | **Put** /v2/things/{id}/clone | clone things_v2
 [**ThingsV2Create**](ThingsV2Api.md#ThingsV2Create) | **Put** /v2/things | create things_v2
 [**ThingsV2CreateSketch**](ThingsV2Api.md#ThingsV2CreateSketch) | **Put** /v2/things/{id}/sketch | createSketch things_v2
 [**ThingsV2Delete**](ThingsV2Api.md#ThingsV2Delete) | **Delete** /v2/things/{id} | delete things_v2
 [**ThingsV2DeleteSketch**](ThingsV2Api.md#ThingsV2DeleteSketch) | **Delete** /v2/things/{id}/sketch | deleteSketch things_v2
 [**ThingsV2List**](ThingsV2Api.md#ThingsV2List) | **Get** /v2/things | list things_v2
 [**ThingsV2Show**](ThingsV2Api.md#ThingsV2Show) | **Get** /v2/things/{id} | show things_v2
+[**ThingsV2Template**](ThingsV2Api.md#ThingsV2Template) | **Get** /v2/things/{id}/template | template things_v2
 [**ThingsV2Update**](ThingsV2Api.md#ThingsV2Update) | **Post** /v2/things/{id} | update things_v2
 [**ThingsV2UpdateSketch**](ThingsV2Api.md#ThingsV2UpdateSketch) | **Put** /v2/things/{id}/sketch/{sketchId} | updateSketch things_v2
 
+
+
+## ThingsV2Clone
+
+> ArduinoThing ThingsV2Clone(ctx, id).ThingClone(thingClone).XOrganization(xOrganization).Execute()
+
+clone things_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    thingClone := *openapiclient.NewThingClone("Name_example") // ThingClone | Payload to clone a new thing from an existing one
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2Clone(context.Background(), id).ThingClone(thingClone).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Clone``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2Clone`: ArduinoThing
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2Clone`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the thing | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2CloneRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **thingClone** | [**ThingClone**](ThingClone.md) | Payload to clone a new thing from an existing one | 
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoThing**](ArduinoThing.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ThingsV2Create
@@ -447,6 +523,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.thing+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ThingsV2Template
+
+> ArduinoThingtemplate ThingsV2Template(ctx, id).XOrganization(xOrganization).Execute()
+
+template things_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the thing
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThingsV2Api.ThingsV2Template(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThingsV2Api.ThingsV2Template``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThingsV2Template`: ArduinoThingtemplate
+    fmt.Fprintf(os.Stdout, "Response from `ThingsV2Api.ThingsV2Template`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the thing | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThingsV2TemplateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoThingtemplate**](ArduinoThingtemplate.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.arduino.thingtemplate+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

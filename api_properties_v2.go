@@ -28,11 +28,18 @@ type ApiPropertiesV2CreateRequest struct {
 	ApiService *PropertiesV2ApiService
 	id string
 	property *Property
+	xOrganization *string
 }
 
 // PropertyPayload describes a property of a thing. No field is mandatory
 func (r ApiPropertiesV2CreateRequest) Property(property Property) ApiPropertiesV2CreateRequest {
 	r.property = &property
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2CreateRequest) XOrganization(xOrganization string) ApiPropertiesV2CreateRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -98,6 +105,9 @@ func (a *PropertiesV2ApiService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	// body params
 	localVarPostBody = r.property
@@ -187,11 +197,18 @@ type ApiPropertiesV2DeleteRequest struct {
 	id string
 	pid string
 	force *bool
+	xOrganization *string
 }
 
 // If true, hard delete the property
 func (r ApiPropertiesV2DeleteRequest) Force(force bool) ApiPropertiesV2DeleteRequest {
 	r.force = &force
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2DeleteRequest) XOrganization(xOrganization string) ApiPropertiesV2DeleteRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -259,6 +276,9 @@ func (a *PropertiesV2ApiService) PropertiesV2DeleteExecute(r ApiPropertiesV2Dele
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -313,11 +333,18 @@ type ApiPropertiesV2ListRequest struct {
 	ApiService *PropertiesV2ApiService
 	id string
 	showDeleted *bool
+	xOrganization *string
 }
 
 // If true, shows the soft deleted properties
 func (r ApiPropertiesV2ListRequest) ShowDeleted(showDeleted bool) ApiPropertiesV2ListRequest {
 	r.showDeleted = &showDeleted
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2ListRequest) XOrganization(xOrganization string) ApiPropertiesV2ListRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -383,6 +410,9 @@ func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -459,11 +489,18 @@ type ApiPropertiesV2PublishRequest struct {
 	id string
 	pid string
 	propertyValue *PropertyValue
+	xOrganization *string
 }
 
 // PropertyValuePayload describes a property value
 func (r ApiPropertiesV2PublishRequest) PropertyValue(propertyValue PropertyValue) ApiPropertiesV2PublishRequest {
 	r.propertyValue = &propertyValue
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2PublishRequest) XOrganization(xOrganization string) ApiPropertiesV2PublishRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -530,6 +567,9 @@ func (a *PropertiesV2ApiService) PropertiesV2PublishExecute(r ApiPropertiesV2Pub
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	// body params
 	localVarPostBody = r.propertyValue
@@ -599,11 +639,18 @@ type ApiPropertiesV2ShowRequest struct {
 	id string
 	pid string
 	showDeleted *bool
+	xOrganization *string
 }
 
 // If true, shows the soft deleted properties
 func (r ApiPropertiesV2ShowRequest) ShowDeleted(showDeleted bool) ApiPropertiesV2ShowRequest {
 	r.showDeleted = &showDeleted
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2ShowRequest) XOrganization(xOrganization string) ApiPropertiesV2ShowRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -672,6 +719,9 @@ func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -747,10 +797,18 @@ type ApiPropertiesV2TimeseriesRequest struct {
 	ApiService *PropertiesV2ApiService
 	id string
 	pid string
+	aggregation *string
 	desc *bool
 	from *string
 	interval *int32
 	to *string
+	xOrganization *string
+}
+
+// Samples aggregation statistic. Supported aggregations AVG|MAX|MIN|COUNT|SUM|PCT_99|PCT_95|PCT_90|PCT_75|PCT_50|PCT_15|PCT_5
+func (r ApiPropertiesV2TimeseriesRequest) Aggregation(aggregation string) ApiPropertiesV2TimeseriesRequest {
+	r.aggregation = &aggregation
+	return r
 }
 
 // Whether data&#39;s ordering (by time) should be descending
@@ -774,6 +832,12 @@ func (r ApiPropertiesV2TimeseriesRequest) Interval(interval int32) ApiProperties
 // Get data with a timestamp &lt; to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)
 func (r ApiPropertiesV2TimeseriesRequest) To(to string) ApiPropertiesV2TimeseriesRequest {
 	r.to = &to
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2TimeseriesRequest) XOrganization(xOrganization string) ApiPropertiesV2TimeseriesRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -823,6 +887,9 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.aggregation != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation", r.aggregation, "")
+	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
 	}
@@ -851,6 +918,9 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -916,11 +986,18 @@ type ApiPropertiesV2UpdateRequest struct {
 	id string
 	pid string
 	property *Property
+	xOrganization *string
 }
 
 // PropertyPayload describes a property of a thing. No field is mandatory
 func (r ApiPropertiesV2UpdateRequest) Property(property Property) ApiPropertiesV2UpdateRequest {
 	r.property = &property
+	return r
+}
+
+// The id of the organization
+func (r ApiPropertiesV2UpdateRequest) XOrganization(xOrganization string) ApiPropertiesV2UpdateRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -989,6 +1066,9 @@ func (a *PropertiesV2ApiService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
 	}
 	// body params
 	localVarPostBody = r.property

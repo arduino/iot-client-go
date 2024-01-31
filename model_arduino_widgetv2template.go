@@ -14,31 +14,23 @@ import (
 	"encoding/json"
 )
 
-// checks if the ArduinoWidgetv2 type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ArduinoWidgetv2{}
+// checks if the ArduinoWidgetv2template type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ArduinoWidgetv2template{}
 
-// ArduinoWidgetv2 ArduinoWidgetv2 media type (default view)
-type ArduinoWidgetv2 struct {
-	// True if the linked variables permissions are incompatible with the widget
-	HasPermissionIncompatibility *bool `json:"has_permission_incompatibility,omitempty"`
-	// True if the linked variables types are incompatible with the widget
-	HasTypeIncompatibility *bool `json:"has_type_incompatibility,omitempty"`
-	// If it's true the widget is linked to a soft-deleted variable
-	HasUnlinkedVariable *bool `json:"has_unlinked_variable,omitempty"`
+// ArduinoWidgetv2template ArduinoWidgetv2template media type (default view)
+type ArduinoWidgetv2template struct {
 	// Widget current height for desktop
 	Height int64 `json:"height"`
 	// Widget current height for mobile
 	HeightMobile *int64 `json:"height_mobile,omitempty"`
-	// The UUID of the widget, set by client
-	Id string `json:"id"`
 	// The name of the widget
 	Name *string `json:"name,omitempty"`
 	// Widget options
 	Options map[string]interface{} `json:"options"`
 	// The type of the widget
 	Type string `json:"type"`
-	// ArduinoLinkedvariableCollection is the media type for an array of ArduinoLinkedvariable (default view)
-	Variables []ArduinoLinkedvariable `json:"variables,omitempty"`
+	// ArduinoTemplatevariableCollection is the media type for an array of ArduinoTemplatevariable (default view)
+	Variables []ArduinoTemplatevariable `json:"variables,omitempty"`
 	// Widget current width for desktop
 	Width int64 `json:"width"`
 	// Widget current width for mobile
@@ -53,14 +45,13 @@ type ArduinoWidgetv2 struct {
 	YMobile *int64 `json:"y_mobile,omitempty"`
 }
 
-// NewArduinoWidgetv2 instantiates a new ArduinoWidgetv2 object
+// NewArduinoWidgetv2template instantiates a new ArduinoWidgetv2template object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArduinoWidgetv2(height int64, id string, options map[string]interface{}, type_ string, width int64, x int64, y int64) *ArduinoWidgetv2 {
-	this := ArduinoWidgetv2{}
+func NewArduinoWidgetv2template(height int64, options map[string]interface{}, type_ string, width int64, x int64, y int64) *ArduinoWidgetv2template {
+	this := ArduinoWidgetv2template{}
 	this.Height = height
-	this.Id = id
 	this.Options = options
 	this.Type = type_
 	this.Width = width
@@ -69,112 +60,16 @@ func NewArduinoWidgetv2(height int64, id string, options map[string]interface{},
 	return &this
 }
 
-// NewArduinoWidgetv2WithDefaults instantiates a new ArduinoWidgetv2 object
+// NewArduinoWidgetv2templateWithDefaults instantiates a new ArduinoWidgetv2template object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewArduinoWidgetv2WithDefaults() *ArduinoWidgetv2 {
-	this := ArduinoWidgetv2{}
+func NewArduinoWidgetv2templateWithDefaults() *ArduinoWidgetv2template {
+	this := ArduinoWidgetv2template{}
 	return &this
 }
 
-// GetHasPermissionIncompatibility returns the HasPermissionIncompatibility field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetHasPermissionIncompatibility() bool {
-	if o == nil || IsNil(o.HasPermissionIncompatibility) {
-		var ret bool
-		return ret
-	}
-	return *o.HasPermissionIncompatibility
-}
-
-// GetHasPermissionIncompatibilityOk returns a tuple with the HasPermissionIncompatibility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetHasPermissionIncompatibilityOk() (*bool, bool) {
-	if o == nil || IsNil(o.HasPermissionIncompatibility) {
-		return nil, false
-	}
-	return o.HasPermissionIncompatibility, true
-}
-
-// HasHasPermissionIncompatibility returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasHasPermissionIncompatibility() bool {
-	if o != nil && !IsNil(o.HasPermissionIncompatibility) {
-		return true
-	}
-
-	return false
-}
-
-// SetHasPermissionIncompatibility gets a reference to the given bool and assigns it to the HasPermissionIncompatibility field.
-func (o *ArduinoWidgetv2) SetHasPermissionIncompatibility(v bool) {
-	o.HasPermissionIncompatibility = &v
-}
-
-// GetHasTypeIncompatibility returns the HasTypeIncompatibility field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetHasTypeIncompatibility() bool {
-	if o == nil || IsNil(o.HasTypeIncompatibility) {
-		var ret bool
-		return ret
-	}
-	return *o.HasTypeIncompatibility
-}
-
-// GetHasTypeIncompatibilityOk returns a tuple with the HasTypeIncompatibility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetHasTypeIncompatibilityOk() (*bool, bool) {
-	if o == nil || IsNil(o.HasTypeIncompatibility) {
-		return nil, false
-	}
-	return o.HasTypeIncompatibility, true
-}
-
-// HasHasTypeIncompatibility returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasHasTypeIncompatibility() bool {
-	if o != nil && !IsNil(o.HasTypeIncompatibility) {
-		return true
-	}
-
-	return false
-}
-
-// SetHasTypeIncompatibility gets a reference to the given bool and assigns it to the HasTypeIncompatibility field.
-func (o *ArduinoWidgetv2) SetHasTypeIncompatibility(v bool) {
-	o.HasTypeIncompatibility = &v
-}
-
-// GetHasUnlinkedVariable returns the HasUnlinkedVariable field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetHasUnlinkedVariable() bool {
-	if o == nil || IsNil(o.HasUnlinkedVariable) {
-		var ret bool
-		return ret
-	}
-	return *o.HasUnlinkedVariable
-}
-
-// GetHasUnlinkedVariableOk returns a tuple with the HasUnlinkedVariable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetHasUnlinkedVariableOk() (*bool, bool) {
-	if o == nil || IsNil(o.HasUnlinkedVariable) {
-		return nil, false
-	}
-	return o.HasUnlinkedVariable, true
-}
-
-// HasHasUnlinkedVariable returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasHasUnlinkedVariable() bool {
-	if o != nil && !IsNil(o.HasUnlinkedVariable) {
-		return true
-	}
-
-	return false
-}
-
-// SetHasUnlinkedVariable gets a reference to the given bool and assigns it to the HasUnlinkedVariable field.
-func (o *ArduinoWidgetv2) SetHasUnlinkedVariable(v bool) {
-	o.HasUnlinkedVariable = &v
-}
-
 // GetHeight returns the Height field value
-func (o *ArduinoWidgetv2) GetHeight() int64 {
+func (o *ArduinoWidgetv2template) GetHeight() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -185,7 +80,7 @@ func (o *ArduinoWidgetv2) GetHeight() int64 {
 
 // GetHeightOk returns a tuple with the Height field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetHeightOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetHeightOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,12 +88,12 @@ func (o *ArduinoWidgetv2) GetHeightOk() (*int64, bool) {
 }
 
 // SetHeight sets field value
-func (o *ArduinoWidgetv2) SetHeight(v int64) {
+func (o *ArduinoWidgetv2template) SetHeight(v int64) {
 	o.Height = v
 }
 
 // GetHeightMobile returns the HeightMobile field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetHeightMobile() int64 {
+func (o *ArduinoWidgetv2template) GetHeightMobile() int64 {
 	if o == nil || IsNil(o.HeightMobile) {
 		var ret int64
 		return ret
@@ -208,7 +103,7 @@ func (o *ArduinoWidgetv2) GetHeightMobile() int64 {
 
 // GetHeightMobileOk returns a tuple with the HeightMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetHeightMobileOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetHeightMobileOk() (*int64, bool) {
 	if o == nil || IsNil(o.HeightMobile) {
 		return nil, false
 	}
@@ -216,7 +111,7 @@ func (o *ArduinoWidgetv2) GetHeightMobileOk() (*int64, bool) {
 }
 
 // HasHeightMobile returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasHeightMobile() bool {
+func (o *ArduinoWidgetv2template) HasHeightMobile() bool {
 	if o != nil && !IsNil(o.HeightMobile) {
 		return true
 	}
@@ -225,36 +120,12 @@ func (o *ArduinoWidgetv2) HasHeightMobile() bool {
 }
 
 // SetHeightMobile gets a reference to the given int64 and assigns it to the HeightMobile field.
-func (o *ArduinoWidgetv2) SetHeightMobile(v int64) {
+func (o *ArduinoWidgetv2template) SetHeightMobile(v int64) {
 	o.HeightMobile = &v
 }
 
-// GetId returns the Id field value
-func (o *ArduinoWidgetv2) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ArduinoWidgetv2) SetId(v string) {
-	o.Id = v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetName() string {
+func (o *ArduinoWidgetv2template) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -264,7 +135,7 @@ func (o *ArduinoWidgetv2) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetNameOk() (*string, bool) {
+func (o *ArduinoWidgetv2template) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -272,7 +143,7 @@ func (o *ArduinoWidgetv2) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasName() bool {
+func (o *ArduinoWidgetv2template) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -281,12 +152,12 @@ func (o *ArduinoWidgetv2) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ArduinoWidgetv2) SetName(v string) {
+func (o *ArduinoWidgetv2template) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOptions returns the Options field value
-func (o *ArduinoWidgetv2) GetOptions() map[string]interface{} {
+func (o *ArduinoWidgetv2template) GetOptions() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
@@ -297,7 +168,7 @@ func (o *ArduinoWidgetv2) GetOptions() map[string]interface{} {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetOptionsOk() (map[string]interface{}, bool) {
+func (o *ArduinoWidgetv2template) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
@@ -305,12 +176,12 @@ func (o *ArduinoWidgetv2) GetOptionsOk() (map[string]interface{}, bool) {
 }
 
 // SetOptions sets field value
-func (o *ArduinoWidgetv2) SetOptions(v map[string]interface{}) {
+func (o *ArduinoWidgetv2template) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 
 // GetType returns the Type field value
-func (o *ArduinoWidgetv2) GetType() string {
+func (o *ArduinoWidgetv2template) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -321,7 +192,7 @@ func (o *ArduinoWidgetv2) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetTypeOk() (*string, bool) {
+func (o *ArduinoWidgetv2template) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -329,14 +200,14 @@ func (o *ArduinoWidgetv2) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *ArduinoWidgetv2) SetType(v string) {
+func (o *ArduinoWidgetv2template) SetType(v string) {
 	o.Type = v
 }
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetVariables() []ArduinoLinkedvariable {
+func (o *ArduinoWidgetv2template) GetVariables() []ArduinoTemplatevariable {
 	if o == nil || IsNil(o.Variables) {
-		var ret []ArduinoLinkedvariable
+		var ret []ArduinoTemplatevariable
 		return ret
 	}
 	return o.Variables
@@ -344,7 +215,7 @@ func (o *ArduinoWidgetv2) GetVariables() []ArduinoLinkedvariable {
 
 // GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetVariablesOk() ([]ArduinoLinkedvariable, bool) {
+func (o *ArduinoWidgetv2template) GetVariablesOk() ([]ArduinoTemplatevariable, bool) {
 	if o == nil || IsNil(o.Variables) {
 		return nil, false
 	}
@@ -352,7 +223,7 @@ func (o *ArduinoWidgetv2) GetVariablesOk() ([]ArduinoLinkedvariable, bool) {
 }
 
 // HasVariables returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasVariables() bool {
+func (o *ArduinoWidgetv2template) HasVariables() bool {
 	if o != nil && !IsNil(o.Variables) {
 		return true
 	}
@@ -360,13 +231,13 @@ func (o *ArduinoWidgetv2) HasVariables() bool {
 	return false
 }
 
-// SetVariables gets a reference to the given []ArduinoLinkedvariable and assigns it to the Variables field.
-func (o *ArduinoWidgetv2) SetVariables(v []ArduinoLinkedvariable) {
+// SetVariables gets a reference to the given []ArduinoTemplatevariable and assigns it to the Variables field.
+func (o *ArduinoWidgetv2template) SetVariables(v []ArduinoTemplatevariable) {
 	o.Variables = v
 }
 
 // GetWidth returns the Width field value
-func (o *ArduinoWidgetv2) GetWidth() int64 {
+func (o *ArduinoWidgetv2template) GetWidth() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -377,7 +248,7 @@ func (o *ArduinoWidgetv2) GetWidth() int64 {
 
 // GetWidthOk returns a tuple with the Width field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetWidthOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetWidthOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -385,12 +256,12 @@ func (o *ArduinoWidgetv2) GetWidthOk() (*int64, bool) {
 }
 
 // SetWidth sets field value
-func (o *ArduinoWidgetv2) SetWidth(v int64) {
+func (o *ArduinoWidgetv2template) SetWidth(v int64) {
 	o.Width = v
 }
 
 // GetWidthMobile returns the WidthMobile field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetWidthMobile() int64 {
+func (o *ArduinoWidgetv2template) GetWidthMobile() int64 {
 	if o == nil || IsNil(o.WidthMobile) {
 		var ret int64
 		return ret
@@ -400,7 +271,7 @@ func (o *ArduinoWidgetv2) GetWidthMobile() int64 {
 
 // GetWidthMobileOk returns a tuple with the WidthMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetWidthMobileOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetWidthMobileOk() (*int64, bool) {
 	if o == nil || IsNil(o.WidthMobile) {
 		return nil, false
 	}
@@ -408,7 +279,7 @@ func (o *ArduinoWidgetv2) GetWidthMobileOk() (*int64, bool) {
 }
 
 // HasWidthMobile returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasWidthMobile() bool {
+func (o *ArduinoWidgetv2template) HasWidthMobile() bool {
 	if o != nil && !IsNil(o.WidthMobile) {
 		return true
 	}
@@ -417,12 +288,12 @@ func (o *ArduinoWidgetv2) HasWidthMobile() bool {
 }
 
 // SetWidthMobile gets a reference to the given int64 and assigns it to the WidthMobile field.
-func (o *ArduinoWidgetv2) SetWidthMobile(v int64) {
+func (o *ArduinoWidgetv2template) SetWidthMobile(v int64) {
 	o.WidthMobile = &v
 }
 
 // GetX returns the X field value
-func (o *ArduinoWidgetv2) GetX() int64 {
+func (o *ArduinoWidgetv2template) GetX() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -433,7 +304,7 @@ func (o *ArduinoWidgetv2) GetX() int64 {
 
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetXOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetXOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -441,12 +312,12 @@ func (o *ArduinoWidgetv2) GetXOk() (*int64, bool) {
 }
 
 // SetX sets field value
-func (o *ArduinoWidgetv2) SetX(v int64) {
+func (o *ArduinoWidgetv2template) SetX(v int64) {
 	o.X = v
 }
 
 // GetXMobile returns the XMobile field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetXMobile() int64 {
+func (o *ArduinoWidgetv2template) GetXMobile() int64 {
 	if o == nil || IsNil(o.XMobile) {
 		var ret int64
 		return ret
@@ -456,7 +327,7 @@ func (o *ArduinoWidgetv2) GetXMobile() int64 {
 
 // GetXMobileOk returns a tuple with the XMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetXMobileOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetXMobileOk() (*int64, bool) {
 	if o == nil || IsNil(o.XMobile) {
 		return nil, false
 	}
@@ -464,7 +335,7 @@ func (o *ArduinoWidgetv2) GetXMobileOk() (*int64, bool) {
 }
 
 // HasXMobile returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasXMobile() bool {
+func (o *ArduinoWidgetv2template) HasXMobile() bool {
 	if o != nil && !IsNil(o.XMobile) {
 		return true
 	}
@@ -473,12 +344,12 @@ func (o *ArduinoWidgetv2) HasXMobile() bool {
 }
 
 // SetXMobile gets a reference to the given int64 and assigns it to the XMobile field.
-func (o *ArduinoWidgetv2) SetXMobile(v int64) {
+func (o *ArduinoWidgetv2template) SetXMobile(v int64) {
 	o.XMobile = &v
 }
 
 // GetY returns the Y field value
-func (o *ArduinoWidgetv2) GetY() int64 {
+func (o *ArduinoWidgetv2template) GetY() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -489,7 +360,7 @@ func (o *ArduinoWidgetv2) GetY() int64 {
 
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetYOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetYOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -497,12 +368,12 @@ func (o *ArduinoWidgetv2) GetYOk() (*int64, bool) {
 }
 
 // SetY sets field value
-func (o *ArduinoWidgetv2) SetY(v int64) {
+func (o *ArduinoWidgetv2template) SetY(v int64) {
 	o.Y = v
 }
 
 // GetYMobile returns the YMobile field value if set, zero value otherwise.
-func (o *ArduinoWidgetv2) GetYMobile() int64 {
+func (o *ArduinoWidgetv2template) GetYMobile() int64 {
 	if o == nil || IsNil(o.YMobile) {
 		var ret int64
 		return ret
@@ -512,7 +383,7 @@ func (o *ArduinoWidgetv2) GetYMobile() int64 {
 
 // GetYMobileOk returns a tuple with the YMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoWidgetv2) GetYMobileOk() (*int64, bool) {
+func (o *ArduinoWidgetv2template) GetYMobileOk() (*int64, bool) {
 	if o == nil || IsNil(o.YMobile) {
 		return nil, false
 	}
@@ -520,7 +391,7 @@ func (o *ArduinoWidgetv2) GetYMobileOk() (*int64, bool) {
 }
 
 // HasYMobile returns a boolean if a field has been set.
-func (o *ArduinoWidgetv2) HasYMobile() bool {
+func (o *ArduinoWidgetv2template) HasYMobile() bool {
 	if o != nil && !IsNil(o.YMobile) {
 		return true
 	}
@@ -529,11 +400,11 @@ func (o *ArduinoWidgetv2) HasYMobile() bool {
 }
 
 // SetYMobile gets a reference to the given int64 and assigns it to the YMobile field.
-func (o *ArduinoWidgetv2) SetYMobile(v int64) {
+func (o *ArduinoWidgetv2template) SetYMobile(v int64) {
 	o.YMobile = &v
 }
 
-func (o ArduinoWidgetv2) MarshalJSON() ([]byte, error) {
+func (o ArduinoWidgetv2template) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -541,22 +412,12 @@ func (o ArduinoWidgetv2) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ArduinoWidgetv2) ToMap() (map[string]interface{}, error) {
+func (o ArduinoWidgetv2template) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HasPermissionIncompatibility) {
-		toSerialize["has_permission_incompatibility"] = o.HasPermissionIncompatibility
-	}
-	if !IsNil(o.HasTypeIncompatibility) {
-		toSerialize["has_type_incompatibility"] = o.HasTypeIncompatibility
-	}
-	if !IsNil(o.HasUnlinkedVariable) {
-		toSerialize["has_unlinked_variable"] = o.HasUnlinkedVariable
-	}
 	toSerialize["height"] = o.Height
 	if !IsNil(o.HeightMobile) {
 		toSerialize["height_mobile"] = o.HeightMobile
 	}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -580,38 +441,38 @@ func (o ArduinoWidgetv2) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableArduinoWidgetv2 struct {
-	value *ArduinoWidgetv2
+type NullableArduinoWidgetv2template struct {
+	value *ArduinoWidgetv2template
 	isSet bool
 }
 
-func (v NullableArduinoWidgetv2) Get() *ArduinoWidgetv2 {
+func (v NullableArduinoWidgetv2template) Get() *ArduinoWidgetv2template {
 	return v.value
 }
 
-func (v *NullableArduinoWidgetv2) Set(val *ArduinoWidgetv2) {
+func (v *NullableArduinoWidgetv2template) Set(val *ArduinoWidgetv2template) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableArduinoWidgetv2) IsSet() bool {
+func (v NullableArduinoWidgetv2template) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableArduinoWidgetv2) Unset() {
+func (v *NullableArduinoWidgetv2template) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableArduinoWidgetv2(val *ArduinoWidgetv2) *NullableArduinoWidgetv2 {
-	return &NullableArduinoWidgetv2{value: val, isSet: true}
+func NewNullableArduinoWidgetv2template(val *ArduinoWidgetv2template) *NullableArduinoWidgetv2template {
+	return &NullableArduinoWidgetv2template{value: val, isSet: true}
 }
 
-func (v NullableArduinoWidgetv2) MarshalJSON() ([]byte, error) {
+func (v NullableArduinoWidgetv2template) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableArduinoWidgetv2) UnmarshalJSON(src []byte) error {
+func (v *NullableArduinoWidgetv2template) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

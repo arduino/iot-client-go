@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The friendly name of the property | 
 **Permission** | **string** | The permission of the property | 
 **Persist** | Pointer to **bool** | If true, data will persist into a timeseries database | [optional] [default to true]
-**Tag** | Pointer to **float64** | The integer id of the property | [optional] 
+**Tag** | Pointer to **int64** | The integer id of the property | [optional] 
 **Type** | **string** | The type of the property | 
 **UpdateParameter** | Pointer to **float64** | The update frequency in seconds, or the amount of the property has to change in order to trigger an update | [optional] 
 **UpdateStrategy** | **string** | The update strategy for the property value | 
@@ -151,20 +151,20 @@ HasPersist returns a boolean if a field has been set.
 
 ### GetTag
 
-`func (o *Property) GetTag() float64`
+`func (o *Property) GetTag() int64`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *Property) GetTagOk() (*float64, bool)`
+`func (o *Property) GetTagOk() (*int64, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *Property) SetTag(v float64)`
+`func (o *Property) SetTag(v int64)`
 
 SetTag sets Tag field to given value.
 

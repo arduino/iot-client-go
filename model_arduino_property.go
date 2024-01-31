@@ -45,7 +45,7 @@ type ArduinoProperty struct {
 	// The id of the sync pool
 	SyncId *string `json:"sync_id,omitempty"`
 	// The integer id of the property
-	Tag *float64 `json:"tag,omitempty"`
+	Tag *int64 `json:"tag,omitempty"`
 	// The id of the thing
 	ThingId string `json:"thing_id"`
 	// The name of the associated thing
@@ -442,9 +442,9 @@ func (o *ArduinoProperty) SetSyncId(v string) {
 }
 
 // GetTag returns the Tag field value if set, zero value otherwise.
-func (o *ArduinoProperty) GetTag() float64 {
+func (o *ArduinoProperty) GetTag() int64 {
 	if o == nil || IsNil(o.Tag) {
-		var ret float64
+		var ret int64
 		return ret
 	}
 	return *o.Tag
@@ -452,7 +452,7 @@ func (o *ArduinoProperty) GetTag() float64 {
 
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoProperty) GetTagOk() (*float64, bool) {
+func (o *ArduinoProperty) GetTagOk() (*int64, bool) {
 	if o == nil || IsNil(o.Tag) {
 		return nil, false
 	}
@@ -468,8 +468,8 @@ func (o *ArduinoProperty) HasTag() bool {
 	return false
 }
 
-// SetTag gets a reference to the given float64 and assigns it to the Tag field.
-func (o *ArduinoProperty) SetTag(v float64) {
+// SetTag gets a reference to the given int64 and assigns it to the Tag field.
+func (o *ArduinoProperty) SetTag(v int64) {
 	o.Tag = &v
 }
 

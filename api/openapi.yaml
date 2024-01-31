@@ -304,6 +304,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -392,6 +401,80 @@ paths:
       security:
       - oauth2: []
       summary: update dashboards_v2
+      tags:
+      - dashboards_v2
+  /v2/dashboards/{id}/clone:
+    put:
+      description: Clone an existing dashboard
+      operationId: dashboards_v2#clone
+      parameters:
+      - description: The id of the dashboard
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clone'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/clone'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+          description: Created
+        "400":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: clone dashboards_v2
       tags:
       - dashboards_v2
   /v2/dashboards/{id}/share_request:
@@ -654,6 +737,70 @@ paths:
       security:
       - oauth2: []
       summary: deleteShare dashboards_v2
+      tags:
+      - dashboards_v2
+  /v2/dashboards/{id}/template:
+    get:
+      description: Get a template of the dashboard
+      operationId: dashboards_v2#template
+      parameters:
+      - description: The id of the dashboard
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.dashboardv2template+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2template'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2template'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.dashboardv2template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.dashboardv2template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.dashboardv2template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: template dashboards_v2
       tags:
       - dashboards_v2
   /v2/dashboards/{id}/widgets/{widgetId}/variables:
@@ -1942,6 +2089,94 @@ paths:
       summary: timeseries devices_v2
       tags:
       - devices_v2
+  /v2/devices/{id}/status:
+    get:
+      description: GET connection status events
+      operationId: devices_v2#GetStatusEvents
+      parameters:
+      - description: The id of the device
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of events to select
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 30
+          type: integer
+        style: form
+      - description: The time at which to start selecting events
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2StatusEvents'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2StatusEvents'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        "503":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavailable
+      security:
+      - oauth2: []
+      summary: GetStatusEvents devices_v2
+      tags:
+      - devices_v2
   /v2/devices/{id}/tags:
     get:
       description: List tags associated to the device.
@@ -2105,7 +2340,7 @@ paths:
       - devices_v2_tags
   /v2/series/batch_query:
     post:
-      description: Returns the batch of time-series data
+      description: Returns the batch of time-series aggregated samples
       operationId: series_v2#batch_query
       requestBody:
         content:
@@ -2165,7 +2400,7 @@ paths:
       - series_v2
   /v2/series/batch_query_raw:
     post:
-      description: Returns the batch of time-series data raw
+      description: Returns the batch of time-series raw samples
       operationId: series_v2#batch_query_raw
       requestBody:
         content:
@@ -2720,6 +2955,74 @@ paths:
       summary: update things_v2
       tags:
       - things_v2
+  /v2/things/{id}/clone:
+    put:
+      description: Clone a given thing
+      operationId: things_v2#clone
+      parameters:
+      - description: The id of the thing
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThingClone'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ThingClone'
+        description: Payload to clone a new thing from an existing one
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: clone things_v2
+      tags:
+      - things_v2
   /v2/things/{id}/properties:
     get:
       description: Returns the list of properties associated to the thing
@@ -2742,6 +3045,14 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -2793,6 +3104,14 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -2891,6 +3210,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: OK
@@ -2948,6 +3275,14 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3007,6 +3342,14 @@ paths:
         in: path
         name: pid
         required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
         schema:
           type: string
         style: simple
@@ -3094,6 +3437,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -3149,6 +3500,27 @@ paths:
         \ 1000 otherwise the result will be truncated)"
       operationId: properties_v2#timeseries
       parameters:
+      - description: Samples aggregation statistic. Supported aggregations AVG|MAX|MIN|COUNT|SUM|PCT_99|PCT_95|PCT_90|PCT_75|PCT_50|PCT_15|PCT_5
+        explode: true
+        in: query
+        name: aggregation
+        required: false
+        schema:
+          enum:
+          - AVG
+          - MIN
+          - MAX
+          - SUM
+          - COUNT
+          - PCT_99
+          - PCT_95
+          - PCT_90
+          - PCT_75
+          - PCT_50
+          - PCT_15
+          - PCT_5
+          type: string
+        style: form
       - description: Whether data's ordering (by time) should be descending
         explode: true
         in: query
@@ -3202,6 +3574,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: The id of the organization
+        explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3612,6 +3992,54 @@ paths:
       summary: delete things_v2_tags
       tags:
       - things_v2_tags
+  /v2/things/{id}/template:
+    get:
+      description: Extract template from the given thing
+      operationId: things_v2#template
+      parameters:
+      - description: The id of the thing
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.thingtemplate+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThingtemplate'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThingtemplate'
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.thingtemplate+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: template things_v2
+      tags:
+      - things_v2
 components:
   callbacks: {}
   examples: {}
@@ -3757,6 +4185,25 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.dashboardv2+json; type=collection;\
         \ view=default"
       type: array
+    ArduinoDashboardv2template:
+      description: ArduinoDashboardv2template media type (default view)
+      properties:
+        name:
+          description: The friendly name of the dashboard
+          type: string
+        widgets:
+          description: ArduinoWidgetv2templateCollection is the media type for an
+            array of ArduinoWidgetv2template (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoWidgetv2template'
+          title: "Mediatype identifier: application/vnd.arduino.widgetv2template+json;\
+            \ type=collection; view=default"
+          type: array
+      required:
+      - name
+      title: "Mediatype identifier: application/vnd.arduino.dashboardv2template+json;\
+        \ view=default"
+      type: object
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
       properties:
@@ -3774,6 +4221,13 @@ components:
         created_at:
           description: Creation date of the device
           format: date-time
+          type: string
+        device_status:
+          description: The connection status of the device
+          enum:
+          - ONLINE
+          - OFFLINE
+          - UNKNOWN
           type: string
         events:
           description: ArduinoDevicev2SimplePropertiesCollection is the media type
@@ -3991,6 +4445,54 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;\
         \ type=collection; view=default"
       type: array
+    ArduinoDevicev2StatusEvent:
+      description: ArduinoDevicev2StatusEvent media type (default view)
+      properties:
+        updated_at:
+          description: Update timestamp of the status event
+          format: date-time
+          type: string
+        value:
+          description: The status event of the device
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+          type: string
+      required:
+      - updated_at
+      - value
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.status.event+json;\
+        \ view=default"
+      type: object
+    ArduinoDevicev2StatusEventCollection:
+      description: ArduinoDevicev2StatusEventCollection is the media type for an array
+        of ArduinoDevicev2StatusEvent (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoDevicev2StatusEvent'
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.status.event+json;\
+        \ type=collection; view=default"
+      type: array
+    ArduinoDevicev2StatusEvents:
+      description: ArduinoDevicev2StatusEvents media type (default view)
+      properties:
+        events:
+          description: ArduinoDevicev2StatusEventCollection is the media type for
+            an array of ArduinoDevicev2StatusEvent (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoDevicev2StatusEvent'
+          title: "Mediatype identifier: application/vnd.arduino.devicev2.status.event+json;\
+            \ type=collection; view=default"
+          type: array
+        id:
+          description: The id of the device
+          format: uuid
+          type: string
+      required:
+      - events
+      - id
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.status.events+json;\
+        \ view=default"
+      type: object
     ArduinoDevicev2Webhook:
       description: DeviceWebhookV2 describes a webhook associated to the device (default
         view)
@@ -4248,8 +4750,8 @@ components:
           type: string
         tag:
           description: The integer id of the property
-          format: double
-          type: number
+          format: int64
+          type: integer
         thing_id:
           description: The id of the thing
           format: uuid
@@ -4451,6 +4953,28 @@ components:
     ArduinoSeriesResponse:
       description: ArduinoSeriesResponse media type (default view)
       properties:
+        aggregation:
+          description: |-
+            Aggregation statistic function.
+            For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile).
+            For boolean, BOOL_OR statistic is used as default.
+          enum:
+          - AVG
+          - MIN
+          - MAX
+          - SUM
+          - COUNT
+          - PCT_99
+          - PCT_95
+          - PCT_90
+          - PCT_75
+          - PCT_50
+          - PCT_15
+          - PCT_5
+          - BOOL_OR
+          - BOOL_AND
+          example: AVG
+          type: string
         count_values:
           description: Total number of values in the array 'values'
           format: int64
@@ -4475,7 +4999,8 @@ components:
           format: int64
           type: integer
         series_limit:
-          description: Max of values
+          description: "Maximum number of values returned after data aggregation,\
+            \ if any"
           format: int64
           type: integer
         status:
@@ -4521,6 +5046,82 @@ components:
       - tags
       title: "Mediatype identifier: application/vnd.arduino.tags+json; view=default"
       type: object
+    ArduinoTemplateproperty:
+      description: ArduinoTemplateproperty media type (default view)
+      properties:
+        name:
+          description: The friendly name of the property
+          type: string
+        permission:
+          description: The permission of the property
+          type: string
+        type:
+          description: The type of the property
+          type: string
+        update_parameter:
+          description: "The update frequency in seconds, or the amount of the property\
+            \ has to change in order to trigger an update"
+          format: double
+          type: number
+        update_strategy:
+          description: The update strategy for the property value
+          type: string
+        variable_name:
+          description: The sketch variable name of the property
+          type: string
+      required:
+      - name
+      - permission
+      - type
+      - update_strategy
+      title: "Mediatype identifier: application/vnd.arduino.templateproperty+json;\
+        \ view=default"
+      type: object
+    ArduinoTemplatepropertyCollection:
+      description: ArduinoTemplatepropertyCollection is the media type for an array
+        of ArduinoTemplateproperty (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoTemplateproperty'
+      title: "Mediatype identifier: application/vnd.arduino.templateproperty+json;\
+        \ type=collection; view=default"
+      type: array
+    ArduinoTemplatevariable:
+      description: ArduinoTemplatevariable media type (default view)
+      properties:
+        name:
+          description: The name of the variable
+          type: string
+        permission:
+          description: The permission of the linked variable
+          type: string
+        thing_id:
+          description: The name of the related thing
+          type: string
+        thing_timezone:
+          $ref: '#/components/schemas/ArduinoTimezone'
+        type:
+          description: The type of the variable
+          type: string
+        variable_id:
+          description: The name of the variable in the code
+          type: string
+      required:
+      - name
+      - permission
+      - thing_id
+      - type
+      - variable_id
+      title: "Mediatype identifier: application/vnd.arduino.templatevariable+json;\
+        \ view=default"
+      type: object
+    ArduinoTemplatevariableCollection:
+      description: ArduinoTemplatevariableCollection is the media type for an array
+        of ArduinoTemplatevariable (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoTemplatevariable'
+      title: "Mediatype identifier: application/vnd.arduino.templatevariable+json;\
+        \ type=collection; view=default"
+      type: array
     ArduinoThing:
       description: ArduinoThing media type (default view)
       properties:
@@ -4612,6 +5213,40 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.thing+json; type=collection;\
         \ view=default"
       type: array
+    ArduinoThingtemplate:
+      description: ArduinoThingtemplate media type (default view)
+      properties:
+        name:
+          description: The friendly name of the thing
+          type: string
+        organization_id:
+          description: Id of the organization the thing belongs to
+          format: uuid
+          type: string
+        properties:
+          description: ArduinoTemplatepropertyCollection is the media type for an
+            array of ArduinoTemplateproperty (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoTemplateproperty'
+          title: "Mediatype identifier: application/vnd.arduino.templateproperty+json;\
+            \ type=collection; view=default"
+          type: array
+        tags:
+          description: Tags of the thing
+          items:
+            $ref: '#/components/schemas/tag'
+          type: array
+        timezone:
+          description: Time zone of the thing
+          type: string
+        webhook_uri:
+          description: Webhook uri
+          type: string
+      required:
+      - name
+      - timezone
+      title: "Mediatype identifier: application/vnd.arduino.thingtemplate+json; view=default"
+      type: object
     ArduinoTimeseriesmedia:
       description: ArduinoTimeseriesmedia media type (default view)
       properties:
@@ -4641,6 +5276,7 @@ components:
       required:
       - name
       - offset
+      - until
       title: "Mediatype identifier: application/vnd.arduino.timezone+json; view=default"
       type: object
     ArduinoVariableslinks:
@@ -4657,7 +5293,7 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.variableslinks+json; view=default"
       type: object
     ArduinoWidgetv2:
-      description: Widget describes a dashboard widget (default view)
+      description: ArduinoWidgetv2 media type (default view)
       properties:
         has_permission_incompatibility:
           description: True if the linked variables permissions are incompatible with
@@ -4744,6 +5380,77 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;\
         \ view=default"
       type: array
+    ArduinoWidgetv2template:
+      description: ArduinoWidgetv2template media type (default view)
+      properties:
+        height:
+          description: Widget current height for desktop
+          format: int64
+          type: integer
+        height_mobile:
+          description: Widget current height for mobile
+          format: int64
+          type: integer
+        name:
+          description: The name of the widget
+          type: string
+        options:
+          additionalProperties: true
+          description: Widget options
+          type: object
+        type:
+          description: The type of the widget
+          type: string
+        variables:
+          description: ArduinoTemplatevariableCollection is the media type for an
+            array of ArduinoTemplatevariable (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoTemplatevariable'
+          title: "Mediatype identifier: application/vnd.arduino.templatevariable+json;\
+            \ type=collection; view=default"
+          type: array
+        width:
+          description: Widget current width for desktop
+          format: int64
+          type: integer
+        width_mobile:
+          description: Widget current width for mobile
+          format: int64
+          type: integer
+        x:
+          description: Widget x position for desktop
+          format: int64
+          type: integer
+        x_mobile:
+          description: Widget x position for mobile
+          format: int64
+          type: integer
+        "y":
+          description: Widget y position for desktop
+          format: int64
+          type: integer
+        y_mobile:
+          description: Widget y position for mobile
+          format: int64
+          type: integer
+      required:
+      - height
+      - options
+      - type
+      - width
+      - x
+      - "y"
+      title: "Mediatype identifier: application/vnd.arduino.widgetv2template+json;\
+        \ view=default"
+      type: object
+    ArduinoWidgetv2templateCollection:
+      description: ArduinoWidgetv2templateCollection is the media type for an array
+        of ArduinoWidgetv2template (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoWidgetv2template'
+      title: "Mediatype identifier: application/vnd.arduino.widgetv2template+json;\
+        \ type=collection; view=default"
+      type: array
     BatchLastValueRequestsMediaV1:
       example:
         requests:
@@ -4792,7 +5499,7 @@ components:
           format: date-time
           type: string
         q:
-          description: Query
+          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
           type: string
         series_limit:
           description: Max of values
@@ -4855,23 +5562,47 @@ components:
       example:
         q: q
         series_limit: 6
+        aggregation: AVG
         from: 2000-01-23T04:56:07.000+00:00
         interval: 0
         to: 2000-01-23T04:56:07.000+00:00
       properties:
+        aggregation:
+          description: |-
+            Aggregation statistic function.
+            For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile).
+            For boolean, BOOL_OR statistic is used as default.
+          enum:
+          - AVG
+          - MIN
+          - MAX
+          - SUM
+          - COUNT
+          - PCT_99
+          - PCT_95
+          - PCT_90
+          - PCT_75
+          - PCT_50
+          - PCT_15
+          - PCT_5
+          - BOOL_OR
+          - BOOL_AND
+          example: AVG
+          type: string
         from:
           description: From timestamp
           format: date-time
           type: string
         interval:
-          description: Resolution in seconds
+          description: "Resolution in seconds (max allowed: 86400)"
           format: int64
           type: integer
         q:
-          description: Query
+          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
           type: string
         series_limit:
-          description: Max of values
+          description: "Maximum number of values returned after data aggregation,\
+            \ if any (default: 300, limit: 1000)"
           format: int64
           type: integer
         to:
@@ -4890,11 +5621,13 @@ components:
         requests:
         - q: q
           series_limit: 6
+          aggregation: AVG
           from: 2000-01-23T04:56:07.000+00:00
           interval: 0
           to: 2000-01-23T04:56:07.000+00:00
         - q: q
           series_limit: 6
+          aggregation: AVG
           from: 2000-01-23T04:56:07.000+00:00
           interval: 0
           to: 2000-01-23T04:56:07.000+00:00
@@ -5133,6 +5866,24 @@ components:
       - to
       title: HistoricDataRequest
       type: object
+    ThingClone:
+      description: Payload to clone a new thing from an existing one
+      example:
+        name: name
+        include_tags: true
+      properties:
+        include_tags:
+          description: Include tags in clone procedure
+          type: boolean
+        name:
+          description: The friendly name of the thing
+          maxLength: 64
+          pattern: "^[a-zA-Z0-9_.@ -]+$"
+          type: string
+      required:
+      - name
+      title: ThingClone
+      type: object
     ThingCreate:
       description: Payload to create a new thing
       example:
@@ -5149,7 +5900,7 @@ components:
           update_parameter: 5.962133916683182
           permission: READ_ONLY
           persist: true
-          tag: 1.4658129805029452
+          tag: 1
           variable_name: variable_name
           type: ANALOG
           max_value: 0.8008281904610115
@@ -5159,10 +5910,15 @@ components:
           update_parameter: 5.962133916683182
           permission: READ_ONLY
           persist: true
-          tag: 1.4658129805029452
+          tag: 1
           variable_name: variable_name
           type: ANALOG
           max_value: 0.8008281904610115
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
       properties:
         device_id:
           description: The arn of the associated device
@@ -5181,6 +5937,11 @@ components:
           description: The properties of the thing
           items:
             $ref: '#/components/schemas/property'
+          type: array
+        tags:
+          description: Optional set of tags
+          items:
+            $ref: '#/components/schemas/tag'
           type: array
         timezone:
           default: America/New_York
@@ -5210,6 +5971,17 @@ components:
       - time
       - value
       title: TimeseriesDataPoint
+      type: object
+    clone:
+      properties:
+        overrides:
+          description: "The overrides to apply to the cloned dashboard. An override\
+            \ is a tuple of ids: the id of the thing to override and the id of the\
+            \ new thing to link"
+          items:
+            $ref: '#/components/schemas/override'
+          type: array
+      title: clone
       type: object
     dashboardshare:
       properties:
@@ -5383,6 +6155,21 @@ components:
           type: integer
       title: "Mediatype identifier: application/vnd.goa.error+json; view=default"
       type: object
+    override:
+      properties:
+        new_thing_id:
+          description: The id of the new thing to link
+          format: uuid
+          type: string
+        old_thing_id:
+          description: The id of the thing to override
+          format: uuid
+          type: string
+      required:
+      - new_thing_id
+      - old_thing_id
+      title: override
+      type: object
     propertiesValue:
       properties:
         name:
@@ -5428,7 +6215,7 @@ components:
         update_parameter: 5.962133916683182
         permission: READ_ONLY
         persist: true
-        tag: 1.4658129805029452
+        tag: 1
         variable_name: variable_name
         type: ANALOG
         max_value: 0.8008281904610115
@@ -5456,8 +6243,8 @@ components:
           type: boolean
         tag:
           description: The integer id of the property
-          format: double
-          type: number
+          format: int64
+          type: integer
         type:
           description: The type of the property
           enum:
@@ -5545,6 +6332,27 @@ components:
           - HOME_TEMPERATURE_F
           - HOME_SWITCH
           - HOME_TELEVISION
+          - GOOGLE_HOME_COLORED_LIGHT
+          - GOOGLE_HOME_DIMMED_LIGHT
+          - GOOGLE_HOME_LIGHT
+          - GOOGLE_HOME_CONTACT_SENSOR
+          - GOOGLE_HOME_MOTION_SENSOR
+          - GOOGLE_HOME_SMART_PLUG
+          - GOOGLE_HOME_TEMPERATURE
+          - GOOGLE_HOME_TEMPERATURE_C
+          - GOOGLE_HOME_TEMPERATURE_F
+          - GOOGLE_HOME_SWITCH
+          - SMART_HOME_COLORED_LIGHT
+          - SMART_HOME_DIMMED_LIGHT
+          - SMART_HOME_LIGHT
+          - SMART_HOME_CONTACT_SENSOR
+          - SMART_HOME_MOTION_SENSOR
+          - SMART_HOME_SMART_PLUG
+          - SMART_HOME_TEMPERATURE
+          - SMART_HOME_TEMPERATURE_C
+          - SMART_HOME_TEMPERATURE_F
+          - SMART_HOME_SWITCH
+          - SMART_HOME_TELEVISION
           - ENERGY
           - FORCE
           - TEMPERATURE
@@ -5617,6 +6425,9 @@ components:
       title: sharerequest
       type: object
     tag:
+      example:
+        value: value
+        key: key
       properties:
         key:
           description: Key of the tag

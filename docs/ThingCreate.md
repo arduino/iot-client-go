@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The id of the thing | [optional] 
 **Name** | Pointer to **string** | The friendly name of the thing | [optional] 
 **Properties** | Pointer to [**[]Property**](Property.md) | The properties of the thing | [optional] 
+**Tags** | Pointer to [**[]Tag**](Tag.md) | Optional set of tags | [optional] 
 **Timezone** | Pointer to **string** | A time zone name Check /v2/timezones for a list of valid names. | [optional] [default to "America/New_York"]
 **WebhookActive** | Pointer to **bool** | Webhook uri | [optional] 
 **WebhookUri** | Pointer to **string** | Webhook uri | [optional] 
@@ -130,6 +131,31 @@ SetProperties sets Properties field to given value.
 `func (o *ThingCreate) HasProperties() bool`
 
 HasProperties returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *ThingCreate) GetTags() []Tag`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *ThingCreate) GetTagsOk() (*[]Tag, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *ThingCreate) SetTags(v []Tag)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *ThingCreate) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetTimezone
 

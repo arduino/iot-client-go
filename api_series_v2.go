@@ -40,7 +40,7 @@ func (r ApiSeriesV2BatchQueryRequest) Execute() (*ArduinoSeriesBatch, *http.Resp
 /*
 SeriesV2BatchQuery batch_query series_v2
 
-Returns the batch of time-series data
+Returns the batch of time-series aggregated samples
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQueryRequest
@@ -182,7 +182,7 @@ func (r ApiSeriesV2BatchQueryRawRequest) Execute() (*ArduinoSeriesRawBatch, *htt
 /*
 SeriesV2BatchQueryRaw batch_query_raw series_v2
 
-Returns the batch of time-series data raw
+Returns the batch of time-series raw samples
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQueryRawRequest

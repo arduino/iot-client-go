@@ -25,17 +25,18 @@ type ArduinoTimezone struct {
 	// Current UTC DST offset in seconds.
 	Offset int64 `json:"offset"`
 	// Date until the offset is valid.
-	Until *time.Time `json:"until,omitempty"`
+	Until time.Time `json:"until"`
 }
 
 // NewArduinoTimezone instantiates a new ArduinoTimezone object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArduinoTimezone(name string, offset int64) *ArduinoTimezone {
+func NewArduinoTimezone(name string, offset int64, until time.Time) *ArduinoTimezone {
 	this := ArduinoTimezone{}
 	this.Name = name
 	this.Offset = offset
+	this.Until = until
 	return &this
 }
 
@@ -95,36 +96,28 @@ func (o *ArduinoTimezone) SetOffset(v int64) {
 	o.Offset = v
 }
 
-// GetUntil returns the Until field value if set, zero value otherwise.
+// GetUntil returns the Until field value
 func (o *ArduinoTimezone) GetUntil() time.Time {
-	if o == nil || IsNil(o.Until) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.Until
+
+	return o.Until
 }
 
-// GetUntilOk returns a tuple with the Until field value if set, nil otherwise
+// GetUntilOk returns a tuple with the Until field value
 // and a boolean to check if the value has been set.
 func (o *ArduinoTimezone) GetUntilOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Until) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Until, true
+	return &o.Until, true
 }
 
-// HasUntil returns a boolean if a field has been set.
-func (o *ArduinoTimezone) HasUntil() bool {
-	if o != nil && !IsNil(o.Until) {
-		return true
-	}
-
-	return false
-}
-
-// SetUntil gets a reference to the given time.Time and assigns it to the Until field.
+// SetUntil sets field value
 func (o *ArduinoTimezone) SetUntil(v time.Time) {
-	o.Until = &v
+	o.Until = v
 }
 
 func (o ArduinoTimezone) MarshalJSON() ([]byte, error) {
@@ -139,9 +132,7 @@ func (o ArduinoTimezone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["offset"] = o.Offset
-	if !IsNil(o.Until) {
-		toSerialize["until"] = o.Until
-	}
+	toSerialize["until"] = o.Until
 	return toSerialize, nil
 }
 
