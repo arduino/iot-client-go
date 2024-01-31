@@ -20,13 +20,15 @@ var _ MappedNullable = &BatchQueryRequestMediaV1{}
 
 // BatchQueryRequestMediaV1 struct for BatchQueryRequestMediaV1
 type BatchQueryRequestMediaV1 struct {
+	// Aggregation statistic function. For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile). For boolean, BOOL_OR statistic is used as default.
+	Aggregation *string `json:"aggregation,omitempty"`
 	// From timestamp
 	From time.Time `json:"from"`
-	// Resolution in seconds
+	// Resolution in seconds (max allowed: 86400)
 	Interval *int64 `json:"interval,omitempty"`
-	// Query
+	// Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
 	Q string `json:"q"`
-	// Max of values
+	// Maximum number of values returned after data aggregation, if any (default: 300, limit: 1000)
 	SeriesLimit *int64 `json:"series_limit,omitempty"`
 	// To timestamp
 	To time.Time `json:"to"`
@@ -50,6 +52,38 @@ func NewBatchQueryRequestMediaV1(from time.Time, q string, to time.Time) *BatchQ
 func NewBatchQueryRequestMediaV1WithDefaults() *BatchQueryRequestMediaV1 {
 	this := BatchQueryRequestMediaV1{}
 	return &this
+}
+
+// GetAggregation returns the Aggregation field value if set, zero value otherwise.
+func (o *BatchQueryRequestMediaV1) GetAggregation() string {
+	if o == nil || IsNil(o.Aggregation) {
+		var ret string
+		return ret
+	}
+	return *o.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BatchQueryRequestMediaV1) GetAggregationOk() (*string, bool) {
+	if o == nil || IsNil(o.Aggregation) {
+		return nil, false
+	}
+	return o.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (o *BatchQueryRequestMediaV1) HasAggregation() bool {
+	if o != nil && !IsNil(o.Aggregation) {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+func (o *BatchQueryRequestMediaV1) SetAggregation(v string) {
+	o.Aggregation = &v
 }
 
 // GetFrom returns the From field value
@@ -198,6 +232,9 @@ func (o BatchQueryRequestMediaV1) MarshalJSON() ([]byte, error) {
 
 func (o BatchQueryRequestMediaV1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Aggregation) {
+		toSerialize["aggregation"] = o.Aggregation
+	}
 	toSerialize["from"] = o.From
 	if !IsNil(o.Interval) {
 		toSerialize["interval"] = o.Interval

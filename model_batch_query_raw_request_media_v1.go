@@ -22,7 +22,7 @@ var _ MappedNullable = &BatchQueryRawRequestMediaV1{}
 type BatchQueryRawRequestMediaV1 struct {
 	// From timestamp
 	From *time.Time `json:"from,omitempty"`
-	// Query
+	// Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
 	Q string `json:"q"`
 	// Max of values
 	SeriesLimit *int64 `json:"series_limit,omitempty"`

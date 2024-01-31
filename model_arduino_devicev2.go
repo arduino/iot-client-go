@@ -24,6 +24,8 @@ type ArduinoDevicev2 struct {
 	ConnectionType *string `json:"connection_type,omitempty"`
 	// Creation date of the device
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The connection status of the device
+	DeviceStatus *string `json:"device_status,omitempty"`
 	// ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view)
 	Events []ArduinoDevicev2SimpleProperties `json:"events,omitempty"`
 	// The fully qualified board name
@@ -153,6 +155,38 @@ func (o *ArduinoDevicev2) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *ArduinoDevicev2) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDeviceStatus returns the DeviceStatus field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetDeviceStatus() string {
+	if o == nil || IsNil(o.DeviceStatus) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceStatus
+}
+
+// GetDeviceStatusOk returns a tuple with the DeviceStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetDeviceStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.DeviceStatus) {
+		return nil, false
+	}
+	return o.DeviceStatus, true
+}
+
+// HasDeviceStatus returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasDeviceStatus() bool {
+	if o != nil && !IsNil(o.DeviceStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceStatus gets a reference to the given string and assigns it to the DeviceStatus field.
+func (o *ArduinoDevicev2) SetDeviceStatus(v string) {
+	o.DeviceStatus = &v
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
@@ -786,6 +820,9 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.DeviceStatus) {
+		toSerialize["device_status"] = o.DeviceStatus
 	}
 	if !IsNil(o.Events) {
 		toSerialize["events"] = o.Events

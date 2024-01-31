@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## PropertiesV2Create
 
-> ArduinoProperty PropertiesV2Create(ctx, id).Property(property).Execute()
+> ArduinoProperty PropertiesV2Create(ctx, id).Property(property).XOrganization(xOrganization).Execute()
 
 create properties_v2
 
@@ -37,10 +37,11 @@ import (
 func main() {
     id := "id_example" // string | The id of the thing
     property := *openapiclient.NewProperty("Name_example", "Permission_example", "Type_example", "UpdateStrategy_example") // Property | PropertyPayload describes a property of a thing. No field is mandatory
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Create(context.Background(), id).Property(property).Execute()
+    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Create(context.Background(), id).Property(property).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **property** | [**Property**](Property.md) | PropertyPayload describes a property of a thing. No field is mandatory | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -88,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Delete
 
-> PropertiesV2Delete(ctx, id, pid).Force(force).Execute()
+> PropertiesV2Delete(ctx, id, pid).Force(force).XOrganization(xOrganization).Execute()
 
 delete properties_v2
 
@@ -110,10 +112,11 @@ func main() {
     id := "id_example" // string | The id of the thing
     pid := "pid_example" // string | The id of the property
     force := true // bool | If true, hard delete the property (optional) (default to false)
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PropertiesV2Api.PropertiesV2Delete(context.Background(), id, pid).Force(force).Execute()
+    r, err := apiClient.PropertiesV2Api.PropertiesV2Delete(context.Background(), id, pid).Force(force).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 
 
  **force** | **bool** | If true, hard delete the property | [default to false]
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2List
 
-> []ArduinoProperty PropertiesV2List(ctx, id).ShowDeleted(showDeleted).Execute()
+> []ArduinoProperty PropertiesV2List(ctx, id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
 
 list properties_v2
 
@@ -182,10 +186,11 @@ import (
 func main() {
     id := "id_example" // string | The id of the thing
     showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2List(context.Background(), id).ShowDeleted(showDeleted).Execute()
+    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2List(context.Background(), id).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,6 +217,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -233,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Publish
 
-> PropertiesV2Publish(ctx, id, pid).PropertyValue(propertyValue).Execute()
+> PropertiesV2Publish(ctx, id, pid).PropertyValue(propertyValue).XOrganization(xOrganization).Execute()
 
 publish properties_v2
 
@@ -255,10 +261,11 @@ func main() {
     id := "id_example" // string | The id of the thing
     pid := "pid_example" // string | The id of the property
     propertyValue := *openapiclient.NewPropertyValue(interface{}(123)) // PropertyValue | PropertyValuePayload describes a property value
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PropertiesV2Api.PropertiesV2Publish(context.Background(), id, pid).PropertyValue(propertyValue).Execute()
+    r, err := apiClient.PropertiesV2Api.PropertiesV2Publish(context.Background(), id, pid).PropertyValue(propertyValue).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Publish``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,6 +292,7 @@ Name | Type | Description  | Notes
 
 
  **propertyValue** | [**PropertyValue**](PropertyValue.md) | PropertyValuePayload describes a property value | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -306,7 +314,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Show
 
-> ArduinoProperty PropertiesV2Show(ctx, id, pid).ShowDeleted(showDeleted).Execute()
+> ArduinoProperty PropertiesV2Show(ctx, id, pid).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
 
 show properties_v2
 
@@ -328,10 +336,11 @@ func main() {
     id := "id_example" // string | The id of the thing
     pid := "pid_example" // string | The id of the property
     showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Show(context.Background(), id, pid).ShowDeleted(showDeleted).Execute()
+    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Show(context.Background(), id, pid).ShowDeleted(showDeleted).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Show``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -360,6 +369,7 @@ Name | Type | Description  | Notes
 
 
  **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -381,7 +391,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Timeseries
 
-> ArduinoTimeseriesmedia PropertiesV2Timeseries(ctx, id, pid).Desc(desc).From(from).Interval(interval).To(to).Execute()
+> ArduinoTimeseriesmedia PropertiesV2Timeseries(ctx, id, pid).Aggregation(aggregation).Desc(desc).From(from).Interval(interval).To(to).XOrganization(xOrganization).Execute()
 
 timeseries properties_v2
 
@@ -402,14 +412,16 @@ import (
 func main() {
     id := "id_example" // string | The id of the thing
     pid := "pid_example" // string | ID of a numerical property
+    aggregation := "aggregation_example" // string | Samples aggregation statistic. Supported aggregations AVG|MAX|MIN|COUNT|SUM|PCT_99|PCT_95|PCT_90|PCT_75|PCT_50|PCT_15|PCT_5 (optional)
     desc := true // bool | Whether data's ordering (by time) should be descending (optional) (default to false)
     from := "from_example" // string | Get data with a timestamp >= to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) (optional)
     interval := int32(56) // int32 | Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response) (optional)
     to := "to_example" // string | Get data with a timestamp < to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) (optional)
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Timeseries(context.Background(), id, pid).Desc(desc).From(from).Interval(interval).To(to).Execute()
+    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Timeseries(context.Background(), id, pid).Aggregation(aggregation).Desc(desc).From(from).Interval(interval).To(to).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Timeseries``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,10 +449,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **aggregation** | **string** | Samples aggregation statistic. Supported aggregations AVG|MAX|MIN|COUNT|SUM|PCT_99|PCT_95|PCT_90|PCT_75|PCT_50|PCT_15|PCT_5 | 
  **desc** | **bool** | Whether data&#39;s ordering (by time) should be descending | [default to false]
  **from** | **string** | Get data with a timestamp &gt;&#x3D; to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
  **interval** | **int32** | Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response) | 
  **to** | **string** | Get data with a timestamp &lt; to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -462,7 +476,7 @@ Name | Type | Description  | Notes
 
 ## PropertiesV2Update
 
-> ArduinoProperty PropertiesV2Update(ctx, id, pid).Property(property).Execute()
+> ArduinoProperty PropertiesV2Update(ctx, id, pid).Property(property).XOrganization(xOrganization).Execute()
 
 update properties_v2
 
@@ -484,10 +498,11 @@ func main() {
     id := "id_example" // string | The id of the thing
     pid := "pid_example" // string | The id of the property
     property := *openapiclient.NewProperty("Name_example", "Permission_example", "Type_example", "UpdateStrategy_example") // Property | PropertyPayload describes a property of a thing. No field is mandatory
+    xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Update(context.Background(), id, pid).Property(property).Execute()
+    resp, r, err := apiClient.PropertiesV2Api.PropertiesV2Update(context.Background(), id, pid).Property(property).XOrganization(xOrganization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2Api.PropertiesV2Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -516,6 +531,7 @@ Name | Type | Description  | Notes
 
 
  **property** | [**Property**](Property.md) | PropertyPayload describes a property of a thing. No field is mandatory | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 

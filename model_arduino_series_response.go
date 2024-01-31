@@ -20,6 +20,8 @@ var _ MappedNullable = &ArduinoSeriesResponse{}
 
 // ArduinoSeriesResponse ArduinoSeriesResponse media type (default view)
 type ArduinoSeriesResponse struct {
+	// Aggregation statistic function. For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile). For boolean, BOOL_OR statistic is used as default.
+	Aggregation *string `json:"aggregation,omitempty"`
 	// Total number of values in the array 'values'
 	CountValues int64 `json:"count_values"`
 	// From date
@@ -32,7 +34,7 @@ type ArduinoSeriesResponse struct {
 	Query string `json:"query"`
 	// Response version
 	RespVersion int64 `json:"resp_version"`
-	// Max of values
+	// Maximum number of values returned after data aggregation, if any
 	SeriesLimit *int64 `json:"series_limit,omitempty"`
 	// Status of the response
 	Status string `json:"status"`
@@ -72,6 +74,38 @@ func NewArduinoSeriesResponseWithDefaults() *ArduinoSeriesResponse {
 	var message string = ""
 	this.Message = &message
 	return &this
+}
+
+// GetAggregation returns the Aggregation field value if set, zero value otherwise.
+func (o *ArduinoSeriesResponse) GetAggregation() string {
+	if o == nil || IsNil(o.Aggregation) {
+		var ret string
+		return ret
+	}
+	return *o.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoSeriesResponse) GetAggregationOk() (*string, bool) {
+	if o == nil || IsNil(o.Aggregation) {
+		return nil, false
+	}
+	return o.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (o *ArduinoSeriesResponse) HasAggregation() bool {
+	if o != nil && !IsNil(o.Aggregation) {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+func (o *ArduinoSeriesResponse) SetAggregation(v string) {
+	o.Aggregation = &v
 }
 
 // GetCountValues returns the CountValues field value
@@ -364,6 +398,9 @@ func (o ArduinoSeriesResponse) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoSeriesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Aggregation) {
+		toSerialize["aggregation"] = o.Aggregation
+	}
 	toSerialize["count_values"] = o.CountValues
 	toSerialize["from_date"] = o.FromDate
 	toSerialize["interval"] = o.Interval

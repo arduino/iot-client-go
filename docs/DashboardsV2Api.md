@@ -4,6 +4,7 @@ All URIs are relative to *https://api2.arduino.cc/iot*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DashboardsV2Clone**](DashboardsV2Api.md#DashboardsV2Clone) | **Put** /v2/dashboards/{id}/clone | clone dashboards_v2
 [**DashboardsV2Create**](DashboardsV2Api.md#DashboardsV2Create) | **Post** /v2/dashboards | create dashboards_v2
 [**DashboardsV2Delete**](DashboardsV2Api.md#DashboardsV2Delete) | **Delete** /v2/dashboards/{id} | delete dashboards_v2
 [**DashboardsV2DeleteShare**](DashboardsV2Api.md#DashboardsV2DeleteShare) | **Delete** /v2/dashboards/{id}/shares/{user_id} | deleteShare dashboards_v2
@@ -13,8 +14,83 @@ Method | HTTP request | Description
 [**DashboardsV2RequestAccess**](DashboardsV2Api.md#DashboardsV2RequestAccess) | **Put** /v2/dashboards/{id}/share_request | requestAccess dashboards_v2
 [**DashboardsV2Share**](DashboardsV2Api.md#DashboardsV2Share) | **Put** /v2/dashboards/{id}/shares | share dashboards_v2
 [**DashboardsV2Show**](DashboardsV2Api.md#DashboardsV2Show) | **Get** /v2/dashboards/{id} | show dashboards_v2
+[**DashboardsV2Template**](DashboardsV2Api.md#DashboardsV2Template) | **Get** /v2/dashboards/{id}/template | template dashboards_v2
 [**DashboardsV2Update**](DashboardsV2Api.md#DashboardsV2Update) | **Put** /v2/dashboards/{id} | update dashboards_v2
 
+
+
+## DashboardsV2Clone
+
+> ArduinoDashboardv2 DashboardsV2Clone(ctx, id).Clone(clone).XOrganization(xOrganization).Execute()
+
+clone dashboards_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    clone := *openapiclient.NewClone() // Clone | 
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Clone(context.Background(), id).Clone(clone).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Clone``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Clone`: ArduinoDashboardv2
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Clone`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the dashboard | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDashboardsV2CloneRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **clone** | [**Clone**](Clone.md) |  | 
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoDashboardv2**](ArduinoDashboardv2.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DashboardsV2Create
@@ -657,6 +733,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DashboardsV2Template
+
+> ArduinoDashboardv2template DashboardsV2Template(ctx, id).XOrganization(xOrganization).Execute()
+
+template dashboards_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the dashboard
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsV2Api.DashboardsV2Template(context.Background(), id).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2Api.DashboardsV2Template``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DashboardsV2Template`: ArduinoDashboardv2template
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsV2Api.DashboardsV2Template`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the dashboard | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDashboardsV2TemplateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoDashboardv2template**](ArduinoDashboardv2template.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.arduino.dashboardv2template+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

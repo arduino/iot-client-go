@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DevicesV2Delete**](DevicesV2Api.md#DevicesV2Delete) | **Delete** /v2/devices/{id} | delete devices_v2
 [**DevicesV2GetEvents**](DevicesV2Api.md#DevicesV2GetEvents) | **Get** /v2/devices/{id}/events | getEvents devices_v2
 [**DevicesV2GetProperties**](DevicesV2Api.md#DevicesV2GetProperties) | **Get** /v2/devices/{id}/properties | getProperties devices_v2
+[**DevicesV2GetStatusEvents**](DevicesV2Api.md#DevicesV2GetStatusEvents) | **Get** /v2/devices/{id}/status | GetStatusEvents devices_v2
 [**DevicesV2List**](DevicesV2Api.md#DevicesV2List) | **Get** /v2/devices | list devices_v2
 [**DevicesV2Show**](DevicesV2Api.md#DevicesV2Show) | **Get** /v2/devices/{id} | show devices_v2
 [**DevicesV2Timeseries**](DevicesV2Api.md#DevicesV2Timeseries) | **Get** /v2/devices/{id}/properties/{pid} | timeseries devices_v2
@@ -298,6 +299,82 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.devicev2properties+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DevicesV2GetStatusEvents
+
+> ArduinoDevicev2StatusEvents DevicesV2GetStatusEvents(ctx, id).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
+
+GetStatusEvents devices_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    id := "id_example" // string | The id of the device
+    limit := int32(56) // int32 | The number of events to select (optional) (default to 30)
+    start := "start_example" // string | The time at which to start selecting events (optional)
+    xOrganization := "xOrganization_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesV2Api.DevicesV2GetStatusEvents(context.Background(), id).Limit(limit).Start(start).XOrganization(xOrganization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2Api.DevicesV2GetStatusEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DevicesV2GetStatusEvents`: ArduinoDevicev2StatusEvents
+    fmt.Fprintf(os.Stdout, "Response from `DevicesV2Api.DevicesV2GetStatusEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2GetStatusEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** | The number of events to select | [default to 30]
+ **start** | **string** | The time at which to start selecting events | 
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoDevicev2StatusEvents**](ArduinoDevicev2StatusEvents.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.arduino.devicev2.status.events+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

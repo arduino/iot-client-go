@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **From** | Pointer to **time.Time** | From timestamp | [optional] 
-**Q** | **string** | Query | 
+**Q** | **string** | Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5) | 
 **SeriesLimit** | Pointer to **int64** | Max of values | [optional] 
 **Sort** | Pointer to **string** | Sorting | [optional] [default to "DESC"]
 **To** | Pointer to **time.Time** | To timestamp | [optional] 

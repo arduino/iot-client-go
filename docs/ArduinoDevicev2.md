@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConnectionType** | Pointer to **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the device | [optional] 
+**DeviceStatus** | Pointer to **string** | The connection status of the device | [optional] 
 **Events** | Pointer to [**[]ArduinoDevicev2SimpleProperties**](ArduinoDevicev2SimpleProperties.md) | ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view) | [optional] 
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
 **Href** | **string** | The api reference of this device | 
@@ -96,6 +97,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *ArduinoDevicev2) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetDeviceStatus
+
+`func (o *ArduinoDevicev2) GetDeviceStatus() string`
+
+GetDeviceStatus returns the DeviceStatus field if non-nil, zero value otherwise.
+
+### GetDeviceStatusOk
+
+`func (o *ArduinoDevicev2) GetDeviceStatusOk() (*string, bool)`
+
+GetDeviceStatusOk returns a tuple with the DeviceStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceStatus
+
+`func (o *ArduinoDevicev2) SetDeviceStatus(v string)`
+
+SetDeviceStatus sets DeviceStatus field to given value.
+
+### HasDeviceStatus
+
+`func (o *ArduinoDevicev2) HasDeviceStatus() bool`
+
+HasDeviceStatus returns a boolean if a field has been set.
 
 ### GetEvents
 

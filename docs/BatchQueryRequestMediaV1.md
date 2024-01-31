@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aggregation** | Pointer to **string** | Aggregation statistic function. For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile). For boolean, BOOL_OR statistic is used as default. | [optional] 
 **From** | **time.Time** | From timestamp | 
-**Interval** | Pointer to **int64** | Resolution in seconds | [optional] 
-**Q** | **string** | Query | 
-**SeriesLimit** | Pointer to **int64** | Max of values | [optional] 
+**Interval** | Pointer to **int64** | Resolution in seconds (max allowed: 86400) | [optional] 
+**Q** | **string** | Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5) | 
+**SeriesLimit** | Pointer to **int64** | Maximum number of values returned after data aggregation, if any (default: 300, limit: 1000) | [optional] 
 **To** | **time.Time** | To timestamp | 
 
 ## Methods
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewBatchQueryRequestMediaV1WithDefaults instantiates a new BatchQueryRequestMediaV1 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAggregation
+
+`func (o *BatchQueryRequestMediaV1) GetAggregation() string`
+
+GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+
+### GetAggregationOk
+
+`func (o *BatchQueryRequestMediaV1) GetAggregationOk() (*string, bool)`
+
+GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregation
+
+`func (o *BatchQueryRequestMediaV1) SetAggregation(v string)`
+
+SetAggregation sets Aggregation field to given value.
+
+### HasAggregation
+
+`func (o *BatchQueryRequestMediaV1) HasAggregation() bool`
+
+HasAggregation returns a boolean if a field has been set.
 
 ### GetFrom
 

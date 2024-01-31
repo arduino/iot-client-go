@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name of the time zone. | 
 **Offset** | **int64** | Current UTC DST offset in seconds. | 
-**Until** | Pointer to **time.Time** | Date until the offset is valid. | [optional] 
+**Until** | **time.Time** | Date until the offset is valid. | 
 
 ## Methods
 
 ### NewArduinoTimezone
 
-`func NewArduinoTimezone(name string, offset int64, ) *ArduinoTimezone`
+`func NewArduinoTimezone(name string, offset int64, until time.Time, ) *ArduinoTimezone`
 
 NewArduinoTimezone instantiates a new ArduinoTimezone object
 This constructor will assign default values to properties that have it defined,
@@ -86,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetUntil sets Until field to given value.
 
-### HasUntil
-
-`func (o *ArduinoTimezone) HasUntil() bool`
-
-HasUntil returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

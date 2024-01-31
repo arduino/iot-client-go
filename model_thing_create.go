@@ -27,6 +27,8 @@ type ThingCreate struct {
 	Name *string `json:"name,omitempty"`
 	// The properties of the thing
 	Properties []Property `json:"properties,omitempty"`
+	// Optional set of tags
+	Tags []Tag `json:"tags,omitempty"`
 	// A time zone name Check /v2/timezones for a list of valid names.
 	Timezone *string `json:"timezone,omitempty"`
 	// Webhook uri
@@ -184,6 +186,38 @@ func (o *ThingCreate) SetProperties(v []Property) {
 	o.Properties = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *ThingCreate) GetTags() []Tag {
+	if o == nil || IsNil(o.Tags) {
+		var ret []Tag
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ThingCreate) GetTagsOk() ([]Tag, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *ThingCreate) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []Tag and assigns it to the Tags field.
+func (o *ThingCreate) SetTags(v []Tag) {
+	o.Tags = v
+}
+
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *ThingCreate) GetTimezone() string {
 	if o == nil || IsNil(o.Timezone) {
@@ -301,6 +335,9 @@ func (o ThingCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Properties) {
 		toSerialize["properties"] = o.Properties
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone

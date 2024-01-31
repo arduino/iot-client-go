@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Permission** | **string** | The permission of the property | 
 **Persist** | Pointer to **bool** | If true, data will persist into a timeseries database | [optional] 
 **SyncId** | Pointer to **string** | The id of the sync pool | [optional] 
-**Tag** | Pointer to **float64** | The integer id of the property | [optional] 
+**Tag** | Pointer to **int64** | The integer id of the property | [optional] 
 **ThingId** | **string** | The id of the thing | 
 **ThingName** | Pointer to **string** | The name of the associated thing | [optional] 
 **Type** | **string** | The type of the property | 
@@ -337,20 +337,20 @@ HasSyncId returns a boolean if a field has been set.
 
 ### GetTag
 
-`func (o *ArduinoProperty) GetTag() float64`
+`func (o *ArduinoProperty) GetTag() int64`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *ArduinoProperty) GetTagOk() (*float64, bool)`
+`func (o *ArduinoProperty) GetTagOk() (*int64, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *ArduinoProperty) SetTag(v float64)`
+`func (o *ArduinoProperty) SetTag(v int64)`
 
 SetTag sets Tag field to given value.
 

@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aggregation** | Pointer to **string** | Aggregation statistic function. For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile). For boolean, BOOL_OR statistic is used as default. | [optional] 
 **CountValues** | **int64** | Total number of values in the array &#39;values&#39; | 
 **FromDate** | **time.Time** | From date | 
 **Interval** | **int64** | Resolution in seconds | 
 **Message** | Pointer to **string** | If the response is different than &#39;ok&#39; | [optional] [default to ""]
 **Query** | **string** | Query of for the data | 
 **RespVersion** | **int64** | Response version | 
-**SeriesLimit** | Pointer to **int64** | Max of values | [optional] 
+**SeriesLimit** | Pointer to **int64** | Maximum number of values returned after data aggregation, if any | [optional] 
 **Status** | **string** | Status of the response | 
 **Times** | [**[]time.Time**](time.Time.md) | Timestamp in RFC3339 | 
 **ToDate** | **time.Time** | To date | 
@@ -34,6 +35,31 @@ will change when the set of required properties is changed
 NewArduinoSeriesResponseWithDefaults instantiates a new ArduinoSeriesResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAggregation
+
+`func (o *ArduinoSeriesResponse) GetAggregation() string`
+
+GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+
+### GetAggregationOk
+
+`func (o *ArduinoSeriesResponse) GetAggregationOk() (*string, bool)`
+
+GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregation
+
+`func (o *ArduinoSeriesResponse) SetAggregation(v string)`
+
+SetAggregation sets Aggregation field to given value.
+
+### HasAggregation
+
+`func (o *ArduinoSeriesResponse) HasAggregation() bool`
+
+HasAggregation returns a boolean if a field has been set.
 
 ### GetCountValues
 
