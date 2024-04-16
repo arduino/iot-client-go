@@ -1559,15 +1559,29 @@ paths:
               $ref: '#/components/schemas/devices_v2_ota_upload_request'
       responses:
         "200":
+          content:
+            application/vnd.arduino.devicev2.otaupload+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Otaupload'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Otaupload'
           description: OK
         "202":
+          content:
+            application/vnd.arduino.devicev2.otaupload+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Otaupload'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Otaupload'
           description: Accepted
         "400":
           content:
-            application/vnd.goa.error+json:
+            application/vnd.arduino.devicev2.otaupload+json:
               schema:
                 $ref: '#/components/schemas/error'
-            text/plain:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -1575,37 +1589,39 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/vnd.goa.error+json:
+            application/vnd.arduino.devicev2.otaupload+json:
               schema:
                 $ref: '#/components/schemas/error'
-            text/plain:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
+        "409":
+          description: Conflict
         "410":
           content:
-            application/vnd.goa.error+json:
+            application/vnd.arduino.devicev2.otaupload+json:
               schema:
                 $ref: '#/components/schemas/error'
-            text/plain:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Gone
         "412":
           content:
-            application/vnd.goa.error+json:
+            application/vnd.arduino.devicev2.otaupload+json:
               schema:
                 $ref: '#/components/schemas/error'
-            text/plain:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/vnd.goa.error+json:
+            application/vnd.arduino.devicev2.otaupload+json:
               schema:
                 $ref: '#/components/schemas/error'
-            text/plain:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -1691,6 +1707,86 @@ paths:
       security:
       - oauth2: []
       summary: send devices_v2_ota
+      tags:
+      - devices_v2_ota
+  /v2/devices/{id}/ota/url:
+    post:
+      description: Generate a url for downloading a binary
+      operationId: devices_v2_ota#url
+      parameters:
+      - description: The id of the device
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/devicev2.otaurlpyalod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/devicev2.otaurlpyalod'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          description: OK
+        "202":
+          description: Accepted
+        "400":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "410":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Gone
+        "412":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Failed
+        "500":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: url devices_v2_ota
       tags:
       - devices_v2_ota
   /v2/devices/{id}/pass:
@@ -4052,6 +4148,8 @@ components:
       description: Accepted
     BadRequest:
       description: Bad Request
+    Conflict:
+      description: Conflict
     NotFound:
       description: Not Found
     NotImplemented:
@@ -4402,6 +4500,27 @@ components:
       - events
       - id
       title: "Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json;\
+        \ view=default"
+      type: object
+    ArduinoDevicev2Otaupload:
+      description: ArduinoDevicev2Otaupload media type (default view)
+      properties:
+        file_sha:
+          description: SHA256 of the uploaded file
+          type: string
+        ota_id:
+          description: OTA request id (only available from OTA version 2 and above)
+          type: string
+        ota_version:
+          description: OTA version
+          format: int64
+          type: integer
+        status:
+          description: OTA request status (only available from OTA version 2 and above)
+          type: string
+      required:
+      - ota_version
+      title: "Mediatype identifier: application/vnd.arduino.devicev2.otaupload+json;\
         \ view=default"
       type: object
     ArduinoDevicev2Pass:
@@ -6116,6 +6235,22 @@ components:
       required:
       - binary_key
       title: devicev2.otabinaryurl
+      type: object
+    devicev2.otaurlpyalod:
+      properties:
+        binary_key:
+          description: The object key of the binary
+          pattern: "^ota/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+.ota$"
+          type: string
+        sha256:
+          description: The sha256 of the binary
+          pattern: "^[a-fA-F0-9]{64}$"
+          type: string
+        user_id:
+          description: The id of the user who is requesting the url
+          format: uuid
+          type: string
+      title: devicev2.otaurlpyalod
       type: object
     devicev2.pass:
       properties:
