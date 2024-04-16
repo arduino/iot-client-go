@@ -41,7 +41,7 @@ func Test_iot_DevicesV2OtaApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2OtaApi.DevicesV2OtaUpload(context.Background(), id).Execute()
+		_, httpRes, err := apiClient.DevicesV2OtaApi.DevicesV2OtaUpload(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
