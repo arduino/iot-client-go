@@ -24,6 +24,7 @@ docs/ArduinoDashboardv2template.md
 docs/ArduinoDevicev2.md
 docs/ArduinoDevicev2Cert.md
 docs/ArduinoDevicev2EventProperties.md
+docs/ArduinoDevicev2Otaupload.md
 docs/ArduinoDevicev2Pass.md
 docs/ArduinoDevicev2SimpleProperties.md
 docs/ArduinoDevicev2StatusEvent.md
@@ -79,6 +80,7 @@ docs/DevicesV2TagsApi.md
 docs/Devicev2.md
 docs/Devicev2Cert.md
 docs/Devicev2Otabinaryurl.md
+docs/Devicev2Otaurlpyalod.md
 docs/Devicev2Pass.md
 docs/HistoricDataRequest.md
 docs/LoraDevicesV1Api.md
@@ -114,6 +116,7 @@ model_arduino_dashboardv2template.go
 model_arduino_devicev2.go
 model_arduino_devicev2_cert.go
 model_arduino_devicev2_event_properties.go
+model_arduino_devicev2_otaupload.go
 model_arduino_devicev2_pass.go
 model_arduino_devicev2_simple_properties.go
 model_arduino_devicev2_status_event.go
@@ -163,6 +166,7 @@ model_dashboardv2.go
 model_devicev2.go
 model_devicev2_cert.go
 model_devicev2_otabinaryurl.go
+model_devicev2_otaurlpyalod.go
 model_devicev2_pass.go
 model_error.go
 model_historic_data_request.go
