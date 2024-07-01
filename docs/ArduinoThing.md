@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Assistant** | Pointer to **string** | The kind of voice assistant the thing is connected to, it can be ALEXA | GOOGLE | NONE | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the thing | [optional] 
 **DeletedAt** | Pointer to **time.Time** | Delete date of the thing | [optional] 
 **DeviceFqbn** | Pointer to **string** | The fqbn of the attached device, if any | [optional] 
@@ -42,6 +43,31 @@ will change when the set of required properties is changed
 NewArduinoThingWithDefaults instantiates a new ArduinoThing object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAssistant
+
+`func (o *ArduinoThing) GetAssistant() string`
+
+GetAssistant returns the Assistant field if non-nil, zero value otherwise.
+
+### GetAssistantOk
+
+`func (o *ArduinoThing) GetAssistantOk() (*string, bool)`
+
+GetAssistantOk returns a tuple with the Assistant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssistant
+
+`func (o *ArduinoThing) SetAssistant(v string)`
+
+SetAssistant sets Assistant field to given value.
+
+### HasAssistant
+
+`func (o *ArduinoThing) HasAssistant() bool`
+
+HasAssistant returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

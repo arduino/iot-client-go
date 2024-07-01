@@ -2605,6 +2605,68 @@ paths:
       summary: batch_query_raw_last_value series_v2
       tags:
       - series_v2
+  /v2/series/batch_query_sampling:
+    post:
+      description: "Returns a batch of time-series sampled samples. To be used for\
+        \ types that does not support mathematic aggregation. Types supported: strings,\
+        \ complex types."
+      operationId: series_v2#batch_query_sampling
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchQuerySampledRequestsMediaV1'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BatchQuerySampledRequestsMediaV1'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.series.batch.sampled+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesBatchSampled'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesBatchSampled'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.series.batch.sampled+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.series.batch.sampled+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "501":
+          description: Not Implemented
+        "503":
+          content:
+            application/vnd.arduino.series.batch.sampled+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavailable
+      security:
+      - oauth2: []
+      summary: batch_query_sampling series_v2
+      tags:
+      - series_v2
   /v2/series/historic_data:
     post:
       description: Request sending of historical data of properties by email
@@ -4118,6 +4180,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ArduinoThingtemplate'
           description: OK
+        "400":
+          content:
+            application/vnd.arduino.thingtemplate+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
         "401":
           description: Unauthorized
         "404":
@@ -4286,6 +4357,9 @@ components:
     ArduinoDashboardv2template:
       description: ArduinoDashboardv2template media type (default view)
       properties:
+        id:
+          description: The friendly ID of the dashboard
+          type: string
         name:
           description: The friendly name of the dashboard
           type: string
@@ -4315,6 +4389,8 @@ components:
           - gsm
           - nb
           - lora
+          - catm1
+          - cellular
           type: string
         created_at:
           description: Creation date of the device
@@ -4717,6 +4793,18 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.devicev2propertyvalues+json;\
         \ view=default"
       type: object
+    ArduinoDevicev2templatedevice:
+      description: ArduinoDevicev2templatedevice media type (default view)
+      properties:
+        fqbn:
+          description: The device fqbn
+          type: string
+        name:
+          description: The device type name
+          type: string
+      title: "Mediatype identifier: application/vnd.arduino.devicev2templatedevice+json;\
+        \ view=default"
+      type: object
     ArduinoLinkedvariable:
       description: ArduinoLinkedvariable media type (default view)
       properties:
@@ -4934,6 +5022,24 @@ components:
       - resp_version
       - responses
       title: "Mediatype identifier: application/vnd.arduino.series.batch+json; view=default"
+      type: object
+    ArduinoSeriesBatchSampled:
+      description: ArduinoSeriesBatchSampled media type (default view)
+      properties:
+        resp_version:
+          description: Response version
+          format: int64
+          type: integer
+        responses:
+          description: Responses of the request
+          items:
+            $ref: '#/components/schemas/ArduinoSeriesSampledResponse'
+          type: array
+      required:
+      - resp_version
+      - responses
+      title: "Mediatype identifier: application/vnd.arduino.series.batch.sampled+json;\
+        \ view=default"
       type: object
     ArduinoSeriesRawBatch:
       description: ArduinoSeriesRawBatch media type (default view)
@@ -5154,6 +5260,67 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.series.response+json;\
         \ view=default"
       type: object
+    ArduinoSeriesSampledResponse:
+      description: ArduinoSeriesSampledResponse media type (default view)
+      properties:
+        count_values:
+          description: Total number of values in the array 'values'
+          format: int64
+          type: integer
+        from_date:
+          description: From date
+          format: date-time
+          type: string
+        interval:
+          description: Resolution in seconds
+          format: int64
+          type: integer
+        message:
+          default: ""
+          description: If the response is different than 'ok'
+          type: string
+        query:
+          description: Query of for the data
+          type: string
+        resp_version:
+          description: Response version
+          format: int64
+          type: integer
+        series_limit:
+          description: "Maximum number of values returned after data aggregation,\
+            \ if any"
+          format: int64
+          type: integer
+        status:
+          description: Status of the response
+          type: string
+        times:
+          description: Timestamp in RFC3339
+          items:
+            format: date-time
+            type: string
+          type: array
+        to_date:
+          description: To date
+          format: date-time
+          type: string
+        values:
+          description: Values in Float
+          items: {}
+          type: array
+      required:
+      - count_values
+      - from_date
+      - interval
+      - query
+      - resp_version
+      - status
+      - times
+      - to_date
+      - values
+      title: "Mediatype identifier: application/vnd.arduino.series.sampled.response+json;\
+        \ view=default"
+      type: object
     ArduinoTags:
       description: ArduinoTags media type (default view)
       properties:
@@ -5168,6 +5335,9 @@ components:
     ArduinoTemplateproperty:
       description: ArduinoTemplateproperty media type (default view)
       properties:
+        id:
+          description: The friendly id of the property
+          type: string
         name:
           description: The friendly name of the property
           type: string
@@ -5244,6 +5414,14 @@ components:
     ArduinoThing:
       description: ArduinoThing media type (default view)
       properties:
+        assistant:
+          description: "The kind of voice assistant the thing is connected to, it\
+            \ can be ALEXA | GOOGLE | NONE"
+          enum:
+          - ALEXA
+          - GOOGLE
+          - NONE
+          type: string
         created_at:
           description: Creation date of the thing
           format: date-time
@@ -5335,6 +5513,11 @@ components:
     ArduinoThingtemplate:
       description: ArduinoThingtemplate media type (default view)
       properties:
+        device_metadata:
+          $ref: '#/components/schemas/ArduinoDevicev2templatedevice'
+        id:
+          description: The friendly id of the thing
+          type: string
         name:
           description: The friendly name of the thing
           type: string
@@ -5342,14 +5525,9 @@ components:
           description: Id of the organization the thing belongs to
           format: uuid
           type: string
-        properties:
-          description: ArduinoTemplatepropertyCollection is the media type for an
-            array of ArduinoTemplateproperty (default view)
-          items:
-            $ref: '#/components/schemas/ArduinoTemplateproperty'
-          title: "Mediatype identifier: application/vnd.arduino.templateproperty+json;\
-            \ type=collection; view=default"
-          type: array
+        sketch_template:
+          description: The ID of the template's sketch
+          type: string
         tags:
           description: Tags of the thing
           items:
@@ -5358,6 +5536,14 @@ components:
         timezone:
           description: Time zone of the thing
           type: string
+        variables:
+          description: ArduinoTemplatepropertyCollection is the media type for an
+            array of ArduinoTemplateproperty (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoTemplateproperty'
+          title: "Mediatype identifier: application/vnd.arduino.templateproperty+json;\
+            \ type=collection; view=default"
+          type: array
         webhook_uri:
           description: Webhook uri
           type: string
@@ -5446,8 +5632,6 @@ components:
           type: object
         type:
           description: The type of the widget
-          enum:
-          - "slider, gauge"
           type: string
         variables:
           description: ArduinoLinkedvariableCollection is the media type for an array
@@ -5765,6 +5949,69 @@ components:
       - resp_version
       title: BatchQueryRequestsMediaV1
       type: object
+    BatchQuerySampledRequestMediaV1:
+      example:
+        q: q
+        series_limit: 6
+        from: 2000-01-23T04:56:07.000+00:00
+        interval: 6974
+        to: 2000-01-23T04:56:07.000+00:00
+      properties:
+        from:
+          description: "From timestamp (default: now UTC - 24h)"
+          format: date-time
+          type: string
+        interval:
+          default: 300
+          description: "Resolution in seconds (allowed min:60, max:86400)"
+          maximum: 86400
+          minimum: 60
+          type: integer
+        q:
+          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
+          type: string
+        series_limit:
+          description: "Maximum number of values returned after data aggregation,\
+            \ if any (default: 300, limit: 1000)"
+          format: int64
+          type: integer
+        to:
+          description: "To timestamp (default: now UTC)"
+          format: date-time
+          type: string
+      required:
+      - q
+      title: BatchQuerySampledRequestMediaV1
+      type: object
+    BatchQuerySampledRequestsMediaV1:
+      example:
+        resp_version: 1
+        requests:
+        - q: q
+          series_limit: 6
+          from: 2000-01-23T04:56:07.000+00:00
+          interval: 6974
+          to: 2000-01-23T04:56:07.000+00:00
+        - q: q
+          series_limit: 6
+          from: 2000-01-23T04:56:07.000+00:00
+          interval: 6974
+          to: 2000-01-23T04:56:07.000+00:00
+      properties:
+        requests:
+          description: Requests
+          items:
+            $ref: '#/components/schemas/BatchQuerySampledRequestMediaV1'
+          type: array
+        resp_version:
+          description: Response version
+          format: int64
+          type: integer
+      required:
+      - requests
+      - resp_version
+      title: BatchQuerySampledRequestsMediaV1
+      type: object
     CheckDevicesV2PassPayload:
       example:
         password: password
@@ -5835,6 +6082,8 @@ components:
           - gsm
           - nb
           - lora
+          - catm1
+          - cellular
           type: string
         fqbn:
           description: The fully qualified board name
@@ -5997,7 +6246,7 @@ components:
         name:
           description: The friendly name of the thing
           maxLength: 64
-          pattern: "^[a-zA-Z0-9_.@ -]+$"
+          pattern: "^[a-zA-Z0-9_. -]+$"
           type: string
       required:
       - name
@@ -6008,6 +6257,7 @@ components:
       example:
         device_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         timezone: America/New_York
+        assistant: ALEXA
         webhook_uri: webhook_uri
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -6039,6 +6289,14 @@ components:
         - value: value
           key: key
       properties:
+        assistant:
+          description: "The kind of voice assistant the thing is connected to, it\
+            \ can be ALEXA | GOOGLE | NONE"
+          enum:
+          - ALEXA
+          - GOOGLE
+          - NONE
+          type: string
         device_id:
           description: The arn of the associated device
           format: uuid
@@ -6050,7 +6308,7 @@ components:
         name:
           description: The friendly name of the thing
           maxLength: 64
-          pattern: "^[a-zA-Z0-9_.@ -]+$"
+          pattern: "^[a-zA-Z0-9_. -]+$"
           type: string
         properties:
           description: The properties of the thing
@@ -6141,6 +6399,8 @@ components:
           - gsm
           - nb
           - lora
+          - catm1
+          - cellular
           type: string
         fqbn:
           description: The fully qualified board name
@@ -6593,6 +6853,14 @@ components:
     thingUpdate:
       description: Payload to update an existing thing
       properties:
+        assistant:
+          description: "The kind of voice assistant the thing is connected to, it\
+            \ can be ALEXA | GOOGLE | NONE"
+          enum:
+          - ALEXA
+          - GOOGLE
+          - NONE
+          type: string
         device_id:
           description: The arn of the associated device
           format: uuid
@@ -6604,7 +6872,7 @@ components:
         name:
           description: The friendly name of the thing
           maxLength: 64
-          pattern: "^[a-zA-Z0-9_.@ -]+$"
+          pattern: "^[a-zA-Z0-9_. -]+$"
           type: string
         properties:
           description: The properties of the thing
