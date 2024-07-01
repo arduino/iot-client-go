@@ -19,6 +19,8 @@ var _ MappedNullable = &ArduinoDashboardv2template{}
 
 // ArduinoDashboardv2template ArduinoDashboardv2template media type (default view)
 type ArduinoDashboardv2template struct {
+	// The friendly ID of the dashboard
+	Id *string `json:"id,omitempty"`
 	// The friendly name of the dashboard
 	Name string `json:"name"`
 	// ArduinoWidgetv2templateCollection is the media type for an array of ArduinoWidgetv2template (default view)
@@ -41,6 +43,38 @@ func NewArduinoDashboardv2template(name string) *ArduinoDashboardv2template {
 func NewArduinoDashboardv2templateWithDefaults() *ArduinoDashboardv2template {
 	this := ArduinoDashboardv2template{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ArduinoDashboardv2template) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDashboardv2template) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ArduinoDashboardv2template) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ArduinoDashboardv2template) SetId(v string) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -109,6 +143,9 @@ func (o ArduinoDashboardv2template) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoDashboardv2template) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Widgets) {
 		toSerialize["widgets"] = o.Widgets

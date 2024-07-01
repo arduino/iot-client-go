@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** | The friendly ID of the dashboard | [optional] 
 **Name** | **string** | The friendly name of the dashboard | 
 **Widgets** | Pointer to [**[]ArduinoWidgetv2template**](ArduinoWidgetv2template.md) | ArduinoWidgetv2templateCollection is the media type for an array of ArduinoWidgetv2template (default view) | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewArduinoDashboardv2templateWithDefaults instantiates a new ArduinoDashboardv2template object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *ArduinoDashboardv2template) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ArduinoDashboardv2template) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ArduinoDashboardv2template) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ArduinoDashboardv2template) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 

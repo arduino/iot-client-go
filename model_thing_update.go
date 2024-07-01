@@ -19,6 +19,8 @@ var _ MappedNullable = &ThingUpdate{}
 
 // ThingUpdate Payload to update an existing thing
 type ThingUpdate struct {
+	// The kind of voice assistant the thing is connected to, it can be ALEXA | GOOGLE | NONE
+	Assistant *string `json:"assistant,omitempty"`
 	// The arn of the associated device
 	DeviceId *string `json:"device_id,omitempty"`
 	// The id of the thing
@@ -50,6 +52,38 @@ func NewThingUpdate() *ThingUpdate {
 func NewThingUpdateWithDefaults() *ThingUpdate {
 	this := ThingUpdate{}
 	return &this
+}
+
+// GetAssistant returns the Assistant field value if set, zero value otherwise.
+func (o *ThingUpdate) GetAssistant() string {
+	if o == nil || IsNil(o.Assistant) {
+		var ret string
+		return ret
+	}
+	return *o.Assistant
+}
+
+// GetAssistantOk returns a tuple with the Assistant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ThingUpdate) GetAssistantOk() (*string, bool) {
+	if o == nil || IsNil(o.Assistant) {
+		return nil, false
+	}
+	return o.Assistant, true
+}
+
+// HasAssistant returns a boolean if a field has been set.
+func (o *ThingUpdate) HasAssistant() bool {
+	if o != nil && !IsNil(o.Assistant) {
+		return true
+	}
+
+	return false
+}
+
+// SetAssistant gets a reference to the given string and assigns it to the Assistant field.
+func (o *ThingUpdate) SetAssistant(v string) {
+	o.Assistant = &v
 }
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
@@ -286,6 +320,9 @@ func (o ThingUpdate) MarshalJSON() ([]byte, error) {
 
 func (o ThingUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Assistant) {
+		toSerialize["assistant"] = o.Assistant
+	}
 	if !IsNil(o.DeviceId) {
 		toSerialize["device_id"] = o.DeviceId
 	}

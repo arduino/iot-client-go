@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**SeriesV2BatchQuery**](SeriesV2Api.md#SeriesV2BatchQuery) | **Post** /v2/series/batch_query | batch_query series_v2
 [**SeriesV2BatchQueryRaw**](SeriesV2Api.md#SeriesV2BatchQueryRaw) | **Post** /v2/series/batch_query_raw | batch_query_raw series_v2
 [**SeriesV2BatchQueryRawLastValue**](SeriesV2Api.md#SeriesV2BatchQueryRawLastValue) | **Post** /v2/series/batch_query_raw/lastvalue | batch_query_raw_last_value series_v2
+[**SeriesV2BatchQuerySampling**](SeriesV2Api.md#SeriesV2BatchQuerySampling) | **Post** /v2/series/batch_query_sampling | batch_query_sampling series_v2
 [**SeriesV2HistoricData**](SeriesV2Api.md#SeriesV2HistoricData) | **Post** /v2/series/historic_data | historic_data series_v2
 
 
@@ -204,6 +205,72 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/vnd.arduino.series.raw.batch.lastvalue+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SeriesV2BatchQuerySampling
+
+> ArduinoSeriesBatchSampled SeriesV2BatchQuerySampling(ctx).BatchQuerySampledRequestsMediaV1(batchQuerySampledRequestsMediaV1).Execute()
+
+batch_query_sampling series_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/arduino/iot-client-go"
+)
+
+func main() {
+    batchQuerySampledRequestsMediaV1 := *openapiclient.NewBatchQuerySampledRequestsMediaV1([]openapiclient.BatchQuerySampledRequestMediaV1{*openapiclient.NewBatchQuerySampledRequestMediaV1("Q_example")}, int64(123)) // BatchQuerySampledRequestsMediaV1 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SeriesV2Api.SeriesV2BatchQuerySampling(context.Background()).BatchQuerySampledRequestsMediaV1(batchQuerySampledRequestsMediaV1).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SeriesV2Api.SeriesV2BatchQuerySampling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SeriesV2BatchQuerySampling`: ArduinoSeriesBatchSampled
+    fmt.Fprintf(os.Stdout, "Response from `SeriesV2Api.SeriesV2BatchQuerySampling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSeriesV2BatchQuerySamplingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batchQuerySampledRequestsMediaV1** | [**BatchQuerySampledRequestsMediaV1**](BatchQuerySampledRequestsMediaV1.md) |  | 
+
+### Return type
+
+[**ArduinoSeriesBatchSampled**](ArduinoSeriesBatchSampled.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Accept**: application/vnd.arduino.series.batch.sampled+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

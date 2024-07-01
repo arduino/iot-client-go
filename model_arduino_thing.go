@@ -20,6 +20,8 @@ var _ MappedNullable = &ArduinoThing{}
 
 // ArduinoThing ArduinoThing media type (default view)
 type ArduinoThing struct {
+	// The kind of voice assistant the thing is connected to, it can be ALEXA | GOOGLE | NONE
+	Assistant *string `json:"assistant,omitempty"`
 	// Creation date of the thing
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Delete date of the thing
@@ -80,6 +82,38 @@ func NewArduinoThing(href string, id string, name string, timezone string, userI
 func NewArduinoThingWithDefaults() *ArduinoThing {
 	this := ArduinoThing{}
 	return &this
+}
+
+// GetAssistant returns the Assistant field value if set, zero value otherwise.
+func (o *ArduinoThing) GetAssistant() string {
+	if o == nil || IsNil(o.Assistant) {
+		var ret string
+		return ret
+	}
+	return *o.Assistant
+}
+
+// GetAssistantOk returns a tuple with the Assistant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoThing) GetAssistantOk() (*string, bool) {
+	if o == nil || IsNil(o.Assistant) {
+		return nil, false
+	}
+	return o.Assistant, true
+}
+
+// HasAssistant returns a boolean if a field has been set.
+func (o *ArduinoThing) HasAssistant() bool {
+	if o != nil && !IsNil(o.Assistant) {
+		return true
+	}
+
+	return false
+}
+
+// SetAssistant gets a reference to the given string and assigns it to the Assistant field.
+func (o *ArduinoThing) SetAssistant(v string) {
+	o.Assistant = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -660,6 +694,9 @@ func (o ArduinoThing) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoThing) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Assistant) {
+		toSerialize["assistant"] = o.Assistant
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}

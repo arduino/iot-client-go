@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Assistant** | Pointer to **string** | The kind of voice assistant the thing is connected to, it can be ALEXA | GOOGLE | NONE | [optional] 
 **DeviceId** | Pointer to **string** | The arn of the associated device | [optional] 
 **Id** | Pointer to **string** | The id of the thing | [optional] 
 **Name** | Pointer to **string** | The friendly name of the thing | [optional] 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewThingUpdateWithDefaults instantiates a new ThingUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAssistant
+
+`func (o *ThingUpdate) GetAssistant() string`
+
+GetAssistant returns the Assistant field if non-nil, zero value otherwise.
+
+### GetAssistantOk
+
+`func (o *ThingUpdate) GetAssistantOk() (*string, bool)`
+
+GetAssistantOk returns a tuple with the Assistant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssistant
+
+`func (o *ThingUpdate) SetAssistant(v string)`
+
+SetAssistant sets Assistant field to given value.
+
+### HasAssistant
+
+`func (o *ThingUpdate) HasAssistant() bool`
+
+HasAssistant returns a boolean if a field has been set.
 
 ### GetDeviceId
 

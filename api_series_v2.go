@@ -437,6 +437,148 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSeriesV2BatchQuerySamplingRequest struct {
+	ctx context.Context
+	ApiService *SeriesV2ApiService
+	batchQuerySampledRequestsMediaV1 *BatchQuerySampledRequestsMediaV1
+}
+
+func (r ApiSeriesV2BatchQuerySamplingRequest) BatchQuerySampledRequestsMediaV1(batchQuerySampledRequestsMediaV1 BatchQuerySampledRequestsMediaV1) ApiSeriesV2BatchQuerySamplingRequest {
+	r.batchQuerySampledRequestsMediaV1 = &batchQuerySampledRequestsMediaV1
+	return r
+}
+
+func (r ApiSeriesV2BatchQuerySamplingRequest) Execute() (*ArduinoSeriesBatchSampled, *http.Response, error) {
+	return r.ApiService.SeriesV2BatchQuerySamplingExecute(r)
+}
+
+/*
+SeriesV2BatchQuerySampling batch_query_sampling series_v2
+
+Returns a batch of time-series sampled samples. To be used for types that does not support mathematic aggregation. Types supported: strings, complex types.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSeriesV2BatchQuerySamplingRequest
+*/
+func (a *SeriesV2ApiService) SeriesV2BatchQuerySampling(ctx context.Context) ApiSeriesV2BatchQuerySamplingRequest {
+	return ApiSeriesV2BatchQuerySamplingRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoSeriesBatchSampled
+func (a *SeriesV2ApiService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2BatchQuerySamplingRequest) (*ArduinoSeriesBatchSampled, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoSeriesBatchSampled
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2BatchQuerySampling")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/series/batch_query_sampling"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.batchQuerySampledRequestsMediaV1 == nil {
+		return localVarReturnValue, nil, reportError("batchQuerySampledRequestsMediaV1 is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.series.batch.sampled+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.batchQuerySampledRequestsMediaV1
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSeriesV2HistoricDataRequest struct {
 	ctx context.Context
 	ApiService *SeriesV2ApiService
