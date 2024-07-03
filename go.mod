@@ -1,14 +1,7 @@
-module github.com/arduino/iot-client-go/v2
+module github.com/arduino/iot-client-go
 
-go 1.19
-
-require (
-	github.com/stretchr/testify v1.9.0
-	golang.org/x/oauth2 v0.21.0
-)
+go 1.18
 
 require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
+	golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
 )
