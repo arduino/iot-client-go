@@ -19,6 +19,8 @@ var _ MappedNullable = &ArduinoTemplateproperty{}
 
 // ArduinoTemplateproperty ArduinoTemplateproperty media type (default view)
 type ArduinoTemplateproperty struct {
+	// The friendly id of the property
+	Id *string `json:"id,omitempty"`
 	// The friendly name of the property
 	Name string `json:"name"`
 	// The permission of the property
@@ -52,6 +54,38 @@ func NewArduinoTemplateproperty(name string, permission string, type_ string, up
 func NewArduinoTemplatepropertyWithDefaults() *ArduinoTemplateproperty {
 	this := ArduinoTemplateproperty{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ArduinoTemplateproperty) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoTemplateproperty) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ArduinoTemplateproperty) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ArduinoTemplateproperty) SetId(v string) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -224,6 +258,9 @@ func (o ArduinoTemplateproperty) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoTemplateproperty) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["permission"] = o.Permission
 	toSerialize["type"] = o.Type

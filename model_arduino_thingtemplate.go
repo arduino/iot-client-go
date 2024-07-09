@@ -19,16 +19,21 @@ var _ MappedNullable = &ArduinoThingtemplate{}
 
 // ArduinoThingtemplate ArduinoThingtemplate media type (default view)
 type ArduinoThingtemplate struct {
+	DeviceMetadata *ArduinoDevicev2templatedevice `json:"device_metadata,omitempty"`
+	// The friendly id of the thing
+	Id *string `json:"id,omitempty"`
 	// The friendly name of the thing
 	Name string `json:"name"`
 	// Id of the organization the thing belongs to
 	OrganizationId *string `json:"organization_id,omitempty"`
-	// ArduinoTemplatepropertyCollection is the media type for an array of ArduinoTemplateproperty (default view)
-	Properties []ArduinoTemplateproperty `json:"properties,omitempty"`
+	// The ID of the template's sketch
+	SketchTemplate *string `json:"sketch_template,omitempty"`
 	// Tags of the thing
 	Tags []Tag `json:"tags,omitempty"`
 	// Time zone of the thing
 	Timezone string `json:"timezone"`
+	// ArduinoTemplatepropertyCollection is the media type for an array of ArduinoTemplateproperty (default view)
+	Variables []ArduinoTemplateproperty `json:"variables,omitempty"`
 	// Webhook uri
 	WebhookUri *string `json:"webhook_uri,omitempty"`
 }
@@ -50,6 +55,70 @@ func NewArduinoThingtemplate(name string, timezone string) *ArduinoThingtemplate
 func NewArduinoThingtemplateWithDefaults() *ArduinoThingtemplate {
 	this := ArduinoThingtemplate{}
 	return &this
+}
+
+// GetDeviceMetadata returns the DeviceMetadata field value if set, zero value otherwise.
+func (o *ArduinoThingtemplate) GetDeviceMetadata() ArduinoDevicev2templatedevice {
+	if o == nil || IsNil(o.DeviceMetadata) {
+		var ret ArduinoDevicev2templatedevice
+		return ret
+	}
+	return *o.DeviceMetadata
+}
+
+// GetDeviceMetadataOk returns a tuple with the DeviceMetadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoThingtemplate) GetDeviceMetadataOk() (*ArduinoDevicev2templatedevice, bool) {
+	if o == nil || IsNil(o.DeviceMetadata) {
+		return nil, false
+	}
+	return o.DeviceMetadata, true
+}
+
+// HasDeviceMetadata returns a boolean if a field has been set.
+func (o *ArduinoThingtemplate) HasDeviceMetadata() bool {
+	if o != nil && !IsNil(o.DeviceMetadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceMetadata gets a reference to the given ArduinoDevicev2templatedevice and assigns it to the DeviceMetadata field.
+func (o *ArduinoThingtemplate) SetDeviceMetadata(v ArduinoDevicev2templatedevice) {
+	o.DeviceMetadata = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ArduinoThingtemplate) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoThingtemplate) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ArduinoThingtemplate) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ArduinoThingtemplate) SetId(v string) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -108,36 +177,36 @@ func (o *ArduinoThingtemplate) SetOrganizationId(v string) {
 	o.OrganizationId = &v
 }
 
-// GetProperties returns the Properties field value if set, zero value otherwise.
-func (o *ArduinoThingtemplate) GetProperties() []ArduinoTemplateproperty {
-	if o == nil || IsNil(o.Properties) {
-		var ret []ArduinoTemplateproperty
+// GetSketchTemplate returns the SketchTemplate field value if set, zero value otherwise.
+func (o *ArduinoThingtemplate) GetSketchTemplate() string {
+	if o == nil || IsNil(o.SketchTemplate) {
+		var ret string
 		return ret
 	}
-	return o.Properties
+	return *o.SketchTemplate
 }
 
-// GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
+// GetSketchTemplateOk returns a tuple with the SketchTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArduinoThingtemplate) GetPropertiesOk() ([]ArduinoTemplateproperty, bool) {
-	if o == nil || IsNil(o.Properties) {
+func (o *ArduinoThingtemplate) GetSketchTemplateOk() (*string, bool) {
+	if o == nil || IsNil(o.SketchTemplate) {
 		return nil, false
 	}
-	return o.Properties, true
+	return o.SketchTemplate, true
 }
 
-// HasProperties returns a boolean if a field has been set.
-func (o *ArduinoThingtemplate) HasProperties() bool {
-	if o != nil && !IsNil(o.Properties) {
+// HasSketchTemplate returns a boolean if a field has been set.
+func (o *ArduinoThingtemplate) HasSketchTemplate() bool {
+	if o != nil && !IsNil(o.SketchTemplate) {
 		return true
 	}
 
 	return false
 }
 
-// SetProperties gets a reference to the given []ArduinoTemplateproperty and assigns it to the Properties field.
-func (o *ArduinoThingtemplate) SetProperties(v []ArduinoTemplateproperty) {
-	o.Properties = v
+// SetSketchTemplate gets a reference to the given string and assigns it to the SketchTemplate field.
+func (o *ArduinoThingtemplate) SetSketchTemplate(v string) {
+	o.SketchTemplate = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -196,6 +265,38 @@ func (o *ArduinoThingtemplate) SetTimezone(v string) {
 	o.Timezone = v
 }
 
+// GetVariables returns the Variables field value if set, zero value otherwise.
+func (o *ArduinoThingtemplate) GetVariables() []ArduinoTemplateproperty {
+	if o == nil || IsNil(o.Variables) {
+		var ret []ArduinoTemplateproperty
+		return ret
+	}
+	return o.Variables
+}
+
+// GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoThingtemplate) GetVariablesOk() ([]ArduinoTemplateproperty, bool) {
+	if o == nil || IsNil(o.Variables) {
+		return nil, false
+	}
+	return o.Variables, true
+}
+
+// HasVariables returns a boolean if a field has been set.
+func (o *ArduinoThingtemplate) HasVariables() bool {
+	if o != nil && !IsNil(o.Variables) {
+		return true
+	}
+
+	return false
+}
+
+// SetVariables gets a reference to the given []ArduinoTemplateproperty and assigns it to the Variables field.
+func (o *ArduinoThingtemplate) SetVariables(v []ArduinoTemplateproperty) {
+	o.Variables = v
+}
+
 // GetWebhookUri returns the WebhookUri field value if set, zero value otherwise.
 func (o *ArduinoThingtemplate) GetWebhookUri() string {
 	if o == nil || IsNil(o.WebhookUri) {
@@ -238,17 +339,26 @@ func (o ArduinoThingtemplate) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoThingtemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeviceMetadata) {
+		toSerialize["device_metadata"] = o.DeviceMetadata
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if !IsNil(o.Properties) {
-		toSerialize["properties"] = o.Properties
+	if !IsNil(o.SketchTemplate) {
+		toSerialize["sketch_template"] = o.SketchTemplate
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["timezone"] = o.Timezone
+	if !IsNil(o.Variables) {
+		toSerialize["variables"] = o.Variables
+	}
 	if !IsNil(o.WebhookUri) {
 		toSerialize["webhook_uri"] = o.WebhookUri
 	}

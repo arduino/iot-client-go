@@ -4,11 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DeviceMetadata** | Pointer to [**ArduinoDevicev2templatedevice**](ArduinoDevicev2templatedevice.md) |  | [optional] 
+**Id** | Pointer to **string** | The friendly id of the thing | [optional] 
 **Name** | **string** | The friendly name of the thing | 
 **OrganizationId** | Pointer to **string** | Id of the organization the thing belongs to | [optional] 
-**Properties** | Pointer to [**[]ArduinoTemplateproperty**](ArduinoTemplateproperty.md) | ArduinoTemplatepropertyCollection is the media type for an array of ArduinoTemplateproperty (default view) | [optional] 
+**SketchTemplate** | Pointer to **string** | The ID of the template&#39;s sketch | [optional] 
 **Tags** | Pointer to [**[]Tag**](Tag.md) | Tags of the thing | [optional] 
 **Timezone** | **string** | Time zone of the thing | 
+**Variables** | Pointer to [**[]ArduinoTemplateproperty**](ArduinoTemplateproperty.md) | ArduinoTemplatepropertyCollection is the media type for an array of ArduinoTemplateproperty (default view) | [optional] 
 **WebhookUri** | Pointer to **string** | Webhook uri | [optional] 
 
 ## Methods
@@ -29,6 +32,56 @@ will change when the set of required properties is changed
 NewArduinoThingtemplateWithDefaults instantiates a new ArduinoThingtemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDeviceMetadata
+
+`func (o *ArduinoThingtemplate) GetDeviceMetadata() ArduinoDevicev2templatedevice`
+
+GetDeviceMetadata returns the DeviceMetadata field if non-nil, zero value otherwise.
+
+### GetDeviceMetadataOk
+
+`func (o *ArduinoThingtemplate) GetDeviceMetadataOk() (*ArduinoDevicev2templatedevice, bool)`
+
+GetDeviceMetadataOk returns a tuple with the DeviceMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceMetadata
+
+`func (o *ArduinoThingtemplate) SetDeviceMetadata(v ArduinoDevicev2templatedevice)`
+
+SetDeviceMetadata sets DeviceMetadata field to given value.
+
+### HasDeviceMetadata
+
+`func (o *ArduinoThingtemplate) HasDeviceMetadata() bool`
+
+HasDeviceMetadata returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *ArduinoThingtemplate) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ArduinoThingtemplate) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ArduinoThingtemplate) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ArduinoThingtemplate) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -75,30 +128,30 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### GetProperties
+### GetSketchTemplate
 
-`func (o *ArduinoThingtemplate) GetProperties() []ArduinoTemplateproperty`
+`func (o *ArduinoThingtemplate) GetSketchTemplate() string`
 
-GetProperties returns the Properties field if non-nil, zero value otherwise.
+GetSketchTemplate returns the SketchTemplate field if non-nil, zero value otherwise.
 
-### GetPropertiesOk
+### GetSketchTemplateOk
 
-`func (o *ArduinoThingtemplate) GetPropertiesOk() (*[]ArduinoTemplateproperty, bool)`
+`func (o *ArduinoThingtemplate) GetSketchTemplateOk() (*string, bool)`
 
-GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
+GetSketchTemplateOk returns a tuple with the SketchTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProperties
+### SetSketchTemplate
 
-`func (o *ArduinoThingtemplate) SetProperties(v []ArduinoTemplateproperty)`
+`func (o *ArduinoThingtemplate) SetSketchTemplate(v string)`
 
-SetProperties sets Properties field to given value.
+SetSketchTemplate sets SketchTemplate field to given value.
 
-### HasProperties
+### HasSketchTemplate
 
-`func (o *ArduinoThingtemplate) HasProperties() bool`
+`func (o *ArduinoThingtemplate) HasSketchTemplate() bool`
 
-HasProperties returns a boolean if a field has been set.
+HasSketchTemplate returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -144,6 +197,31 @@ and a boolean to check if the value has been set.
 
 SetTimezone sets Timezone field to given value.
 
+
+### GetVariables
+
+`func (o *ArduinoThingtemplate) GetVariables() []ArduinoTemplateproperty`
+
+GetVariables returns the Variables field if non-nil, zero value otherwise.
+
+### GetVariablesOk
+
+`func (o *ArduinoThingtemplate) GetVariablesOk() (*[]ArduinoTemplateproperty, bool)`
+
+GetVariablesOk returns a tuple with the Variables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVariables
+
+`func (o *ArduinoThingtemplate) SetVariables(v []ArduinoTemplateproperty)`
+
+SetVariables sets Variables field to given value.
+
+### HasVariables
+
+`func (o *ArduinoThingtemplate) HasVariables() bool`
+
+HasVariables returns a boolean if a field has been set.
 
 ### GetWebhookUri
 
