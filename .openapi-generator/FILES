@@ -208,6 +208,4 @@ model_update_sketch.go
 model_widget.go
 model_widgetlink.go
 response.go
-test/api_network_credentials_v1_test.go
-test/api_templates_test.go
 utils.go
