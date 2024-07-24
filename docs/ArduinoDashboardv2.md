@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CoverImage** | Pointer to **string** | The cover image of the dashboard | [optional] 
 **CreatedBy** | Pointer to [**ArduinoDashboardowner**](ArduinoDashboardowner.md) |  | [optional] 
 **Id** | **string** | The friendly name of the dashboard | 
 **Name** | **string** | The friendly name of the dashboard | 
@@ -31,6 +32,31 @@ will change when the set of required properties is changed
 NewArduinoDashboardv2WithDefaults instantiates a new ArduinoDashboardv2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCoverImage
+
+`func (o *ArduinoDashboardv2) GetCoverImage() string`
+
+GetCoverImage returns the CoverImage field if non-nil, zero value otherwise.
+
+### GetCoverImageOk
+
+`func (o *ArduinoDashboardv2) GetCoverImageOk() (*string, bool)`
+
+GetCoverImageOk returns a tuple with the CoverImage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoverImage
+
+`func (o *ArduinoDashboardv2) SetCoverImage(v string)`
+
+SetCoverImage sets CoverImage field to given value.
+
+### HasCoverImage
+
+`func (o *ArduinoDashboardv2) HasCoverImage() bool`
+
+HasCoverImage returns a boolean if a field has been set.
 
 ### GetCreatedBy
 

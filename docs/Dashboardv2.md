@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CoverImage** | Pointer to **string** | The cover image of the dashboard | [optional] 
 **Name** | Pointer to **string** | The friendly name of the dashboard | [optional] 
 **Widgets** | Pointer to [**[]Widget**](Widget.md) | Widgets attached to this dashboard | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewDashboardv2WithDefaults instantiates a new Dashboardv2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCoverImage
+
+`func (o *Dashboardv2) GetCoverImage() string`
+
+GetCoverImage returns the CoverImage field if non-nil, zero value otherwise.
+
+### GetCoverImageOk
+
+`func (o *Dashboardv2) GetCoverImageOk() (*string, bool)`
+
+GetCoverImageOk returns a tuple with the CoverImage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoverImage
+
+`func (o *Dashboardv2) SetCoverImage(v string)`
+
+SetCoverImage sets CoverImage field to given value.
+
+### HasCoverImage
+
+`func (o *Dashboardv2) HasCoverImage() bool`
+
+HasCoverImage returns a boolean if a field has been set.
 
 ### GetName
 
