@@ -7,12 +7,16 @@ Name | Type | Description | Notes
 **CountValues** | **int64** | Total number of values in the array &#39;values&#39; | 
 **FromDate** | **time.Time** | From date | 
 **Message** | Pointer to **string** | If the response is different than &#39;ok&#39; | [optional] [default to ""]
+**PropertyId** | Pointer to **string** | Property id | [optional] 
+**PropertyName** | Pointer to **string** | Property name | [optional] 
+**PropertyType** | Pointer to **string** | Property type | [optional] 
 **Query** | **string** | Query of for the data | 
 **RespVersion** | **int64** | Response version | 
 **Series** | [**BatchQueryRawResponseSeriesMediaV1**](BatchQueryRawResponseSeriesMediaV1.md) |  | 
 **SeriesLimit** | Pointer to **int64** | Max of values | [optional] 
 **Sort** | **string** | Sorting | 
 **Status** | **string** | Status of the response | 
+**ThingId** | Pointer to **string** | Thing id | [optional] 
 **Times** | [**[]time.Time**](time.Time.md) | Timestamp in RFC3339 | 
 **ToDate** | **time.Time** | To date | 
 **Values** | **[]interface{}** | Values can be in Float, String, Bool, Object | 
@@ -100,6 +104,81 @@ SetMessage sets Message field to given value.
 `func (o *ArduinoSeriesRawResponse) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
+
+### GetPropertyId
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyId() string`
+
+GetPropertyId returns the PropertyId field if non-nil, zero value otherwise.
+
+### GetPropertyIdOk
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyIdOk() (*string, bool)`
+
+GetPropertyIdOk returns a tuple with the PropertyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyId
+
+`func (o *ArduinoSeriesRawResponse) SetPropertyId(v string)`
+
+SetPropertyId sets PropertyId field to given value.
+
+### HasPropertyId
+
+`func (o *ArduinoSeriesRawResponse) HasPropertyId() bool`
+
+HasPropertyId returns a boolean if a field has been set.
+
+### GetPropertyName
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyName() string`
+
+GetPropertyName returns the PropertyName field if non-nil, zero value otherwise.
+
+### GetPropertyNameOk
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyNameOk() (*string, bool)`
+
+GetPropertyNameOk returns a tuple with the PropertyName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyName
+
+`func (o *ArduinoSeriesRawResponse) SetPropertyName(v string)`
+
+SetPropertyName sets PropertyName field to given value.
+
+### HasPropertyName
+
+`func (o *ArduinoSeriesRawResponse) HasPropertyName() bool`
+
+HasPropertyName returns a boolean if a field has been set.
+
+### GetPropertyType
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyType() string`
+
+GetPropertyType returns the PropertyType field if non-nil, zero value otherwise.
+
+### GetPropertyTypeOk
+
+`func (o *ArduinoSeriesRawResponse) GetPropertyTypeOk() (*string, bool)`
+
+GetPropertyTypeOk returns a tuple with the PropertyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyType
+
+`func (o *ArduinoSeriesRawResponse) SetPropertyType(v string)`
+
+SetPropertyType sets PropertyType field to given value.
+
+### HasPropertyType
+
+`func (o *ArduinoSeriesRawResponse) HasPropertyType() bool`
+
+HasPropertyType returns a boolean if a field has been set.
 
 ### GetQuery
 
@@ -225,6 +304,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetThingId
+
+`func (o *ArduinoSeriesRawResponse) GetThingId() string`
+
+GetThingId returns the ThingId field if non-nil, zero value otherwise.
+
+### GetThingIdOk
+
+`func (o *ArduinoSeriesRawResponse) GetThingIdOk() (*string, bool)`
+
+GetThingIdOk returns a tuple with the ThingId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThingId
+
+`func (o *ArduinoSeriesRawResponse) SetThingId(v string)`
+
+SetThingId sets ThingId field to given value.
+
+### HasThingId
+
+`func (o *ArduinoSeriesRawResponse) HasThingId() bool`
+
+HasThingId returns a boolean if a field has been set.
 
 ### GetTimes
 

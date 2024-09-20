@@ -19,49 +19,49 @@ import (
 )
 
 
-// LoraFreqPlanV1ApiService LoraFreqPlanV1Api service
-type LoraFreqPlanV1ApiService service
+// PropertyTypesV1ApiService PropertyTypesV1Api service
+type PropertyTypesV1ApiService service
 
-type ApiLoraFreqPlanV1ListRequest struct {
+type ApiPropertyTypesV1ListTypesRequest struct {
 	ctx context.Context
-	ApiService *LoraFreqPlanV1ApiService
+	ApiService *PropertyTypesV1ApiService
 }
 
-func (r ApiLoraFreqPlanV1ListRequest) Execute() (*ArduinoLorafreqplansv1, *http.Response, error) {
-	return r.ApiService.LoraFreqPlanV1ListExecute(r)
+func (r ApiPropertyTypesV1ListTypesRequest) Execute() ([]ArduinoPropertytype, *http.Response, error) {
+	return r.ApiService.PropertyTypesV1ListTypesExecute(r)
 }
 
 /*
-LoraFreqPlanV1List list lora_freq_plan_v1
+PropertyTypesV1ListTypes listTypes property_types_v1
 
-List the lora frequency plans supported
+Returns the list of available property types
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLoraFreqPlanV1ListRequest
+ @return ApiPropertyTypesV1ListTypesRequest
 */
-func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1List(ctx context.Context) ApiLoraFreqPlanV1ListRequest {
-	return ApiLoraFreqPlanV1ListRequest{
+func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypes(ctx context.Context) ApiPropertyTypesV1ListTypesRequest {
+	return ApiPropertyTypesV1ListTypesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ArduinoLorafreqplansv1
-func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1ListRequest) (*ArduinoLorafreqplansv1, *http.Response, error) {
+//  @return []ArduinoPropertytype
+func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypesExecute(r ApiPropertyTypesV1ListTypesRequest) ([]ArduinoPropertytype, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ArduinoLorafreqplansv1
+		localVarReturnValue  []ArduinoPropertytype
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoraFreqPlanV1ApiService.LoraFreqPlanV1List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertyTypesV1ApiService.PropertyTypesV1ListTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/lora-freq-plans/"
+	localVarPath := localBasePath + "/v1/property_types"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -77,7 +77,7 @@ func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.lorafreqplansv1+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.propertytype+json; type=collection", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -105,17 +105,6 @@ func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError

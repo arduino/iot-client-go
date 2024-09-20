@@ -136,8 +136,18 @@ paths:
             application/vnd.arduino.credentialsv1+json; type=collection:
               schema:
                 $ref: '#/components/schemas/ArduinoCredentialsv1Collection'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoCredentialsv1Collection'
           description: OK
         "401":
+          content:
+            application/vnd.arduino.credentialsv1+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -179,12 +189,47 @@ paths:
         "200":
           description: OK
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
       summary: showByDevice network_credentials_v1
       tags:
       - network_credentials_v1
+  /v1/property_types:
+    get:
+      description: Returns the list of available property types
+      operationId: property_types_v1#listTypes
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.propertytype+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoPropertytypeCollection'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoPropertytypeCollection'
+          description: OK
+        "500":
+          content:
+            application/vnd.arduino.propertytype+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: listTypes property_types_v1
+      tags:
+      - property_types_v1
   /v1/templates:
     put:
       description: Apply an existing cloud template and generate all the needed resources
@@ -228,6 +273,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
@@ -299,6 +351,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2Collection'
           description: OK
+        "400":
+          content:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
         "401":
           content:
             application/vnd.arduino.dashboardv2+json; type=collection:
@@ -308,6 +369,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "500":
           content:
             application/vnd.arduino.dashboardv2+json; type=collection:
@@ -372,6 +442,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "500":
           content:
             application/vnd.arduino.dashboardv2+json:
@@ -427,6 +506,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -564,6 +652,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -638,6 +735,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -705,6 +811,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -769,6 +884,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -835,6 +959,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -900,6 +1033,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -964,6 +1106,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -1046,6 +1197,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -1131,6 +1291,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "500":
           content:
             application/vnd.arduino.devicev2+json; type=collection:
@@ -1186,6 +1355,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "412":
           content:
             application/vnd.arduino.devicev2+json:
@@ -1241,6 +1419,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.goa.error+json:
@@ -1293,6 +1482,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2+json:
@@ -1365,6 +1565,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2+json:
@@ -1403,6 +1614,13 @@ paths:
                 $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
           description: OK
         "401":
+          content:
+            application/vnd.arduino.devicev2.cert+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -1463,6 +1681,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -1505,6 +1730,13 @@ paths:
         "200":
           description: OK
         "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -1553,6 +1785,13 @@ paths:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: OK
         "401":
+          content:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -1621,6 +1860,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -1693,6 +1939,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2.event.properties+json:
@@ -1763,7 +2020,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.devicev2.otaupload+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2.otaupload+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           content:
             application/vnd.arduino.devicev2.otaupload+json:
@@ -1844,6 +2117,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
@@ -1924,6 +2204,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
@@ -1983,6 +2270,13 @@ paths:
         "200":
           description: OK
         "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -2033,6 +2327,13 @@ paths:
                 $ref: '#/components/schemas/ArduinoDevicev2Pass'
           description: OK
         "401":
+          content:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -2142,6 +2443,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -2207,6 +2515,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2properties+json:
@@ -2262,6 +2581,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.goa.error+json:
@@ -2348,6 +2678,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2propertyvalues+json:
@@ -2427,6 +2768,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2.status.events+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.devicev2.status.events+json:
@@ -2615,6 +2967,14 @@ paths:
     post:
       description: Returns the batch of time-series aggregated samples
       operationId: series_v2#batch_query
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2653,6 +3013,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "501":
@@ -2675,6 +3044,14 @@ paths:
     post:
       description: Returns the batch of time-series raw samples
       operationId: series_v2#batch_query_raw
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2713,6 +3090,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "501":
@@ -2735,6 +3121,14 @@ paths:
     post:
       description: Returns the batch of time-series data raw
       operationId: series_v2#batch_query_raw_last_value
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2764,6 +3158,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "501":
@@ -2788,6 +3191,14 @@ paths:
         \ types that does not support mathematic aggregation. Types supported: strings,\
         \ complex types."
       operationId: series_v2#batch_query_sampling
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2826,6 +3237,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.series.batch.sampled+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "501":
@@ -2848,6 +3268,14 @@ paths:
     post:
       description: Request sending of historical data of properties by email
       operationId: series_v2#historic_data
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2873,6 +3301,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.goa.error+json:
@@ -2973,7 +3409,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "500":
           content:
             application/vnd.arduino.thing+json; type=collection:
@@ -3040,7 +3492,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "409":
           content:
             application/vnd.arduino.thing+json:
@@ -3115,7 +3583,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -3179,6 +3663,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -3255,7 +3748,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "409":
@@ -3341,7 +3850,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -3937,6 +4462,13 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           description: Not Found
@@ -3984,7 +4516,23 @@ paths:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -4051,7 +4599,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "412":
@@ -4134,7 +4698,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           content:
             application/vnd.arduino.thing+json:
@@ -4199,6 +4779,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.arduino.tags+json:
@@ -4256,6 +4847,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.goa.error+json:
@@ -4313,6 +4915,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           content:
             application/vnd.goa.error+json:
@@ -4367,7 +4980,23 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
+          content:
+            application/vnd.arduino.thingtemplate+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
           description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.thingtemplate+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
         "404":
           description: Not Found
         "500":
@@ -4404,8 +5033,6 @@ components:
       description: Not Implemented
     OK:
       description: OK
-    Unauthorized:
-      description: Unauthorized
   schemas:
     ArduinoCompressedv2:
       description: compressed contains the info from which to generate the certificate
@@ -4512,6 +5139,10 @@ components:
     ArduinoDashboardv2:
       description: Dashboard is a collection of widgets (default view)
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
         created_by:
           $ref: '#/components/schemas/ArduinoDashboardowner'
         id:
@@ -4564,6 +5195,9 @@ components:
     ArduinoDashboardv2template:
       description: ArduinoDashboardv2template media type (default view)
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          type: string
         id:
           description: The friendly ID of the dashboard
           type: string
@@ -5213,6 +5847,61 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.property+json; type=collection;\
         \ view=default"
       type: array
+    ArduinoPropertytype:
+      description: ArduinoPropertytype media type (default view)
+      properties:
+        assistants:
+          description: The voice assistants available for this type
+          items:
+            type: string
+          type: array
+        declaration:
+          description: The c++ type we are using for this variable type
+          type: string
+        deprecated:
+          description: Tell if this type is deprecated
+          type: boolean
+        example:
+          description: Example of use
+          type: string
+        name:
+          description: The friendly name of the property type
+          type: string
+        rw:
+          description: Tell if the type allow a R/W permission
+          type: boolean
+        supersededBy:
+          description: The type of property to use if it's deprecated
+          type: string
+        tags:
+          description: The tags related to the type
+          items:
+            type: string
+          type: array
+        type:
+          description: The api reference of this type
+          type: string
+        units:
+          description: The measure units available for this type
+          items:
+            type: string
+          type: array
+      required:
+      - declaration
+      - deprecated
+      - name
+      - rw
+      - type
+      title: "Mediatype identifier: application/vnd.arduino.propertytype+json; view=default"
+      type: object
+    ArduinoPropertytypeCollection:
+      description: ArduinoPropertytypeCollection is the media type for an array of
+        ArduinoPropertytype (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoPropertytype'
+      title: "Mediatype identifier: application/vnd.arduino.propertytype+json; type=collection;\
+        \ view=default"
+      type: array
     ArduinoSeriesBatch:
       description: ArduinoSeriesBatch media type (default view)
       properties:
@@ -5332,6 +6021,16 @@ components:
           default: ""
           description: If the response is different than 'ok'
           type: string
+        property_id:
+          description: Property id
+          format: uuid
+          type: string
+        property_name:
+          description: Property name
+          type: string
+        property_type:
+          description: Property type
+          type: string
         query:
           description: Query of for the data
           type: string
@@ -5353,6 +6052,10 @@ components:
           type: string
         status:
           description: Status of the response
+          type: string
+        thing_id:
+          description: Thing id
+          format: uuid
           type: string
         times:
           description: Timestamp in RFC3339
@@ -5423,6 +6126,16 @@ components:
           default: ""
           description: If the response is different than 'ok'
           type: string
+        property_id:
+          description: Property id
+          format: uuid
+          type: string
+        property_name:
+          description: Property name
+          type: string
+        property_type:
+          description: Property type
+          type: string
         query:
           description: Query of for the data
           type: string
@@ -5437,6 +6150,10 @@ components:
           type: integer
         status:
           description: Status of the response
+          type: string
+        thing_id:
+          description: Thing id
+          format: uuid
           type: string
         times:
           description: Timestamp in RFC3339
@@ -5486,6 +6203,16 @@ components:
           default: ""
           description: If the response is different than 'ok'
           type: string
+        property_id:
+          description: Property id
+          format: uuid
+          type: string
+        property_name:
+          description: Property name
+          type: string
+        property_type:
+          description: Property type
+          type: string
         query:
           description: Query of for the data
           type: string
@@ -5500,6 +6227,10 @@ components:
           type: integer
         status:
           description: Status of the response
+          type: string
+        thing_id:
+          description: Thing id
+          format: uuid
           type: string
         times:
           description: Timestamp in RFC3339
@@ -6062,10 +6793,12 @@ components:
           format: date-time
           type: string
         q:
-          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
+          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5
+            or thing.95717675-4786-4ffc-afcc-799777755391)
           type: string
         series_limit:
-          description: Max of values
+          description: "Maximum number of values returned, if any (default/limit:\
+            \ 1000, 10000 in case of thing query)"
           format: int64
           type: integer
         sort:
@@ -6161,11 +6894,12 @@ components:
           format: int64
           type: integer
         q:
-          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5)
+          description: Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5
+            or thing.95717675-4786-4ffc-afcc-799777755391)
           type: string
         series_limit:
           description: "Maximum number of values returned after data aggregation,\
-            \ if any (default: 300, limit: 1000)"
+            \ if any (default: 300, limit: 1000 - 10000 in case of thing query)"
           format: int64
           type: integer
         to:
@@ -6365,10 +7099,7 @@ components:
           - mkr1000
           - nano_33_iot
           - mkrgsm1400
-          - mkrwan1310
-          - mkrwan1300
           - mkrnb1500
-          - lora-device
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
@@ -6634,6 +7365,10 @@ components:
     dashboardv2:
       description: DashboardV2Payload describes a dashboard
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
         name:
           description: The friendly name of the dashboard
           maxLength: 64
@@ -6682,10 +7417,7 @@ components:
           - mkr1000
           - nano_33_iot
           - mkrgsm1400
-          - mkrwan1310
-          - mkrwan1300
           - mkrnb1500
-          - lora-device
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
