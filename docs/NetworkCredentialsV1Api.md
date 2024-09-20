@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -74,7 +74,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.arduino.credentialsv1+json; type=collection
+- **Accept**: application/vnd.arduino.credentialsv1+json; type=collection, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -142,7 +142,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

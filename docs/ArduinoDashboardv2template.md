@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CoverImage** | Pointer to **string** | The cover image of the dashboard | [optional] 
 **Id** | Pointer to **string** | The friendly ID of the dashboard | [optional] 
 **Name** | **string** | The friendly name of the dashboard | 
 **Widgets** | Pointer to [**[]ArduinoWidgetv2template**](ArduinoWidgetv2template.md) | ArduinoWidgetv2templateCollection is the media type for an array of ArduinoWidgetv2template (default view) | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewArduinoDashboardv2templateWithDefaults instantiates a new ArduinoDashboardv2template object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCoverImage
+
+`func (o *ArduinoDashboardv2template) GetCoverImage() string`
+
+GetCoverImage returns the CoverImage field if non-nil, zero value otherwise.
+
+### GetCoverImageOk
+
+`func (o *ArduinoDashboardv2template) GetCoverImageOk() (*string, bool)`
+
+GetCoverImageOk returns a tuple with the CoverImage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoverImage
+
+`func (o *ArduinoDashboardv2template) SetCoverImage(v string)`
+
+SetCoverImage sets CoverImage field to given value.
+
+### HasCoverImage
+
+`func (o *ArduinoDashboardv2template) HasCoverImage() bool`
+
+HasCoverImage returns a boolean if a field has been set.
 
 ### GetId
 

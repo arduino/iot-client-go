@@ -12,6 +12,7 @@ api_lora_devices_v1.go
 api_lora_freq_plan_v1.go
 api_network_credentials_v1.go
 api_properties_v2.go
+api_property_types_v1.go
 api_series_v2.go
 api_templates.go
 api_things_v2.go
@@ -45,6 +46,7 @@ docs/ArduinoLoradevicev1.md
 docs/ArduinoLorafreqplansv1.md
 docs/ArduinoLorafreqplanv1.md
 docs/ArduinoProperty.md
+docs/ArduinoPropertytype.md
 docs/ArduinoSeriesBatch.md
 docs/ArduinoSeriesBatchSampled.md
 docs/ArduinoSeriesRawBatch.md
@@ -102,6 +104,7 @@ docs/PropertiesV2Api.md
 docs/PropertiesValue.md
 docs/PropertiesValues.md
 docs/Property.md
+docs/PropertyTypesV1Api.md
 docs/PropertyValue.md
 docs/SeriesV2Api.md
 docs/Sharerequest.md
@@ -148,6 +151,7 @@ model_arduino_loradevicev1.go
 model_arduino_lorafreqplansv1.go
 model_arduino_lorafreqplanv1.go
 model_arduino_property.go
+model_arduino_propertytype.go
 model_arduino_series_batch.go
 model_arduino_series_batch_sampled.go
 model_arduino_series_raw_batch.go
@@ -208,6 +212,5 @@ model_update_sketch.go
 model_widget.go
 model_widgetlink.go
 response.go
-test/api_network_credentials_v1_test.go
-test/api_templates_test.go
+test/api_property_types_v1_test.go
 utils.go

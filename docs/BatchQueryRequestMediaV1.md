@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Aggregation** | Pointer to **string** | Aggregation statistic function. For numeric values, AVG statistic is used by default. PCT_X compute the Xth approximate percentile (e.g. PCT_95 is the 95th approximate percentile). For boolean, BOOL_OR statistic is used as default. | [optional] 
 **From** | **time.Time** | From timestamp | 
 **Interval** | Pointer to **int64** | Resolution in seconds (max allowed: 86400) | [optional] 
-**Q** | **string** | Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5) | 
-**SeriesLimit** | Pointer to **int64** | Maximum number of values returned after data aggregation, if any (default: 300, limit: 1000) | [optional] 
+**Q** | **string** | Data selection query (e.g. property.2a99729d-2556-4220-a139-023348a1e6b5 or thing.95717675-4786-4ffc-afcc-799777755391) | 
+**SeriesLimit** | Pointer to **int64** | Maximum number of values returned after data aggregation, if any (default: 300, limit: 1000 - 10000 in case of thing query) | [optional] 
 **To** | **time.Time** | To timestamp | 
 
 ## Methods

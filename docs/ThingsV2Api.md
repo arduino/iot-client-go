@@ -34,7 +34,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -108,7 +108,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -178,7 +178,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -252,7 +252,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -322,7 +322,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -394,7 +394,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -472,7 +472,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -546,7 +546,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -618,7 +618,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {
@@ -694,7 +694,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/arduino/iot-client-go"
+    openapiclient "github.com/arduino/iot-client-go/v2"
 )
 
 func main() {

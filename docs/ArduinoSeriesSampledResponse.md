@@ -8,10 +8,14 @@ Name | Type | Description | Notes
 **FromDate** | **time.Time** | From date | 
 **Interval** | **int64** | Resolution in seconds | 
 **Message** | Pointer to **string** | If the response is different than &#39;ok&#39; | [optional] [default to ""]
+**PropertyId** | Pointer to **string** | Property id | [optional] 
+**PropertyName** | Pointer to **string** | Property name | [optional] 
+**PropertyType** | Pointer to **string** | Property type | [optional] 
 **Query** | **string** | Query of for the data | 
 **RespVersion** | **int64** | Response version | 
 **SeriesLimit** | Pointer to **int64** | Maximum number of values returned after data aggregation, if any | [optional] 
 **Status** | **string** | Status of the response | 
+**ThingId** | Pointer to **string** | Thing id | [optional] 
 **Times** | [**[]time.Time**](time.Time.md) | Timestamp in RFC3339 | 
 **ToDate** | **time.Time** | To date | 
 **Values** | **[]interface{}** | Values in Float | 
@@ -120,6 +124,81 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
+### GetPropertyId
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyId() string`
+
+GetPropertyId returns the PropertyId field if non-nil, zero value otherwise.
+
+### GetPropertyIdOk
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyIdOk() (*string, bool)`
+
+GetPropertyIdOk returns a tuple with the PropertyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyId
+
+`func (o *ArduinoSeriesSampledResponse) SetPropertyId(v string)`
+
+SetPropertyId sets PropertyId field to given value.
+
+### HasPropertyId
+
+`func (o *ArduinoSeriesSampledResponse) HasPropertyId() bool`
+
+HasPropertyId returns a boolean if a field has been set.
+
+### GetPropertyName
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyName() string`
+
+GetPropertyName returns the PropertyName field if non-nil, zero value otherwise.
+
+### GetPropertyNameOk
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyNameOk() (*string, bool)`
+
+GetPropertyNameOk returns a tuple with the PropertyName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyName
+
+`func (o *ArduinoSeriesSampledResponse) SetPropertyName(v string)`
+
+SetPropertyName sets PropertyName field to given value.
+
+### HasPropertyName
+
+`func (o *ArduinoSeriesSampledResponse) HasPropertyName() bool`
+
+HasPropertyName returns a boolean if a field has been set.
+
+### GetPropertyType
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyType() string`
+
+GetPropertyType returns the PropertyType field if non-nil, zero value otherwise.
+
+### GetPropertyTypeOk
+
+`func (o *ArduinoSeriesSampledResponse) GetPropertyTypeOk() (*string, bool)`
+
+GetPropertyTypeOk returns a tuple with the PropertyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyType
+
+`func (o *ArduinoSeriesSampledResponse) SetPropertyType(v string)`
+
+SetPropertyType sets PropertyType field to given value.
+
+### HasPropertyType
+
+`func (o *ArduinoSeriesSampledResponse) HasPropertyType() bool`
+
+HasPropertyType returns a boolean if a field has been set.
+
 ### GetQuery
 
 `func (o *ArduinoSeriesSampledResponse) GetQuery() string`
@@ -204,6 +283,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetThingId
+
+`func (o *ArduinoSeriesSampledResponse) GetThingId() string`
+
+GetThingId returns the ThingId field if non-nil, zero value otherwise.
+
+### GetThingIdOk
+
+`func (o *ArduinoSeriesSampledResponse) GetThingIdOk() (*string, bool)`
+
+GetThingIdOk returns a tuple with the ThingId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThingId
+
+`func (o *ArduinoSeriesSampledResponse) SetThingId(v string)`
+
+SetThingId sets ThingId field to given value.
+
+### HasThingId
+
+`func (o *ArduinoSeriesSampledResponse) HasThingId() bool`
+
+HasThingId returns a boolean if a field has been set.
 
 ### GetTimes
 
