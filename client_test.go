@@ -184,7 +184,7 @@ func TestDevicesAPI(t *testing.T) {
 
 	// Try to get the no more existing device
 	storedDevice, _, err := client.DevicesV2Api.DevicesV2Show(ctx, device.Id).Execute()
-	assert.Contains(t, err.Error(), "401", "Error should be unauthorized")
+	assert.Contains(t, err.Error(), "404", "Error should not found")
 	assert.Nil(t, storedDevice, "Device should be empty")
 }
 
