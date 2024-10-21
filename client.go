@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -50,35 +50,35 @@ type APIClient struct {
 
 	// API Services
 
-	DashboardsV2Api *DashboardsV2ApiService
+	DashboardsV2API *DashboardsV2APIService
 
-	DevicesV2Api *DevicesV2ApiService
+	DevicesV2API *DevicesV2APIService
 
-	DevicesV2CertsApi *DevicesV2CertsApiService
+	DevicesV2CertsAPI *DevicesV2CertsAPIService
 
-	DevicesV2OtaApi *DevicesV2OtaApiService
+	DevicesV2OtaAPI *DevicesV2OtaAPIService
 
-	DevicesV2PassApi *DevicesV2PassApiService
+	DevicesV2PassAPI *DevicesV2PassAPIService
 
-	DevicesV2TagsApi *DevicesV2TagsApiService
+	DevicesV2TagsAPI *DevicesV2TagsAPIService
 
-	LoraDevicesV1Api *LoraDevicesV1ApiService
+	LoraDevicesV1API *LoraDevicesV1APIService
 
-	LoraFreqPlanV1Api *LoraFreqPlanV1ApiService
+	LoraFreqPlanV1API *LoraFreqPlanV1APIService
 
-	NetworkCredentialsV1Api *NetworkCredentialsV1ApiService
+	NetworkCredentialsV1API *NetworkCredentialsV1APIService
 
-	PropertiesV2Api *PropertiesV2ApiService
+	PropertiesV2API *PropertiesV2APIService
 
-	PropertyTypesV1Api *PropertyTypesV1ApiService
+	PropertyTypesV1API *PropertyTypesV1APIService
 
-	SeriesV2Api *SeriesV2ApiService
+	SeriesV2API *SeriesV2APIService
 
-	TemplatesApi *TemplatesApiService
+	TemplatesAPI *TemplatesAPIService
 
-	ThingsV2Api *ThingsV2ApiService
+	ThingsV2API *ThingsV2APIService
 
-	ThingsV2TagsApi *ThingsV2TagsApiService
+	ThingsV2TagsAPI *ThingsV2TagsAPIService
 }
 
 type service struct {
@@ -97,21 +97,21 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.DashboardsV2Api = (*DashboardsV2ApiService)(&c.common)
-	c.DevicesV2Api = (*DevicesV2ApiService)(&c.common)
-	c.DevicesV2CertsApi = (*DevicesV2CertsApiService)(&c.common)
-	c.DevicesV2OtaApi = (*DevicesV2OtaApiService)(&c.common)
-	c.DevicesV2PassApi = (*DevicesV2PassApiService)(&c.common)
-	c.DevicesV2TagsApi = (*DevicesV2TagsApiService)(&c.common)
-	c.LoraDevicesV1Api = (*LoraDevicesV1ApiService)(&c.common)
-	c.LoraFreqPlanV1Api = (*LoraFreqPlanV1ApiService)(&c.common)
-	c.NetworkCredentialsV1Api = (*NetworkCredentialsV1ApiService)(&c.common)
-	c.PropertiesV2Api = (*PropertiesV2ApiService)(&c.common)
-	c.PropertyTypesV1Api = (*PropertyTypesV1ApiService)(&c.common)
-	c.SeriesV2Api = (*SeriesV2ApiService)(&c.common)
-	c.TemplatesApi = (*TemplatesApiService)(&c.common)
-	c.ThingsV2Api = (*ThingsV2ApiService)(&c.common)
-	c.ThingsV2TagsApi = (*ThingsV2TagsApiService)(&c.common)
+	c.DashboardsV2API = (*DashboardsV2APIService)(&c.common)
+	c.DevicesV2API = (*DevicesV2APIService)(&c.common)
+	c.DevicesV2CertsAPI = (*DevicesV2CertsAPIService)(&c.common)
+	c.DevicesV2OtaAPI = (*DevicesV2OtaAPIService)(&c.common)
+	c.DevicesV2PassAPI = (*DevicesV2PassAPIService)(&c.common)
+	c.DevicesV2TagsAPI = (*DevicesV2TagsAPIService)(&c.common)
+	c.LoraDevicesV1API = (*LoraDevicesV1APIService)(&c.common)
+	c.LoraFreqPlanV1API = (*LoraFreqPlanV1APIService)(&c.common)
+	c.NetworkCredentialsV1API = (*NetworkCredentialsV1APIService)(&c.common)
+	c.PropertiesV2API = (*PropertiesV2APIService)(&c.common)
+	c.PropertyTypesV1API = (*PropertyTypesV1APIService)(&c.common)
+	c.SeriesV2API = (*SeriesV2APIService)(&c.common)
+	c.TemplatesAPI = (*TemplatesAPIService)(&c.common)
+	c.ThingsV2API = (*ThingsV2APIService)(&c.common)
+	c.ThingsV2TagsAPI = (*ThingsV2TagsAPIService)(&c.common)
 
 	return c
 }

@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// DevicesV2PassApiService DevicesV2PassApi service
-type DevicesV2PassApiService service
+// DevicesV2PassAPIService DevicesV2PassAPI service
+type DevicesV2PassAPIService service
 
 type ApiDevicesV2PassCheckRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2PassApiService
+	ApiService *DevicesV2PassAPIService
 	id string
 	checkDevicesV2PassPayload *CheckDevicesV2PassPayload
 }
@@ -48,7 +48,7 @@ Check if the password matches.
  @param id The id of the device
  @return ApiDevicesV2PassCheckRequest
 */
-func (a *DevicesV2PassApiService) DevicesV2PassCheck(ctx context.Context, id string) ApiDevicesV2PassCheckRequest {
+func (a *DevicesV2PassAPIService) DevicesV2PassCheck(ctx context.Context, id string) ApiDevicesV2PassCheckRequest {
 	return ApiDevicesV2PassCheckRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,14 +57,14 @@ func (a *DevicesV2PassApiService) DevicesV2PassCheck(ctx context.Context, id str
 }
 
 // Execute executes the request
-func (a *DevicesV2PassApiService) DevicesV2PassCheckExecute(r ApiDevicesV2PassCheckRequest) (*http.Response, error) {
+func (a *DevicesV2PassAPIService) DevicesV2PassCheckExecute(r ApiDevicesV2PassCheckRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassApiService.DevicesV2PassCheck")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassAPIService.DevicesV2PassCheck")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -149,7 +149,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassCheckExecute(r ApiDevicesV2PassCh
 
 type ApiDevicesV2PassDeleteRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2PassApiService
+	ApiService *DevicesV2PassAPIService
 	id string
 }
 
@@ -166,7 +166,7 @@ Removes the password for the device.
  @param id The id of the device
  @return ApiDevicesV2PassDeleteRequest
 */
-func (a *DevicesV2PassApiService) DevicesV2PassDelete(ctx context.Context, id string) ApiDevicesV2PassDeleteRequest {
+func (a *DevicesV2PassAPIService) DevicesV2PassDelete(ctx context.Context, id string) ApiDevicesV2PassDeleteRequest {
 	return ApiDevicesV2PassDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -175,14 +175,14 @@ func (a *DevicesV2PassApiService) DevicesV2PassDelete(ctx context.Context, id st
 }
 
 // Execute executes the request
-func (a *DevicesV2PassApiService) DevicesV2PassDeleteExecute(r ApiDevicesV2PassDeleteRequest) (*http.Response, error) {
+func (a *DevicesV2PassAPIService) DevicesV2PassDeleteExecute(r ApiDevicesV2PassDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassApiService.DevicesV2PassDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassAPIService.DevicesV2PassDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -262,7 +262,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassDeleteExecute(r ApiDevicesV2PassD
 
 type ApiDevicesV2PassGetRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2PassApiService
+	ApiService *DevicesV2PassAPIService
 	id string
 	suggestedPassword *bool
 }
@@ -286,7 +286,7 @@ Returns whether the password for this device is set or not. It doesn't return th
  @param id The id of the device
  @return ApiDevicesV2PassGetRequest
 */
-func (a *DevicesV2PassApiService) DevicesV2PassGet(ctx context.Context, id string) ApiDevicesV2PassGetRequest {
+func (a *DevicesV2PassAPIService) DevicesV2PassGet(ctx context.Context, id string) ApiDevicesV2PassGetRequest {
 	return ApiDevicesV2PassGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -296,7 +296,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassGet(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ArduinoDevicev2Pass
-func (a *DevicesV2PassApiService) DevicesV2PassGetExecute(r ApiDevicesV2PassGetRequest) (*ArduinoDevicev2Pass, *http.Response, error) {
+func (a *DevicesV2PassAPIService) DevicesV2PassGetExecute(r ApiDevicesV2PassGetRequest) (*ArduinoDevicev2Pass, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -304,7 +304,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassGetExecute(r ApiDevicesV2PassGetR
 		localVarReturnValue  *ArduinoDevicev2Pass
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassApiService.DevicesV2PassGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassAPIService.DevicesV2PassGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -396,7 +396,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassGetExecute(r ApiDevicesV2PassGetR
 
 type ApiDevicesV2PassSetRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2PassApiService
+	ApiService *DevicesV2PassAPIService
 	id string
 	devicev2Pass *Devicev2Pass
 }
@@ -419,7 +419,7 @@ Sets the password for the device. It can never be read back.
  @param id The id of the device
  @return ApiDevicesV2PassSetRequest
 */
-func (a *DevicesV2PassApiService) DevicesV2PassSet(ctx context.Context, id string) ApiDevicesV2PassSetRequest {
+func (a *DevicesV2PassAPIService) DevicesV2PassSet(ctx context.Context, id string) ApiDevicesV2PassSetRequest {
 	return ApiDevicesV2PassSetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -429,7 +429,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassSet(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ArduinoDevicev2Pass
-func (a *DevicesV2PassApiService) DevicesV2PassSetExecute(r ApiDevicesV2PassSetRequest) (*ArduinoDevicev2Pass, *http.Response, error) {
+func (a *DevicesV2PassAPIService) DevicesV2PassSetExecute(r ApiDevicesV2PassSetRequest) (*ArduinoDevicev2Pass, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -437,7 +437,7 @@ func (a *DevicesV2PassApiService) DevicesV2PassSetExecute(r ApiDevicesV2PassSetR
 		localVarReturnValue  *ArduinoDevicev2Pass
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassApiService.DevicesV2PassSet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2PassAPIService.DevicesV2PassSet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -21,12 +21,12 @@ import (
 )
 
 
-// DevicesV2OtaApiService DevicesV2OtaApi service
-type DevicesV2OtaApiService service
+// DevicesV2OtaAPIService DevicesV2OtaAPI service
+type DevicesV2OtaAPIService service
 
 type ApiDevicesV2OtaSendRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2OtaApiService
+	ApiService *DevicesV2OtaAPIService
 	id string
 	devicev2Otabinaryurl *Devicev2Otabinaryurl
 }
@@ -49,7 +49,7 @@ Send a binary url to a device
  @param id The id of the device
  @return ApiDevicesV2OtaSendRequest
 */
-func (a *DevicesV2OtaApiService) DevicesV2OtaSend(ctx context.Context, id string) ApiDevicesV2OtaSendRequest {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaSend(ctx context.Context, id string) ApiDevicesV2OtaSendRequest {
 	return ApiDevicesV2OtaSendRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,14 +58,14 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaSend(ctx context.Context, id string
 }
 
 // Execute executes the request
-func (a *DevicesV2OtaApiService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRequest) (*http.Response, error) {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaApiService.DevicesV2OtaSend")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaAPIService.DevicesV2OtaSend")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -194,7 +194,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRe
 
 type ApiDevicesV2OtaUploadRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2OtaApiService
+	ApiService *DevicesV2OtaAPIService
 	id string
 	otaFile *os.File
 	async *bool
@@ -232,7 +232,7 @@ Upload a binary and send it to a device
  @param id The id of the device
  @return ApiDevicesV2OtaUploadRequest
 */
-func (a *DevicesV2OtaApiService) DevicesV2OtaUpload(ctx context.Context, id string) ApiDevicesV2OtaUploadRequest {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaUpload(ctx context.Context, id string) ApiDevicesV2OtaUploadRequest {
 	return ApiDevicesV2OtaUploadRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -242,7 +242,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUpload(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return ArduinoDevicev2Otaupload
-func (a *DevicesV2OtaApiService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUploadRequest) (*ArduinoDevicev2Otaupload, *http.Response, error) {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUploadRequest) (*ArduinoDevicev2Otaupload, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -250,7 +250,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUplo
 		localVarReturnValue  *ArduinoDevicev2Otaupload
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaApiService.DevicesV2OtaUpload")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaAPIService.DevicesV2OtaUpload")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -420,7 +420,7 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUplo
 
 type ApiDevicesV2OtaUrlRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2OtaApiService
+	ApiService *DevicesV2OtaAPIService
 	id string
 	devicev2Otaurlpyalod *Devicev2Otaurlpyalod
 }
@@ -443,7 +443,7 @@ Generate a url for downloading a binary
  @param id The id of the device
  @return ApiDevicesV2OtaUrlRequest
 */
-func (a *DevicesV2OtaApiService) DevicesV2OtaUrl(ctx context.Context, id string) ApiDevicesV2OtaUrlRequest {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaUrl(ctx context.Context, id string) ApiDevicesV2OtaUrlRequest {
 	return ApiDevicesV2OtaUrlRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -452,14 +452,14 @@ func (a *DevicesV2OtaApiService) DevicesV2OtaUrl(ctx context.Context, id string)
 }
 
 // Execute executes the request
-func (a *DevicesV2OtaApiService) DevicesV2OtaUrlExecute(r ApiDevicesV2OtaUrlRequest) (*http.Response, error) {
+func (a *DevicesV2OtaAPIService) DevicesV2OtaUrlExecute(r ApiDevicesV2OtaUrlRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaApiService.DevicesV2OtaUrl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2OtaAPIService.DevicesV2OtaUrl")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

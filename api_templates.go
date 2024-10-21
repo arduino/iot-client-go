@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -19,12 +19,12 @@ import (
 )
 
 
-// TemplatesApiService TemplatesApi service
-type TemplatesApiService service
+// TemplatesAPIService TemplatesAPI service
+type TemplatesAPIService service
 
 type ApiTemplatesApplyRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	template *Template
 	xOrganization *string
 }
@@ -52,7 +52,7 @@ Apply an existing cloud template and generate all the needed resources
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTemplatesApplyRequest
 */
-func (a *TemplatesApiService) TemplatesApply(ctx context.Context) ApiTemplatesApplyRequest {
+func (a *TemplatesAPIService) TemplatesApply(ctx context.Context) ApiTemplatesApplyRequest {
 	return ApiTemplatesApplyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -61,7 +61,7 @@ func (a *TemplatesApiService) TemplatesApply(ctx context.Context) ApiTemplatesAp
 
 // Execute executes the request
 //  @return ArduinoTemplate
-func (a *TemplatesApiService) TemplatesApplyExecute(r ApiTemplatesApplyRequest) (*ArduinoTemplate, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesApplyExecute(r ApiTemplatesApplyRequest) (*ArduinoTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -69,7 +69,7 @@ func (a *TemplatesApiService) TemplatesApplyExecute(r ApiTemplatesApplyRequest) 
 		localVarReturnValue  *ArduinoTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesApply")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesApply")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

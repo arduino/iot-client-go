@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -21,12 +21,12 @@ import (
 )
 
 
-// ThingsV2ApiService ThingsV2Api service
-type ThingsV2ApiService service
+// ThingsV2APIService ThingsV2API service
+type ThingsV2APIService service
 
 type ApiThingsV2CloneRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	thingClone *ThingClone
 	xOrganization *string
@@ -56,7 +56,7 @@ Clone a given thing
  @param id The id of the thing
  @return ApiThingsV2CloneRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Clone(ctx context.Context, id string) ApiThingsV2CloneRequest {
+func (a *ThingsV2APIService) ThingsV2Clone(ctx context.Context, id string) ApiThingsV2CloneRequest {
 	return ApiThingsV2CloneRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,7 +66,7 @@ func (a *ThingsV2ApiService) ThingsV2Clone(ctx context.Context, id string) ApiTh
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2CloneExecute(r ApiThingsV2CloneRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2CloneExecute(r ApiThingsV2CloneRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *ThingsV2ApiService) ThingsV2CloneExecute(r ApiThingsV2CloneRequest) (*A
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Clone")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Clone")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -193,7 +193,7 @@ func (a *ThingsV2ApiService) ThingsV2CloneExecute(r ApiThingsV2CloneRequest) (*A
 
 type ApiThingsV2CreateRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	thingCreate *ThingCreate
 	force *bool
 	xOrganization *string
@@ -228,7 +228,7 @@ Creates a new thing associated to the user
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiThingsV2CreateRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Create(ctx context.Context) ApiThingsV2CreateRequest {
+func (a *ThingsV2APIService) ThingsV2Create(ctx context.Context) ApiThingsV2CreateRequest {
 	return ApiThingsV2CreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -237,7 +237,7 @@ func (a *ThingsV2ApiService) ThingsV2Create(ctx context.Context) ApiThingsV2Crea
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2CreateExecute(r ApiThingsV2CreateRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2CreateExecute(r ApiThingsV2CreateRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -245,7 +245,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateExecute(r ApiThingsV2CreateRequest) (
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -388,7 +388,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateExecute(r ApiThingsV2CreateRequest) (
 
 type ApiThingsV2CreateSketchRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	thingSketch *ThingSketch
 	xOrganization *string
@@ -418,7 +418,7 @@ Creates a new sketch thing associated to the thing
  @param id The id of the thing
  @return ApiThingsV2CreateSketchRequest
 */
-func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx context.Context, id string) ApiThingsV2CreateSketchRequest {
+func (a *ThingsV2APIService) ThingsV2CreateSketch(ctx context.Context, id string) ApiThingsV2CreateSketchRequest {
 	return ApiThingsV2CreateSketchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -428,7 +428,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketch(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2CreateSketchExecute(r ApiThingsV2CreateSketchRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2CreateSketchExecute(r ApiThingsV2CreateSketchRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -436,7 +436,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketchExecute(r ApiThingsV2CreateSket
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2CreateSketch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2CreateSketch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -566,7 +566,7 @@ func (a *ThingsV2ApiService) ThingsV2CreateSketchExecute(r ApiThingsV2CreateSket
 
 type ApiThingsV2DeleteRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	force *bool
 	xOrganization *string
@@ -596,7 +596,7 @@ Removes a thing associated to the user
  @param id The id of the thing
  @return ApiThingsV2DeleteRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Delete(ctx context.Context, id string) ApiThingsV2DeleteRequest {
+func (a *ThingsV2APIService) ThingsV2Delete(ctx context.Context, id string) ApiThingsV2DeleteRequest {
 	return ApiThingsV2DeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -605,14 +605,14 @@ func (a *ThingsV2ApiService) ThingsV2Delete(ctx context.Context, id string) ApiT
 }
 
 // Execute executes the request
-func (a *ThingsV2ApiService) ThingsV2DeleteExecute(r ApiThingsV2DeleteRequest) (*http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2DeleteExecute(r ApiThingsV2DeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Delete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -720,7 +720,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteExecute(r ApiThingsV2DeleteRequest) (
 
 type ApiThingsV2DeleteSketchRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	xOrganization *string
 }
@@ -741,7 +741,7 @@ ThingsV2DeleteSketch deleteSketch things_v2
  @param id The id of the thing
  @return ApiThingsV2DeleteSketchRequest
 */
-func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx context.Context, id string) ApiThingsV2DeleteSketchRequest {
+func (a *ThingsV2APIService) ThingsV2DeleteSketch(ctx context.Context, id string) ApiThingsV2DeleteSketchRequest {
 	return ApiThingsV2DeleteSketchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -751,7 +751,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketch(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2DeleteSketchExecute(r ApiThingsV2DeleteSketchRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2DeleteSketchExecute(r ApiThingsV2DeleteSketchRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -759,7 +759,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketchExecute(r ApiThingsV2DeleteSket
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2DeleteSketch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2DeleteSketch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -862,7 +862,7 @@ func (a *ThingsV2ApiService) ThingsV2DeleteSketchExecute(r ApiThingsV2DeleteSket
 
 type ApiThingsV2ListRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	acrossUserIds *bool
 	deviceId *string
 	ids *[]string
@@ -925,7 +925,7 @@ Returns the list of things associated to the user
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiThingsV2ListRequest
 */
-func (a *ThingsV2ApiService) ThingsV2List(ctx context.Context) ApiThingsV2ListRequest {
+func (a *ThingsV2APIService) ThingsV2List(ctx context.Context) ApiThingsV2ListRequest {
 	return ApiThingsV2ListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -934,7 +934,7 @@ func (a *ThingsV2ApiService) ThingsV2List(ctx context.Context) ApiThingsV2ListRe
 
 // Execute executes the request
 //  @return []ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2ListExecute(r ApiThingsV2ListRequest) ([]ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2ListExecute(r ApiThingsV2ListRequest) ([]ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -942,7 +942,7 @@ func (a *ThingsV2ApiService) ThingsV2ListExecute(r ApiThingsV2ListRequest) ([]Ar
 		localVarReturnValue  []ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2List")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1089,7 +1089,7 @@ func (a *ThingsV2ApiService) ThingsV2ListExecute(r ApiThingsV2ListRequest) ([]Ar
 
 type ApiThingsV2ShowRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	showDeleted *bool
 	xOrganization *string
@@ -1119,7 +1119,7 @@ Returns the thing requested by the user
  @param id The id of the thing
  @return ApiThingsV2ShowRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Show(ctx context.Context, id string) ApiThingsV2ShowRequest {
+func (a *ThingsV2APIService) ThingsV2Show(ctx context.Context, id string) ApiThingsV2ShowRequest {
 	return ApiThingsV2ShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1129,7 +1129,7 @@ func (a *ThingsV2ApiService) ThingsV2Show(ctx context.Context, id string) ApiThi
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2ShowExecute(r ApiThingsV2ShowRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2ShowExecute(r ApiThingsV2ShowRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1137,7 +1137,7 @@ func (a *ThingsV2ApiService) ThingsV2ShowExecute(r ApiThingsV2ShowRequest) (*Ard
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Show")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Show")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1243,7 +1243,7 @@ func (a *ThingsV2ApiService) ThingsV2ShowExecute(r ApiThingsV2ShowRequest) (*Ard
 
 type ApiThingsV2TemplateRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	xOrganization *string
 }
@@ -1266,7 +1266,7 @@ Extract template from the given thing
  @param id The id of the thing
  @return ApiThingsV2TemplateRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Template(ctx context.Context, id string) ApiThingsV2TemplateRequest {
+func (a *ThingsV2APIService) ThingsV2Template(ctx context.Context, id string) ApiThingsV2TemplateRequest {
 	return ApiThingsV2TemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1276,7 +1276,7 @@ func (a *ThingsV2ApiService) ThingsV2Template(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ArduinoThingtemplate
-func (a *ThingsV2ApiService) ThingsV2TemplateExecute(r ApiThingsV2TemplateRequest) (*ArduinoThingtemplate, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2TemplateExecute(r ApiThingsV2TemplateRequest) (*ArduinoThingtemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1284,7 +1284,7 @@ func (a *ThingsV2ApiService) ThingsV2TemplateExecute(r ApiThingsV2TemplateReques
 		localVarReturnValue  *ArduinoThingtemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Template")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Template")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1398,7 +1398,7 @@ func (a *ThingsV2ApiService) ThingsV2TemplateExecute(r ApiThingsV2TemplateReques
 
 type ApiThingsV2UpdateRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	thingUpdate *ThingUpdate
 	force *bool
@@ -1435,7 +1435,7 @@ Updates a thing associated to the user
  @param id The id of the thing
  @return ApiThingsV2UpdateRequest
 */
-func (a *ThingsV2ApiService) ThingsV2Update(ctx context.Context, id string) ApiThingsV2UpdateRequest {
+func (a *ThingsV2APIService) ThingsV2Update(ctx context.Context, id string) ApiThingsV2UpdateRequest {
 	return ApiThingsV2UpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1445,7 +1445,7 @@ func (a *ThingsV2ApiService) ThingsV2Update(ctx context.Context, id string) ApiT
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2UpdateExecute(r ApiThingsV2UpdateRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2UpdateExecute(r ApiThingsV2UpdateRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1453,7 +1453,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateExecute(r ApiThingsV2UpdateRequest) (
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1597,7 +1597,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateExecute(r ApiThingsV2UpdateRequest) (
 
 type ApiThingsV2UpdateSketchRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2ApiService
+	ApiService *ThingsV2APIService
 	id string
 	sketchId string
 	xOrganization *string
@@ -1628,7 +1628,7 @@ Update an existing thing sketch
  @param sketchId The id of the sketch
  @return ApiThingsV2UpdateSketchRequest
 */
-func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx context.Context, id string, sketchId string) ApiThingsV2UpdateSketchRequest {
+func (a *ThingsV2APIService) ThingsV2UpdateSketch(ctx context.Context, id string, sketchId string) ApiThingsV2UpdateSketchRequest {
 	return ApiThingsV2UpdateSketchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1639,7 +1639,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketch(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoThing
-func (a *ThingsV2ApiService) ThingsV2UpdateSketchExecute(r ApiThingsV2UpdateSketchRequest) (*ArduinoThing, *http.Response, error) {
+func (a *ThingsV2APIService) ThingsV2UpdateSketchExecute(r ApiThingsV2UpdateSketchRequest) (*ArduinoThing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1647,7 +1647,7 @@ func (a *ThingsV2ApiService) ThingsV2UpdateSketchExecute(r ApiThingsV2UpdateSket
 		localVarReturnValue  *ArduinoThing
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2ApiService.ThingsV2UpdateSketch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2APIService.ThingsV2UpdateSketch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -19,12 +19,12 @@ import (
 )
 
 
-// LoraDevicesV1ApiService LoraDevicesV1Api service
-type LoraDevicesV1ApiService service
+// LoraDevicesV1APIService LoraDevicesV1API service
+type LoraDevicesV1APIService service
 
 type ApiLoraDevicesV1CreateRequest struct {
 	ctx context.Context
-	ApiService *LoraDevicesV1ApiService
+	ApiService *LoraDevicesV1APIService
 	createLoraDevicesV1Payload *CreateLoraDevicesV1Payload
 	xOrganization *string
 }
@@ -51,7 +51,7 @@ Create a new lora device. Its info are saved on our database, and on the lora pr
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLoraDevicesV1CreateRequest
 */
-func (a *LoraDevicesV1ApiService) LoraDevicesV1Create(ctx context.Context) ApiLoraDevicesV1CreateRequest {
+func (a *LoraDevicesV1APIService) LoraDevicesV1Create(ctx context.Context) ApiLoraDevicesV1CreateRequest {
 	return ApiLoraDevicesV1CreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -60,7 +60,7 @@ func (a *LoraDevicesV1ApiService) LoraDevicesV1Create(ctx context.Context) ApiLo
 
 // Execute executes the request
 //  @return ArduinoLoradevicev1
-func (a *LoraDevicesV1ApiService) LoraDevicesV1CreateExecute(r ApiLoraDevicesV1CreateRequest) (*ArduinoLoradevicev1, *http.Response, error) {
+func (a *LoraDevicesV1APIService) LoraDevicesV1CreateExecute(r ApiLoraDevicesV1CreateRequest) (*ArduinoLoradevicev1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *LoraDevicesV1ApiService) LoraDevicesV1CreateExecute(r ApiLoraDevicesV1C
 		localVarReturnValue  *ArduinoLoradevicev1
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoraDevicesV1ApiService.LoraDevicesV1Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoraDevicesV1APIService.LoraDevicesV1Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
