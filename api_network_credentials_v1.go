@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// NetworkCredentialsV1ApiService NetworkCredentialsV1Api service
-type NetworkCredentialsV1ApiService service
+// NetworkCredentialsV1APIService NetworkCredentialsV1API service
+type NetworkCredentialsV1APIService service
 
 type ApiNetworkCredentialsV1ShowRequest struct {
 	ctx context.Context
-	ApiService *NetworkCredentialsV1ApiService
+	ApiService *NetworkCredentialsV1APIService
 	type_ string
 	connection *string
 }
@@ -49,7 +49,7 @@ Show required network credentials depending on device type
  @param type_ Device type
  @return ApiNetworkCredentialsV1ShowRequest
 */
-func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1Show(ctx context.Context, type_ string) ApiNetworkCredentialsV1ShowRequest {
+func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1Show(ctx context.Context, type_ string) ApiNetworkCredentialsV1ShowRequest {
 	return ApiNetworkCredentialsV1ShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,7 +59,7 @@ func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1Show(ctx context.Co
 
 // Execute executes the request
 //  @return []ArduinoCredentialsv1
-func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowExecute(r ApiNetworkCredentialsV1ShowRequest) ([]ArduinoCredentialsv1, *http.Response, error) {
+func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowExecute(r ApiNetworkCredentialsV1ShowRequest) ([]ArduinoCredentialsv1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -67,7 +67,7 @@ func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowExecute(r ApiNe
 		localVarReturnValue  []ArduinoCredentialsv1
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkCredentialsV1ApiService.NetworkCredentialsV1Show")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkCredentialsV1APIService.NetworkCredentialsV1Show")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,7 +80,7 @@ func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowExecute(r ApiNe
 	localVarFormParams := url.Values{}
 
 	if r.connection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "connection", r.connection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "connection", r.connection, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -149,7 +149,7 @@ func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowExecute(r ApiNe
 
 type ApiNetworkCredentialsV1ShowByDeviceRequest struct {
 	ctx context.Context
-	ApiService *NetworkCredentialsV1ApiService
+	ApiService *NetworkCredentialsV1APIService
 	type_ string
 }
 
@@ -166,7 +166,7 @@ Show available connection types depending on device type
  @param type_ Device type
  @return ApiNetworkCredentialsV1ShowByDeviceRequest
 */
-func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowByDevice(ctx context.Context, type_ string) ApiNetworkCredentialsV1ShowByDeviceRequest {
+func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDevice(ctx context.Context, type_ string) ApiNetworkCredentialsV1ShowByDeviceRequest {
 	return ApiNetworkCredentialsV1ShowByDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -175,14 +175,14 @@ func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowByDevice(ctx co
 }
 
 // Execute executes the request
-func (a *NetworkCredentialsV1ApiService) NetworkCredentialsV1ShowByDeviceExecute(r ApiNetworkCredentialsV1ShowByDeviceRequest) (*http.Response, error) {
+func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute(r ApiNetworkCredentialsV1ShowByDeviceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkCredentialsV1ApiService.NetworkCredentialsV1ShowByDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkCredentialsV1APIService.NetworkCredentialsV1ShowByDevice")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

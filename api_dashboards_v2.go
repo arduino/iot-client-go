@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// DashboardsV2ApiService DashboardsV2Api service
-type DashboardsV2ApiService service
+// DashboardsV2APIService DashboardsV2API service
+type DashboardsV2APIService service
 
 type ApiDashboardsV2CloneRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	clone *Clone
 	xOrganization *string
@@ -54,7 +54,7 @@ Clone an existing dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2CloneRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Clone(ctx context.Context, id string) ApiDashboardsV2CloneRequest {
+func (a *DashboardsV2APIService) DashboardsV2Clone(ctx context.Context, id string) ApiDashboardsV2CloneRequest {
 	return ApiDashboardsV2CloneRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -64,7 +64,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Clone(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ArduinoDashboardv2
-func (a *DashboardsV2ApiService) DashboardsV2CloneExecute(r ApiDashboardsV2CloneRequest) (*ArduinoDashboardv2, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2CloneExecute(r ApiDashboardsV2CloneRequest) (*ArduinoDashboardv2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -72,7 +72,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CloneExecute(r ApiDashboardsV2Clone
 		localVarReturnValue  *ArduinoDashboardv2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Clone")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Clone")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -105,7 +105,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CloneExecute(r ApiDashboardsV2Clone
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.clone
@@ -191,7 +191,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CloneExecute(r ApiDashboardsV2Clone
 
 type ApiDashboardsV2CreateRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	dashboardv2 *Dashboardv2
 	xOrganization *string
 }
@@ -219,7 +219,7 @@ Create a new dashboard
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDashboardsV2CreateRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Create(ctx context.Context) ApiDashboardsV2CreateRequest {
+func (a *DashboardsV2APIService) DashboardsV2Create(ctx context.Context) ApiDashboardsV2CreateRequest {
 	return ApiDashboardsV2CreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -228,7 +228,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Create(ctx context.Context) ApiDash
 
 // Execute executes the request
 //  @return ArduinoDashboardv2
-func (a *DashboardsV2ApiService) DashboardsV2CreateExecute(r ApiDashboardsV2CreateRequest) (*ArduinoDashboardv2, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2CreateExecute(r ApiDashboardsV2CreateRequest) (*ArduinoDashboardv2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -236,7 +236,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CreateExecute(r ApiDashboardsV2Crea
 		localVarReturnValue  *ArduinoDashboardv2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -268,7 +268,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CreateExecute(r ApiDashboardsV2Crea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.dashboardv2
@@ -354,7 +354,7 @@ func (a *DashboardsV2ApiService) DashboardsV2CreateExecute(r ApiDashboardsV2Crea
 
 type ApiDashboardsV2DeleteRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	xOrganization *string
 }
@@ -377,7 +377,7 @@ Delete a dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2DeleteRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx context.Context, id string) ApiDashboardsV2DeleteRequest {
+func (a *DashboardsV2APIService) DashboardsV2Delete(ctx context.Context, id string) ApiDashboardsV2DeleteRequest {
 	return ApiDashboardsV2DeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -386,14 +386,14 @@ func (a *DashboardsV2ApiService) DashboardsV2Delete(ctx context.Context, id stri
 }
 
 // Execute executes the request
-func (a *DashboardsV2ApiService) DashboardsV2DeleteExecute(r ApiDashboardsV2DeleteRequest) (*http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2DeleteExecute(r ApiDashboardsV2DeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Delete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -423,7 +423,7 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteExecute(r ApiDashboardsV2Dele
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -498,7 +498,7 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteExecute(r ApiDashboardsV2Dele
 
 type ApiDashboardsV2DeleteShareRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	userId string
 	xOrganization *string
@@ -523,7 +523,7 @@ Delete a user the dashboard has been shared with
  @param userId The id of the user
  @return ApiDashboardsV2DeleteShareRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx context.Context, id string, userId string) ApiDashboardsV2DeleteShareRequest {
+func (a *DashboardsV2APIService) DashboardsV2DeleteShare(ctx context.Context, id string, userId string) ApiDashboardsV2DeleteShareRequest {
 	return ApiDashboardsV2DeleteShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -533,14 +533,14 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteShare(ctx context.Context, id
 }
 
 // Execute executes the request
-func (a *DashboardsV2ApiService) DashboardsV2DeleteShareExecute(r ApiDashboardsV2DeleteShareRequest) (*http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2DeleteShareExecute(r ApiDashboardsV2DeleteShareRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2DeleteShare")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2DeleteShare")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -571,7 +571,7 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteShareExecute(r ApiDashboardsV
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -646,7 +646,7 @@ func (a *DashboardsV2ApiService) DashboardsV2DeleteShareExecute(r ApiDashboardsV
 
 type ApiDashboardsV2LinkRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	widgetId string
 	widgetlink *Widgetlink
@@ -677,7 +677,7 @@ Link or detach widget variables
  @param widgetId The id of the widget
  @return ApiDashboardsV2LinkRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Link(ctx context.Context, id string, widgetId string) ApiDashboardsV2LinkRequest {
+func (a *DashboardsV2APIService) DashboardsV2Link(ctx context.Context, id string, widgetId string) ApiDashboardsV2LinkRequest {
 	return ApiDashboardsV2LinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -688,7 +688,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Link(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoVariableslinks
-func (a *DashboardsV2ApiService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRequest) (*ArduinoVariableslinks, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRequest) (*ArduinoVariableslinks, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -696,7 +696,7 @@ func (a *DashboardsV2ApiService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRe
 		localVarReturnValue  *ArduinoVariableslinks
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Link")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Link")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -730,7 +730,7 @@ func (a *DashboardsV2ApiService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.widgetlink
@@ -816,7 +816,7 @@ func (a *DashboardsV2ApiService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRe
 
 type ApiDashboardsV2ListRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	name *string
 	userId *string
 	xOrganization *string
@@ -851,7 +851,7 @@ Returns the list of dashboards
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDashboardsV2ListRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2List(ctx context.Context) ApiDashboardsV2ListRequest {
+func (a *DashboardsV2APIService) DashboardsV2List(ctx context.Context) ApiDashboardsV2ListRequest {
 	return ApiDashboardsV2ListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -860,7 +860,7 @@ func (a *DashboardsV2ApiService) DashboardsV2List(ctx context.Context) ApiDashbo
 
 // Execute executes the request
 //  @return []ArduinoDashboardv2
-func (a *DashboardsV2ApiService) DashboardsV2ListExecute(r ApiDashboardsV2ListRequest) ([]ArduinoDashboardv2, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2ListExecute(r ApiDashboardsV2ListRequest) ([]ArduinoDashboardv2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -868,7 +868,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListExecute(r ApiDashboardsV2ListRe
 		localVarReturnValue  []ArduinoDashboardv2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2List")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -880,10 +880,10 @@ func (a *DashboardsV2ApiService) DashboardsV2ListExecute(r ApiDashboardsV2ListRe
 	localVarFormParams := url.Values{}
 
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.userId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -903,7 +903,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListExecute(r ApiDashboardsV2ListRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -987,7 +987,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListExecute(r ApiDashboardsV2ListRe
 
 type ApiDashboardsV2ListSharesRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	xOrganization *string
 }
@@ -1010,7 +1010,7 @@ List of users the dashboard has been shared with
  @param id The id of the dashboard
  @return ApiDashboardsV2ListSharesRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx context.Context, id string) ApiDashboardsV2ListSharesRequest {
+func (a *DashboardsV2APIService) DashboardsV2ListShares(ctx context.Context, id string) ApiDashboardsV2ListSharesRequest {
 	return ApiDashboardsV2ListSharesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1020,7 +1020,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListShares(ctx context.Context, id 
 
 // Execute executes the request
 //  @return []ArduinoDashboardshare
-func (a *DashboardsV2ApiService) DashboardsV2ListSharesExecute(r ApiDashboardsV2ListSharesRequest) ([]ArduinoDashboardshare, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2ListSharesExecute(r ApiDashboardsV2ListSharesRequest) ([]ArduinoDashboardshare, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1028,7 +1028,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListSharesExecute(r ApiDashboardsV2
 		localVarReturnValue  []ArduinoDashboardshare
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2ListShares")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2ListShares")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1058,7 +1058,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListSharesExecute(r ApiDashboardsV2
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1142,7 +1142,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ListSharesExecute(r ApiDashboardsV2
 
 type ApiDashboardsV2RequestAccessRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	sharerequest *Sharerequest
 	xOrganization *string
@@ -1171,7 +1171,7 @@ Request access to a dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2RequestAccessRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx context.Context, id string) ApiDashboardsV2RequestAccessRequest {
+func (a *DashboardsV2APIService) DashboardsV2RequestAccess(ctx context.Context, id string) ApiDashboardsV2RequestAccessRequest {
 	return ApiDashboardsV2RequestAccessRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1180,14 +1180,14 @@ func (a *DashboardsV2ApiService) DashboardsV2RequestAccess(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *DashboardsV2ApiService) DashboardsV2RequestAccessExecute(r ApiDashboardsV2RequestAccessRequest) (*http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2RequestAccessExecute(r ApiDashboardsV2RequestAccessRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2RequestAccess")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2RequestAccess")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1220,7 +1220,7 @@ func (a *DashboardsV2ApiService) DashboardsV2RequestAccessExecute(r ApiDashboard
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.sharerequest
@@ -1297,7 +1297,7 @@ func (a *DashboardsV2ApiService) DashboardsV2RequestAccessExecute(r ApiDashboard
 
 type ApiDashboardsV2ShareRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	dashboardshare *Dashboardshare
 	xOrganization *string
@@ -1326,7 +1326,7 @@ Share a dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2ShareRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Share(ctx context.Context, id string) ApiDashboardsV2ShareRequest {
+func (a *DashboardsV2APIService) DashboardsV2Share(ctx context.Context, id string) ApiDashboardsV2ShareRequest {
 	return ApiDashboardsV2ShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1335,14 +1335,14 @@ func (a *DashboardsV2ApiService) DashboardsV2Share(ctx context.Context, id strin
 }
 
 // Execute executes the request
-func (a *DashboardsV2ApiService) DashboardsV2ShareExecute(r ApiDashboardsV2ShareRequest) (*http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2ShareExecute(r ApiDashboardsV2ShareRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Share")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Share")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1375,7 +1375,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ShareExecute(r ApiDashboardsV2Share
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.dashboardshare
@@ -1452,7 +1452,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ShareExecute(r ApiDashboardsV2Share
 
 type ApiDashboardsV2ShowRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	xOrganization *string
 }
@@ -1475,7 +1475,7 @@ Show a dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2ShowRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Show(ctx context.Context, id string) ApiDashboardsV2ShowRequest {
+func (a *DashboardsV2APIService) DashboardsV2Show(ctx context.Context, id string) ApiDashboardsV2ShowRequest {
 	return ApiDashboardsV2ShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1485,7 +1485,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Show(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoDashboardv2
-func (a *DashboardsV2ApiService) DashboardsV2ShowExecute(r ApiDashboardsV2ShowRequest) (*ArduinoDashboardv2, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2ShowExecute(r ApiDashboardsV2ShowRequest) (*ArduinoDashboardv2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1493,7 +1493,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ShowExecute(r ApiDashboardsV2ShowRe
 		localVarReturnValue  *ArduinoDashboardv2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Show")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Show")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1523,7 +1523,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ShowExecute(r ApiDashboardsV2ShowRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1596,7 +1596,7 @@ func (a *DashboardsV2ApiService) DashboardsV2ShowExecute(r ApiDashboardsV2ShowRe
 
 type ApiDashboardsV2TemplateRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	xOrganization *string
 }
@@ -1619,7 +1619,7 @@ Get a template of the dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2TemplateRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Template(ctx context.Context, id string) ApiDashboardsV2TemplateRequest {
+func (a *DashboardsV2APIService) DashboardsV2Template(ctx context.Context, id string) ApiDashboardsV2TemplateRequest {
 	return ApiDashboardsV2TemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1629,7 +1629,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Template(ctx context.Context, id st
 
 // Execute executes the request
 //  @return ArduinoDashboardv2template
-func (a *DashboardsV2ApiService) DashboardsV2TemplateExecute(r ApiDashboardsV2TemplateRequest) (*ArduinoDashboardv2template, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2TemplateExecute(r ApiDashboardsV2TemplateRequest) (*ArduinoDashboardv2template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1637,7 +1637,7 @@ func (a *DashboardsV2ApiService) DashboardsV2TemplateExecute(r ApiDashboardsV2Te
 		localVarReturnValue  *ArduinoDashboardv2template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Template")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Template")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1667,7 +1667,7 @@ func (a *DashboardsV2ApiService) DashboardsV2TemplateExecute(r ApiDashboardsV2Te
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1751,7 +1751,7 @@ func (a *DashboardsV2ApiService) DashboardsV2TemplateExecute(r ApiDashboardsV2Te
 
 type ApiDashboardsV2UpdateRequest struct {
 	ctx context.Context
-	ApiService *DashboardsV2ApiService
+	ApiService *DashboardsV2APIService
 	id string
 	dashboardv2 *Dashboardv2
 	xOrganization *string
@@ -1781,7 +1781,7 @@ Updates an existing dashboard
  @param id The id of the dashboard
  @return ApiDashboardsV2UpdateRequest
 */
-func (a *DashboardsV2ApiService) DashboardsV2Update(ctx context.Context, id string) ApiDashboardsV2UpdateRequest {
+func (a *DashboardsV2APIService) DashboardsV2Update(ctx context.Context, id string) ApiDashboardsV2UpdateRequest {
 	return ApiDashboardsV2UpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1791,7 +1791,7 @@ func (a *DashboardsV2ApiService) DashboardsV2Update(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return ArduinoDashboardv2
-func (a *DashboardsV2ApiService) DashboardsV2UpdateExecute(r ApiDashboardsV2UpdateRequest) (*ArduinoDashboardv2, *http.Response, error) {
+func (a *DashboardsV2APIService) DashboardsV2UpdateExecute(r ApiDashboardsV2UpdateRequest) (*ArduinoDashboardv2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1799,7 +1799,7 @@ func (a *DashboardsV2ApiService) DashboardsV2UpdateExecute(r ApiDashboardsV2Upda
 		localVarReturnValue  *ArduinoDashboardv2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2ApiService.DashboardsV2Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1832,7 +1832,7 @@ func (a *DashboardsV2ApiService) DashboardsV2UpdateExecute(r ApiDashboardsV2Upda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.dashboardv2

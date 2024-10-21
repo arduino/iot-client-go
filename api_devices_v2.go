@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -21,12 +21,12 @@ import (
 )
 
 
-// DevicesV2ApiService DevicesV2Api service
-type DevicesV2ApiService service
+// DevicesV2APIService DevicesV2API service
+type DevicesV2APIService service
 
 type ApiDevicesV2CreateRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	createDevicesV2Payload *CreateDevicesV2Payload
 	xOrganization *string
 }
@@ -54,7 +54,7 @@ Creates a new device associated to the user.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDevicesV2CreateRequest
 */
-func (a *DevicesV2ApiService) DevicesV2Create(ctx context.Context) ApiDevicesV2CreateRequest {
+func (a *DevicesV2APIService) DevicesV2Create(ctx context.Context) ApiDevicesV2CreateRequest {
 	return ApiDevicesV2CreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -63,7 +63,7 @@ func (a *DevicesV2ApiService) DevicesV2Create(ctx context.Context) ApiDevicesV2C
 
 // Execute executes the request
 //  @return ArduinoDevicev2
-func (a *DevicesV2ApiService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest) (*ArduinoDevicev2, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest) (*ArduinoDevicev2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -71,7 +71,7 @@ func (a *DevicesV2ApiService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest
 		localVarReturnValue  *ArduinoDevicev2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -103,7 +103,7 @@ func (a *DevicesV2ApiService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.createDevicesV2Payload
@@ -189,7 +189,7 @@ func (a *DevicesV2ApiService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest
 
 type ApiDevicesV2DeleteRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	xOrganization *string
 }
@@ -212,7 +212,7 @@ Removes a device associated to the user
  @param id The id of the device
  @return ApiDevicesV2DeleteRequest
 */
-func (a *DevicesV2ApiService) DevicesV2Delete(ctx context.Context, id string) ApiDevicesV2DeleteRequest {
+func (a *DevicesV2APIService) DevicesV2Delete(ctx context.Context, id string) ApiDevicesV2DeleteRequest {
 	return ApiDevicesV2DeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -221,14 +221,14 @@ func (a *DevicesV2ApiService) DevicesV2Delete(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-func (a *DevicesV2ApiService) DevicesV2DeleteExecute(r ApiDevicesV2DeleteRequest) (*http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2DeleteExecute(r ApiDevicesV2DeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2Delete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -258,7 +258,7 @@ func (a *DevicesV2ApiService) DevicesV2DeleteExecute(r ApiDevicesV2DeleteRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -322,7 +322,7 @@ func (a *DevicesV2ApiService) DevicesV2DeleteExecute(r ApiDevicesV2DeleteRequest
 
 type ApiDevicesV2GetEventsRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	limit *int32
 	start *string
@@ -359,7 +359,7 @@ GET device events
  @param id The id of the device
  @return ApiDevicesV2GetEventsRequest
 */
-func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx context.Context, id string) ApiDevicesV2GetEventsRequest {
+func (a *DevicesV2APIService) DevicesV2GetEvents(ctx context.Context, id string) ApiDevicesV2GetEventsRequest {
 	return ApiDevicesV2GetEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -369,7 +369,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEvents(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return ArduinoDevicev2EventProperties
-func (a *DevicesV2ApiService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsRequest) (*ArduinoDevicev2EventProperties, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsRequest) (*ArduinoDevicev2EventProperties, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -377,7 +377,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsR
 		localVarReturnValue  *ArduinoDevicev2EventProperties
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2GetEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2GetEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -390,10 +390,10 @@ func (a *DevicesV2ApiService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsR
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -413,7 +413,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -497,7 +497,7 @@ func (a *DevicesV2ApiService) DevicesV2GetEventsExecute(r ApiDevicesV2GetEventsR
 
 type ApiDevicesV2GetPropertiesRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	showDeleted *bool
 	xOrganization *string
@@ -527,7 +527,7 @@ GET device properties
  @param id The id of the device
  @return ApiDevicesV2GetPropertiesRequest
 */
-func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx context.Context, id string) ApiDevicesV2GetPropertiesRequest {
+func (a *DevicesV2APIService) DevicesV2GetProperties(ctx context.Context, id string) ApiDevicesV2GetPropertiesRequest {
 	return ApiDevicesV2GetPropertiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -537,7 +537,7 @@ func (a *DevicesV2ApiService) DevicesV2GetProperties(ctx context.Context, id str
 
 // Execute executes the request
 //  @return ArduinoDevicev2properties
-func (a *DevicesV2ApiService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPropertiesRequest) (*ArduinoDevicev2properties, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPropertiesRequest) (*ArduinoDevicev2properties, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -545,7 +545,7 @@ func (a *DevicesV2ApiService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPro
 		localVarReturnValue  *ArduinoDevicev2properties
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2GetProperties")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2GetProperties")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -558,7 +558,10 @@ func (a *DevicesV2ApiService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPro
 	localVarFormParams := url.Values{}
 
 	if r.showDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.showDeleted = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -578,7 +581,7 @@ func (a *DevicesV2ApiService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -651,7 +654,7 @@ func (a *DevicesV2ApiService) DevicesV2GetPropertiesExecute(r ApiDevicesV2GetPro
 
 type ApiDevicesV2GetStatusEventsRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	limit *int32
 	start *string
@@ -688,7 +691,7 @@ GET connection status events
  @param id The id of the device
  @return ApiDevicesV2GetStatusEventsRequest
 */
-func (a *DevicesV2ApiService) DevicesV2GetStatusEvents(ctx context.Context, id string) ApiDevicesV2GetStatusEventsRequest {
+func (a *DevicesV2APIService) DevicesV2GetStatusEvents(ctx context.Context, id string) ApiDevicesV2GetStatusEventsRequest {
 	return ApiDevicesV2GetStatusEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -698,7 +701,7 @@ func (a *DevicesV2ApiService) DevicesV2GetStatusEvents(ctx context.Context, id s
 
 // Execute executes the request
 //  @return ArduinoDevicev2StatusEvents
-func (a *DevicesV2ApiService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetStatusEventsRequest) (*ArduinoDevicev2StatusEvents, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetStatusEventsRequest) (*ArduinoDevicev2StatusEvents, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -706,7 +709,7 @@ func (a *DevicesV2ApiService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetS
 		localVarReturnValue  *ArduinoDevicev2StatusEvents
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2GetStatusEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2GetStatusEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -719,10 +722,13 @@ func (a *DevicesV2ApiService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetS
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 30
+		r.limit = &defaultValue
 	}
 	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -742,7 +748,7 @@ func (a *DevicesV2ApiService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -837,7 +843,7 @@ func (a *DevicesV2ApiService) DevicesV2GetStatusEventsExecute(r ApiDevicesV2GetS
 
 type ApiDevicesV2ListRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	acrossUserIds *bool
 	serial *string
 	tags *[]string
@@ -879,7 +885,7 @@ Returns the list of devices associated to the user
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDevicesV2ListRequest
 */
-func (a *DevicesV2ApiService) DevicesV2List(ctx context.Context) ApiDevicesV2ListRequest {
+func (a *DevicesV2APIService) DevicesV2List(ctx context.Context) ApiDevicesV2ListRequest {
 	return ApiDevicesV2ListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -888,7 +894,7 @@ func (a *DevicesV2ApiService) DevicesV2List(ctx context.Context) ApiDevicesV2Lis
 
 // Execute executes the request
 //  @return []ArduinoDevicev2
-func (a *DevicesV2ApiService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([]ArduinoDevicev2, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([]ArduinoDevicev2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -896,7 +902,7 @@ func (a *DevicesV2ApiService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 		localVarReturnValue  []ArduinoDevicev2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2List")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -908,20 +914,23 @@ func (a *DevicesV2ApiService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 	localVarFormParams := url.Values{}
 
 	if r.acrossUserIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "across_user_ids", r.acrossUserIds, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "across_user_ids", r.acrossUserIds, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.acrossUserIds = &defaultValue
 	}
 	if r.serial != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "form", "")
 	}
 	if r.tags != nil {
 		t := *r.tags
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "tags", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "tags", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -942,7 +951,7 @@ func (a *DevicesV2ApiService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1026,7 +1035,7 @@ func (a *DevicesV2ApiService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 
 type ApiDevicesV2ShowRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	xOrganization *string
 }
@@ -1049,7 +1058,7 @@ Returns the device requested by the user
  @param id The id of the device
  @return ApiDevicesV2ShowRequest
 */
-func (a *DevicesV2ApiService) DevicesV2Show(ctx context.Context, id string) ApiDevicesV2ShowRequest {
+func (a *DevicesV2APIService) DevicesV2Show(ctx context.Context, id string) ApiDevicesV2ShowRequest {
 	return ApiDevicesV2ShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1059,7 +1068,7 @@ func (a *DevicesV2ApiService) DevicesV2Show(ctx context.Context, id string) ApiD
 
 // Execute executes the request
 //  @return ArduinoDevicev2
-func (a *DevicesV2ApiService) DevicesV2ShowExecute(r ApiDevicesV2ShowRequest) (*ArduinoDevicev2, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2ShowExecute(r ApiDevicesV2ShowRequest) (*ArduinoDevicev2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1067,7 +1076,7 @@ func (a *DevicesV2ApiService) DevicesV2ShowExecute(r ApiDevicesV2ShowRequest) (*
 		localVarReturnValue  *ArduinoDevicev2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2Show")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2Show")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1097,7 +1106,7 @@ func (a *DevicesV2ApiService) DevicesV2ShowExecute(r ApiDevicesV2ShowRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1170,7 +1179,7 @@ func (a *DevicesV2ApiService) DevicesV2ShowExecute(r ApiDevicesV2ShowRequest) (*
 
 type ApiDevicesV2TimeseriesRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	pid string
 	limit *int32
@@ -1209,7 +1218,7 @@ GET device properties values in a range of time
  @param pid The id of the property
  @return ApiDevicesV2TimeseriesRequest
 */
-func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx context.Context, id string, pid string) ApiDevicesV2TimeseriesRequest {
+func (a *DevicesV2APIService) DevicesV2Timeseries(ctx context.Context, id string, pid string) ApiDevicesV2TimeseriesRequest {
 	return ApiDevicesV2TimeseriesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1220,7 +1229,7 @@ func (a *DevicesV2ApiService) DevicesV2Timeseries(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoDevicev2propertyvalues
-func (a *DevicesV2ApiService) DevicesV2TimeseriesExecute(r ApiDevicesV2TimeseriesRequest) (*ArduinoDevicev2propertyvalues, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2TimeseriesExecute(r ApiDevicesV2TimeseriesRequest) (*ArduinoDevicev2propertyvalues, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1228,7 +1237,7 @@ func (a *DevicesV2ApiService) DevicesV2TimeseriesExecute(r ApiDevicesV2Timeserie
 		localVarReturnValue  *ArduinoDevicev2propertyvalues
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2Timeseries")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2Timeseries")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1242,10 +1251,10 @@ func (a *DevicesV2ApiService) DevicesV2TimeseriesExecute(r ApiDevicesV2Timeserie
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1265,7 +1274,7 @@ func (a *DevicesV2ApiService) DevicesV2TimeseriesExecute(r ApiDevicesV2Timeserie
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1349,7 +1358,7 @@ func (a *DevicesV2ApiService) DevicesV2TimeseriesExecute(r ApiDevicesV2Timeserie
 
 type ApiDevicesV2UpdateRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	devicev2 *Devicev2
 	xOrganization *string
@@ -1379,7 +1388,7 @@ Updates a device associated to the user
  @param id The id of the device
  @return ApiDevicesV2UpdateRequest
 */
-func (a *DevicesV2ApiService) DevicesV2Update(ctx context.Context, id string) ApiDevicesV2UpdateRequest {
+func (a *DevicesV2APIService) DevicesV2Update(ctx context.Context, id string) ApiDevicesV2UpdateRequest {
 	return ApiDevicesV2UpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1389,7 +1398,7 @@ func (a *DevicesV2ApiService) DevicesV2Update(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ArduinoDevicev2
-func (a *DevicesV2ApiService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest) (*ArduinoDevicev2, *http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest) (*ArduinoDevicev2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1397,7 +1406,7 @@ func (a *DevicesV2ApiService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest
 		localVarReturnValue  *ArduinoDevicev2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1430,7 +1439,7 @@ func (a *DevicesV2ApiService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.devicev2
@@ -1516,7 +1525,7 @@ func (a *DevicesV2ApiService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest
 
 type ApiDevicesV2UpdatePropertiesRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2ApiService
+	ApiService *DevicesV2APIService
 	id string
 	propertiesValues *PropertiesValues
 	xOrganization *string
@@ -1545,7 +1554,7 @@ Update device properties last values
  @param id The id of the device
  @return ApiDevicesV2UpdatePropertiesRequest
 */
-func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx context.Context, id string) ApiDevicesV2UpdatePropertiesRequest {
+func (a *DevicesV2APIService) DevicesV2UpdateProperties(ctx context.Context, id string) ApiDevicesV2UpdatePropertiesRequest {
 	return ApiDevicesV2UpdatePropertiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1554,14 +1563,14 @@ func (a *DevicesV2ApiService) DevicesV2UpdateProperties(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *DevicesV2ApiService) DevicesV2UpdatePropertiesExecute(r ApiDevicesV2UpdatePropertiesRequest) (*http.Response, error) {
+func (a *DevicesV2APIService) DevicesV2UpdatePropertiesExecute(r ApiDevicesV2UpdatePropertiesRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2ApiService.DevicesV2UpdateProperties")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2UpdateProperties")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1594,7 +1603,7 @@ func (a *DevicesV2ApiService) DevicesV2UpdatePropertiesExecute(r ApiDevicesV2Upd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.propertiesValues

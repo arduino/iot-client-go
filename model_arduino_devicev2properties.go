@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoDevicev2properties type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type ArduinoDevicev2properties struct {
 	// The user id of the owner
 	UserId string `json:"user_id"`
 }
+
+type _ArduinoDevicev2properties ArduinoDevicev2properties
 
 // NewArduinoDevicev2properties instantiates a new ArduinoDevicev2properties object
 // This constructor will assign default values to properties that have it defined,
@@ -161,6 +165,46 @@ func (o ArduinoDevicev2properties) ToMap() (map[string]interface{}, error) {
 	toSerialize["properties"] = o.Properties
 	toSerialize["user_id"] = o.UserId
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2properties) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"data_retention_days",
+		"deviceId",
+		"properties",
+		"user_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoDevicev2properties := _ArduinoDevicev2properties{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoDevicev2properties)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2properties(varArduinoDevicev2properties)
+
+	return err
 }
 
 type NullableArduinoDevicev2properties struct {

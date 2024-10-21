@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoDevicev2Cert type satisfies the MappedNullable interface at compile time
@@ -35,6 +37,8 @@ type ArduinoDevicev2Cert struct {
 	// The certificate in pem format
 	Pem string `json:"pem"`
 }
+
+type _ArduinoDevicev2Cert ArduinoDevicev2Cert
 
 // NewArduinoDevicev2Cert instantiates a new ArduinoDevicev2Cert object
 // This constructor will assign default values to properties that have it defined,
@@ -283,6 +287,49 @@ func (o ArduinoDevicev2Cert) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["pem"] = o.Pem
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2Cert) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"compressed",
+		"der",
+		"device_id",
+		"enabled",
+		"href",
+		"id",
+		"pem",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoDevicev2Cert := _ArduinoDevicev2Cert{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoDevicev2Cert)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2Cert(varArduinoDevicev2Cert)
+
+	return err
 }
 
 type NullableArduinoDevicev2Cert struct {

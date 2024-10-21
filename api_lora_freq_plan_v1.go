@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -19,12 +19,12 @@ import (
 )
 
 
-// LoraFreqPlanV1ApiService LoraFreqPlanV1Api service
-type LoraFreqPlanV1ApiService service
+// LoraFreqPlanV1APIService LoraFreqPlanV1API service
+type LoraFreqPlanV1APIService service
 
 type ApiLoraFreqPlanV1ListRequest struct {
 	ctx context.Context
-	ApiService *LoraFreqPlanV1ApiService
+	ApiService *LoraFreqPlanV1APIService
 }
 
 func (r ApiLoraFreqPlanV1ListRequest) Execute() (*ArduinoLorafreqplansv1, *http.Response, error) {
@@ -39,7 +39,7 @@ List the lora frequency plans supported
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLoraFreqPlanV1ListRequest
 */
-func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1List(ctx context.Context) ApiLoraFreqPlanV1ListRequest {
+func (a *LoraFreqPlanV1APIService) LoraFreqPlanV1List(ctx context.Context) ApiLoraFreqPlanV1ListRequest {
 	return ApiLoraFreqPlanV1ListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -48,7 +48,7 @@ func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1List(ctx context.Context) ApiLo
 
 // Execute executes the request
 //  @return ArduinoLorafreqplansv1
-func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1ListRequest) (*ArduinoLorafreqplansv1, *http.Response, error) {
+func (a *LoraFreqPlanV1APIService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1ListRequest) (*ArduinoLorafreqplansv1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -56,7 +56,7 @@ func (a *LoraFreqPlanV1ApiService) LoraFreqPlanV1ListExecute(r ApiLoraFreqPlanV1
 		localVarReturnValue  *ArduinoLorafreqplansv1
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoraFreqPlanV1ApiService.LoraFreqPlanV1List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoraFreqPlanV1APIService.LoraFreqPlanV1List")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

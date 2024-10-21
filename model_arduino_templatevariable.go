@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoTemplatevariable type satisfies the MappedNullable interface at compile time
@@ -31,6 +33,8 @@ type ArduinoTemplatevariable struct {
 	// The name of the variable in the code
 	VariableId string `json:"variable_id"`
 }
+
+type _ArduinoTemplatevariable ArduinoTemplatevariable
 
 // NewArduinoTemplatevariable instantiates a new ArduinoTemplatevariable object
 // This constructor will assign default values to properties that have it defined,
@@ -225,6 +229,47 @@ func (o ArduinoTemplatevariable) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["variable_id"] = o.VariableId
 	return toSerialize, nil
+}
+
+func (o *ArduinoTemplatevariable) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"permission",
+		"thing_id",
+		"type",
+		"variable_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoTemplatevariable := _ArduinoTemplatevariable{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoTemplatevariable)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoTemplatevariable(varArduinoTemplatevariable)
+
+	return err
 }
 
 type NullableArduinoTemplatevariable struct {

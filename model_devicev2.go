@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -24,15 +24,15 @@ type Devicev2 struct {
 	// The fully qualified board name
 	Fqbn *string `json:"fqbn,omitempty"`
 	// The friendly name of the device
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
 	// The serial uuid of the device
-	Serial *string `json:"serial,omitempty"`
+	Serial *string `json:"serial,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
 	// The type of the device
 	Type *string `json:"type,omitempty"`
 	// The user_id associated to the device. If absent it will be inferred from the authentication header
 	UserId *string `json:"user_id,omitempty"`
 	// The version of the NINA/WIFI101 firmware running on the device
-	WifiFwVersion *string `json:"wifi_fw_version,omitempty"`
+	WifiFwVersion *string `json:"wifi_fw_version,omitempty" validate:"regexp=^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"`
 }
 
 // NewDevicev2 instantiates a new Devicev2 object

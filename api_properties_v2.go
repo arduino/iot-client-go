@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// PropertiesV2ApiService PropertiesV2Api service
-type PropertiesV2ApiService service
+// PropertiesV2APIService PropertiesV2API service
+type PropertiesV2APIService service
 
 type ApiPropertiesV2CreateRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	property *Property
 	xOrganization *string
@@ -56,7 +56,7 @@ Creates a new property associated to a thing
  @param id The id of the thing
  @return ApiPropertiesV2CreateRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Create(ctx context.Context, id string) ApiPropertiesV2CreateRequest {
+func (a *PropertiesV2APIService) PropertiesV2Create(ctx context.Context, id string) ApiPropertiesV2CreateRequest {
 	return ApiPropertiesV2CreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -66,7 +66,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Create(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return ArduinoProperty
-func (a *PropertiesV2ApiService) PropertiesV2CreateExecute(r ApiPropertiesV2CreateRequest) (*ArduinoProperty, *http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2CreateRequest) (*ArduinoProperty, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *PropertiesV2ApiService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 		localVarReturnValue  *ArduinoProperty
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -107,7 +107,7 @@ func (a *PropertiesV2ApiService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.property
@@ -193,7 +193,7 @@ func (a *PropertiesV2ApiService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 
 type ApiPropertiesV2DeleteRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	pid string
 	force *bool
@@ -226,7 +226,7 @@ Removes a property associated to a thing
  @param pid The id of the property
  @return ApiPropertiesV2DeleteRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx context.Context, id string, pid string) ApiPropertiesV2DeleteRequest {
+func (a *PropertiesV2APIService) PropertiesV2Delete(ctx context.Context, id string, pid string) ApiPropertiesV2DeleteRequest {
 	return ApiPropertiesV2DeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -236,14 +236,14 @@ func (a *PropertiesV2ApiService) PropertiesV2Delete(ctx context.Context, id stri
 }
 
 // Execute executes the request
-func (a *PropertiesV2ApiService) PropertiesV2DeleteExecute(r ApiPropertiesV2DeleteRequest) (*http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2DeleteExecute(r ApiPropertiesV2DeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Delete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -257,7 +257,10 @@ func (a *PropertiesV2ApiService) PropertiesV2DeleteExecute(r ApiPropertiesV2Dele
 	localVarFormParams := url.Values{}
 
 	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.force = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -277,7 +280,7 @@ func (a *PropertiesV2ApiService) PropertiesV2DeleteExecute(r ApiPropertiesV2Dele
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -330,7 +333,7 @@ func (a *PropertiesV2ApiService) PropertiesV2DeleteExecute(r ApiPropertiesV2Dele
 
 type ApiPropertiesV2ListRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	showDeleted *bool
 	xOrganization *string
@@ -361,7 +364,7 @@ Returns the list of properties associated to the thing
  @param id The id of the thing
  @return ApiPropertiesV2ListRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2List(ctx context.Context, id string) ApiPropertiesV2ListRequest {
+func (a *PropertiesV2APIService) PropertiesV2List(ctx context.Context, id string) ApiPropertiesV2ListRequest {
 	return ApiPropertiesV2ListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -371,7 +374,7 @@ func (a *PropertiesV2ApiService) PropertiesV2List(ctx context.Context, id string
 
 // Execute executes the request
 //  @return []ArduinoProperty
-func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRequest) ([]ArduinoProperty, *http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2ListExecute(r ApiPropertiesV2ListRequest) ([]ArduinoProperty, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -379,7 +382,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRe
 		localVarReturnValue  []ArduinoProperty
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2List")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -392,7 +395,10 @@ func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRe
 	localVarFormParams := url.Values{}
 
 	if r.showDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.showDeleted = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -412,7 +418,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -485,7 +491,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ListExecute(r ApiPropertiesV2ListRe
 
 type ApiPropertiesV2PublishRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	pid string
 	propertyValue *PropertyValue
@@ -518,7 +524,7 @@ Publish a property value to MQTT
  @param pid The id of the property
  @return ApiPropertiesV2PublishRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx context.Context, id string, pid string) ApiPropertiesV2PublishRequest {
+func (a *PropertiesV2APIService) PropertiesV2Publish(ctx context.Context, id string, pid string) ApiPropertiesV2PublishRequest {
 	return ApiPropertiesV2PublishRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -528,14 +534,14 @@ func (a *PropertiesV2ApiService) PropertiesV2Publish(ctx context.Context, id str
 }
 
 // Execute executes the request
-func (a *PropertiesV2ApiService) PropertiesV2PublishExecute(r ApiPropertiesV2PublishRequest) (*http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2PublishExecute(r ApiPropertiesV2PublishRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Publish")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Publish")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -569,7 +575,7 @@ func (a *PropertiesV2ApiService) PropertiesV2PublishExecute(r ApiPropertiesV2Pub
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.propertyValue
@@ -635,7 +641,7 @@ func (a *PropertiesV2ApiService) PropertiesV2PublishExecute(r ApiPropertiesV2Pub
 
 type ApiPropertiesV2ShowRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	pid string
 	showDeleted *bool
@@ -668,7 +674,7 @@ Returns the property requested by the user
  @param pid The id of the property
  @return ApiPropertiesV2ShowRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Show(ctx context.Context, id string, pid string) ApiPropertiesV2ShowRequest {
+func (a *PropertiesV2APIService) PropertiesV2Show(ctx context.Context, id string, pid string) ApiPropertiesV2ShowRequest {
 	return ApiPropertiesV2ShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -679,7 +685,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Show(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoProperty
-func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRequest) (*ArduinoProperty, *http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRequest) (*ArduinoProperty, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -687,7 +693,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRe
 		localVarReturnValue  *ArduinoProperty
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Show")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Show")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -701,7 +707,10 @@ func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRe
 	localVarFormParams := url.Values{}
 
 	if r.showDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.showDeleted = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -721,7 +730,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -794,7 +803,7 @@ func (a *PropertiesV2ApiService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRe
 
 type ApiPropertiesV2TimeseriesRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	pid string
 	aggregation *string
@@ -855,7 +864,7 @@ Get numerical property's historic data binned on a specified time interval (note
  @param pid ID of a numerical property
  @return ApiPropertiesV2TimeseriesRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Timeseries(ctx context.Context, id string, pid string) ApiPropertiesV2TimeseriesRequest {
+func (a *PropertiesV2APIService) PropertiesV2Timeseries(ctx context.Context, id string, pid string) ApiPropertiesV2TimeseriesRequest {
 	return ApiPropertiesV2TimeseriesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -866,7 +875,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Timeseries(ctx context.Context, id 
 
 // Execute executes the request
 //  @return ArduinoTimeseriesmedia
-func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2TimeseriesRequest) (*ArduinoTimeseriesmedia, *http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2TimeseriesRequest) (*ArduinoTimeseriesmedia, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -874,7 +883,7 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 		localVarReturnValue  *ArduinoTimeseriesmedia
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Timeseries")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Timeseries")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -888,19 +897,22 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 	localVarFormParams := url.Values{}
 
 	if r.aggregation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation", r.aggregation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation", r.aggregation, "form", "")
 	}
 	if r.desc != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.interval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "interval", r.interval, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "interval", r.interval, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -920,7 +932,7 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -993,7 +1005,7 @@ func (a *PropertiesV2ApiService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2
 
 type ApiPropertiesV2UpdateRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2ApiService
+	ApiService *PropertiesV2APIService
 	id string
 	pid string
 	property *Property
@@ -1026,7 +1038,7 @@ Updates a property associated to a thing
  @param pid The id of the property
  @return ApiPropertiesV2UpdateRequest
 */
-func (a *PropertiesV2ApiService) PropertiesV2Update(ctx context.Context, id string, pid string) ApiPropertiesV2UpdateRequest {
+func (a *PropertiesV2APIService) PropertiesV2Update(ctx context.Context, id string, pid string) ApiPropertiesV2UpdateRequest {
 	return ApiPropertiesV2UpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1037,7 +1049,7 @@ func (a *PropertiesV2ApiService) PropertiesV2Update(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return ArduinoProperty
-func (a *PropertiesV2ApiService) PropertiesV2UpdateExecute(r ApiPropertiesV2UpdateRequest) (*ArduinoProperty, *http.Response, error) {
+func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2UpdateRequest) (*ArduinoProperty, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1045,7 +1057,7 @@ func (a *PropertiesV2ApiService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 		localVarReturnValue  *ArduinoProperty
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2ApiService.PropertiesV2Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1079,7 +1091,7 @@ func (a *PropertiesV2ApiService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.property

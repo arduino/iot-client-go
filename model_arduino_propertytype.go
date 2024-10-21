@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoPropertytype type satisfies the MappedNullable interface at compile time
@@ -40,6 +42,8 @@ type ArduinoPropertytype struct {
 	// The measure units available for this type
 	Units []string `json:"units,omitempty"`
 }
+
+type _ArduinoPropertytype ArduinoPropertytype
 
 // NewArduinoPropertytype instantiates a new ArduinoPropertytype object
 // This constructor will assign default values to properties that have it defined,
@@ -374,6 +378,47 @@ func (o ArduinoPropertytype) ToMap() (map[string]interface{}, error) {
 		toSerialize["units"] = o.Units
 	}
 	return toSerialize, nil
+}
+
+func (o *ArduinoPropertytype) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"declaration",
+		"deprecated",
+		"name",
+		"rw",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoPropertytype := _ArduinoPropertytype{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoPropertytype)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoPropertytype(varArduinoPropertytype)
+
+	return err
 }
 
 type NullableArduinoPropertytype struct {

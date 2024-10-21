@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the BatchQueryRawLastValueRequestMediaV1 type satisfies the MappedNullable interface at compile time
@@ -24,6 +26,8 @@ type BatchQueryRawLastValueRequestMediaV1 struct {
 	// Thing id
 	ThingId string `json:"thing_id"`
 }
+
+type _BatchQueryRawLastValueRequestMediaV1 BatchQueryRawLastValueRequestMediaV1
 
 // NewBatchQueryRawLastValueRequestMediaV1 instantiates a new BatchQueryRawLastValueRequestMediaV1 object
 // This constructor will assign default values to properties that have it defined,
@@ -105,6 +109,44 @@ func (o BatchQueryRawLastValueRequestMediaV1) ToMap() (map[string]interface{}, e
 	toSerialize["property_id"] = o.PropertyId
 	toSerialize["thing_id"] = o.ThingId
 	return toSerialize, nil
+}
+
+func (o *BatchQueryRawLastValueRequestMediaV1) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"property_id",
+		"thing_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBatchQueryRawLastValueRequestMediaV1 := _BatchQueryRawLastValueRequestMediaV1{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBatchQueryRawLastValueRequestMediaV1)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BatchQueryRawLastValueRequestMediaV1(varBatchQueryRawLastValueRequestMediaV1)
+
+	return err
 }
 
 type NullableBatchQueryRawLastValueRequestMediaV1 struct {

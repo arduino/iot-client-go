@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -19,12 +19,12 @@ import (
 )
 
 
-// SeriesV2ApiService SeriesV2Api service
-type SeriesV2ApiService service
+// SeriesV2APIService SeriesV2API service
+type SeriesV2APIService service
 
 type ApiSeriesV2BatchQueryRequest struct {
 	ctx context.Context
-	ApiService *SeriesV2ApiService
+	ApiService *SeriesV2APIService
 	batchQueryRequestsMediaV1 *BatchQueryRequestsMediaV1
 	xOrganization *string
 }
@@ -51,7 +51,7 @@ Returns the batch of time-series aggregated samples
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQueryRequest
 */
-func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx context.Context) ApiSeriesV2BatchQueryRequest {
+func (a *SeriesV2APIService) SeriesV2BatchQuery(ctx context.Context) ApiSeriesV2BatchQueryRequest {
 	return ApiSeriesV2BatchQueryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -60,7 +60,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuery(ctx context.Context) ApiSeriesV2
 
 // Execute executes the request
 //  @return ArduinoSeriesBatch
-func (a *SeriesV2ApiService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRequest) (*ArduinoSeriesBatch, *http.Response, error) {
+func (a *SeriesV2APIService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRequest) (*ArduinoSeriesBatch, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRe
 		localVarReturnValue  *ArduinoSeriesBatch
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2BatchQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2APIService.SeriesV2BatchQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -100,7 +100,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.batchQueryRequestsMediaV1
@@ -186,7 +186,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRe
 
 type ApiSeriesV2BatchQueryRawRequest struct {
 	ctx context.Context
-	ApiService *SeriesV2ApiService
+	ApiService *SeriesV2APIService
 	batchQueryRawRequestsMediaV1 *BatchQueryRawRequestsMediaV1
 	xOrganization *string
 }
@@ -213,7 +213,7 @@ Returns the batch of time-series raw samples
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQueryRawRequest
 */
-func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx context.Context) ApiSeriesV2BatchQueryRawRequest {
+func (a *SeriesV2APIService) SeriesV2BatchQueryRaw(ctx context.Context) ApiSeriesV2BatchQueryRawRequest {
 	return ApiSeriesV2BatchQueryRawRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -222,7 +222,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRaw(ctx context.Context) ApiSerie
 
 // Execute executes the request
 //  @return ArduinoSeriesRawBatch
-func (a *SeriesV2ApiService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQueryRawRequest) (*ArduinoSeriesRawBatch, *http.Response, error) {
+func (a *SeriesV2APIService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQueryRawRequest) (*ArduinoSeriesRawBatch, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -230,7 +230,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQuer
 		localVarReturnValue  *ArduinoSeriesRawBatch
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2BatchQueryRaw")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2APIService.SeriesV2BatchQueryRaw")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -262,7 +262,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQuer
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.batchQueryRawRequestsMediaV1
@@ -348,7 +348,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQuer
 
 type ApiSeriesV2BatchQueryRawLastValueRequest struct {
 	ctx context.Context
-	ApiService *SeriesV2ApiService
+	ApiService *SeriesV2APIService
 	batchLastValueRequestsMediaV1 *BatchLastValueRequestsMediaV1
 	xOrganization *string
 }
@@ -375,7 +375,7 @@ Returns the batch of time-series data raw
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQueryRawLastValueRequest
 */
-func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx context.Context) ApiSeriesV2BatchQueryRawLastValueRequest {
+func (a *SeriesV2APIService) SeriesV2BatchQueryRawLastValue(ctx context.Context) ApiSeriesV2BatchQueryRawLastValueRequest {
 	return ApiSeriesV2BatchQueryRawLastValueRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -384,7 +384,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValue(ctx context.Context)
 
 // Execute executes the request
 //  @return ArduinoSeriesRawBatchLastvalue
-func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2BatchQueryRawLastValueRequest) (*ArduinoSeriesRawBatchLastvalue, *http.Response, error) {
+func (a *SeriesV2APIService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2BatchQueryRawLastValueRequest) (*ArduinoSeriesRawBatchLastvalue, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -392,7 +392,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2
 		localVarReturnValue  *ArduinoSeriesRawBatchLastvalue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2BatchQueryRawLastValue")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2APIService.SeriesV2BatchQueryRawLastValue")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -424,7 +424,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.batchLastValueRequestsMediaV1
@@ -499,7 +499,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2
 
 type ApiSeriesV2BatchQuerySamplingRequest struct {
 	ctx context.Context
-	ApiService *SeriesV2ApiService
+	ApiService *SeriesV2APIService
 	batchQuerySampledRequestsMediaV1 *BatchQuerySampledRequestsMediaV1
 	xOrganization *string
 }
@@ -526,7 +526,7 @@ Returns a batch of time-series sampled samples. To be used for types that does n
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2BatchQuerySamplingRequest
 */
-func (a *SeriesV2ApiService) SeriesV2BatchQuerySampling(ctx context.Context) ApiSeriesV2BatchQuerySamplingRequest {
+func (a *SeriesV2APIService) SeriesV2BatchQuerySampling(ctx context.Context) ApiSeriesV2BatchQuerySamplingRequest {
 	return ApiSeriesV2BatchQuerySamplingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -535,7 +535,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuerySampling(ctx context.Context) Api
 
 // Execute executes the request
 //  @return ArduinoSeriesBatchSampled
-func (a *SeriesV2ApiService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2BatchQuerySamplingRequest) (*ArduinoSeriesBatchSampled, *http.Response, error) {
+func (a *SeriesV2APIService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2BatchQuerySamplingRequest) (*ArduinoSeriesBatchSampled, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -543,7 +543,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2Batc
 		localVarReturnValue  *ArduinoSeriesBatchSampled
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2BatchQuerySampling")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2APIService.SeriesV2BatchQuerySampling")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -575,7 +575,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2Batc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.batchQuerySampledRequestsMediaV1
@@ -661,7 +661,7 @@ func (a *SeriesV2ApiService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2Batc
 
 type ApiSeriesV2HistoricDataRequest struct {
 	ctx context.Context
-	ApiService *SeriesV2ApiService
+	ApiService *SeriesV2APIService
 	historicDataRequest *HistoricDataRequest
 	xOrganization *string
 }
@@ -688,7 +688,7 @@ Request sending of historical data of properties by email
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSeriesV2HistoricDataRequest
 */
-func (a *SeriesV2ApiService) SeriesV2HistoricData(ctx context.Context) ApiSeriesV2HistoricDataRequest {
+func (a *SeriesV2APIService) SeriesV2HistoricData(ctx context.Context) ApiSeriesV2HistoricDataRequest {
 	return ApiSeriesV2HistoricDataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -696,14 +696,14 @@ func (a *SeriesV2ApiService) SeriesV2HistoricData(ctx context.Context) ApiSeries
 }
 
 // Execute executes the request
-func (a *SeriesV2ApiService) SeriesV2HistoricDataExecute(r ApiSeriesV2HistoricDataRequest) (*http.Response, error) {
+func (a *SeriesV2APIService) SeriesV2HistoricDataExecute(r ApiSeriesV2HistoricDataRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2ApiService.SeriesV2HistoricData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SeriesV2APIService.SeriesV2HistoricData")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -735,7 +735,7 @@ func (a *SeriesV2ApiService) SeriesV2HistoricDataExecute(r ApiSeriesV2HistoricDa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.historicDataRequest

@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Property type satisfies the MappedNullable interface at compile time
@@ -38,8 +40,10 @@ type Property struct {
 	// The update strategy for the property value
 	UpdateStrategy string `json:"update_strategy"`
 	// The  sketch variable name of the property
-	VariableName *string `json:"variable_name,omitempty"`
+	VariableName *string `json:"variable_name,omitempty" validate:"regexp=^[a-zA-Z_][a-zA-Z0-9_]*$"`
 }
+
+type _Property Property
 
 // NewProperty instantiates a new Property object
 // This constructor will assign default values to properties that have it defined,
@@ -387,6 +391,46 @@ func (o Property) ToMap() (map[string]interface{}, error) {
 		toSerialize["variable_name"] = o.VariableName
 	}
 	return toSerialize, nil
+}
+
+func (o *Property) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"permission",
+		"type",
+		"update_strategy",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProperty := _Property{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varProperty)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Property(varProperty)
+
+	return err
 }
 
 type NullableProperty struct {
