@@ -1,7 +1,6 @@
 openapi: 3.0.3
 info:
-  description: |2-
-
+  description: |-
     Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:
 
     * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)
@@ -5014,12 +5013,6 @@ paths:
       tags:
       - things_v2
 components:
-  callbacks: {}
-  examples: {}
-  headers: {}
-  links: {}
-  parameters: {}
-  requestBodies: {}
   responses:
     Accepted:
       description: Accepted
@@ -7513,6 +7506,13 @@ components:
       type: object
     error:
       description: Error response media type (default view)
+      example:
+        code: invalid_value
+        meta:
+          timestamp: 1.458609066E9
+        detail: Value of ID must be an integer
+        id: 3F1FKVRR
+        status: 400
       properties:
         code:
           description: "an application-specific error code, expressed as a string\
@@ -7533,7 +7533,7 @@ components:
           description: a meta object containing non-standard meta-information about
             the error.
           example:
-            timestamp: 1458609066
+            timestamp: 1.458609066E9
           type: object
         status:
           description: the HTTP status code applicable to this problem

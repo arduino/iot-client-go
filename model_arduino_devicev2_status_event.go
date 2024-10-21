@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -13,6 +13,8 @@ package v2
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoDevicev2StatusEvent type satisfies the MappedNullable interface at compile time
@@ -25,6 +27,8 @@ type ArduinoDevicev2StatusEvent struct {
 	// The status event of the device
 	Value string `json:"value"`
 }
+
+type _ArduinoDevicev2StatusEvent ArduinoDevicev2StatusEvent
 
 // NewArduinoDevicev2StatusEvent instantiates a new ArduinoDevicev2StatusEvent object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +110,44 @@ func (o ArduinoDevicev2StatusEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize["updated_at"] = o.UpdatedAt
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2StatusEvent) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"updated_at",
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoDevicev2StatusEvent := _ArduinoDevicev2StatusEvent{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoDevicev2StatusEvent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2StatusEvent(varArduinoDevicev2StatusEvent)
+
+	return err
 }
 
 type NullableArduinoDevicev2StatusEvent struct {

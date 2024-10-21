@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -19,12 +19,12 @@ import (
 )
 
 
-// PropertyTypesV1ApiService PropertyTypesV1Api service
-type PropertyTypesV1ApiService service
+// PropertyTypesV1APIService PropertyTypesV1API service
+type PropertyTypesV1APIService service
 
 type ApiPropertyTypesV1ListTypesRequest struct {
 	ctx context.Context
-	ApiService *PropertyTypesV1ApiService
+	ApiService *PropertyTypesV1APIService
 }
 
 func (r ApiPropertyTypesV1ListTypesRequest) Execute() ([]ArduinoPropertytype, *http.Response, error) {
@@ -39,7 +39,7 @@ Returns the list of available property types
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPropertyTypesV1ListTypesRequest
 */
-func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypes(ctx context.Context) ApiPropertyTypesV1ListTypesRequest {
+func (a *PropertyTypesV1APIService) PropertyTypesV1ListTypes(ctx context.Context) ApiPropertyTypesV1ListTypesRequest {
 	return ApiPropertyTypesV1ListTypesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -48,7 +48,7 @@ func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypes(ctx context.Context
 
 // Execute executes the request
 //  @return []ArduinoPropertytype
-func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypesExecute(r ApiPropertyTypesV1ListTypesRequest) ([]ArduinoPropertytype, *http.Response, error) {
+func (a *PropertyTypesV1APIService) PropertyTypesV1ListTypesExecute(r ApiPropertyTypesV1ListTypesRequest) ([]ArduinoPropertytype, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -56,7 +56,7 @@ func (a *PropertyTypesV1ApiService) PropertyTypesV1ListTypesExecute(r ApiPropert
 		localVarReturnValue  []ArduinoPropertytype
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertyTypesV1ApiService.PropertyTypesV1ListTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertyTypesV1APIService.PropertyTypesV1ListTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

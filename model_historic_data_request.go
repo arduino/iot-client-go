@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -13,6 +13,8 @@ package v2
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the HistoricDataRequest type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type HistoricDataRequest struct {
 	// Get data up to this date
 	To time.Time `json:"to"`
 }
+
+type _HistoricDataRequest HistoricDataRequest
 
 // NewHistoricDataRequest instantiates a new HistoricDataRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -134,6 +138,45 @@ func (o HistoricDataRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["properties"] = o.Properties
 	toSerialize["to"] = o.To
 	return toSerialize, nil
+}
+
+func (o *HistoricDataRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"from",
+		"properties",
+		"to",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHistoricDataRequest := _HistoricDataRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varHistoricDataRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HistoricDataRequest(varHistoricDataRequest)
+
+	return err
 }
 
 type NullableHistoricDataRequest struct {

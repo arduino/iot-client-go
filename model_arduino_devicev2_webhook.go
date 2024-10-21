@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoDevicev2Webhook type satisfies the MappedNullable interface at compile time
@@ -26,6 +28,8 @@ type ArduinoDevicev2Webhook struct {
 	// The uri of the webhook
 	Uri string `json:"uri"`
 }
+
+type _ArduinoDevicev2Webhook ArduinoDevicev2Webhook
 
 // NewArduinoDevicev2Webhook instantiates a new ArduinoDevicev2Webhook object
 // This constructor will assign default values to properties that have it defined,
@@ -146,6 +150,44 @@ func (o ArduinoDevicev2Webhook) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["uri"] = o.Uri
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2Webhook) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"uri",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoDevicev2Webhook := _ArduinoDevicev2Webhook{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoDevicev2Webhook)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2Webhook(varArduinoDevicev2Webhook)
+
+	return err
 }
 
 type NullableArduinoDevicev2Webhook struct {

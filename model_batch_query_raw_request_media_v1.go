@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -13,6 +13,8 @@ package v2
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the BatchQueryRawRequestMediaV1 type satisfies the MappedNullable interface at compile time
@@ -31,6 +33,8 @@ type BatchQueryRawRequestMediaV1 struct {
 	// To timestamp
 	To *time.Time `json:"to,omitempty"`
 }
+
+type _BatchQueryRawRequestMediaV1 BatchQueryRawRequestMediaV1
 
 // NewBatchQueryRawRequestMediaV1 instantiates a new BatchQueryRawRequestMediaV1 object
 // This constructor will assign default values to properties that have it defined,
@@ -230,6 +234,43 @@ func (o BatchQueryRawRequestMediaV1) ToMap() (map[string]interface{}, error) {
 		toSerialize["to"] = o.To
 	}
 	return toSerialize, nil
+}
+
+func (o *BatchQueryRawRequestMediaV1) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"q",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBatchQueryRawRequestMediaV1 := _BatchQueryRawRequestMediaV1{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBatchQueryRawRequestMediaV1)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BatchQueryRawRequestMediaV1(varBatchQueryRawRequestMediaV1)
+
+	return err
 }
 
 type NullableBatchQueryRawRequestMediaV1 struct {

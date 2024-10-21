@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -13,6 +13,8 @@ package v2
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoCompressedv2 type satisfies the MappedNullable interface at compile time
@@ -35,6 +37,8 @@ type ArduinoCompressedv2 struct {
 	// The ASN1 Y component of certificate signature
 	SignatureAsn1Y string `json:"signature_asn1_y"`
 }
+
+type _ArduinoCompressedv2 ArduinoCompressedv2
 
 // NewArduinoCompressedv2 instantiates a new ArduinoCompressedv2 object
 // This constructor will assign default values to properties that have it defined,
@@ -255,6 +259,48 @@ func (o ArduinoCompressedv2) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature_asn1_x"] = o.SignatureAsn1X
 	toSerialize["signature_asn1_y"] = o.SignatureAsn1Y
 	return toSerialize, nil
+}
+
+func (o *ArduinoCompressedv2) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"not_after",
+		"not_before",
+		"serial",
+		"signature",
+		"signature_asn1_x",
+		"signature_asn1_y",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoCompressedv2 := _ArduinoCompressedv2{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoCompressedv2)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoCompressedv2(varArduinoCompressedv2)
+
+	return err
 }
 
 type NullableArduinoCompressedv2 struct {

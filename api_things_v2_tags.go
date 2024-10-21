@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// ThingsV2TagsApiService ThingsV2TagsApi service
-type ThingsV2TagsApiService service
+// ThingsV2TagsAPIService ThingsV2TagsAPI service
+type ThingsV2TagsAPIService service
 
 type ApiThingsV2TagsDeleteRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2TagsApiService
+	ApiService *ThingsV2TagsAPIService
 	id string
 	key string
 }
@@ -44,7 +44,7 @@ Delete a tag associated to the thing given its key.
  @param key The key of the tag
  @return ApiThingsV2TagsDeleteRequest
 */
-func (a *ThingsV2TagsApiService) ThingsV2TagsDelete(ctx context.Context, id string, key string) ApiThingsV2TagsDeleteRequest {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsDelete(ctx context.Context, id string, key string) ApiThingsV2TagsDeleteRequest {
 	return ApiThingsV2TagsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -54,14 +54,14 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsDelete(ctx context.Context, id stri
 }
 
 // Execute executes the request
-func (a *ThingsV2TagsApiService) ThingsV2TagsDeleteExecute(r ApiThingsV2TagsDeleteRequest) (*http.Response, error) {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsDeleteExecute(r ApiThingsV2TagsDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsApiService.ThingsV2TagsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsAPIService.ThingsV2TagsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -167,7 +167,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsDeleteExecute(r ApiThingsV2TagsDele
 
 type ApiThingsV2TagsListRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2TagsApiService
+	ApiService *ThingsV2TagsAPIService
 	id string
 }
 
@@ -184,7 +184,7 @@ List tags associated to the thing.
  @param id The id of the thing
  @return ApiThingsV2TagsListRequest
 */
-func (a *ThingsV2TagsApiService) ThingsV2TagsList(ctx context.Context, id string) ApiThingsV2TagsListRequest {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsList(ctx context.Context, id string) ApiThingsV2TagsListRequest {
 	return ApiThingsV2TagsListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -194,7 +194,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsList(ctx context.Context, id string
 
 // Execute executes the request
 //  @return ArduinoTags
-func (a *ThingsV2TagsApiService) ThingsV2TagsListExecute(r ApiThingsV2TagsListRequest) (*ArduinoTags, *http.Response, error) {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsListExecute(r ApiThingsV2TagsListRequest) (*ArduinoTags, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -202,7 +202,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsListExecute(r ApiThingsV2TagsListRe
 		localVarReturnValue  *ArduinoTags
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsApiService.ThingsV2TagsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsAPIService.ThingsV2TagsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -302,7 +302,7 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsListExecute(r ApiThingsV2TagsListRe
 
 type ApiThingsV2TagsUpsertRequest struct {
 	ctx context.Context
-	ApiService *ThingsV2TagsApiService
+	ApiService *ThingsV2TagsAPIService
 	id string
 	tag *Tag
 }
@@ -325,7 +325,7 @@ Creates or updates a tag associated to the thing.
  @param id The id of the thing
  @return ApiThingsV2TagsUpsertRequest
 */
-func (a *ThingsV2TagsApiService) ThingsV2TagsUpsert(ctx context.Context, id string) ApiThingsV2TagsUpsertRequest {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsUpsert(ctx context.Context, id string) ApiThingsV2TagsUpsertRequest {
 	return ApiThingsV2TagsUpsertRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,14 +334,14 @@ func (a *ThingsV2TagsApiService) ThingsV2TagsUpsert(ctx context.Context, id stri
 }
 
 // Execute executes the request
-func (a *ThingsV2TagsApiService) ThingsV2TagsUpsertExecute(r ApiThingsV2TagsUpsertRequest) (*http.Response, error) {
+func (a *ThingsV2TagsAPIService) ThingsV2TagsUpsertExecute(r ApiThingsV2TagsUpsertRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsApiService.ThingsV2TagsUpsert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThingsV2TagsAPIService.ThingsV2TagsUpsert")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

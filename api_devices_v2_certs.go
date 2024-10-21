@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -20,12 +20,12 @@ import (
 )
 
 
-// DevicesV2CertsApiService DevicesV2CertsApi service
-type DevicesV2CertsApiService service
+// DevicesV2CertsAPIService DevicesV2CertsAPI service
+type DevicesV2CertsAPIService service
 
 type ApiDevicesV2CertsCreateRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2CertsApiService
+	ApiService *DevicesV2CertsAPIService
 	id string
 	createDevicesV2CertsPayload *CreateDevicesV2CertsPayload
 }
@@ -48,7 +48,7 @@ Creates a new cert associated to a device. The csr is signed and saved in databa
  @param id The id of the device
  @return ApiDevicesV2CertsCreateRequest
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsCreate(ctx context.Context, id string) ApiDevicesV2CertsCreateRequest {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsCreate(ctx context.Context, id string) ApiDevicesV2CertsCreateRequest {
 	return ApiDevicesV2CertsCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,7 +58,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsCreate(ctx context.Context, id 
 
 // Execute executes the request
 //  @return ArduinoDevicev2Cert
-func (a *DevicesV2CertsApiService) DevicesV2CertsCreateExecute(r ApiDevicesV2CertsCreateRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsCreateExecute(r ApiDevicesV2CertsCreateRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -66,7 +66,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsCreateExecute(r ApiDevicesV2Cer
 		localVarReturnValue  *ArduinoDevicev2Cert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsApiService.DevicesV2CertsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsAPIService.DevicesV2CertsCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -171,7 +171,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsCreateExecute(r ApiDevicesV2Cer
 
 type ApiDevicesV2CertsDeleteRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2CertsApiService
+	ApiService *DevicesV2CertsAPIService
 	cid string
 	id string
 }
@@ -190,7 +190,7 @@ Removes a cert associated to a device
  @param id The id of the device
  @return ApiDevicesV2CertsDeleteRequest
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsDelete(ctx context.Context, cid string, id string) ApiDevicesV2CertsDeleteRequest {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsDelete(ctx context.Context, cid string, id string) ApiDevicesV2CertsDeleteRequest {
 	return ApiDevicesV2CertsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -200,14 +200,14 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsDelete(ctx context.Context, cid
 }
 
 // Execute executes the request
-func (a *DevicesV2CertsApiService) DevicesV2CertsDeleteExecute(r ApiDevicesV2CertsDeleteRequest) (*http.Response, error) {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsDeleteExecute(r ApiDevicesV2CertsDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsApiService.DevicesV2CertsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsAPIService.DevicesV2CertsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -288,7 +288,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsDeleteExecute(r ApiDevicesV2Cer
 
 type ApiDevicesV2CertsListRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2CertsApiService
+	ApiService *DevicesV2CertsAPIService
 	id string
 }
 
@@ -305,7 +305,7 @@ Returns the list of certs associated to the device
  @param id The id of the device
  @return ApiDevicesV2CertsListRequest
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsList(ctx context.Context, id string) ApiDevicesV2CertsListRequest {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsList(ctx context.Context, id string) ApiDevicesV2CertsListRequest {
 	return ApiDevicesV2CertsListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -315,7 +315,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsList(ctx context.Context, id st
 
 // Execute executes the request
 //  @return []ArduinoDevicev2Cert
-func (a *DevicesV2CertsApiService) DevicesV2CertsListExecute(r ApiDevicesV2CertsListRequest) ([]ArduinoDevicev2Cert, *http.Response, error) {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsListExecute(r ApiDevicesV2CertsListRequest) ([]ArduinoDevicev2Cert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -323,7 +323,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsListExecute(r ApiDevicesV2Certs
 		localVarReturnValue  []ArduinoDevicev2Cert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsApiService.DevicesV2CertsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsAPIService.DevicesV2CertsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -412,7 +412,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsListExecute(r ApiDevicesV2Certs
 
 type ApiDevicesV2CertsShowRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2CertsApiService
+	ApiService *DevicesV2CertsAPIService
 	cid string
 	id string
 }
@@ -431,7 +431,7 @@ Returns the cert requested by the user
  @param id The id of the device
  @return ApiDevicesV2CertsShowRequest
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsShow(ctx context.Context, cid string, id string) ApiDevicesV2CertsShowRequest {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsShow(ctx context.Context, cid string, id string) ApiDevicesV2CertsShowRequest {
 	return ApiDevicesV2CertsShowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -442,7 +442,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsShow(ctx context.Context, cid s
 
 // Execute executes the request
 //  @return ArduinoDevicev2Cert
-func (a *DevicesV2CertsApiService) DevicesV2CertsShowExecute(r ApiDevicesV2CertsShowRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsShowExecute(r ApiDevicesV2CertsShowRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -450,7 +450,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsShowExecute(r ApiDevicesV2Certs
 		localVarReturnValue  *ArduinoDevicev2Cert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsApiService.DevicesV2CertsShow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsAPIService.DevicesV2CertsShow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -540,7 +540,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsShowExecute(r ApiDevicesV2Certs
 
 type ApiDevicesV2CertsUpdateRequest struct {
 	ctx context.Context
-	ApiService *DevicesV2CertsApiService
+	ApiService *DevicesV2CertsAPIService
 	cid string
 	id string
 	devicev2Cert *Devicev2Cert
@@ -565,7 +565,7 @@ Updates a cert associated to a device. The csr is signed and saved in database. 
  @param id The id of the device
  @return ApiDevicesV2CertsUpdateRequest
 */
-func (a *DevicesV2CertsApiService) DevicesV2CertsUpdate(ctx context.Context, cid string, id string) ApiDevicesV2CertsUpdateRequest {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsUpdate(ctx context.Context, cid string, id string) ApiDevicesV2CertsUpdateRequest {
 	return ApiDevicesV2CertsUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -576,7 +576,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsUpdate(ctx context.Context, cid
 
 // Execute executes the request
 //  @return ArduinoDevicev2Cert
-func (a *DevicesV2CertsApiService) DevicesV2CertsUpdateExecute(r ApiDevicesV2CertsUpdateRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
+func (a *DevicesV2CertsAPIService) DevicesV2CertsUpdateExecute(r ApiDevicesV2CertsUpdateRequest) (*ArduinoDevicev2Cert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -584,7 +584,7 @@ func (a *DevicesV2CertsApiService) DevicesV2CertsUpdateExecute(r ApiDevicesV2Cer
 		localVarReturnValue  *ArduinoDevicev2Cert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsApiService.DevicesV2CertsUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2CertsAPIService.DevicesV2CertsUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

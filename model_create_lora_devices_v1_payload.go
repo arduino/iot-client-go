@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CreateLoraDevicesV1Payload type satisfies the MappedNullable interface at compile time
@@ -22,11 +24,11 @@ type CreateLoraDevicesV1Payload struct {
 	// The app name
 	App string `json:"app"`
 	// The app eui of the lora device
-	AppEui *string `json:"app_eui,omitempty"`
+	AppEui *string `json:"app_eui,omitempty" validate:"regexp=[0-9a-z]{16}"`
 	// The app key of the lora device
-	AppKey *string `json:"app_key,omitempty"`
+	AppKey *string `json:"app_key,omitempty" validate:"regexp=[0-9a-z]{16}"`
 	// The eui of the lora device
-	Eui string `json:"eui"`
+	Eui string `json:"eui" validate:"regexp=[0-9a-z]{16}"`
 	// The frequency plan required by your country 
 	FrequencyPlan string `json:"frequency_plan"`
 	// A common name for the device
@@ -38,6 +40,8 @@ type CreateLoraDevicesV1Payload struct {
 	// The id of the user. Can be the special string 'me'
 	UserId string `json:"user_id"`
 }
+
+type _CreateLoraDevicesV1Payload CreateLoraDevicesV1Payload
 
 // NewCreateLoraDevicesV1Payload instantiates a new CreateLoraDevicesV1Payload object
 // This constructor will assign default values to properties that have it defined,
@@ -328,6 +332,48 @@ func (o CreateLoraDevicesV1Payload) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["user_id"] = o.UserId
 	return toSerialize, nil
+}
+
+func (o *CreateLoraDevicesV1Payload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"app",
+		"eui",
+		"frequency_plan",
+		"name",
+		"type",
+		"user_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateLoraDevicesV1Payload := _CreateLoraDevicesV1Payload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateLoraDevicesV1Payload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateLoraDevicesV1Payload(varCreateLoraDevicesV1Payload)
+
+	return err
 }
 
 type NullableCreateLoraDevicesV1Payload struct {

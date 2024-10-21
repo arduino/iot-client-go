@@ -1,7 +1,7 @@
 /*
 Arduino IoT Cloud API
 
- Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
+Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:  * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)  * [Python PYPI Package](https://pypi.org/project/arduino-iot-client/)  * [Golang Module](https://github.com/arduino/iot-client-go)
 
 API version: 2.0
 */
@@ -12,6 +12,8 @@ package v2
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ArduinoLorafreqplanv1 type satisfies the MappedNullable interface at compile time
@@ -26,6 +28,8 @@ type ArduinoLorafreqplanv1 struct {
 	// The name of the frequency plan
 	Name string `json:"name"`
 }
+
+type _ArduinoLorafreqplanv1 ArduinoLorafreqplanv1
 
 // NewArduinoLorafreqplanv1 instantiates a new ArduinoLorafreqplanv1 object
 // This constructor will assign default values to properties that have it defined,
@@ -133,6 +137,45 @@ func (o ArduinoLorafreqplanv1) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	return toSerialize, nil
+}
+
+func (o *ArduinoLorafreqplanv1) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"advanced",
+		"id",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArduinoLorafreqplanv1 := _ArduinoLorafreqplanv1{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varArduinoLorafreqplanv1)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoLorafreqplanv1(varArduinoLorafreqplanv1)
+
+	return err
 }
 
 type NullableArduinoLorafreqplanv1 struct {
