@@ -93,7 +93,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api2.arduino.cc/iot",
+				URL: "https://api2.arduino.cc",
 				Description: "No description provided",
 			},
 		},
