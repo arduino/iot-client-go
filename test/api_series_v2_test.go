@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_SeriesV2ApiService(t *testing.T) {
@@ -26,7 +26,7 @@ func Test_iot_SeriesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SeriesV2Api.SeriesV2BatchQuery(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SeriesV2API.SeriesV2BatchQuery(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,7 +38,7 @@ func Test_iot_SeriesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SeriesV2Api.SeriesV2BatchQueryRaw(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SeriesV2API.SeriesV2BatchQueryRaw(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,7 +50,7 @@ func Test_iot_SeriesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SeriesV2Api.SeriesV2BatchQueryRawLastValue(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SeriesV2API.SeriesV2BatchQueryRawLastValue(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,7 +62,7 @@ func Test_iot_SeriesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SeriesV2Api.SeriesV2HistoricData(context.Background()).Execute()
+		httpRes, err := apiClient.SeriesV2API.SeriesV2HistoricData(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

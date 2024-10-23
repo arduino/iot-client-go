@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DevicesV2PassApiService(t *testing.T) {
@@ -28,7 +28,7 @@ func Test_iot_DevicesV2PassApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2PassApi.DevicesV2PassCheck(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2PassAPI.DevicesV2PassCheck(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -41,7 +41,7 @@ func Test_iot_DevicesV2PassApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2PassApi.DevicesV2PassDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2PassAPI.DevicesV2PassDelete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,7 +54,7 @@ func Test_iot_DevicesV2PassApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2PassApi.DevicesV2PassGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2PassAPI.DevicesV2PassGet(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -68,7 +68,7 @@ func Test_iot_DevicesV2PassApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2PassApi.DevicesV2PassSet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2PassAPI.DevicesV2PassSet(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

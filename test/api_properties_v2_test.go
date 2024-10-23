@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_PropertiesV2ApiService(t *testing.T) {
@@ -28,7 +28,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Create(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PropertiesV2API.PropertiesV2Create(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -43,7 +43,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Delete(context.Background(), id, pid).Execute()
+		httpRes, err := apiClient.PropertiesV2API.PropertiesV2Delete(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -56,7 +56,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.PropertiesV2Api.PropertiesV2List(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PropertiesV2API.PropertiesV2List(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -71,7 +71,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Publish(context.Background(), id, pid).Execute()
+		httpRes, err := apiClient.PropertiesV2API.PropertiesV2Publish(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -85,7 +85,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		resp, httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Show(context.Background(), id, pid).Execute()
+		resp, httpRes, err := apiClient.PropertiesV2API.PropertiesV2Show(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -100,7 +100,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		resp, httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Timeseries(context.Background(), id, pid).Execute()
+		resp, httpRes, err := apiClient.PropertiesV2API.PropertiesV2Timeseries(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -115,7 +115,7 @@ func Test_iot_PropertiesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		resp, httpRes, err := apiClient.PropertiesV2Api.PropertiesV2Update(context.Background(), id, pid).Execute()
+		resp, httpRes, err := apiClient.PropertiesV2API.PropertiesV2Update(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DevicesV2OtaApiService(t *testing.T) {
@@ -28,7 +28,7 @@ func Test_iot_DevicesV2OtaApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2OtaApi.DevicesV2OtaSend(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaSend(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -41,7 +41,7 @@ func Test_iot_DevicesV2OtaApiService(t *testing.T) {
 
 		var id string
 
-		_, httpRes, err := apiClient.DevicesV2OtaApi.DevicesV2OtaUpload(context.Background(), id).Execute()
+		_, httpRes, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaUpload(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
