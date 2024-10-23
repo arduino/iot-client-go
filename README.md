@@ -10,7 +10,10 @@ import cc "golang.org/x/oauth2/clientcredentials"
 
 // We need to pass the additional "audience" var to request an access token
 additionalValues := url.Values{}
-additionalValues.Add("audience", "https://api2.arduino.cc/iot")
+additionalValues.Add("audience", "https://api2.arduino.cc")
+if organizationId != "" {
+    additionalValues.Add("organization_id", organizationId)
+}
 // Set up OAuth2 configuration
 config := cc.Config{
     ClientID:       clientID,

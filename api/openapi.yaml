@@ -1,7 +1,6 @@
 openapi: 3.0.3
 info:
-  description: |2-
-
+  description: |-
     Provides a set of endpoints to manage Arduino IoT Cloud **Devices**, **Things**, **Properties** and **Timeseries**. This API can be called just with any HTTP Client, or using one of these clients:
 
     * [Javascript NPM package](https://www.npmjs.com/package/@arduino/arduino-iot-client)
@@ -12,9 +11,9 @@ info:
   title: Arduino IoT Cloud API
   version: "2.0"
 servers:
-- url: https://api2.arduino.cc/iot
+- url: https://api2.arduino.cc
 paths:
-  /v1/lora-devices/:
+  /iot/v1/lora-devices/:
     put:
       description: "Create a new lora device. Its info are saved on our database,\
         \ and on the lora provider network. Creates a device_v2 automatically"
@@ -47,7 +46,7 @@ paths:
       summary: create lora_devices_v1
       tags:
       - lora_devices_v1
-  /v1/lora-freq-plans/:
+  /iot/v1/lora-freq-plans/:
     get:
       description: List the lora frequency plans supported
       operationId: lora_freq_plan_v1#list
@@ -82,7 +81,7 @@ paths:
       summary: list lora_freq_plan_v1
       tags:
       - lora_freq_plan_v1
-  /v1/network_credentials/{type}:
+  /iot/v1/network_credentials/{type}:
     get:
       description: Show required network credentials depending on device type
       operationId: network_credentials_v1#show
@@ -154,7 +153,7 @@ paths:
       summary: show network_credentials_v1
       tags:
       - network_credentials_v1
-  /v1/network_credentials/{type}/connections:
+  /iot/v1/network_credentials/{type}/connections:
     get:
       description: Show available connection types depending on device type
       operationId: network_credentials_v1#showByDevice
@@ -202,7 +201,7 @@ paths:
       summary: showByDevice network_credentials_v1
       tags:
       - network_credentials_v1
-  /v1/property_types:
+  /iot/v1/property_types:
     get:
       description: Returns the list of available property types
       operationId: property_types_v1#listTypes
@@ -230,7 +229,7 @@ paths:
       summary: listTypes property_types_v1
       tags:
       - property_types_v1
-  /v1/templates:
+  /iot/v1/templates:
     put:
       description: Apply an existing cloud template and generate all the needed resources
       operationId: templates#apply
@@ -311,7 +310,7 @@ paths:
       summary: apply templates
       tags:
       - templates
-  /v2/dashboards:
+  /iot/v2/dashboards:
     get:
       description: Returns the list of dashboards
       operationId: dashboards_v2#list
@@ -465,7 +464,7 @@ paths:
       summary: create dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}:
+  /iot/v2/dashboards/{id}:
     delete:
       description: Delete a dashboard
       operationId: dashboards_v2#delete
@@ -677,7 +676,7 @@ paths:
       summary: update dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/clone:
+  /iot/v2/dashboards/{id}/clone:
     put:
       description: Clone an existing dashboard
       operationId: dashboards_v2#clone
@@ -760,7 +759,7 @@ paths:
       summary: clone dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/share_request:
+  /iot/v2/dashboards/{id}/share_request:
     put:
       description: Request access to a dashboard
       operationId: dashboards_v2#requestAccess
@@ -836,7 +835,7 @@ paths:
       summary: requestAccess dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/shares:
+  /iot/v2/dashboards/{id}/shares:
     get:
       description: List of users the dashboard has been shared with
       operationId: dashboards_v2#listShares
@@ -984,7 +983,7 @@ paths:
       summary: share dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/shares/{user_id}:
+  /iot/v2/dashboards/{id}/shares/{user_id}:
     delete:
       description: Delete a user the dashboard has been shared with
       operationId: dashboards_v2#deleteShare
@@ -1058,7 +1057,7 @@ paths:
       summary: deleteShare dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/template:
+  /iot/v2/dashboards/{id}/template:
     get:
       description: Get a template of the dashboard
       operationId: dashboards_v2#template
@@ -1131,7 +1130,7 @@ paths:
       summary: template dashboards_v2
       tags:
       - dashboards_v2
-  /v2/dashboards/{id}/widgets/{widgetId}/variables:
+  /iot/v2/dashboards/{id}/widgets/{widgetId}/variables:
     put:
       description: Link or detach widget variables
       operationId: dashboards_v2#link
@@ -1222,7 +1221,7 @@ paths:
       summary: link dashboards_v2
       tags:
       - dashboards_v2
-  /v2/devices:
+  /iot/v2/devices:
     get:
       description: Returns the list of devices associated to the user
       operationId: devices_v2#list
@@ -1387,7 +1386,7 @@ paths:
       summary: create devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}:
+  /iot/v2/devices/{id}:
     delete:
       description: Removes a device associated to the user
       operationId: devices_v2#delete
@@ -1590,7 +1589,7 @@ paths:
       summary: update devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}/certs:
+  /iot/v2/devices/{id}/certs:
     get:
       description: Returns the list of certs associated to the device
       operationId: devices_v2_certs#list
@@ -1705,7 +1704,7 @@ paths:
       summary: create devices_v2_certs
       tags:
       - devices_v2_certs
-  /v2/devices/{id}/certs/{cid}:
+  /iot/v2/devices/{id}/certs/{cid}:
     delete:
       description: Removes a cert associated to a device
       operationId: devices_v2_certs#delete
@@ -1884,7 +1883,7 @@ paths:
       summary: update devices_v2_certs
       tags:
       - devices_v2_certs
-  /v2/devices/{id}/events:
+  /iot/v2/devices/{id}/events:
     get:
       description: GET device events
       operationId: devices_v2#getEvents
@@ -1973,7 +1972,7 @@ paths:
       summary: getEvents devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}/ota:
+  /iot/v2/devices/{id}/ota:
     post:
       description: Upload a binary and send it to a device
       operationId: devices_v2_ota#upload
@@ -2166,7 +2165,7 @@ paths:
       summary: send devices_v2_ota
       tags:
       - devices_v2_ota
-  /v2/devices/{id}/ota/url:
+  /iot/v2/devices/{id}/ota/url:
     post:
       description: Generate a url for downloading a binary
       operationId: devices_v2_ota#url
@@ -2253,7 +2252,7 @@ paths:
       summary: url devices_v2_ota
       tags:
       - devices_v2_ota
-  /v2/devices/{id}/pass:
+  /iot/v2/devices/{id}/pass:
     delete:
       description: Removes the password for the device.
       operationId: devices_v2_pass#delete
@@ -2467,7 +2466,7 @@ paths:
       summary: set devices_v2_pass
       tags:
       - devices_v2_pass
-  /v2/devices/{id}/properties:
+  /iot/v2/devices/{id}/properties:
     get:
       description: GET device properties
       operationId: devices_v2#getProperties
@@ -2606,7 +2605,7 @@ paths:
       summary: updateProperties devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}/properties/{pid}:
+  /iot/v2/devices/{id}/properties/{pid}:
     get:
       description: GET device properties values in a range of time
       operationId: devices_v2#timeseries
@@ -2703,7 +2702,7 @@ paths:
       summary: timeseries devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}/status:
+  /iot/v2/devices/{id}/status:
     get:
       description: GET connection status events
       operationId: devices_v2#GetStatusEvents
@@ -2802,7 +2801,7 @@ paths:
       summary: GetStatusEvents devices_v2
       tags:
       - devices_v2
-  /v2/devices/{id}/tags:
+  /iot/v2/devices/{id}/tags:
     get:
       description: List tags associated to the device.
       operationId: devices_v2_tags#list
@@ -2905,7 +2904,7 @@ paths:
       summary: upsert devices_v2_tags
       tags:
       - devices_v2_tags
-  /v2/devices/{id}/tags/{key}:
+  /iot/v2/devices/{id}/tags/{key}:
     delete:
       description: Delete a tag associated to the device given its key.
       operationId: devices_v2_tags#delete
@@ -2963,7 +2962,7 @@ paths:
       summary: delete devices_v2_tags
       tags:
       - devices_v2_tags
-  /v2/series/batch_query:
+  /iot/v2/series/batch_query:
     post:
       description: Returns the batch of time-series aggregated samples
       operationId: series_v2#batch_query
@@ -3040,7 +3039,7 @@ paths:
       summary: batch_query series_v2
       tags:
       - series_v2
-  /v2/series/batch_query_raw:
+  /iot/v2/series/batch_query_raw:
     post:
       description: Returns the batch of time-series raw samples
       operationId: series_v2#batch_query_raw
@@ -3117,7 +3116,7 @@ paths:
       summary: batch_query_raw series_v2
       tags:
       - series_v2
-  /v2/series/batch_query_raw/lastvalue:
+  /iot/v2/series/batch_query_raw/lastvalue:
     post:
       description: Returns the batch of time-series data raw
       operationId: series_v2#batch_query_raw_last_value
@@ -3185,7 +3184,7 @@ paths:
       summary: batch_query_raw_last_value series_v2
       tags:
       - series_v2
-  /v2/series/batch_query_sampling:
+  /iot/v2/series/batch_query_sampling:
     post:
       description: "Returns a batch of time-series sampled samples. To be used for\
         \ types that does not support mathematic aggregation. Types supported: strings,\
@@ -3264,7 +3263,7 @@ paths:
       summary: batch_query_sampling series_v2
       tags:
       - series_v2
-  /v2/series/historic_data:
+  /iot/v2/series/historic_data:
     post:
       description: Request sending of historical data of properties by email
       operationId: series_v2#historic_data
@@ -3320,7 +3319,7 @@ paths:
       summary: historic_data series_v2
       tags:
       - series_v2
-  /v2/things:
+  /iot/v2/things:
     get:
       description: Returns the list of things associated to the user
       operationId: things_v2#list
@@ -3541,7 +3540,7 @@ paths:
       summary: create things_v2
       tags:
       - things_v2
-  /v2/things/{id}:
+  /iot/v2/things/{id}:
     delete:
       description: Removes a thing associated to the user
       operationId: things_v2#delete
@@ -3799,7 +3798,7 @@ paths:
       summary: update things_v2
       tags:
       - things_v2
-  /v2/things/{id}/clone:
+  /iot/v2/things/{id}/clone:
     put:
       description: Clone a given thing
       operationId: things_v2#clone
@@ -3883,7 +3882,7 @@ paths:
       summary: clone things_v2
       tags:
       - things_v2
-  /v2/things/{id}/properties:
+  /iot/v2/things/{id}/properties:
     get:
       description: Returns the list of properties associated to the thing
       operationId: properties_v2#list
@@ -4040,7 +4039,7 @@ paths:
       summary: create properties_v2
       tags:
       - properties_v2
-  /v2/things/{id}/properties/{pid}:
+  /iot/v2/things/{id}/properties/{pid}:
     delete:
       description: Removes a property associated to a thing
       operationId: properties_v2#delete
@@ -4276,7 +4275,7 @@ paths:
       summary: update properties_v2
       tags:
       - properties_v2
-  /v2/things/{id}/properties/{pid}/publish:
+  /iot/v2/things/{id}/properties/{pid}/publish:
     put:
       description: Publish a property value to MQTT
       operationId: properties_v2#publish
@@ -4353,7 +4352,7 @@ paths:
       summary: publish properties_v2
       tags:
       - properties_v2
-  /v2/things/{id}/properties/{pid}/timeseries:
+  /iot/v2/things/{id}/properties/{pid}/timeseries:
     get:
       description: "Get numerical property's historic data binned on a specified time\
         \ interval (note: the total number of data points should NOT be greater than\
@@ -4486,7 +4485,7 @@ paths:
       summary: timeseries properties_v2
       tags:
       - properties_v2
-  /v2/things/{id}/sketch:
+  /iot/v2/things/{id}/sketch:
     delete:
       operationId: things_v2#deleteSketch
       parameters:
@@ -4641,7 +4640,7 @@ paths:
       summary: createSketch things_v2
       tags:
       - things_v2
-  /v2/things/{id}/sketch/{sketchId}:
+  /iot/v2/things/{id}/sketch/{sketchId}:
     put:
       description: Update an existing thing sketch
       operationId: things_v2#updateSketch
@@ -4747,7 +4746,7 @@ paths:
       summary: updateSketch things_v2
       tags:
       - things_v2
-  /v2/things/{id}/tags:
+  /iot/v2/things/{id}/tags:
     get:
       description: List tags associated to the thing.
       operationId: things_v2_tags#list
@@ -4872,7 +4871,7 @@ paths:
       summary: upsert things_v2_tags
       tags:
       - things_v2_tags
-  /v2/things/{id}/tags/{key}:
+  /iot/v2/things/{id}/tags/{key}:
     delete:
       description: Delete a tag associated to the thing given its key.
       operationId: things_v2_tags#delete
@@ -4940,7 +4939,7 @@ paths:
       summary: delete things_v2_tags
       tags:
       - things_v2_tags
-  /v2/things/{id}/template:
+  /iot/v2/things/{id}/template:
     get:
       description: Extract template from the given thing
       operationId: things_v2#template
@@ -5014,12 +5013,6 @@ paths:
       tags:
       - things_v2
 components:
-  callbacks: {}
-  examples: {}
-  headers: {}
-  links: {}
-  parameters: {}
-  requestBodies: {}
   responses:
     Accepted:
       description: Accepted
@@ -7513,6 +7506,13 @@ components:
       type: object
     error:
       description: Error response media type (default view)
+      example:
+        code: invalid_value
+        meta:
+          timestamp: 1.458609066E9
+        detail: Value of ID must be an integer
+        id: 3F1FKVRR
+        status: 400
       properties:
         code:
           description: "an application-specific error code, expressed as a string\
@@ -7533,7 +7533,7 @@ components:
           description: a meta object containing non-standard meta-information about
             the error.
           example:
-            timestamp: 1458609066
+            timestamp: 1.458609066E9
           type: object
         status:
           description: the HTTP status code applicable to this problem
