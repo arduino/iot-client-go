@@ -11,11 +11,14 @@ import cc "golang.org/x/oauth2/clientcredentials"
 // We need to pass the additional "audience" var to request an access token
 additionalValues := url.Values{}
 additionalValues.Add("audience", "https://api2.arduino.cc/iot")
-// Set up OAuth2 configuration
+if organizationId != "" {
+    additionalValues.Add("organization_id", organizationId) // Optionally, specify organization
+}
+// Set up OAuth2 configuration.
 config := cc.Config{
-    ClientID:       clientID,
-    ClientSecret:   clientSecret,
-    TokenURL:       "https://api2.arduino.cc/iot/v1/clients/token",
+    ClientID:       client,
+    ClientSecret:   secret,
+    TokenURL:       baseURL + "/iot/v1/clients/token",
     EndpointParams: additionalValues,
 }
 // Get the access token in exchange of client_id and client_secret
@@ -44,3 +47,9 @@ You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` secti
 ### Step 3
 
 ![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_3.png?raw=true)
+
+## Migration notes to client v3
+
+Client has been re-generated following proper language definitions and using an updated openapi-generator version.
+Major change is about API naming convetion. Now, all API structures are all defined with uppercase API suffix.
+For example, 'DevicesV2Api' is now renamed as 'DevicesV2API'.

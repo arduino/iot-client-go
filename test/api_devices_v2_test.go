@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DevicesV2ApiService(t *testing.T) {
@@ -26,7 +26,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2Create(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2Create(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -40,7 +40,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2Api.DevicesV2Delete(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2API.DevicesV2Delete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -53,7 +53,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2GetEvents(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2GetEvents(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -67,7 +67,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2GetProperties(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2GetProperties(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -79,7 +79,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2List(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2List(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -93,7 +93,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2Show(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2Show(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -108,7 +108,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 		var id string
 		var pid string
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2Timeseries(context.Background(), id, pid).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2Timeseries(context.Background(), id, pid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -122,7 +122,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2Api.DevicesV2Update(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2API.DevicesV2Update(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -136,7 +136,7 @@ func Test_iot_DevicesV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2Api.DevicesV2UpdateProperties(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2API.DevicesV2UpdateProperties(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

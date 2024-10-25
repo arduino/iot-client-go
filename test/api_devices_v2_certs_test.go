@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DevicesV2CertsApiService(t *testing.T) {
@@ -28,7 +28,7 @@ func Test_iot_DevicesV2CertsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2CertsApi.DevicesV2CertsCreate(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsCreate(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -43,7 +43,7 @@ func Test_iot_DevicesV2CertsApiService(t *testing.T) {
 		var cid string
 		var id string
 
-		httpRes, err := apiClient.DevicesV2CertsApi.DevicesV2CertsDelete(context.Background(), cid, id).Execute()
+		httpRes, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsDelete(context.Background(), cid, id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -56,7 +56,7 @@ func Test_iot_DevicesV2CertsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2CertsApi.DevicesV2CertsList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsList(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -71,7 +71,7 @@ func Test_iot_DevicesV2CertsApiService(t *testing.T) {
 		var cid string
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2CertsApi.DevicesV2CertsShow(context.Background(), cid, id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsShow(context.Background(), cid, id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -86,7 +86,7 @@ func Test_iot_DevicesV2CertsApiService(t *testing.T) {
 		var cid string
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2CertsApi.DevicesV2CertsUpdate(context.Background(), cid, id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsUpdate(context.Background(), cid, id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

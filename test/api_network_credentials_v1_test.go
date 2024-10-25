@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_NetworkCredentialsV1ApiService(t *testing.T) {
@@ -28,7 +28,7 @@ func Test_iot_NetworkCredentialsV1ApiService(t *testing.T) {
 
 		var type_ string
 
-		resp, httpRes, err := apiClient.NetworkCredentialsV1Api.NetworkCredentialsV1Show(context.Background(), type_).Execute()
+		resp, httpRes, err := apiClient.NetworkCredentialsV1API.NetworkCredentialsV1Show(context.Background(), type_).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -42,7 +42,7 @@ func Test_iot_NetworkCredentialsV1ApiService(t *testing.T) {
 
 		var type_ string
 
-		httpRes, err := apiClient.NetworkCredentialsV1Api.NetworkCredentialsV1ShowByDevice(context.Background(), type_).Execute()
+		httpRes, err := apiClient.NetworkCredentialsV1API.NetworkCredentialsV1ShowByDevice(context.Background(), type_).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

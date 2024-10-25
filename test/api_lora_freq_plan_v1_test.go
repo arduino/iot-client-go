@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_LoraFreqPlanV1ApiService(t *testing.T) {
@@ -26,7 +26,7 @@ func Test_iot_LoraFreqPlanV1ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.LoraFreqPlanV1Api.LoraFreqPlanV1List(context.Background()).Execute()
+		resp, httpRes, err := apiClient.LoraFreqPlanV1API.LoraFreqPlanV1List(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

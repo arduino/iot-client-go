@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DevicesV2TagsApiService(t *testing.T) {
@@ -29,7 +29,7 @@ func Test_iot_DevicesV2TagsApiService(t *testing.T) {
 		var id string
 		var key string
 
-		httpRes, err := apiClient.DevicesV2TagsApi.DevicesV2TagsDelete(context.Background(), id, key).Execute()
+		httpRes, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsDelete(context.Background(), id, key).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -42,7 +42,7 @@ func Test_iot_DevicesV2TagsApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DevicesV2TagsApi.DevicesV2TagsList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsList(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -56,7 +56,7 @@ func Test_iot_DevicesV2TagsApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DevicesV2TagsApi.DevicesV2TagsUpsert(context.Background(), id).Execute()
+		httpRes, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsUpsert(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_ThingsV2ApiService(t *testing.T) {
@@ -26,7 +26,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2Create(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2Create(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -40,7 +40,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2CreateSketch(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2CreateSketch(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -54,7 +54,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.ThingsV2Api.ThingsV2Delete(context.Background(), id).Execute()
+		httpRes, err := apiClient.ThingsV2API.ThingsV2Delete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -67,7 +67,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2DeleteSketch(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2DeleteSketch(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -79,7 +79,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2List(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2List(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -93,7 +93,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2Show(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2Show(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -107,7 +107,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2Update(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2Update(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -122,7 +122,7 @@ func Test_iot_ThingsV2ApiService(t *testing.T) {
 		var id string
 		var sketchId string
 
-		resp, httpRes, err := apiClient.ThingsV2Api.ThingsV2UpdateSketch(context.Background(), id, sketchId).Execute()
+		resp, httpRes, err := apiClient.ThingsV2API.ThingsV2UpdateSketch(context.Background(), id, sketchId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

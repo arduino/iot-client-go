@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/arduino/iot-client-go/v2"
+	openapiclient "github.com/arduino/iot-client-go/v3"
 )
 
 func Test_iot_DashboardsV2ApiService(t *testing.T) {
@@ -26,7 +26,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Create(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2Create(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -40,7 +40,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Delete(context.Background(), id).Execute()
+		httpRes, err := apiClient.DashboardsV2API.DashboardsV2Delete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,7 +54,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 		var id string
 		var userId string
 
-		httpRes, err := apiClient.DashboardsV2Api.DashboardsV2DeleteShare(context.Background(), id, userId).Execute()
+		httpRes, err := apiClient.DashboardsV2API.DashboardsV2DeleteShare(context.Background(), id, userId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,7 +68,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 		var id string
 		var widgetId string
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Link(context.Background(), id, widgetId).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2Link(context.Background(), id, widgetId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,7 +80,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2List(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2List(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -94,7 +94,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2ListShares(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2ListShares(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -108,7 +108,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DashboardsV2Api.DashboardsV2RequestAccess(context.Background(), id).Execute()
+		httpRes, err := apiClient.DashboardsV2API.DashboardsV2RequestAccess(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -121,7 +121,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Share(context.Background(), id).Execute()
+		httpRes, err := apiClient.DashboardsV2API.DashboardsV2Share(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -134,7 +134,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Show(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2Show(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -148,7 +148,7 @@ func Test_iot_DashboardsV2ApiService(t *testing.T) {
 
 		var id string
 
-		resp, httpRes, err := apiClient.DashboardsV2Api.DashboardsV2Update(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DashboardsV2API.DashboardsV2Update(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
