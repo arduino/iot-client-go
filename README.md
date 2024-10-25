@@ -38,15 +38,15 @@ You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` secti
 
 ### Step 1
 
-![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_1.png?raw=true)
+![IoT Cloud Site](https://github.com/arduino/iot-client-go/blob/master/img/selection_1.png?raw=true)
 
 ### Step 2
 
-![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_2.png?raw=true)
+![IoT Cloud Site](https://github.com/arduino/iot-client-go/blob/master/img/selection_2.png?raw=true)
 
 ### Step 3
 
-![IoT Cloud Site](https://github.com/arduino/iot-client-js/blob/master/img/selection_3.png?raw=true)
+![IoT Cloud Site](https://github.com/arduino/iot-client-go/blob/master/img/selection_3.png?raw=true)
 
 ## Migration notes to client v3
 
