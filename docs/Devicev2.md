@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
 **Name** | Pointer to **string** | The friendly name of the device | [optional] 
 **Serial** | Pointer to **string** | The serial uuid of the device | [optional] 
+**SoftDeleted** | Pointer to **bool** | If false, restore the thing from the soft deletion | [optional] [default to false]
 **Type** | Pointer to **string** | The type of the device | [optional] 
 **UserId** | Pointer to **string** | The user_id associated to the device. If absent it will be inferred from the authentication header | [optional] 
 **WifiFwVersion** | Pointer to **string** | The version of the NINA/WIFI101 firmware running on the device | [optional] 
@@ -130,6 +131,31 @@ SetSerial sets Serial field to given value.
 `func (o *Devicev2) HasSerial() bool`
 
 HasSerial returns a boolean if a field has been set.
+
+### GetSoftDeleted
+
+`func (o *Devicev2) GetSoftDeleted() bool`
+
+GetSoftDeleted returns the SoftDeleted field if non-nil, zero value otherwise.
+
+### GetSoftDeletedOk
+
+`func (o *Devicev2) GetSoftDeletedOk() (*bool, bool)`
+
+GetSoftDeletedOk returns a tuple with the SoftDeleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSoftDeleted
+
+`func (o *Devicev2) SetSoftDeleted(v bool)`
+
+SetSoftDeleted sets SoftDeleted field to given value.
+
+### HasSoftDeleted
+
+`func (o *Devicev2) HasSoftDeleted() bool`
+
+HasSoftDeleted returns a boolean if a field has been set.
 
 ### GetType
 

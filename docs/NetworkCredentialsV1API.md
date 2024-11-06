@@ -1,6 +1,6 @@
 # \NetworkCredentialsV1API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 

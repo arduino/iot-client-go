@@ -81,7 +81,7 @@ func (a *DevicesV2OtaAPIService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRe
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -473,7 +473,7 @@ func (a *DevicesV2OtaAPIService) DevicesV2OtaUrlExecute(r ApiDevicesV2OtaUrlRequ
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

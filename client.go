@@ -32,7 +32,6 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"golang.org/x/oauth2"
 )
 
 var (
@@ -79,6 +78,8 @@ type APIClient struct {
 	ThingsV2API *ThingsV2APIService
 
 	ThingsV2TagsAPI *ThingsV2TagsAPIService
+
+	TriggersV1API *TriggersV1APIService
 }
 
 type service struct {
@@ -112,6 +113,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TemplatesAPI = (*TemplatesAPIService)(&c.common)
 	c.ThingsV2API = (*ThingsV2APIService)(&c.common)
 	c.ThingsV2TagsAPI = (*ThingsV2TagsAPIService)(&c.common)
+	c.TriggersV1API = (*TriggersV1APIService)(&c.common)
 
 	return c
 }
@@ -457,15 +459,9 @@ func (c *APIClient) prepareRequest(
 
 		// Walk through any authentication.
 
-		// OAuth2 authentication
-		if tok, ok := ctx.Value(ContextOAuth2).(oauth2.TokenSource); ok {
-			// We were able to grab an oauth2 token from the context
-			var latestToken *oauth2.Token
-			if latestToken, err = tok.Token(); err != nil {
-				return nil, err
-			}
-
-			latestToken.SetAuthHeader(localVarRequest)
+		// AccessToken Authentication
+		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
+			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
 		}
 
 	}

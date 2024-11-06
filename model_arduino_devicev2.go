@@ -26,6 +26,8 @@ type ArduinoDevicev2 struct {
 	ConnectionType *string `json:"connection_type,omitempty"`
 	// Creation date of the device
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Deletion date of the trigger
+	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 	// The connection status of the device
 	DeviceStatus *string `json:"device_status,omitempty"`
 	// ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view)
@@ -63,6 +65,8 @@ type ArduinoDevicev2 struct {
 	Thing *ArduinoThing `json:"thing,omitempty"`
 	// The type of the device
 	Type string `json:"type"`
+	// Update date of the trigger
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The id of the user
 	UserId string `json:"user_id"`
 	// ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view)
@@ -159,6 +163,38 @@ func (o *ArduinoDevicev2) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *ArduinoDevicev2) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetDeletedAt() time.Time {
+	if o == nil || IsNil(o.DeletedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetDeletedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.DeletedAt) {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasDeletedAt() bool {
+	if o != nil && !IsNil(o.DeletedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
+func (o *ArduinoDevicev2) SetDeletedAt(v time.Time) {
+	o.DeletedAt = &v
 }
 
 // GetDeviceStatus returns the DeviceStatus field value if set, zero value otherwise.
@@ -721,6 +757,38 @@ func (o *ArduinoDevicev2) SetType(v string) {
 	o.Type = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *ArduinoDevicev2) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetUserId returns the UserId field value
 func (o *ArduinoDevicev2) GetUserId() string {
 	if o == nil {
@@ -825,6 +893,9 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if !IsNil(o.DeletedAt) {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
 	if !IsNil(o.DeviceStatus) {
 		toSerialize["device_status"] = o.DeviceStatus
 	}
@@ -870,6 +941,9 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 		toSerialize["thing"] = o.Thing
 	}
 	toSerialize["type"] = o.Type
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	toSerialize["user_id"] = o.UserId
 	if !IsNil(o.Webhooks) {
 		toSerialize["webhooks"] = o.Webhooks

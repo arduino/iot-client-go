@@ -29,6 +29,8 @@ type ThingUpdate struct {
 	Name *string `json:"name,omitempty" validate:"regexp=^[a-zA-Z0-9_. -]+$"`
 	// The properties of the thing
 	Properties []Property `json:"properties,omitempty"`
+	// If false, restore the thing from the soft deletion
+	SoftDeleted *bool `json:"soft_deleted,omitempty"`
 	// A time zone name. Check /v2/timezones for a list of valid names.
 	Timezone *string `json:"timezone,omitempty"`
 	// Webhook uri
@@ -43,6 +45,8 @@ type ThingUpdate struct {
 // will change when the set of required properties is changed
 func NewThingUpdate() *ThingUpdate {
 	this := ThingUpdate{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -51,6 +55,8 @@ func NewThingUpdate() *ThingUpdate {
 // but it doesn't guarantee that properties required by API are set
 func NewThingUpdateWithDefaults() *ThingUpdate {
 	this := ThingUpdate{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -214,6 +220,38 @@ func (o *ThingUpdate) SetProperties(v []Property) {
 	o.Properties = v
 }
 
+// GetSoftDeleted returns the SoftDeleted field value if set, zero value otherwise.
+func (o *ThingUpdate) GetSoftDeleted() bool {
+	if o == nil || IsNil(o.SoftDeleted) {
+		var ret bool
+		return ret
+	}
+	return *o.SoftDeleted
+}
+
+// GetSoftDeletedOk returns a tuple with the SoftDeleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ThingUpdate) GetSoftDeletedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SoftDeleted) {
+		return nil, false
+	}
+	return o.SoftDeleted, true
+}
+
+// HasSoftDeleted returns a boolean if a field has been set.
+func (o *ThingUpdate) HasSoftDeleted() bool {
+	if o != nil && !IsNil(o.SoftDeleted) {
+		return true
+	}
+
+	return false
+}
+
+// SetSoftDeleted gets a reference to the given bool and assigns it to the SoftDeleted field.
+func (o *ThingUpdate) SetSoftDeleted(v bool) {
+	o.SoftDeleted = &v
+}
+
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *ThingUpdate) GetTimezone() string {
 	if o == nil || IsNil(o.Timezone) {
@@ -334,6 +372,9 @@ func (o ThingUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Properties) {
 		toSerialize["properties"] = o.Properties
+	}
+	if !IsNil(o.SoftDeleted) {
+		toSerialize["soft_deleted"] = o.SoftDeleted
 	}
 	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone

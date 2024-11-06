@@ -34,6 +34,7 @@ func (r ApiLoraDevicesV1CreateRequest) CreateLoraDevicesV1Payload(createLoraDevi
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiLoraDevicesV1CreateRequest) XOrganization(xOrganization string) ApiLoraDevicesV1CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -83,7 +84,7 @@ func (a *LoraDevicesV1APIService) LoraDevicesV1CreateExecute(r ApiLoraDevicesV1C
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

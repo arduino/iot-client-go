@@ -335,7 +335,7 @@ func (a *DevicesV2TagsAPIService) DevicesV2TagsUpsertExecute(r ApiDevicesV2TagsU
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
