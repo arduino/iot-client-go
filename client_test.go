@@ -98,7 +98,7 @@ func TestMain(m *testing.M) {
 	log.Printf("Got an access token, will expire on %s", tok.Expiry)
 
 	// We use the token to create a context that will be passed to any API call
-	ctx = context.WithValue(context.Background(), ContextOAuth2, oauth2.StaticTokenSource(
+	ctx = context.WithValue(context.Background(), ContextAccessToken, oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: tok.AccessToken},
 	))
 
