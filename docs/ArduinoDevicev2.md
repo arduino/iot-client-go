@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConnectionType** | Pointer to **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the device | [optional] 
+**DeletedAt** | Pointer to **time.Time** | Deletion date of the trigger | [optional] 
 **DeviceStatus** | Pointer to **string** | The connection status of the device | [optional] 
 **Events** | Pointer to [**[]ArduinoDevicev2SimpleProperties**](ArduinoDevicev2SimpleProperties.md) | ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view) | [optional] 
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
@@ -25,6 +26,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **map[string]interface{}** | Tags belonging to the device | [optional] 
 **Thing** | Pointer to [**ArduinoThing**](ArduinoThing.md) |  | [optional] 
 **Type** | **string** | The type of the device | 
+**UpdatedAt** | Pointer to **time.Time** | Update date of the trigger | [optional] 
 **UserId** | **string** | The id of the user | 
 **Webhooks** | Pointer to [**[]ArduinoDevicev2Webhook**](ArduinoDevicev2Webhook.md) | ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view) | [optional] 
 **WifiFwVersion** | Pointer to **string** | The version of the NINA/WIFI101 firmware running on the device | [optional] 
@@ -97,6 +99,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *ArduinoDevicev2) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *ArduinoDevicev2) GetDeletedAt() time.Time`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *ArduinoDevicev2) GetDeletedAtOk() (*time.Time, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *ArduinoDevicev2) SetDeletedAt(v time.Time)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *ArduinoDevicev2) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
 
 ### GetDeviceStatus
 
@@ -542,6 +569,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetUpdatedAt
+
+`func (o *ArduinoDevicev2) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *ArduinoDevicev2) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *ArduinoDevicev2) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *ArduinoDevicev2) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUserId
 

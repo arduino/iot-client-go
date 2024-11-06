@@ -79,6 +79,8 @@ type APIClient struct {
 	ThingsV2API *ThingsV2APIService
 
 	ThingsV2TagsAPI *ThingsV2TagsAPIService
+
+	TriggersV1API *TriggersV1APIService
 }
 
 type service struct {
@@ -112,6 +114,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TemplatesAPI = (*TemplatesAPIService)(&c.common)
 	c.ThingsV2API = (*ThingsV2APIService)(&c.common)
 	c.ThingsV2TagsAPI = (*ThingsV2TagsAPIService)(&c.common)
+	c.TriggersV1API = (*TriggersV1APIService)(&c.common)
 
 	return c
 }

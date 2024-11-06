@@ -1,6 +1,6 @@
 # \TemplatesAPI
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +30,7 @@ import (
 
 func main() {
 	template := *openapiclient.NewTemplate("remote-controlled-lights") // Template | TemplatePayload describes the needed attribute to apply a template
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiTemplatesApplyRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **template** | [**Template**](Template.md) | TemplatePayload describes the needed attribute to apply a template | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -64,11 +64,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.template+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

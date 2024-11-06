@@ -27,6 +27,8 @@ type Devicev2 struct {
 	Name *string `json:"name,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
 	// The serial uuid of the device
 	Serial *string `json:"serial,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
+	// If false, restore the thing from the soft deletion
+	SoftDeleted *bool `json:"soft_deleted,omitempty"`
 	// The type of the device
 	Type *string `json:"type,omitempty"`
 	// The user_id associated to the device. If absent it will be inferred from the authentication header
@@ -41,6 +43,8 @@ type Devicev2 struct {
 // will change when the set of required properties is changed
 func NewDevicev2() *Devicev2 {
 	this := Devicev2{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -49,6 +53,8 @@ func NewDevicev2() *Devicev2 {
 // but it doesn't guarantee that properties required by API are set
 func NewDevicev2WithDefaults() *Devicev2 {
 	this := Devicev2{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -180,6 +186,38 @@ func (o *Devicev2) SetSerial(v string) {
 	o.Serial = &v
 }
 
+// GetSoftDeleted returns the SoftDeleted field value if set, zero value otherwise.
+func (o *Devicev2) GetSoftDeleted() bool {
+	if o == nil || IsNil(o.SoftDeleted) {
+		var ret bool
+		return ret
+	}
+	return *o.SoftDeleted
+}
+
+// GetSoftDeletedOk returns a tuple with the SoftDeleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Devicev2) GetSoftDeletedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SoftDeleted) {
+		return nil, false
+	}
+	return o.SoftDeleted, true
+}
+
+// HasSoftDeleted returns a boolean if a field has been set.
+func (o *Devicev2) HasSoftDeleted() bool {
+	if o != nil && !IsNil(o.SoftDeleted) {
+		return true
+	}
+
+	return false
+}
+
+// SetSoftDeleted gets a reference to the given bool and assigns it to the SoftDeleted field.
+func (o *Devicev2) SetSoftDeleted(v bool) {
+	o.SoftDeleted = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Devicev2) GetType() string {
 	if o == nil || IsNil(o.Type) {
@@ -297,6 +335,9 @@ func (o Devicev2) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Serial) {
 		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.SoftDeleted) {
+		toSerialize["soft_deleted"] = o.SoftDeleted
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
