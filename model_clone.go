@@ -17,7 +17,7 @@ import (
 // checks if the Clone type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Clone{}
 
-// Clone struct for Clone
+// Clone Add overrides used when performing a clone of a dashboard
 type Clone struct {
 	// The overrides to apply to the cloned dashboard. An override is a tuple of ids: the id of the thing to override and the id of the new thing to link
 	Overrides []Override `json:"overrides,omitempty"`
