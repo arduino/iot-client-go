@@ -38,6 +38,7 @@ func (r ApiThingsV2CloneRequest) ThingClone(thingClone ThingClone) ApiThingsV2Cl
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2CloneRequest) XOrganization(xOrganization string) ApiThingsV2CloneRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -90,7 +91,7 @@ func (a *ThingsV2APIService) ThingsV2CloneExecute(r ApiThingsV2CloneRequest) (*A
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -211,6 +212,7 @@ func (r ApiThingsV2CreateRequest) Force(force bool) ApiThingsV2CreateRequest {
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2CreateRequest) XOrganization(xOrganization string) ApiThingsV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -266,7 +268,7 @@ func (a *ThingsV2APIService) ThingsV2CreateExecute(r ApiThingsV2CreateRequest) (
 		r.force = &defaultValue
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -403,6 +405,7 @@ func (r ApiThingsV2CreateSketchRequest) ThingSketch(thingSketch ThingSketch) Api
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2CreateSketchRequest) XOrganization(xOrganization string) ApiThingsV2CreateSketchRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -455,7 +458,7 @@ func (a *ThingsV2APIService) ThingsV2CreateSketchExecute(r ApiThingsV2CreateSket
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -581,6 +584,7 @@ func (r ApiThingsV2DeleteRequest) Force(force bool) ApiThingsV2DeleteRequest {
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2DeleteRequest) XOrganization(xOrganization string) ApiThingsV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -731,6 +735,7 @@ type ApiThingsV2DeleteSketchRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2DeleteSketchRequest) XOrganization(xOrganization string) ApiThingsV2DeleteSketchRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -914,6 +919,7 @@ func (r ApiThingsV2ListRequest) Tags(tags []string) ApiThingsV2ListRequest {
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2ListRequest) XOrganization(xOrganization string) ApiThingsV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1116,6 +1122,7 @@ func (r ApiThingsV2ShowRequest) ShowDeleted(showDeleted bool) ApiThingsV2ShowReq
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2ShowRequest) XOrganization(xOrganization string) ApiThingsV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1266,6 +1273,7 @@ type ApiThingsV2TemplateRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2TemplateRequest) XOrganization(xOrganization string) ApiThingsV2TemplateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1435,6 +1443,7 @@ func (r ApiThingsV2UpdateRequest) Force(force bool) ApiThingsV2UpdateRequest {
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2UpdateRequest) XOrganization(xOrganization string) ApiThingsV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1493,7 +1502,7 @@ func (a *ThingsV2APIService) ThingsV2UpdateExecute(r ApiThingsV2UpdateRequest) (
 		r.force = &defaultValue
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1625,6 +1634,7 @@ type ApiThingsV2UpdateSketchRequest struct {
 	updateSketch *UpdateSketch
 }
 
+// Organization space identifer (optional)
 func (r ApiThingsV2UpdateSketchRequest) XOrganization(xOrganization string) ApiThingsV2UpdateSketchRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1682,7 +1692,7 @@ func (a *ThingsV2APIService) ThingsV2UpdateSketchExecute(r ApiThingsV2UpdateSket
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

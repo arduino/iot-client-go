@@ -1,6 +1,6 @@
 # \LoraFreqPlanV1API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiLoraFreqPlanV1ListRequest 
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 

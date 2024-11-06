@@ -1,6 +1,6 @@
 # \LoraDevicesV1API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +30,7 @@ import (
 
 func main() {
 	createLoraDevicesV1Payload := *openapiclient.NewCreateLoraDevicesV1Payload("App_example", "Eui_example", "FrequencyPlan_example", "Name_example", "Type_example", "UserId_example") // CreateLoraDevicesV1Payload | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiLoraDevicesV1CreateRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createLoraDevicesV1Payload** | [**CreateLoraDevicesV1Payload**](CreateLoraDevicesV1Payload.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -64,11 +64,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.loradevicev1+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

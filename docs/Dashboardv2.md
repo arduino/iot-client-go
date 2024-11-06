@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CoverImage** | Pointer to **string** | The cover image of the dashboard | [optional] 
 **Name** | Pointer to **string** | The friendly name of the dashboard | [optional] 
+**SoftDeleted** | Pointer to **bool** | If false, restore the thing from the soft deletion | [optional] [default to false]
 **Widgets** | Pointer to [**[]Widget**](Widget.md) | Widgets attached to this dashboard | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetName sets Name field to given value.
 `func (o *Dashboardv2) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetSoftDeleted
+
+`func (o *Dashboardv2) GetSoftDeleted() bool`
+
+GetSoftDeleted returns the SoftDeleted field if non-nil, zero value otherwise.
+
+### GetSoftDeletedOk
+
+`func (o *Dashboardv2) GetSoftDeletedOk() (*bool, bool)`
+
+GetSoftDeletedOk returns a tuple with the SoftDeleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSoftDeleted
+
+`func (o *Dashboardv2) SetSoftDeleted(v bool)`
+
+SetSoftDeleted sets SoftDeleted field to given value.
+
+### HasSoftDeleted
+
+`func (o *Dashboardv2) HasSoftDeleted() bool`
+
+HasSoftDeleted returns a boolean if a field has been set.
 
 ### GetWidgets
 

@@ -17,12 +17,14 @@ import (
 // checks if the Dashboardv2 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Dashboardv2{}
 
-// Dashboardv2 DashboardV2Payload describes a dashboard
+// Dashboardv2 Describes a dashboard
 type Dashboardv2 struct {
 	// The cover image of the dashboard
 	CoverImage *string `json:"cover_image,omitempty"`
 	// The friendly name of the dashboard
 	Name *string `json:"name,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
+	// If false, restore the thing from the soft deletion
+	SoftDeleted *bool `json:"soft_deleted,omitempty"`
 	// Widgets attached to this dashboard
 	Widgets []Widget `json:"widgets,omitempty"`
 }
@@ -33,6 +35,8 @@ type Dashboardv2 struct {
 // will change when the set of required properties is changed
 func NewDashboardv2() *Dashboardv2 {
 	this := Dashboardv2{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -41,6 +45,8 @@ func NewDashboardv2() *Dashboardv2 {
 // but it doesn't guarantee that properties required by API are set
 func NewDashboardv2WithDefaults() *Dashboardv2 {
 	this := Dashboardv2{}
+	var softDeleted bool = false
+	this.SoftDeleted = &softDeleted
 	return &this
 }
 
@@ -108,6 +114,38 @@ func (o *Dashboardv2) SetName(v string) {
 	o.Name = &v
 }
 
+// GetSoftDeleted returns the SoftDeleted field value if set, zero value otherwise.
+func (o *Dashboardv2) GetSoftDeleted() bool {
+	if o == nil || IsNil(o.SoftDeleted) {
+		var ret bool
+		return ret
+	}
+	return *o.SoftDeleted
+}
+
+// GetSoftDeletedOk returns a tuple with the SoftDeleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboardv2) GetSoftDeletedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SoftDeleted) {
+		return nil, false
+	}
+	return o.SoftDeleted, true
+}
+
+// HasSoftDeleted returns a boolean if a field has been set.
+func (o *Dashboardv2) HasSoftDeleted() bool {
+	if o != nil && !IsNil(o.SoftDeleted) {
+		return true
+	}
+
+	return false
+}
+
+// SetSoftDeleted gets a reference to the given bool and assigns it to the SoftDeleted field.
+func (o *Dashboardv2) SetSoftDeleted(v bool) {
+	o.SoftDeleted = &v
+}
+
 // GetWidgets returns the Widgets field value if set, zero value otherwise.
 func (o *Dashboardv2) GetWidgets() []Widget {
 	if o == nil || IsNil(o.Widgets) {
@@ -155,6 +193,9 @@ func (o Dashboardv2) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.SoftDeleted) {
+		toSerialize["soft_deleted"] = o.SoftDeleted
 	}
 	if !IsNil(o.Widgets) {
 		toSerialize["widgets"] = o.Widgets
