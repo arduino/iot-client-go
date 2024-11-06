@@ -82,7 +82,7 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsCreateExecute(r ApiDevicesV2Cer
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -601,7 +601,7 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsUpdateExecute(r ApiDevicesV2Cer
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
