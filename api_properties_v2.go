@@ -37,7 +37,7 @@ func (r ApiPropertiesV2CreateRequest) Property(property Property) ApiPropertiesV
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2CreateRequest) XOrganization(xOrganization string) ApiPropertiesV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -90,7 +90,7 @@ func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -206,7 +206,7 @@ func (r ApiPropertiesV2DeleteRequest) Force(force bool) ApiPropertiesV2DeleteReq
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2DeleteRequest) XOrganization(xOrganization string) ApiPropertiesV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -345,7 +345,7 @@ func (r ApiPropertiesV2ListRequest) ShowDeleted(showDeleted bool) ApiPropertiesV
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2ListRequest) XOrganization(xOrganization string) ApiPropertiesV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -504,7 +504,7 @@ func (r ApiPropertiesV2PublishRequest) PropertyValue(propertyValue PropertyValue
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2PublishRequest) XOrganization(xOrganization string) ApiPropertiesV2PublishRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -558,7 +558,7 @@ func (a *PropertiesV2APIService) PropertiesV2PublishExecute(r ApiPropertiesV2Pub
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -654,7 +654,7 @@ func (r ApiPropertiesV2ShowRequest) ShowDeleted(showDeleted bool) ApiPropertiesV
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2ShowRequest) XOrganization(xOrganization string) ApiPropertiesV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -844,7 +844,7 @@ func (r ApiPropertiesV2TimeseriesRequest) To(to string) ApiPropertiesV2Timeserie
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2TimeseriesRequest) XOrganization(xOrganization string) ApiPropertiesV2TimeseriesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1018,7 +1018,7 @@ func (r ApiPropertiesV2UpdateRequest) Property(property Property) ApiPropertiesV
 	return r
 }
 
-// The id of the organization
+// Organization space identifer (optional)
 func (r ApiPropertiesV2UpdateRequest) XOrganization(xOrganization string) ApiPropertiesV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1074,7 +1074,7 @@ func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

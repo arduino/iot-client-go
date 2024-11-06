@@ -1,6 +1,6 @@
 # \DevicesV2API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -39,7 +39,7 @@ import (
 
 func main() {
 	createDevicesV2Payload := *openapiclient.NewCreateDevicesV2Payload("Type_example") // CreateDevicesV2Payload | DeviceV2 describes a device.
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -65,7 +65,7 @@ Other parameters are passed through a pointer to a apiDevicesV2CreateRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createDevicesV2Payload** | [**CreateDevicesV2Payload**](CreateDevicesV2Payload.md) | DeviceV2 describes a device. | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.devicev2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2Delete
 
-> DevicesV2Delete(ctx, id).XOrganization(xOrganization).Execute()
+> DevicesV2Delete(ctx, id).Force(force).XOrganization(xOrganization).Execute()
 
 delete devices_v2
 
@@ -107,11 +107,12 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the device
-	xOrganization := "xOrganization_example" // string |  (optional)
+	force := true // bool | If true, hard delete the device (optional) (default to false)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2API.DevicesV2Delete(context.Background(), id).XOrganization(xOrganization).Execute()
+	r, err := apiClient.DevicesV2API.DevicesV2Delete(context.Background(), id).Force(force).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2API.DevicesV2Delete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,7 +136,8 @@ Other parameters are passed through a pointer to a apiDevicesV2DeleteRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **force** | **bool** | If true, hard delete the device | [default to false]
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -179,7 +181,7 @@ func main() {
 	id := "id_example" // string | The id of the device
 	limit := int32(56) // int32 | The number of events to select (optional)
 	start := "start_example" // string | The time at which to start selecting events (optional)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -211,7 +213,7 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** | The number of events to select | 
  **start** | **string** | The time at which to start selecting events | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -254,7 +256,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -285,7 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -329,7 +331,7 @@ func main() {
 	id := "id_example" // string | The id of the device
 	limit := int32(56) // int32 | The number of events to select (optional) (default to 30)
 	start := "start_example" // string | The time at which to start selecting events (optional)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -361,7 +363,7 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** | The number of events to select | [default to 30]
  **start** | **string** | The time at which to start selecting events | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -383,7 +385,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2List
 
-> []ArduinoDevicev2 DevicesV2List(ctx).AcrossUserIds(acrossUserIds).Serial(serial).Tags(tags).XOrganization(xOrganization).Execute()
+> []ArduinoDevicev2 DevicesV2List(ctx).AcrossUserIds(acrossUserIds).Serial(serial).ShowDeleted(showDeleted).Tags(tags).XOrganization(xOrganization).Execute()
 
 list devices_v2
 
@@ -404,12 +406,13 @@ import (
 func main() {
 	acrossUserIds := true // bool | If true, returns all the devices (optional) (default to false)
 	serial := "serial_example" // string | Filter by device serial number (optional)
+	showDeleted := true // bool | If true, shows the soft deleted devices (optional) (default to false)
 	tags := []string{"Inner_example"} // []string | Filter by tags (optional)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2API.DevicesV2List(context.Background()).AcrossUserIds(acrossUserIds).Serial(serial).Tags(tags).XOrganization(xOrganization).Execute()
+	resp, r, err := apiClient.DevicesV2API.DevicesV2List(context.Background()).AcrossUserIds(acrossUserIds).Serial(serial).ShowDeleted(showDeleted).Tags(tags).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2API.DevicesV2List``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -432,8 +435,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acrossUserIds** | **bool** | If true, returns all the devices | [default to false]
  **serial** | **string** | Filter by device serial number | 
+ **showDeleted** | **bool** | If true, shows the soft deleted devices | [default to false]
  **tags** | **[]string** | Filter by tags | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -475,7 +479,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the device
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -505,7 +509,7 @@ Other parameters are passed through a pointer to a apiDevicesV2ShowRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -550,7 +554,7 @@ func main() {
 	pid := "pid_example" // string | The id of the property
 	limit := int32(56) // int32 | The number of properties to select (optional)
 	start := "start_example" // string | The time at which to start selecting properties (optional)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -584,7 +588,7 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** | The number of properties to select | 
  **start** | **string** | The time at which to start selecting properties | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -627,7 +631,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	devicev2 := *openapiclient.NewDevicev2() // Devicev2 | DeviceV2 describes a device.
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -658,7 +662,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **devicev2** | [**Devicev2**](Devicev2.md) | DeviceV2 describes a device. | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -670,7 +674,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.devicev2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -701,7 +705,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	propertiesValues := *openapiclient.NewPropertiesValues([]openapiclient.PropertiesValue{*openapiclient.NewPropertiesValue("Name_example", "Type_example", interface{}(123))}) // PropertiesValues | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -730,7 +734,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **propertiesValues** | [**PropertiesValues**](PropertiesValues.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -742,7 +746,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.goa.error+json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

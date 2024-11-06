@@ -34,6 +34,7 @@ func (r ApiSeriesV2BatchQueryRequest) BatchQueryRequestsMediaV1(batchQueryReques
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -83,7 +84,7 @@ func (a *SeriesV2APIService) SeriesV2BatchQueryExecute(r ApiSeriesV2BatchQueryRe
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -196,6 +197,7 @@ func (r ApiSeriesV2BatchQueryRawRequest) BatchQueryRawRequestsMediaV1(batchQuery
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRawRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRawRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -245,7 +247,7 @@ func (a *SeriesV2APIService) SeriesV2BatchQueryRawExecute(r ApiSeriesV2BatchQuer
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -358,6 +360,7 @@ func (r ApiSeriesV2BatchQueryRawLastValueRequest) BatchLastValueRequestsMediaV1(
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRawLastValueRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRawLastValueRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -407,7 +410,7 @@ func (a *SeriesV2APIService) SeriesV2BatchQueryRawLastValueExecute(r ApiSeriesV2
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -509,6 +512,7 @@ func (r ApiSeriesV2BatchQuerySamplingRequest) BatchQuerySampledRequestsMediaV1(b
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQuerySamplingRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQuerySamplingRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -558,7 +562,7 @@ func (a *SeriesV2APIService) SeriesV2BatchQuerySamplingExecute(r ApiSeriesV2Batc
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -671,6 +675,7 @@ func (r ApiSeriesV2HistoricDataRequest) HistoricDataRequest(historicDataRequest 
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiSeriesV2HistoricDataRequest) XOrganization(xOrganization string) ApiSeriesV2HistoricDataRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -718,7 +723,7 @@ func (a *SeriesV2APIService) SeriesV2HistoricDataExecute(r ApiSeriesV2HistoricDa
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

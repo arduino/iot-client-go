@@ -1,6 +1,6 @@
 # \DashboardsV2API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**DashboardsV2Link**](DashboardsV2API.md#DashboardsV2Link) | **Put** /iot/v2/dashboards/{id}/widgets/{widgetId}/variables | link dashboards_v2
 [**DashboardsV2List**](DashboardsV2API.md#DashboardsV2List) | **Get** /iot/v2/dashboards | list dashboards_v2
 [**DashboardsV2ListShares**](DashboardsV2API.md#DashboardsV2ListShares) | **Get** /iot/v2/dashboards/{id}/shares | listShares dashboards_v2
+[**DashboardsV2Patch**](DashboardsV2API.md#DashboardsV2Patch) | **Patch** /iot/v2/dashboards/{id} | patch dashboards_v2
 [**DashboardsV2RequestAccess**](DashboardsV2API.md#DashboardsV2RequestAccess) | **Put** /iot/v2/dashboards/{id}/share_request | requestAccess dashboards_v2
 [**DashboardsV2Share**](DashboardsV2API.md#DashboardsV2Share) | **Put** /iot/v2/dashboards/{id}/shares | share dashboards_v2
 [**DashboardsV2Show**](DashboardsV2API.md#DashboardsV2Show) | **Get** /iot/v2/dashboards/{id} | show dashboards_v2
@@ -41,8 +42,8 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	clone := *openapiclient.NewClone() // Clone | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	clone := *openapiclient.NewClone() // Clone | Add overrides used when performing a clone of a dashboard
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -72,8 +73,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2CloneRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **clone** | [**Clone**](Clone.md) |  | 
- **xOrganization** | **string** |  | 
+ **clone** | [**Clone**](Clone.md) | Add overrides used when performing a clone of a dashboard | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -85,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -114,8 +115,8 @@ import (
 )
 
 func main() {
-	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -140,8 +141,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2CreateRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
- **xOrganization** | **string** |  | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -153,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -163,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## DashboardsV2Delete
 
-> DashboardsV2Delete(ctx, id).XOrganization(xOrganization).Execute()
+> DashboardsV2Delete(ctx, id).Force(force).XOrganization(xOrganization).Execute()
 
 delete dashboards_v2
 
@@ -183,11 +184,12 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	force := true // bool | If true, hard delete the thing (optional) (default to false)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DashboardsV2API.DashboardsV2Delete(context.Background(), id).XOrganization(xOrganization).Execute()
+	r, err := apiClient.DashboardsV2API.DashboardsV2Delete(context.Background(), id).Force(force).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2API.DashboardsV2Delete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,7 +213,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2DeleteRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **force** | **bool** | If true, hard delete the thing | [default to false]
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -254,7 +257,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	userId := "userId_example" // string | The id of the user
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -284,7 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -328,7 +331,7 @@ func main() {
 	id := "id_example" // string | The id of the dashboard
 	widgetId := "widgetId_example" // string | The id of the widget
 	widgetlink := *openapiclient.NewWidgetlink() // Widgetlink | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -361,7 +364,7 @@ Name | Type | Description  | Notes
 
 
  **widgetlink** | [**Widgetlink**](Widgetlink.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -373,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.variableslinks+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -402,9 +405,9 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | The name of the dashboard (optional)
-	userId := "userId_example" // string | The user_id of the dashboard's owner (optional)
-	xOrganization := "xOrganization_example" // string |  (optional)
+	name := "name_example" // string | Filter by name of the dashboard. It support like matching. (optional)
+	userId := "userId_example" // string | Filter by user_id of the dashboard's owner (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -429,9 +432,9 @@ Other parameters are passed through a pointer to a apiDashboardsV2ListRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | The name of the dashboard | 
- **userId** | **string** | The user_id of the dashboard&#39;s owner | 
- **xOrganization** | **string** |  | 
+ **name** | **string** | Filter by name of the dashboard. It support like matching. | 
+ **userId** | **string** | Filter by user_id of the dashboard&#39;s owner | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -473,7 +476,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -503,7 +506,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2ListSharesRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -517,6 +520,80 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.dashboardshare+json; type=collection, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DashboardsV2Patch
+
+> ArduinoDashboardv2 DashboardsV2Patch(ctx, id).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
+
+patch dashboards_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the dashboard
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DashboardsV2API.DashboardsV2Patch(context.Background(), id).Dashboardv2(dashboardv2).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2API.DashboardsV2Patch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DashboardsV2Patch`: ArduinoDashboardv2
+	fmt.Fprintf(os.Stdout, "Response from `DashboardsV2API.DashboardsV2Patch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the dashboard | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDashboardsV2PatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
+
+### Return type
+
+[**ArduinoDashboardv2**](ArduinoDashboardv2.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -546,7 +623,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	sharerequest := *openapiclient.NewSharerequest() // Sharerequest | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -575,7 +652,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **sharerequest** | [**Sharerequest**](Sharerequest.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -587,7 +664,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.goa.error+json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -618,7 +695,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	dashboardshare := *openapiclient.NewDashboardshare() // Dashboardshare | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -647,7 +724,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **dashboardshare** | [**Dashboardshare**](Dashboardshare.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -659,7 +736,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.goa.error+json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -689,7 +766,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -719,7 +796,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2ShowRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -761,7 +838,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -791,7 +868,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2TemplateReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -833,8 +910,8 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
-	xOrganization := "xOrganization_example" // string |  (optional)
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -864,8 +941,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2UpdateRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
- **xOrganization** | **string** |  | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -877,7 +954,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.dashboardv2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -174,7 +174,10 @@ func TestDevicesAPI(t *testing.T) {
 	assert.Equal(t, newName, updatedDevice.Name, "Name was updated correctly")
 
 	// Delete device
-	_, err = client.DevicesV2API.DevicesV2Delete(ctx, device.Id).Execute()
+	deleteReq := client.DevicesV2API.DevicesV2Delete(ctx, device.Id)
+	forceDeletion := true
+	deleteReq.force = &forceDeletion
+	_, err = deleteReq.Execute()
 	assert.NoError(t, err, "No errors deleting device")
 
 	// Ensure device list is empty

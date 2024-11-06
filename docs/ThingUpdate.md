@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The id of the thing | [optional] 
 **Name** | Pointer to **string** | The friendly name of the thing | [optional] 
 **Properties** | Pointer to [**[]Property**](Property.md) | The properties of the thing | [optional] 
+**SoftDeleted** | Pointer to **bool** | If false, restore the thing from the soft deletion | [optional] [default to false]
 **Timezone** | Pointer to **string** | A time zone name. Check /v2/timezones for a list of valid names. | [optional] 
 **WebhookActive** | Pointer to **bool** | Webhook uri | [optional] 
 **WebhookUri** | Pointer to **string** | Webhook uri | [optional] 
@@ -156,6 +157,31 @@ SetProperties sets Properties field to given value.
 `func (o *ThingUpdate) HasProperties() bool`
 
 HasProperties returns a boolean if a field has been set.
+
+### GetSoftDeleted
+
+`func (o *ThingUpdate) GetSoftDeleted() bool`
+
+GetSoftDeleted returns the SoftDeleted field if non-nil, zero value otherwise.
+
+### GetSoftDeletedOk
+
+`func (o *ThingUpdate) GetSoftDeletedOk() (*bool, bool)`
+
+GetSoftDeletedOk returns a tuple with the SoftDeleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSoftDeleted
+
+`func (o *ThingUpdate) SetSoftDeleted(v bool)`
+
+SetSoftDeleted sets SoftDeleted field to given value.
+
+### HasSoftDeleted
+
+`func (o *ThingUpdate) HasSoftDeleted() bool`
+
+HasSoftDeleted returns a boolean if a field has been set.
 
 ### GetTimezone
 
