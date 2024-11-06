@@ -357,7 +357,7 @@ func (a *ThingsV2TagsAPIService) ThingsV2TagsUpsertExecute(r ApiThingsV2TagsUpse
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

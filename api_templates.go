@@ -35,6 +35,7 @@ func (r ApiTemplatesApplyRequest) Template(template Template) ApiTemplatesApplyR
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiTemplatesApplyRequest) XOrganization(xOrganization string) ApiTemplatesApplyRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -84,7 +85,7 @@ func (a *TemplatesAPIService) TemplatesApplyExecute(r ApiTemplatesApplyRequest) 
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

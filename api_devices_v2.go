@@ -37,6 +37,7 @@ func (r ApiDevicesV2CreateRequest) CreateDevicesV2Payload(createDevicesV2Payload
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2CreateRequest) XOrganization(xOrganization string) ApiDevicesV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -86,7 +87,7 @@ func (a *DevicesV2APIService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -191,9 +192,17 @@ type ApiDevicesV2DeleteRequest struct {
 	ctx context.Context
 	ApiService *DevicesV2APIService
 	id string
+	force *bool
 	xOrganization *string
 }
 
+// If true, hard delete the device
+func (r ApiDevicesV2DeleteRequest) Force(force bool) ApiDevicesV2DeleteRequest {
+	r.force = &force
+	return r
+}
+
+// Organization space identifer (optional)
 func (r ApiDevicesV2DeleteRequest) XOrganization(xOrganization string) ApiDevicesV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -240,6 +249,12 @@ func (a *DevicesV2APIService) DevicesV2DeleteExecute(r ApiDevicesV2DeleteRequest
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.force != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.force = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -341,6 +356,7 @@ func (r ApiDevicesV2GetEventsRequest) Start(start string) ApiDevicesV2GetEventsR
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2GetEventsRequest) XOrganization(xOrganization string) ApiDevicesV2GetEventsRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -509,6 +525,7 @@ func (r ApiDevicesV2GetPropertiesRequest) ShowDeleted(showDeleted bool) ApiDevic
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2GetPropertiesRequest) XOrganization(xOrganization string) ApiDevicesV2GetPropertiesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -673,6 +690,7 @@ func (r ApiDevicesV2GetStatusEventsRequest) Start(start string) ApiDevicesV2GetS
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2GetStatusEventsRequest) XOrganization(xOrganization string) ApiDevicesV2GetStatusEventsRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -846,6 +864,7 @@ type ApiDevicesV2ListRequest struct {
 	ApiService *DevicesV2APIService
 	acrossUserIds *bool
 	serial *string
+	showDeleted *bool
 	tags *[]string
 	xOrganization *string
 }
@@ -862,12 +881,19 @@ func (r ApiDevicesV2ListRequest) Serial(serial string) ApiDevicesV2ListRequest {
 	return r
 }
 
+// If true, shows the soft deleted devices
+func (r ApiDevicesV2ListRequest) ShowDeleted(showDeleted bool) ApiDevicesV2ListRequest {
+	r.showDeleted = &showDeleted
+	return r
+}
+
 // Filter by tags
 func (r ApiDevicesV2ListRequest) Tags(tags []string) ApiDevicesV2ListRequest {
 	r.tags = &tags
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2ListRequest) XOrganization(xOrganization string) ApiDevicesV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -921,6 +947,12 @@ func (a *DevicesV2APIService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 	}
 	if r.serial != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "form", "")
+	}
+	if r.showDeleted != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.showDeleted = &defaultValue
 	}
 	if r.tags != nil {
 		t := *r.tags
@@ -1040,6 +1072,7 @@ type ApiDevicesV2ShowRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2ShowRequest) XOrganization(xOrganization string) ApiDevicesV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1199,6 +1232,7 @@ func (r ApiDevicesV2TimeseriesRequest) Start(start string) ApiDevicesV2Timeserie
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2TimeseriesRequest) XOrganization(xOrganization string) ApiDevicesV2TimeseriesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1370,6 +1404,7 @@ func (r ApiDevicesV2UpdateRequest) Devicev2(devicev2 Devicev2) ApiDevicesV2Updat
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2UpdateRequest) XOrganization(xOrganization string) ApiDevicesV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1422,7 +1457,7 @@ func (a *DevicesV2APIService) DevicesV2UpdateExecute(r ApiDevicesV2UpdateRequest
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1536,6 +1571,7 @@ func (r ApiDevicesV2UpdatePropertiesRequest) PropertiesValues(propertiesValues P
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDevicesV2UpdatePropertiesRequest) XOrganization(xOrganization string) ApiDevicesV2UpdatePropertiesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1586,7 +1622,7 @@ func (a *DevicesV2APIService) DevicesV2UpdatePropertiesExecute(r ApiDevicesV2Upd
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
