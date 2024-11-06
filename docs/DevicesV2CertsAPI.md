@@ -1,6 +1,6 @@
 # \DevicesV2CertsAPI
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.devicev2.cert+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.devicev2.cert+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

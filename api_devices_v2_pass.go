@@ -80,7 +80,7 @@ func (a *DevicesV2PassAPIService) DevicesV2PassCheckExecute(r ApiDevicesV2PassCh
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -456,7 +456,7 @@ func (a *DevicesV2PassAPIService) DevicesV2PassSetExecute(r ApiDevicesV2PassSetR
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

@@ -31,11 +31,13 @@ type ApiDashboardsV2CloneRequest struct {
 	xOrganization *string
 }
 
+// Add overrides used when performing a clone of a dashboard
 func (r ApiDashboardsV2CloneRequest) Clone(clone Clone) ApiDashboardsV2CloneRequest {
 	r.clone = &clone
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2CloneRequest) XOrganization(xOrganization string) ApiDashboardsV2CloneRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -88,7 +90,7 @@ func (a *DashboardsV2APIService) DashboardsV2CloneExecute(r ApiDashboardsV2Clone
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -196,12 +198,13 @@ type ApiDashboardsV2CreateRequest struct {
 	xOrganization *string
 }
 
-// DashboardV2Payload describes a dashboard
+// Describes a dashboard
 func (r ApiDashboardsV2CreateRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2CreateRequest {
 	r.dashboardv2 = &dashboardv2
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2CreateRequest) XOrganization(xOrganization string) ApiDashboardsV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -251,7 +254,7 @@ func (a *DashboardsV2APIService) DashboardsV2CreateExecute(r ApiDashboardsV2Crea
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -356,9 +359,17 @@ type ApiDashboardsV2DeleteRequest struct {
 	ctx context.Context
 	ApiService *DashboardsV2APIService
 	id string
+	force *bool
 	xOrganization *string
 }
 
+// If true, hard delete the thing
+func (r ApiDashboardsV2DeleteRequest) Force(force bool) ApiDashboardsV2DeleteRequest {
+	r.force = &force
+	return r
+}
+
+// Organization space identifer (optional)
 func (r ApiDashboardsV2DeleteRequest) XOrganization(xOrganization string) ApiDashboardsV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -405,6 +416,12 @@ func (a *DashboardsV2APIService) DashboardsV2DeleteExecute(r ApiDashboardsV2Dele
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.force != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.force = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -504,6 +521,7 @@ type ApiDashboardsV2DeleteShareRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2DeleteShareRequest) XOrganization(xOrganization string) ApiDashboardsV2DeleteShareRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -658,6 +676,7 @@ func (r ApiDashboardsV2LinkRequest) Widgetlink(widgetlink Widgetlink) ApiDashboa
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2LinkRequest) XOrganization(xOrganization string) ApiDashboardsV2LinkRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -713,7 +732,7 @@ func (a *DashboardsV2APIService) DashboardsV2LinkExecute(r ApiDashboardsV2LinkRe
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -822,18 +841,19 @@ type ApiDashboardsV2ListRequest struct {
 	xOrganization *string
 }
 
-// The name of the dashboard
+// Filter by name of the dashboard. It support like matching.
 func (r ApiDashboardsV2ListRequest) Name(name string) ApiDashboardsV2ListRequest {
 	r.name = &name
 	return r
 }
 
-// The user_id of the dashboard&#39;s owner
+// Filter by user_id of the dashboard&#39;s owner
 func (r ApiDashboardsV2ListRequest) UserId(userId string) ApiDashboardsV2ListRequest {
 	r.userId = &userId
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2ListRequest) XOrganization(xOrganization string) ApiDashboardsV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -992,6 +1012,7 @@ type ApiDashboardsV2ListSharesRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2ListSharesRequest) XOrganization(xOrganization string) ApiDashboardsV2ListSharesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1140,6 +1161,174 @@ func (a *DashboardsV2APIService) DashboardsV2ListSharesExecute(r ApiDashboardsV2
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiDashboardsV2PatchRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV2APIService
+	id string
+	dashboardv2 *Dashboardv2
+	xOrganization *string
+}
+
+// Describes a dashboard
+func (r ApiDashboardsV2PatchRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2PatchRequest {
+	r.dashboardv2 = &dashboardv2
+	return r
+}
+
+// Organization space identifer (optional)
+func (r ApiDashboardsV2PatchRequest) XOrganization(xOrganization string) ApiDashboardsV2PatchRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV2PatchRequest) Execute() (*ArduinoDashboardv2, *http.Response, error) {
+	return r.ApiService.DashboardsV2PatchExecute(r)
+}
+
+/*
+DashboardsV2Patch patch dashboards_v2
+
+Updates an existing dashboard field without overwriting the existing data
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the dashboard
+ @return ApiDashboardsV2PatchRequest
+*/
+func (a *DashboardsV2APIService) DashboardsV2Patch(ctx context.Context, id string) ApiDashboardsV2PatchRequest {
+	return ApiDashboardsV2PatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDashboardv2
+func (a *DashboardsV2APIService) DashboardsV2PatchExecute(r ApiDashboardsV2PatchRequest) (*ArduinoDashboardv2, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDashboardv2
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV2APIService.DashboardsV2Patch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v2/dashboards/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.dashboardv2 == nil {
+		return localVarReturnValue, nil, reportError("dashboardv2 is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv2+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.dashboardv2
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDashboardsV2RequestAccessRequest struct {
 	ctx context.Context
 	ApiService *DashboardsV2APIService
@@ -1153,6 +1342,7 @@ func (r ApiDashboardsV2RequestAccessRequest) Sharerequest(sharerequest Sharerequ
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2RequestAccessRequest) XOrganization(xOrganization string) ApiDashboardsV2RequestAccessRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1203,7 +1393,7 @@ func (a *DashboardsV2APIService) DashboardsV2RequestAccessExecute(r ApiDashboard
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1308,6 +1498,7 @@ func (r ApiDashboardsV2ShareRequest) Dashboardshare(dashboardshare Dashboardshar
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2ShareRequest) XOrganization(xOrganization string) ApiDashboardsV2ShareRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1358,7 +1549,7 @@ func (a *DashboardsV2APIService) DashboardsV2ShareExecute(r ApiDashboardsV2Share
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1457,6 +1648,7 @@ type ApiDashboardsV2ShowRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2ShowRequest) XOrganization(xOrganization string) ApiDashboardsV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1469,7 +1661,7 @@ func (r ApiDashboardsV2ShowRequest) Execute() (*ArduinoDashboardv2, *http.Respon
 /*
 DashboardsV2Show show dashboards_v2
 
-Show a dashboard
+Show a dashboard by id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the dashboard
@@ -1601,6 +1793,7 @@ type ApiDashboardsV2TemplateRequest struct {
 	xOrganization *string
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2TemplateRequest) XOrganization(xOrganization string) ApiDashboardsV2TemplateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1757,12 +1950,13 @@ type ApiDashboardsV2UpdateRequest struct {
 	xOrganization *string
 }
 
-// DashboardV2Payload describes a dashboard
+// Describes a dashboard
 func (r ApiDashboardsV2UpdateRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2UpdateRequest {
 	r.dashboardv2 = &dashboardv2
 	return r
 }
 
+// Organization space identifer (optional)
 func (r ApiDashboardsV2UpdateRequest) XOrganization(xOrganization string) ApiDashboardsV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1815,7 +2009,7 @@ func (a *DashboardsV2APIService) DashboardsV2UpdateExecute(r ApiDashboardsV2Upda
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

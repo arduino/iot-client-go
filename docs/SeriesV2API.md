@@ -1,6 +1,6 @@
 # \SeriesV2API
 
-All URIs are relative to *https://api2.arduino.cc/iot*
+All URIs are relative to *https://api2.arduino.cc*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,7 +35,7 @@ import (
 
 func main() {
 	batchQueryRequestsMediaV1 := *openapiclient.NewBatchQueryRequestsMediaV1([]openapiclient.BatchQueryRequestMediaV1{*openapiclient.NewBatchQueryRequestMediaV1(time.Now(), "Q_example", time.Now())}, int64(123)) // BatchQueryRequestsMediaV1 | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **batchQueryRequestsMediaV1** | [**BatchQueryRequestsMediaV1**](BatchQueryRequestsMediaV1.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.series.batch+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -103,7 +103,7 @@ import (
 
 func main() {
 	batchQueryRawRequestsMediaV1 := *openapiclient.NewBatchQueryRawRequestsMediaV1([]openapiclient.BatchQueryRawRequestMediaV1{*openapiclient.NewBatchQueryRawRequestMediaV1("Q_example")}, int64(123)) // BatchQueryRawRequestsMediaV1 | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRawReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **batchQueryRawRequestsMediaV1** | [**BatchQueryRawRequestsMediaV1**](BatchQueryRawRequestsMediaV1.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.series.raw.batch+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -171,7 +171,7 @@ import (
 
 func main() {
 	batchLastValueRequestsMediaV1 := *openapiclient.NewBatchLastValueRequestsMediaV1([]openapiclient.BatchQueryRawLastValueRequestMediaV1{*openapiclient.NewBatchQueryRawLastValueRequestMediaV1("PropertyId_example", "ThingId_example")}) // BatchLastValueRequestsMediaV1 | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -197,7 +197,7 @@ Other parameters are passed through a pointer to a apiSeriesV2BatchQueryRawLastV
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **batchLastValueRequestsMediaV1** | [**BatchLastValueRequestsMediaV1**](BatchLastValueRequestsMediaV1.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.series.raw.batch.lastvalue+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -239,7 +239,7 @@ import (
 
 func main() {
 	batchQuerySampledRequestsMediaV1 := *openapiclient.NewBatchQuerySampledRequestsMediaV1([]openapiclient.BatchQuerySampledRequestMediaV1{*openapiclient.NewBatchQuerySampledRequestMediaV1("Q_example")}, int64(123)) // BatchQuerySampledRequestsMediaV1 | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -265,7 +265,7 @@ Other parameters are passed through a pointer to a apiSeriesV2BatchQuerySampling
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **batchQuerySampledRequestsMediaV1** | [**BatchQuerySampledRequestsMediaV1**](BatchQuerySampledRequestsMediaV1.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.series.batch.sampled+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -308,7 +308,7 @@ import (
 
 func main() {
 	historicDataRequest := *openapiclient.NewHistoricDataRequest(time.Now(), []string{"Properties_example"}, time.Now()) // HistoricDataRequest | 
-	xOrganization := "xOrganization_example" // string |  (optional)
+	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -332,7 +332,7 @@ Other parameters are passed through a pointer to a apiSeriesV2HistoricDataReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **historicDataRequest** | [**HistoricDataRequest**](HistoricDataRequest.md) |  | 
- **xOrganization** | **string** |  | 
+ **xOrganization** | **string** | Organization space identifer (optional) | 
 
 ### Return type
 
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
