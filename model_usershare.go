@@ -14,38 +14,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the Dashboardshare type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Dashboardshare{}
+// checks if the Usershare type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Usershare{}
 
-// Dashboardshare struct for Dashboardshare
-type Dashboardshare struct {
+// Usershare struct for Usershare
+type Usershare struct {
 	// The userID of the user you want to share the dashboard with
 	UserId *string `json:"user_id,omitempty"`
 	// The username of the user you want to share the dashboard with
 	Username *string `json:"username,omitempty"`
-	// The list of users you want to share the dashboard with
-	Users []Usershare `json:"users,omitempty"`
 }
 
-// NewDashboardshare instantiates a new Dashboardshare object
+// NewUsershare instantiates a new Usershare object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDashboardshare() *Dashboardshare {
-	this := Dashboardshare{}
+func NewUsershare() *Usershare {
+	this := Usershare{}
 	return &this
 }
 
-// NewDashboardshareWithDefaults instantiates a new Dashboardshare object
+// NewUsershareWithDefaults instantiates a new Usershare object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDashboardshareWithDefaults() *Dashboardshare {
-	this := Dashboardshare{}
+func NewUsershareWithDefaults() *Usershare {
+	this := Usershare{}
 	return &this
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *Dashboardshare) GetUserId() string {
+func (o *Usershare) GetUserId() string {
 	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
@@ -55,7 +53,7 @@ func (o *Dashboardshare) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboardshare) GetUserIdOk() (*string, bool) {
+func (o *Usershare) GetUserIdOk() (*string, bool) {
 	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
@@ -63,7 +61,7 @@ func (o *Dashboardshare) GetUserIdOk() (*string, bool) {
 }
 
 // HasUserId returns a boolean if a field has been set.
-func (o *Dashboardshare) HasUserId() bool {
+func (o *Usershare) HasUserId() bool {
 	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
@@ -72,12 +70,12 @@ func (o *Dashboardshare) HasUserId() bool {
 }
 
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *Dashboardshare) SetUserId(v string) {
+func (o *Usershare) SetUserId(v string) {
 	o.UserId = &v
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *Dashboardshare) GetUsername() string {
+func (o *Usershare) GetUsername() string {
 	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
@@ -87,7 +85,7 @@ func (o *Dashboardshare) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboardshare) GetUsernameOk() (*string, bool) {
+func (o *Usershare) GetUsernameOk() (*string, bool) {
 	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
@@ -95,7 +93,7 @@ func (o *Dashboardshare) GetUsernameOk() (*string, bool) {
 }
 
 // HasUsername returns a boolean if a field has been set.
-func (o *Dashboardshare) HasUsername() bool {
+func (o *Usershare) HasUsername() bool {
 	if o != nil && !IsNil(o.Username) {
 		return true
 	}
@@ -104,43 +102,11 @@ func (o *Dashboardshare) HasUsername() bool {
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *Dashboardshare) SetUsername(v string) {
+func (o *Usershare) SetUsername(v string) {
 	o.Username = &v
 }
 
-// GetUsers returns the Users field value if set, zero value otherwise.
-func (o *Dashboardshare) GetUsers() []Usershare {
-	if o == nil || IsNil(o.Users) {
-		var ret []Usershare
-		return ret
-	}
-	return o.Users
-}
-
-// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Dashboardshare) GetUsersOk() ([]Usershare, bool) {
-	if o == nil || IsNil(o.Users) {
-		return nil, false
-	}
-	return o.Users, true
-}
-
-// HasUsers returns a boolean if a field has been set.
-func (o *Dashboardshare) HasUsers() bool {
-	if o != nil && !IsNil(o.Users) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsers gets a reference to the given []Usershare and assigns it to the Users field.
-func (o *Dashboardshare) SetUsers(v []Usershare) {
-	o.Users = v
-}
-
-func (o Dashboardshare) MarshalJSON() ([]byte, error) {
+func (o Usershare) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,7 +114,7 @@ func (o Dashboardshare) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Dashboardshare) ToMap() (map[string]interface{}, error) {
+func (o Usershare) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.UserId) {
 		toSerialize["user_id"] = o.UserId
@@ -156,44 +122,41 @@ func (o Dashboardshare) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
-	if !IsNil(o.Users) {
-		toSerialize["users"] = o.Users
-	}
 	return toSerialize, nil
 }
 
-type NullableDashboardshare struct {
-	value *Dashboardshare
+type NullableUsershare struct {
+	value *Usershare
 	isSet bool
 }
 
-func (v NullableDashboardshare) Get() *Dashboardshare {
+func (v NullableUsershare) Get() *Usershare {
 	return v.value
 }
 
-func (v *NullableDashboardshare) Set(val *Dashboardshare) {
+func (v *NullableUsershare) Set(val *Usershare) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDashboardshare) IsSet() bool {
+func (v NullableUsershare) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDashboardshare) Unset() {
+func (v *NullableUsershare) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDashboardshare(val *Dashboardshare) *NullableDashboardshare {
-	return &NullableDashboardshare{value: val, isSet: true}
+func NewNullableUsershare(val *Usershare) *NullableUsershare {
+	return &NullableUsershare{value: val, isSet: true}
 }
 
-func (v NullableDashboardshare) MarshalJSON() ([]byte, error) {
+func (v NullableUsershare) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDashboardshare) UnmarshalJSON(src []byte) error {
+func (v *NullableUsershare) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

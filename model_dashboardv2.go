@@ -17,7 +17,7 @@ import (
 // checks if the Dashboardv2 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Dashboardv2{}
 
-// Dashboardv2 Describes a dashboard
+// Dashboardv2 DashboardV2Payload describes a dashboard
 type Dashboardv2 struct {
 	// The cover image of the dashboard
 	CoverImage *string `json:"cover_image,omitempty"`

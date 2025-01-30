@@ -31,13 +31,11 @@ type ApiDashboardsV2CloneRequest struct {
 	xOrganization *string
 }
 
-// Add overrides used when performing a clone of a dashboard
 func (r ApiDashboardsV2CloneRequest) Clone(clone Clone) ApiDashboardsV2CloneRequest {
 	r.clone = &clone
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2CloneRequest) XOrganization(xOrganization string) ApiDashboardsV2CloneRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -198,13 +196,12 @@ type ApiDashboardsV2CreateRequest struct {
 	xOrganization *string
 }
 
-// Describes a dashboard
+// DashboardV2Payload describes a dashboard
 func (r ApiDashboardsV2CreateRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2CreateRequest {
 	r.dashboardv2 = &dashboardv2
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2CreateRequest) XOrganization(xOrganization string) ApiDashboardsV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -369,7 +366,6 @@ func (r ApiDashboardsV2DeleteRequest) Force(force bool) ApiDashboardsV2DeleteReq
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2DeleteRequest) XOrganization(xOrganization string) ApiDashboardsV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -521,7 +517,6 @@ type ApiDashboardsV2DeleteShareRequest struct {
 	xOrganization *string
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2DeleteShareRequest) XOrganization(xOrganization string) ApiDashboardsV2DeleteShareRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -676,7 +671,6 @@ func (r ApiDashboardsV2LinkRequest) Widgetlink(widgetlink Widgetlink) ApiDashboa
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2LinkRequest) XOrganization(xOrganization string) ApiDashboardsV2LinkRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -841,19 +835,18 @@ type ApiDashboardsV2ListRequest struct {
 	xOrganization *string
 }
 
-// Filter by name of the dashboard. It support like matching.
+// The name of the dashboard
 func (r ApiDashboardsV2ListRequest) Name(name string) ApiDashboardsV2ListRequest {
 	r.name = &name
 	return r
 }
 
-// Filter by user_id of the dashboard&#39;s owner
+// The user_id of the dashboard&#39;s owner
 func (r ApiDashboardsV2ListRequest) UserId(userId string) ApiDashboardsV2ListRequest {
 	r.userId = &userId
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2ListRequest) XOrganization(xOrganization string) ApiDashboardsV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1012,7 +1005,6 @@ type ApiDashboardsV2ListSharesRequest struct {
 	xOrganization *string
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2ListSharesRequest) XOrganization(xOrganization string) ApiDashboardsV2ListSharesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1169,13 +1161,12 @@ type ApiDashboardsV2PatchRequest struct {
 	xOrganization *string
 }
 
-// Describes a dashboard
+// DashboardV2Payload describes a dashboard
 func (r ApiDashboardsV2PatchRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2PatchRequest {
 	r.dashboardv2 = &dashboardv2
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2PatchRequest) XOrganization(xOrganization string) ApiDashboardsV2PatchRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1342,7 +1333,6 @@ func (r ApiDashboardsV2RequestAccessRequest) Sharerequest(sharerequest Sharerequ
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2RequestAccessRequest) XOrganization(xOrganization string) ApiDashboardsV2RequestAccessRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1498,7 +1488,6 @@ func (r ApiDashboardsV2ShareRequest) Dashboardshare(dashboardshare Dashboardshar
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2ShareRequest) XOrganization(xOrganization string) ApiDashboardsV2ShareRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1648,7 +1637,6 @@ type ApiDashboardsV2ShowRequest struct {
 	xOrganization *string
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2ShowRequest) XOrganization(xOrganization string) ApiDashboardsV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1661,7 +1649,7 @@ func (r ApiDashboardsV2ShowRequest) Execute() (*ArduinoDashboardv2, *http.Respon
 /*
 DashboardsV2Show show dashboards_v2
 
-Show a dashboard by id
+Show a dashboard
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the dashboard
@@ -1793,7 +1781,6 @@ type ApiDashboardsV2TemplateRequest struct {
 	xOrganization *string
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2TemplateRequest) XOrganization(xOrganization string) ApiDashboardsV2TemplateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1950,13 +1937,12 @@ type ApiDashboardsV2UpdateRequest struct {
 	xOrganization *string
 }
 
-// Describes a dashboard
+// DashboardV2Payload describes a dashboard
 func (r ApiDashboardsV2UpdateRequest) Dashboardv2(dashboardv2 Dashboardv2) ApiDashboardsV2UpdateRequest {
 	r.dashboardv2 = &dashboardv2
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDashboardsV2UpdateRequest) XOrganization(xOrganization string) ApiDashboardsV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r

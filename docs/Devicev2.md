@@ -4,12 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BleMac** | Pointer to **string** |  | [optional] 
 **ConnectionType** | Pointer to **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
 **Name** | Pointer to **string** | The friendly name of the device | [optional] 
 **Serial** | Pointer to **string** | The serial uuid of the device | [optional] 
 **SoftDeleted** | Pointer to **bool** | If false, restore the thing from the soft deletion | [optional] [default to false]
 **Type** | Pointer to **string** | The type of the device | [optional] 
+**UniqueHardwareId** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** | The user_id associated to the device. If absent it will be inferred from the authentication header | [optional] 
 **WifiFwVersion** | Pointer to **string** | The version of the NINA/WIFI101 firmware running on the device | [optional] 
 
@@ -31,6 +33,31 @@ will change when the set of required properties is changed
 NewDevicev2WithDefaults instantiates a new Devicev2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBleMac
+
+`func (o *Devicev2) GetBleMac() string`
+
+GetBleMac returns the BleMac field if non-nil, zero value otherwise.
+
+### GetBleMacOk
+
+`func (o *Devicev2) GetBleMacOk() (*string, bool)`
+
+GetBleMacOk returns a tuple with the BleMac field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBleMac
+
+`func (o *Devicev2) SetBleMac(v string)`
+
+SetBleMac sets BleMac field to given value.
+
+### HasBleMac
+
+`func (o *Devicev2) HasBleMac() bool`
+
+HasBleMac returns a boolean if a field has been set.
 
 ### GetConnectionType
 
@@ -181,6 +208,31 @@ SetType sets Type field to given value.
 `func (o *Devicev2) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetUniqueHardwareId
+
+`func (o *Devicev2) GetUniqueHardwareId() string`
+
+GetUniqueHardwareId returns the UniqueHardwareId field if non-nil, zero value otherwise.
+
+### GetUniqueHardwareIdOk
+
+`func (o *Devicev2) GetUniqueHardwareIdOk() (*string, bool)`
+
+GetUniqueHardwareIdOk returns a tuple with the UniqueHardwareId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUniqueHardwareId
+
+`func (o *Devicev2) SetUniqueHardwareId(v string)`
+
+SetUniqueHardwareId sets UniqueHardwareId field to given value.
+
+### HasUniqueHardwareId
+
+`func (o *Devicev2) HasUniqueHardwareId() bool`
+
+HasUniqueHardwareId returns a boolean if a field has been set.
 
 ### GetUserId
 

@@ -330,8 +330,7 @@ paths:
         \ and on the lora provider network. Creates a device_v2 automatically"
       operationId: lora_devices_v1#create
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -501,10 +500,17 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/vnd.arduino.arduinoconnections.v1+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoArduinoconnectionsV1'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoArduinoconnectionsV1'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.arduinoconnections.v1+json:
               schema:
                 $ref: '#/components/schemas/error'
             application/vnd.goa.error+json:
@@ -551,8 +557,7 @@ paths:
       description: Apply an existing cloud template and generate all the needed resources
       operationId: templates#apply
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1149,7 +1154,7 @@ paths:
       description: Returns the list of dashboards
       operationId: dashboards_v2#list
       parameters:
-      - description: Filter by name of the dashboard. It support like matching.
+      - description: The name of the dashboard
         explode: true
         in: query
         name: name
@@ -1159,7 +1164,7 @@ paths:
           pattern: "[a-zA-Z0-9_.@-]+"
           type: string
         style: form
-      - description: Filter by user_id of the dashboard's owner
+      - description: The user_id of the dashboard's owner
         explode: true
         in: query
         name: user_id
@@ -1167,8 +1172,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1230,8 +1234,7 @@ paths:
       description: Create a new dashboard
       operationId: dashboards_v2#create
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1242,8 +1245,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dashboardv2'
-        description: Describes a dashboard
+              $ref: '#/components/schemas/dashboardv2'
+        description: DashboardV2Payload describes a dashboard
         required: true
         x-originalParamName: payload
       responses:
@@ -1319,8 +1322,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1374,7 +1376,7 @@ paths:
       tags:
       - dashboards_v2
     get:
-      description: Show a dashboard by id
+      description: Show a dashboard
       operationId: dashboards_v2#show
       parameters:
       - description: The id of the dashboard
@@ -1385,8 +1387,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1450,8 +1451,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1462,8 +1462,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dashboardv2'
-        description: Describes a dashboard
+              $ref: '#/components/schemas/dashboardv2'
+        description: DashboardV2Payload describes a dashboard
         required: true
         x-originalParamName: payload
       responses:
@@ -1531,8 +1531,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1543,8 +1542,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dashboardv2'
-        description: Describes a dashboard
+              $ref: '#/components/schemas/dashboardv2'
+        description: DashboardV2Payload describes a dashboard
         required: true
         x-originalParamName: payload
       responses:
@@ -1613,8 +1612,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1625,8 +1623,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clone'
-        description: Add overrides used when performing a clone of a dashboard
+              $ref: '#/components/schemas/clone'
         required: true
         x-originalParamName: payload
       responses:
@@ -1695,8 +1692,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1707,7 +1703,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Sharerequest'
+              $ref: '#/components/schemas/sharerequest'
         required: true
         x-originalParamName: payload
       responses:
@@ -1769,8 +1765,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1842,8 +1837,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1924,8 +1918,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -1991,8 +1984,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2073,8 +2065,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2184,8 +2175,15 @@ paths:
             type: string
           type: array
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - description: Filter by device unique hardware id
+        explode: true
+        in: query
+        name: unique_hardware_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2247,8 +2245,7 @@ paths:
       description: Creates a new device associated to the user.
       operationId: devices_v2#create
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2336,8 +2333,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2393,8 +2389,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2457,8 +2452,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -2843,8 +2837,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3408,8 +3401,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3472,8 +3464,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3561,8 +3552,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3652,8 +3642,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3880,13 +3869,83 @@ paths:
       summary: delete devices_v2_tags
       tags:
       - devices_v2_tags
+  /iot/v2/devices/claim:
+    put:
+      description: Creates a new device associated to the user.
+      operationId: devices_v2#createClaimed
+      parameters:
+      - explode: false
+        in: header
+        name: X-Organization
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClaimedDevicesV2Payload'
+        description: DeviceV2 describes a device.
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+          description: Created
+        "401":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "412":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Failed
+        "500":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: createClaimed devices_v2
+      tags:
+      - devices_v2
   /iot/v2/series/batch_query:
     post:
       description: Returns the batch of time-series aggregated samples
       operationId: series_v2#batch_query
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -3960,8 +4019,7 @@ paths:
       description: Returns the batch of time-series raw samples
       operationId: series_v2#batch_query_raw
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4035,8 +4093,7 @@ paths:
       description: Returns the batch of time-series data raw
       operationId: series_v2#batch_query_raw_last_value
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4103,8 +4160,7 @@ paths:
         \ complex types."
       operationId: series_v2#batch_query_sampling
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4178,8 +4234,7 @@ paths:
       description: Request sending of historical data of properties by email
       operationId: series_v2#historic_data
       parameters:
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4289,8 +4344,7 @@ paths:
             type: string
           type: array
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4362,8 +4416,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4469,8 +4522,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4544,8 +4596,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4618,8 +4669,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4718,8 +4768,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -4809,7 +4858,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -4871,7 +4920,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -4971,7 +5020,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -5036,7 +5085,7 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -5106,7 +5155,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -5195,7 +5244,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -5329,7 +5378,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Organization space identifer (optional)
+      - description: The id of the organization
         explode: false
         in: header
         name: X-Organization
@@ -5393,8 +5442,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -5457,8 +5505,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -5556,8 +5603,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -5842,8 +5888,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Organization space identifer (optional)
-        explode: false
+      - explode: false
         in: header
         name: X-Organization
         required: false
@@ -5991,6 +6036,76 @@ components:
       title: "Mediatype identifier: application/vnd.arduino.action+json; type=collection;\
         \ view=default"
       type: array
+    ArduinoArduinoconnectionsV1:
+      description: ArduinoArduinoconnectionsV1 media type (default view)
+      properties:
+        catm1:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        cellular:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        eth:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        gsm:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        lora:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        nb:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        wifi:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+        wifiandsecret:
+          description: ArduinoCredentialsv1Collection is the media type for an array
+            of ArduinoCredentialsv1 (default view)
+          items:
+            $ref: '#/components/schemas/ArduinoCredentialsv1'
+          title: "Mediatype identifier: application/vnd.arduino.credentialsv1+json;\
+            \ type=collection; view=default"
+          type: array
+      title: "Mediatype identifier: application/vnd.arduino.arduinoconnections.v1+json;\
+        \ view=default"
+      type: object
     ArduinoCompressedv2:
       description: compressed contains the info from which to generate the certificate
         (default view)
@@ -6177,6 +6292,11 @@ components:
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
       properties:
+        ble_mac:
+          maxLength: 17
+          minLength: 17
+          pattern: "^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"
+          type: string
         connection_type:
           description: The type of the connections selected by the user when multiple
             connections are available
@@ -6223,6 +6343,8 @@ components:
           description: The arn of the device
           format: uuid
           type: string
+        issuer_ca:
+          type: string
         label:
           description: The label of the device
           type: string
@@ -6233,6 +6355,8 @@ components:
         latest_wifi_fw_version:
           description: The latest version of the NINA/WIFI101 firmware available for
             this device
+          type: string
+        lib_version:
           type: string
         metadata:
           additionalProperties: true
@@ -6269,6 +6393,11 @@ components:
           $ref: '#/components/schemas/ArduinoThing'
         type:
           description: The type of the device
+          type: string
+        unique_hardware_id:
+          description: The unique hardware id of the device
+          maxLength: 64
+          minLength: 64
           type: string
         updated_at:
           description: Update date of the trigger
@@ -8193,23 +8322,98 @@ components:
       - password
       title: CheckDevicesV2PassPayload
       type: object
-    Clone:
-      description: Add overrides used when performing a clone of a dashboard
+    CreateClaimedDevicesV2Payload:
+      description: DeviceV2 describes a device.
       example:
-        overrides:
-        - old_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          new_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - old_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          new_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ble_mac: ble_mac
+        connection_type: wifi
+        serial: serial
+        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fqbn: fqbn
+        name: name
+        wifi_fw_version: wifi_fw_version
+        ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        unique_hardware_id: unique_hardware_id
+        type: mkrwifi1010
       properties:
-        overrides:
-          description: "The overrides to apply to the cloned dashboard. An override\
-            \ is a tuple of ids: the id of the thing to override and the id of the\
-            \ new thing to link"
-          items:
-            $ref: '#/components/schemas/Override'
-          type: array
-      title: Clone
+        ID:
+          description: The id of the device
+          format: uuid
+          type: string
+        ble_mac:
+          maxLength: 17
+          minLength: 17
+          pattern: "^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"
+          type: string
+        connection_type:
+          description: The type of the connections selected by the user when multiple
+            connections are available
+          enum:
+          - wifi
+          - eth
+          - wifiandsecret
+          - gsm
+          - nb
+          - lora
+          - catm1
+          - cellular
+          type: string
+        fqbn:
+          description: The fully qualified board name
+          type: string
+        name:
+          description: The friendly name of the device
+          maxLength: 64
+          pattern: "[a-zA-Z0-9_.@-]+"
+          type: string
+        serial:
+          description: The serial uuid of the device
+          maxLength: 64
+          pattern: "[a-zA-Z0-9_.@-]+"
+          type: string
+        type:
+          description: The type of the device
+          enum:
+          - mkrwifi1010
+          - mkr1000
+          - nano_33_iot
+          - mkrgsm1400
+          - mkrnb1500
+          - login_and_secretkey_wifi
+          - envie_m7
+          - nanorp2040connect
+          - nicla_vision
+          - phone
+          - portenta_x8
+          - opta
+          - giga
+          - generic_device_secretkey
+          - portenta_c33
+          - unor4wifi
+          - nano_nora
+          type: string
+        unique_hardware_id:
+          description: The unique hardware id of the device
+          maxLength: 64
+          minLength: 64
+          type: string
+        user_id:
+          description: The user_id associated to the device. If absent it will be
+            inferred from the authentication header
+          format: uuid
+          type: string
+        wifi_fw_version:
+          description: The version of the NINA/WIFI101 firmware running on the device
+          maxLength: 10
+          pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\\
+            d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\
+            +([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+          type: string
+      required:
+      - type
+      - unique_hardware_id
+      - user_id
+      title: CreateClaimedDevicesV2Payload
       type: object
     CreateDevicesV2CertsPayload:
       example:
@@ -8252,6 +8456,7 @@ components:
     CreateDevicesV2Payload:
       description: DeviceV2 describes a device.
       example:
+        ble_mac: ble_mac
         soft_deleted: false
         connection_type: wifi
         serial: serial
@@ -8259,8 +8464,14 @@ components:
         fqbn: fqbn
         name: name
         wifi_fw_version: wifi_fw_version
+        unique_hardware_id: unique_hardware_id
         type: mkrwifi1010
       properties:
+        ble_mac:
+          maxLength: 17
+          minLength: 17
+          pattern: "^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"
+          type: string
         connection_type:
           description: The type of the connections selected by the user when multiple
             connections are available
@@ -8311,6 +8522,10 @@ components:
           - portenta_c33
           - unor4wifi
           - nano_nora
+          type: string
+        unique_hardware_id:
+          maxLength: 64
+          minLength: 64
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -8395,66 +8610,6 @@ components:
       - user_id
       title: CreateLoraDevicesV1Payload
       type: object
-    Dashboardv2:
-      description: Describes a dashboard
-      example:
-        soft_deleted: false
-        name: name
-        cover_image: cover_image
-        widgets:
-        - height_mobile: 6
-          y_mobile: 9
-          variables:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          x_mobile: 2
-          width_mobile: 5
-          name: name
-          options:
-            key: ""
-          width: 1
-          x: 5
-          "y": 7
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          height: 0
-        - height_mobile: 6
-          y_mobile: 9
-          variables:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          x_mobile: 2
-          width_mobile: 5
-          name: name
-          options:
-            key: ""
-          width: 1
-          x: 5
-          "y": 7
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          height: 0
-      properties:
-        cover_image:
-          description: The cover image of the dashboard
-          maxLength: 1024
-          type: string
-        name:
-          description: The friendly name of the dashboard
-          maxLength: 64
-          pattern: "[a-zA-Z0-9_.@-]+"
-          type: string
-        soft_deleted:
-          default: false
-          description: "If false, restore the thing from the soft deletion"
-          type: boolean
-        widgets:
-          description: Widgets attached to this dashboard
-          items:
-            $ref: '#/components/schemas/Widget'
-          type: array
-      title: Dashboardv2
-      type: object
     Device_status_source_with_linked_devices:
       description: Device_status_source_with_linked_devices media type (default view)
       properties:
@@ -8511,33 +8666,6 @@ components:
       - properties
       - to
       title: HistoricDataRequest
-      type: object
-    Override:
-      example:
-        old_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        new_thing_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        new_thing_id:
-          description: The id of the new thing to link
-          format: uuid
-          type: string
-        old_thing_id:
-          description: The id of the thing to override
-          format: uuid
-          type: string
-      required:
-      - new_thing_id
-      - old_thing_id
-      title: Override
-      type: object
-    Sharerequest:
-      example:
-        message: message
-      properties:
-        message:
-          description: The message the user want to send to the dashboard owner
-          type: string
-      title: Sharerequest
       type: object
     ThingClone:
       description: Payload to clone a new thing from an existing one
@@ -8654,87 +8782,6 @@ components:
       - value
       title: TimeseriesDataPoint
       type: object
-    Widget:
-      description: Widget describes a dashboard widget
-      example:
-        height_mobile: 6
-        y_mobile: 9
-        variables:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
-        x_mobile: 2
-        width_mobile: 5
-        name: name
-        options:
-          key: ""
-        width: 1
-        x: 5
-        "y": 7
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        height: 0
-      properties:
-        height:
-          description: Widget current height for desktop
-          format: int64
-          type: integer
-        height_mobile:
-          description: Widget current height for mobile
-          format: int64
-          type: integer
-        id:
-          description: "The UUID of the widget, set by client"
-          format: uuid
-          type: string
-        name:
-          description: The name of the widget
-          type: string
-        options:
-          additionalProperties: true
-          description: Widget options
-          type: object
-        type:
-          description: The type of the widget
-          type: string
-        variables:
-          items:
-            format: uuid
-            type: string
-          type: array
-        width:
-          description: Widget current width for desktop
-          format: int64
-          type: integer
-        width_mobile:
-          description: Widget current width for mobile
-          format: int64
-          type: integer
-        x:
-          description: Widget x position for desktop
-          format: int64
-          type: integer
-        x_mobile:
-          description: Widget x position for mobile
-          format: int64
-          type: integer
-        "y":
-          description: Widget y position for desktop
-          format: int64
-          type: integer
-        y_mobile:
-          description: Widget y position for mobile
-          format: int64
-          type: integer
-      required:
-      - height
-      - id
-      - options
-      - type
-      - width
-      - x
-      - "y"
-      title: Widget
-      type: object
     body_expression:
       properties:
         expression:
@@ -8749,6 +8796,17 @@ components:
       required:
       - expression
       title: body_expression
+      type: object
+    clone:
+      properties:
+        overrides:
+          description: "The overrides to apply to the cloned dashboard. An override\
+            \ is a tuple of ids: the id of the thing to override and the id of the\
+            \ new thing to link"
+          items:
+            $ref: '#/components/schemas/override'
+          type: array
+      title: clone
       type: object
     create-action:
       properties:
@@ -8791,7 +8849,35 @@ components:
         username:
           description: The username of the user you want to share the dashboard with
           type: string
+        users:
+          description: The list of users you want to share the dashboard with
+          items:
+            $ref: '#/components/schemas/usershare'
+          type: array
       title: dashboardshare
+      type: object
+    dashboardv2:
+      description: DashboardV2Payload describes a dashboard
+      properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
+        name:
+          description: The friendly name of the dashboard
+          maxLength: 64
+          pattern: "[a-zA-Z0-9_.@-]+"
+          type: string
+        soft_deleted:
+          default: false
+          description: "If false, restore the thing from the soft deletion"
+          type: boolean
+        widgets:
+          description: Widgets attached to this dashboard
+          items:
+            $ref: '#/components/schemas/widget'
+          type: array
+      title: dashboardv2
       type: object
     device_status_source:
       properties:
@@ -8828,6 +8914,11 @@ components:
     devicev2:
       description: DeviceV2 describes a device.
       properties:
+        ble_mac:
+          maxLength: 17
+          minLength: 17
+          pattern: "^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"
+          type: string
         connection_type:
           description: The type of the connections selected by the user when multiple
             connections are available
@@ -8878,6 +8969,10 @@ components:
           - portenta_c33
           - unor4wifi
           - nano_nora
+          type: string
+        unique_hardware_id:
+          maxLength: 64
+          minLength: 64
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -8997,13 +9092,6 @@ components:
       type: object
     error:
       description: Error response media type (default view)
-      example:
-        code: invalid_value
-        meta:
-          timestamp: 1.458609066E9
-        detail: Value of ID must be an integer
-        id: 3F1FKVRR
-        status: 400
       properties:
         code:
           description: "an application-specific error code, expressed as a string\
@@ -9032,6 +9120,21 @@ components:
           format: int64
           type: integer
       title: "Mediatype identifier: application/vnd.goa.error+json; view=default"
+      type: object
+    override:
+      properties:
+        new_thing_id:
+          description: The id of the new thing to link
+          format: uuid
+          type: string
+        old_thing_id:
+          description: The id of the thing to override
+          format: uuid
+          type: string
+      required:
+      - new_thing_id
+      - old_thing_id
+      title: override
       type: object
     propertiesValue:
       properties:
@@ -9306,6 +9409,13 @@ components:
       - to
       title: push_delivery_opts
       type: object
+    sharerequest:
+      properties:
+        message:
+          description: The message the user want to send to the dashboard owner
+          type: string
+      title: sharerequest
+      type: object
     tag:
       example:
         value: value
@@ -9499,6 +9609,17 @@ components:
       - id
       title: user_recipient
       type: object
+    usershare:
+      properties:
+        user_id:
+          description: The userID of the user you want to share the dashboard with
+          format: uuid
+          type: string
+        username:
+          description: The username of the user you want to share the dashboard with
+          type: string
+      title: usershare
+      type: object
     variable:
       properties:
         attribute:
@@ -9543,6 +9664,70 @@ components:
       - entity
       - placeholder
       title: variable
+      type: object
+    widget:
+      description: Widget describes a dashboard widget
+      properties:
+        height:
+          description: Widget current height for desktop
+          format: int64
+          type: integer
+        height_mobile:
+          description: Widget current height for mobile
+          format: int64
+          type: integer
+        id:
+          description: "The UUID of the widget, set by client"
+          format: uuid
+          type: string
+        name:
+          description: The name of the widget
+          type: string
+        options:
+          additionalProperties: true
+          description: Widget options
+          type: object
+        type:
+          description: The type of the widget
+          type: string
+        variables:
+          items:
+            format: uuid
+            type: string
+          type: array
+        width:
+          description: Widget current width for desktop
+          format: int64
+          type: integer
+        width_mobile:
+          description: Widget current width for mobile
+          format: int64
+          type: integer
+        x:
+          description: Widget x position for desktop
+          format: int64
+          type: integer
+        x_mobile:
+          description: Widget x position for mobile
+          format: int64
+          type: integer
+        "y":
+          description: Widget y position for desktop
+          format: int64
+          type: integer
+        y_mobile:
+          description: Widget y position for mobile
+          format: int64
+          type: integer
+      required:
+      - height
+      - id
+      - options
+      - type
+      - width
+      - x
+      - "y"
+      title: widget
       type: object
     widgetlink:
       properties:

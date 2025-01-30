@@ -22,6 +22,7 @@ client.go
 configuration.go
 docs/ArduinoAction.md
 docs/ArduinoActionTemplate.md
+docs/ArduinoArduinoconnectionsV1.md
 docs/ArduinoCompressedv2.md
 docs/ArduinoCredentialsv1.md
 docs/ArduinoDashboardowner.md
@@ -90,6 +91,7 @@ docs/BodyExpression.md
 docs/CheckDevicesV2PassPayload.md
 docs/Clone.md
 docs/CreateAction.md
+docs/CreateClaimedDevicesV2Payload.md
 docs/CreateDevicesV2CertsPayload.md
 docs/CreateDevicesV2Payload.md
 docs/CreateLoraDevicesV1Payload.md
@@ -142,6 +144,7 @@ docs/TriggersV1API.md
 docs/UpdateAction.md
 docs/UpdateSketch.md
 docs/UserRecipient.md
+docs/Usershare.md
 docs/Variable.md
 docs/Widget.md
 docs/Widgetlink.md
@@ -150,6 +153,7 @@ go.mod
 go.sum
 model_arduino_action.go
 model_arduino_action_template.go
+model_arduino_arduinoconnections_v1.go
 model_arduino_compressedv2.go
 model_arduino_credentialsv1.go
 model_arduino_dashboardowner.go
@@ -218,6 +222,7 @@ model_body_expression.go
 model_check_devices_v2_pass_payload.go
 model_clone.go
 model_create_action.go
+model_create_claimed_devices_v2_payload.go
 model_create_devices_v2_certs_payload.go
 model_create_devices_v2_payload.go
 model_create_lora_devices_v1_payload.go
@@ -254,9 +259,9 @@ model_trigger.go
 model_update_action.go
 model_update_sketch.go
 model_user_recipient.go
+model_usershare.go
 model_variable.go
 model_widget.go
 model_widgetlink.go
 response.go
-test/api_triggers_v1_test.go
 utils.go

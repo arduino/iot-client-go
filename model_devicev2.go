@@ -19,6 +19,7 @@ var _ MappedNullable = &Devicev2{}
 
 // Devicev2 DeviceV2 describes a device.
 type Devicev2 struct {
+	BleMac *string `json:"ble_mac,omitempty" validate:"regexp=^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"`
 	// The type of the connections selected by the user when multiple connections are available
 	ConnectionType *string `json:"connection_type,omitempty"`
 	// The fully qualified board name
@@ -31,6 +32,7 @@ type Devicev2 struct {
 	SoftDeleted *bool `json:"soft_deleted,omitempty"`
 	// The type of the device
 	Type *string `json:"type,omitempty"`
+	UniqueHardwareId *string `json:"unique_hardware_id,omitempty"`
 	// The user_id associated to the device. If absent it will be inferred from the authentication header
 	UserId *string `json:"user_id,omitempty"`
 	// The version of the NINA/WIFI101 firmware running on the device
@@ -56,6 +58,38 @@ func NewDevicev2WithDefaults() *Devicev2 {
 	var softDeleted bool = false
 	this.SoftDeleted = &softDeleted
 	return &this
+}
+
+// GetBleMac returns the BleMac field value if set, zero value otherwise.
+func (o *Devicev2) GetBleMac() string {
+	if o == nil || IsNil(o.BleMac) {
+		var ret string
+		return ret
+	}
+	return *o.BleMac
+}
+
+// GetBleMacOk returns a tuple with the BleMac field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Devicev2) GetBleMacOk() (*string, bool) {
+	if o == nil || IsNil(o.BleMac) {
+		return nil, false
+	}
+	return o.BleMac, true
+}
+
+// HasBleMac returns a boolean if a field has been set.
+func (o *Devicev2) HasBleMac() bool {
+	if o != nil && !IsNil(o.BleMac) {
+		return true
+	}
+
+	return false
+}
+
+// SetBleMac gets a reference to the given string and assigns it to the BleMac field.
+func (o *Devicev2) SetBleMac(v string) {
+	o.BleMac = &v
 }
 
 // GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
@@ -250,6 +284,38 @@ func (o *Devicev2) SetType(v string) {
 	o.Type = &v
 }
 
+// GetUniqueHardwareId returns the UniqueHardwareId field value if set, zero value otherwise.
+func (o *Devicev2) GetUniqueHardwareId() string {
+	if o == nil || IsNil(o.UniqueHardwareId) {
+		var ret string
+		return ret
+	}
+	return *o.UniqueHardwareId
+}
+
+// GetUniqueHardwareIdOk returns a tuple with the UniqueHardwareId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Devicev2) GetUniqueHardwareIdOk() (*string, bool) {
+	if o == nil || IsNil(o.UniqueHardwareId) {
+		return nil, false
+	}
+	return o.UniqueHardwareId, true
+}
+
+// HasUniqueHardwareId returns a boolean if a field has been set.
+func (o *Devicev2) HasUniqueHardwareId() bool {
+	if o != nil && !IsNil(o.UniqueHardwareId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUniqueHardwareId gets a reference to the given string and assigns it to the UniqueHardwareId field.
+func (o *Devicev2) SetUniqueHardwareId(v string) {
+	o.UniqueHardwareId = &v
+}
+
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *Devicev2) GetUserId() string {
 	if o == nil || IsNil(o.UserId) {
@@ -324,6 +390,9 @@ func (o Devicev2) MarshalJSON() ([]byte, error) {
 
 func (o Devicev2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BleMac) {
+		toSerialize["ble_mac"] = o.BleMac
+	}
 	if !IsNil(o.ConnectionType) {
 		toSerialize["connection_type"] = o.ConnectionType
 	}
@@ -341,6 +410,9 @@ func (o Devicev2) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.UniqueHardwareId) {
+		toSerialize["unique_hardware_id"] = o.UniqueHardwareId
 	}
 	if !IsNil(o.UserId) {
 		toSerialize["user_id"] = o.UserId
