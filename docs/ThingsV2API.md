@@ -40,7 +40,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	thingClone := *openapiclient.NewThingClone("Name_example") // ThingClone | Payload to clone a new thing from an existing one
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **thingClone** | [**ThingClone**](ThingClone.md) | Payload to clone a new thing from an existing one | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -114,7 +114,7 @@ import (
 func main() {
 	thingCreate := *openapiclient.NewThingCreate() // ThingCreate | Payload to create a new thing
 	force := true // bool | If true, detach device from the other thing, and attach to this thing (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **thingCreate** | [**ThingCreate**](ThingCreate.md) | Payload to create a new thing | 
  **force** | **bool** | If true, detach device from the other thing, and attach to this thing | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -184,7 +184,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	thingSketch := *openapiclient.NewThingSketch() // ThingSketch | ThingSketchPayload describes a sketch of a thing
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **thingSketch** | [**ThingSketch**](ThingSketch.md) | ThingSketchPayload describes a sketch of a thing | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -258,7 +258,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	force := true // bool | If true, hard delete the thing (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **force** | **bool** | If true, hard delete the thing | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -327,7 +327,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the thing
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -357,7 +357,7 @@ Other parameters are passed through a pointer to a apiThingsV2DeleteSketchReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -404,7 +404,7 @@ func main() {
 	showDeleted := true // bool | If true, shows the soft deleted things (optional) (default to false)
 	showProperties := true // bool | If true, returns things with their properties, and last values (optional) (default to false)
 	tags := []string{"Inner_example"} // []string | Filter by tags (optional)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
  **showDeleted** | **bool** | If true, shows the soft deleted things | [default to false]
  **showProperties** | **bool** | If true, returns things with their properties, and last values | [default to false]
  **tags** | **[]string** | Filter by tags | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -478,7 +478,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	showDeleted := true // bool | If true, shows the soft deleted thing (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -509,7 +509,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **bool** | If true, shows the soft deleted thing | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -551,7 +551,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the thing
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -581,7 +581,7 @@ Other parameters are passed through a pointer to a apiThingsV2TemplateRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -625,7 +625,7 @@ func main() {
 	id := "id_example" // string | The id of the thing
 	thingUpdate := *openapiclient.NewThingUpdate() // ThingUpdate | Payload to update an existing thing
 	force := true // bool | If true, detach device from the other thing, and attach to this thing (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -657,7 +657,7 @@ Name | Type | Description  | Notes
 
  **thingUpdate** | [**ThingUpdate**](ThingUpdate.md) | Payload to update an existing thing | 
  **force** | **bool** | If true, detach device from the other thing, and attach to this thing | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -700,7 +700,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	sketchId := "sketchId_example" // string | The id of the sketch
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 	updateSketch := *openapiclient.NewUpdateSketch() // UpdateSketch |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -733,7 +733,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
  **updateSketch** | [**UpdateSketch**](UpdateSketch.md) |  | 
 
 ### Return type

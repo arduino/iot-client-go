@@ -30,7 +30,7 @@ import (
 
 func main() {
 	createLoraDevicesV1Payload := *openapiclient.NewCreateLoraDevicesV1Payload("App_example", "Eui_example", "FrequencyPlan_example", "Name_example", "Type_example", "UserId_example") // CreateLoraDevicesV1Payload | 
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiLoraDevicesV1CreateRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createLoraDevicesV1Payload** | [**CreateLoraDevicesV1Payload**](CreateLoraDevicesV1Payload.md) |  | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

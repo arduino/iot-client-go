@@ -22,6 +22,7 @@ var _ MappedNullable = &ArduinoDevicev2{}
 
 // ArduinoDevicev2 ArduinoDevicev2 media type (default view)
 type ArduinoDevicev2 struct {
+	BleMac *string `json:"ble_mac,omitempty" validate:"regexp=^(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]{2})"`
 	// The type of the connections selected by the user when multiple connections are available
 	ConnectionType *string `json:"connection_type,omitempty"`
 	// Creation date of the device
@@ -38,12 +39,14 @@ type ArduinoDevicev2 struct {
 	Href string `json:"href"`
 	// The arn of the device
 	Id string `json:"id"`
+	IssuerCa *string `json:"issuer_ca,omitempty"`
 	// The label of the device
 	Label string `json:"label"`
 	// Last activity date
 	LastActivityAt *time.Time `json:"last_activity_at,omitempty"`
 	// The latest version of the NINA/WIFI101 firmware available for this device
 	LatestWifiFwVersion *string `json:"latest_wifi_fw_version,omitempty"`
+	LibVersion *string `json:"lib_version,omitempty"`
 	// The metadata of the device
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
@@ -65,6 +68,8 @@ type ArduinoDevicev2 struct {
 	Thing *ArduinoThing `json:"thing,omitempty"`
 	// The type of the device
 	Type string `json:"type"`
+	// The unique hardware id of the device
+	UniqueHardwareId *string `json:"unique_hardware_id,omitempty"`
 	// Update date of the trigger
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The id of the user
@@ -99,6 +104,38 @@ func NewArduinoDevicev2(href string, id string, label string, name string, seria
 func NewArduinoDevicev2WithDefaults() *ArduinoDevicev2 {
 	this := ArduinoDevicev2{}
 	return &this
+}
+
+// GetBleMac returns the BleMac field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetBleMac() string {
+	if o == nil || IsNil(o.BleMac) {
+		var ret string
+		return ret
+	}
+	return *o.BleMac
+}
+
+// GetBleMacOk returns a tuple with the BleMac field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetBleMacOk() (*string, bool) {
+	if o == nil || IsNil(o.BleMac) {
+		return nil, false
+	}
+	return o.BleMac, true
+}
+
+// HasBleMac returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasBleMac() bool {
+	if o != nil && !IsNil(o.BleMac) {
+		return true
+	}
+
+	return false
+}
+
+// SetBleMac gets a reference to the given string and assigns it to the BleMac field.
+func (o *ArduinoDevicev2) SetBleMac(v string) {
+	o.BleMac = &v
 }
 
 // GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
@@ -341,6 +378,38 @@ func (o *ArduinoDevicev2) SetId(v string) {
 	o.Id = v
 }
 
+// GetIssuerCa returns the IssuerCa field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetIssuerCa() string {
+	if o == nil || IsNil(o.IssuerCa) {
+		var ret string
+		return ret
+	}
+	return *o.IssuerCa
+}
+
+// GetIssuerCaOk returns a tuple with the IssuerCa field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetIssuerCaOk() (*string, bool) {
+	if o == nil || IsNil(o.IssuerCa) {
+		return nil, false
+	}
+	return o.IssuerCa, true
+}
+
+// HasIssuerCa returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasIssuerCa() bool {
+	if o != nil && !IsNil(o.IssuerCa) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuerCa gets a reference to the given string and assigns it to the IssuerCa field.
+func (o *ArduinoDevicev2) SetIssuerCa(v string) {
+	o.IssuerCa = &v
+}
+
 // GetLabel returns the Label field value
 func (o *ArduinoDevicev2) GetLabel() string {
 	if o == nil {
@@ -427,6 +496,38 @@ func (o *ArduinoDevicev2) HasLatestWifiFwVersion() bool {
 // SetLatestWifiFwVersion gets a reference to the given string and assigns it to the LatestWifiFwVersion field.
 func (o *ArduinoDevicev2) SetLatestWifiFwVersion(v string) {
 	o.LatestWifiFwVersion = &v
+}
+
+// GetLibVersion returns the LibVersion field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetLibVersion() string {
+	if o == nil || IsNil(o.LibVersion) {
+		var ret string
+		return ret
+	}
+	return *o.LibVersion
+}
+
+// GetLibVersionOk returns a tuple with the LibVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetLibVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.LibVersion) {
+		return nil, false
+	}
+	return o.LibVersion, true
+}
+
+// HasLibVersion returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasLibVersion() bool {
+	if o != nil && !IsNil(o.LibVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetLibVersion gets a reference to the given string and assigns it to the LibVersion field.
+func (o *ArduinoDevicev2) SetLibVersion(v string) {
+	o.LibVersion = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -757,6 +858,38 @@ func (o *ArduinoDevicev2) SetType(v string) {
 	o.Type = v
 }
 
+// GetUniqueHardwareId returns the UniqueHardwareId field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetUniqueHardwareId() string {
+	if o == nil || IsNil(o.UniqueHardwareId) {
+		var ret string
+		return ret
+	}
+	return *o.UniqueHardwareId
+}
+
+// GetUniqueHardwareIdOk returns a tuple with the UniqueHardwareId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetUniqueHardwareIdOk() (*string, bool) {
+	if o == nil || IsNil(o.UniqueHardwareId) {
+		return nil, false
+	}
+	return o.UniqueHardwareId, true
+}
+
+// HasUniqueHardwareId returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasUniqueHardwareId() bool {
+	if o != nil && !IsNil(o.UniqueHardwareId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUniqueHardwareId gets a reference to the given string and assigns it to the UniqueHardwareId field.
+func (o *ArduinoDevicev2) SetUniqueHardwareId(v string) {
+	o.UniqueHardwareId = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ArduinoDevicev2) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -887,6 +1020,9 @@ func (o ArduinoDevicev2) MarshalJSON() ([]byte, error) {
 
 func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BleMac) {
+		toSerialize["ble_mac"] = o.BleMac
+	}
 	if !IsNil(o.ConnectionType) {
 		toSerialize["connection_type"] = o.ConnectionType
 	}
@@ -907,12 +1043,18 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["href"] = o.Href
 	toSerialize["id"] = o.Id
+	if !IsNil(o.IssuerCa) {
+		toSerialize["issuer_ca"] = o.IssuerCa
+	}
 	toSerialize["label"] = o.Label
 	if !IsNil(o.LastActivityAt) {
 		toSerialize["last_activity_at"] = o.LastActivityAt
 	}
 	if !IsNil(o.LatestWifiFwVersion) {
 		toSerialize["latest_wifi_fw_version"] = o.LatestWifiFwVersion
+	}
+	if !IsNil(o.LibVersion) {
+		toSerialize["lib_version"] = o.LibVersion
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
@@ -941,6 +1083,9 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 		toSerialize["thing"] = o.Thing
 	}
 	toSerialize["type"] = o.Type
+	if !IsNil(o.UniqueHardwareId) {
+		toSerialize["unique_hardware_id"] = o.UniqueHardwareId
+	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}

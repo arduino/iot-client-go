@@ -34,7 +34,6 @@ func (r ApiLoraDevicesV1CreateRequest) CreateLoraDevicesV1Payload(createLoraDevi
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiLoraDevicesV1CreateRequest) XOrganization(xOrganization string) ApiLoraDevicesV1CreateRequest {
 	r.xOrganization = &xOrganization
 	return r

@@ -153,7 +153,7 @@ type ApiNetworkCredentialsV1ShowByDeviceRequest struct {
 	type_ string
 }
 
-func (r ApiNetworkCredentialsV1ShowByDeviceRequest) Execute() (*http.Response, error) {
+func (r ApiNetworkCredentialsV1ShowByDeviceRequest) Execute() (*ArduinoArduinoconnectionsV1, *http.Response, error) {
 	return r.ApiService.NetworkCredentialsV1ShowByDeviceExecute(r)
 }
 
@@ -175,16 +175,18 @@ func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDevice(ctx co
 }
 
 // Execute executes the request
-func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute(r ApiNetworkCredentialsV1ShowByDeviceRequest) (*http.Response, error) {
+//  @return ArduinoArduinoconnectionsV1
+func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute(r ApiNetworkCredentialsV1ShowByDeviceRequest) (*ArduinoArduinoconnectionsV1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ArduinoArduinoconnectionsV1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkCredentialsV1APIService.NetworkCredentialsV1ShowByDevice")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/iot/v1/network_credentials/{type}/connections"
@@ -204,7 +206,7 @@ func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.arduinoconnections.v1+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -213,19 +215,19 @@ func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -238,14 +240,23 @@ func (a *NetworkCredentialsV1APIService) NetworkCredentialsV1ShowByDeviceExecute
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

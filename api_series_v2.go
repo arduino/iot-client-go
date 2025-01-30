@@ -34,7 +34,6 @@ func (r ApiSeriesV2BatchQueryRequest) BatchQueryRequestsMediaV1(batchQueryReques
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -197,7 +196,6 @@ func (r ApiSeriesV2BatchQueryRawRequest) BatchQueryRawRequestsMediaV1(batchQuery
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRawRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRawRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -360,7 +358,6 @@ func (r ApiSeriesV2BatchQueryRawLastValueRequest) BatchLastValueRequestsMediaV1(
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQueryRawLastValueRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQueryRawLastValueRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -512,7 +509,6 @@ func (r ApiSeriesV2BatchQuerySamplingRequest) BatchQuerySampledRequestsMediaV1(b
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiSeriesV2BatchQuerySamplingRequest) XOrganization(xOrganization string) ApiSeriesV2BatchQuerySamplingRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -675,7 +671,6 @@ func (r ApiSeriesV2HistoricDataRequest) HistoricDataRequest(historicDataRequest 
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiSeriesV2HistoricDataRequest) XOrganization(xOrganization string) ApiSeriesV2HistoricDataRequest {
 	r.xOrganization = &xOrganization
 	return r

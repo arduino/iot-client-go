@@ -37,7 +37,6 @@ func (r ApiDevicesV2CreateRequest) CreateDevicesV2Payload(createDevicesV2Payload
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2CreateRequest) XOrganization(xOrganization string) ApiDevicesV2CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -188,6 +187,169 @@ func (a *DevicesV2APIService) DevicesV2CreateExecute(r ApiDevicesV2CreateRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiDevicesV2CreateClaimedRequest struct {
+	ctx context.Context
+	ApiService *DevicesV2APIService
+	createClaimedDevicesV2Payload *CreateClaimedDevicesV2Payload
+	xOrganization *string
+}
+
+// DeviceV2 describes a device.
+func (r ApiDevicesV2CreateClaimedRequest) CreateClaimedDevicesV2Payload(createClaimedDevicesV2Payload CreateClaimedDevicesV2Payload) ApiDevicesV2CreateClaimedRequest {
+	r.createClaimedDevicesV2Payload = &createClaimedDevicesV2Payload
+	return r
+}
+
+func (r ApiDevicesV2CreateClaimedRequest) XOrganization(xOrganization string) ApiDevicesV2CreateClaimedRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDevicesV2CreateClaimedRequest) Execute() (*ArduinoDevicev2, *http.Response, error) {
+	return r.ApiService.DevicesV2CreateClaimedExecute(r)
+}
+
+/*
+DevicesV2CreateClaimed createClaimed devices_v2
+
+Creates a new device associated to the user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDevicesV2CreateClaimedRequest
+*/
+func (a *DevicesV2APIService) DevicesV2CreateClaimed(ctx context.Context) ApiDevicesV2CreateClaimedRequest {
+	return ApiDevicesV2CreateClaimedRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDevicev2
+func (a *DevicesV2APIService) DevicesV2CreateClaimedExecute(r ApiDevicesV2CreateClaimedRequest) (*ArduinoDevicev2, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDevicev2
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesV2APIService.DevicesV2CreateClaimed")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v2/devices/claim"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createClaimedDevicesV2Payload == nil {
+		return localVarReturnValue, nil, reportError("createClaimedDevicesV2Payload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.devicev2+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.createClaimedDevicesV2Payload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDevicesV2DeleteRequest struct {
 	ctx context.Context
 	ApiService *DevicesV2APIService
@@ -202,7 +364,6 @@ func (r ApiDevicesV2DeleteRequest) Force(force bool) ApiDevicesV2DeleteRequest {
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2DeleteRequest) XOrganization(xOrganization string) ApiDevicesV2DeleteRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -356,7 +517,6 @@ func (r ApiDevicesV2GetEventsRequest) Start(start string) ApiDevicesV2GetEventsR
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2GetEventsRequest) XOrganization(xOrganization string) ApiDevicesV2GetEventsRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -525,7 +685,6 @@ func (r ApiDevicesV2GetPropertiesRequest) ShowDeleted(showDeleted bool) ApiDevic
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2GetPropertiesRequest) XOrganization(xOrganization string) ApiDevicesV2GetPropertiesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -690,7 +849,6 @@ func (r ApiDevicesV2GetStatusEventsRequest) Start(start string) ApiDevicesV2GetS
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2GetStatusEventsRequest) XOrganization(xOrganization string) ApiDevicesV2GetStatusEventsRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -866,6 +1024,7 @@ type ApiDevicesV2ListRequest struct {
 	serial *string
 	showDeleted *bool
 	tags *[]string
+	uniqueHardwareId *string
 	xOrganization *string
 }
 
@@ -893,7 +1052,12 @@ func (r ApiDevicesV2ListRequest) Tags(tags []string) ApiDevicesV2ListRequest {
 	return r
 }
 
-// Organization space identifer (optional)
+// Filter by device unique hardware id
+func (r ApiDevicesV2ListRequest) UniqueHardwareId(uniqueHardwareId string) ApiDevicesV2ListRequest {
+	r.uniqueHardwareId = &uniqueHardwareId
+	return r
+}
+
 func (r ApiDevicesV2ListRequest) XOrganization(xOrganization string) ApiDevicesV2ListRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -964,6 +1128,9 @@ func (a *DevicesV2APIService) DevicesV2ListExecute(r ApiDevicesV2ListRequest) ([
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "form", "multi")
 		}
+	}
+	if r.uniqueHardwareId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unique_hardware_id", r.uniqueHardwareId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1072,7 +1239,6 @@ type ApiDevicesV2ShowRequest struct {
 	xOrganization *string
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2ShowRequest) XOrganization(xOrganization string) ApiDevicesV2ShowRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1232,7 +1398,6 @@ func (r ApiDevicesV2TimeseriesRequest) Start(start string) ApiDevicesV2Timeserie
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2TimeseriesRequest) XOrganization(xOrganization string) ApiDevicesV2TimeseriesRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1404,7 +1569,6 @@ func (r ApiDevicesV2UpdateRequest) Devicev2(devicev2 Devicev2) ApiDevicesV2Updat
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2UpdateRequest) XOrganization(xOrganization string) ApiDevicesV2UpdateRequest {
 	r.xOrganization = &xOrganization
 	return r
@@ -1571,7 +1735,6 @@ func (r ApiDevicesV2UpdatePropertiesRequest) PropertiesValues(propertiesValues P
 	return r
 }
 
-// Organization space identifer (optional)
 func (r ApiDevicesV2UpdatePropertiesRequest) XOrganization(xOrganization string) ApiDevicesV2UpdatePropertiesRequest {
 	r.xOrganization = &xOrganization
 	return r

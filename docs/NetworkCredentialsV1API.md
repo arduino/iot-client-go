@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## NetworkCredentialsV1ShowByDevice
 
-> NetworkCredentialsV1ShowByDevice(ctx, type_).Execute()
+> ArduinoArduinoconnectionsV1 NetworkCredentialsV1ShowByDevice(ctx, type_).Execute()
 
 showByDevice network_credentials_v1
 
@@ -106,11 +106,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkCredentialsV1API.NetworkCredentialsV1ShowByDevice(context.Background(), type_).Execute()
+	resp, r, err := apiClient.NetworkCredentialsV1API.NetworkCredentialsV1ShowByDevice(context.Background(), type_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkCredentialsV1API.NetworkCredentialsV1ShowByDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `NetworkCredentialsV1ShowByDevice`: ArduinoArduinoconnectionsV1
+	fmt.Fprintf(os.Stdout, "Response from `NetworkCredentialsV1API.NetworkCredentialsV1ShowByDevice`: %v\n", resp)
 }
 ```
 
@@ -133,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ArduinoArduinoconnectionsV1**](ArduinoArduinoconnectionsV1.md)
 
 ### Authorization
 
@@ -142,7 +144,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/vnd.goa.error+json
+- **Accept**: application/vnd.arduino.arduinoconnections.v1+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

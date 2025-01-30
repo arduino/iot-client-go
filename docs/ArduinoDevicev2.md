@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BleMac** | Pointer to **string** |  | [optional] 
 **ConnectionType** | Pointer to **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the device | [optional] 
 **DeletedAt** | Pointer to **time.Time** | Deletion date of the trigger | [optional] 
@@ -12,9 +13,11 @@ Name | Type | Description | Notes
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
 **Href** | **string** | The api reference of this device | 
 **Id** | **string** | The arn of the device | 
+**IssuerCa** | Pointer to **string** |  | [optional] 
 **Label** | **string** | The label of the device | 
 **LastActivityAt** | Pointer to **time.Time** | Last activity date | [optional] 
 **LatestWifiFwVersion** | Pointer to **string** | The latest version of the NINA/WIFI101 firmware available for this device | [optional] 
+**LibVersion** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the device | [optional] 
 **Name** | **string** | The friendly name of the device | 
 **NoSketch** | Pointer to **bool** | True if the device type can not have an associated sketch | [optional] 
@@ -26,6 +29,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **map[string]interface{}** | Tags belonging to the device | [optional] 
 **Thing** | Pointer to [**ArduinoThing**](ArduinoThing.md) |  | [optional] 
 **Type** | **string** | The type of the device | 
+**UniqueHardwareId** | Pointer to **string** | The unique hardware id of the device | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Update date of the trigger | [optional] 
 **UserId** | **string** | The id of the user | 
 **Webhooks** | Pointer to [**[]ArduinoDevicev2Webhook**](ArduinoDevicev2Webhook.md) | ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view) | [optional] 
@@ -49,6 +53,31 @@ will change when the set of required properties is changed
 NewArduinoDevicev2WithDefaults instantiates a new ArduinoDevicev2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBleMac
+
+`func (o *ArduinoDevicev2) GetBleMac() string`
+
+GetBleMac returns the BleMac field if non-nil, zero value otherwise.
+
+### GetBleMacOk
+
+`func (o *ArduinoDevicev2) GetBleMacOk() (*string, bool)`
+
+GetBleMacOk returns a tuple with the BleMac field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBleMac
+
+`func (o *ArduinoDevicev2) SetBleMac(v string)`
+
+SetBleMac sets BleMac field to given value.
+
+### HasBleMac
+
+`func (o *ArduinoDevicev2) HasBleMac() bool`
+
+HasBleMac returns a boolean if a field has been set.
 
 ### GetConnectionType
 
@@ -240,6 +269,31 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetIssuerCa
+
+`func (o *ArduinoDevicev2) GetIssuerCa() string`
+
+GetIssuerCa returns the IssuerCa field if non-nil, zero value otherwise.
+
+### GetIssuerCaOk
+
+`func (o *ArduinoDevicev2) GetIssuerCaOk() (*string, bool)`
+
+GetIssuerCaOk returns a tuple with the IssuerCa field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuerCa
+
+`func (o *ArduinoDevicev2) SetIssuerCa(v string)`
+
+SetIssuerCa sets IssuerCa field to given value.
+
+### HasIssuerCa
+
+`func (o *ArduinoDevicev2) HasIssuerCa() bool`
+
+HasIssuerCa returns a boolean if a field has been set.
+
 ### GetLabel
 
 `func (o *ArduinoDevicev2) GetLabel() string`
@@ -309,6 +363,31 @@ SetLatestWifiFwVersion sets LatestWifiFwVersion field to given value.
 `func (o *ArduinoDevicev2) HasLatestWifiFwVersion() bool`
 
 HasLatestWifiFwVersion returns a boolean if a field has been set.
+
+### GetLibVersion
+
+`func (o *ArduinoDevicev2) GetLibVersion() string`
+
+GetLibVersion returns the LibVersion field if non-nil, zero value otherwise.
+
+### GetLibVersionOk
+
+`func (o *ArduinoDevicev2) GetLibVersionOk() (*string, bool)`
+
+GetLibVersionOk returns a tuple with the LibVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLibVersion
+
+`func (o *ArduinoDevicev2) SetLibVersion(v string)`
+
+SetLibVersion sets LibVersion field to given value.
+
+### HasLibVersion
+
+`func (o *ArduinoDevicev2) HasLibVersion() bool`
+
+HasLibVersion returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -569,6 +648,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetUniqueHardwareId
+
+`func (o *ArduinoDevicev2) GetUniqueHardwareId() string`
+
+GetUniqueHardwareId returns the UniqueHardwareId field if non-nil, zero value otherwise.
+
+### GetUniqueHardwareIdOk
+
+`func (o *ArduinoDevicev2) GetUniqueHardwareIdOk() (*string, bool)`
+
+GetUniqueHardwareIdOk returns a tuple with the UniqueHardwareId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUniqueHardwareId
+
+`func (o *ArduinoDevicev2) SetUniqueHardwareId(v string)`
+
+SetUniqueHardwareId sets UniqueHardwareId field to given value.
+
+### HasUniqueHardwareId
+
+`func (o *ArduinoDevicev2) HasUniqueHardwareId() bool`
+
+HasUniqueHardwareId returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

@@ -37,7 +37,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	property := *openapiclient.NewProperty("Name_example", "Permission_example", "Type_example", "UpdateStrategy_example") // Property | PropertyPayload describes a property of a thing. No field is mandatory
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **property** | [**Property**](Property.md) | PropertyPayload describes a property of a thing. No field is mandatory | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -112,7 +112,7 @@ func main() {
 	id := "id_example" // string | The id of the thing
 	pid := "pid_example" // string | The id of the property
 	force := true // bool | If true, hard delete the property (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 
  **force** | **bool** | If true, hard delete the property | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -186,7 +186,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the thing
 	showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -261,7 +261,7 @@ func main() {
 	id := "id_example" // string | The id of the thing
 	pid := "pid_example" // string | The id of the property
 	propertyValue := *openapiclient.NewPropertyValue(interface{}(123)) // PropertyValue | PropertyValuePayload describes a property value
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 
  **propertyValue** | [**PropertyValue**](PropertyValue.md) | PropertyValuePayload describes a property value | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -336,7 +336,7 @@ func main() {
 	id := "id_example" // string | The id of the thing
 	pid := "pid_example" // string | The id of the property
 	showDeleted := true // bool | If true, shows the soft deleted properties (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 
  **showDeleted** | **bool** | If true, shows the soft deleted properties | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -417,7 +417,7 @@ func main() {
 	from := "from_example" // string | Get data with a timestamp >= to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) (optional)
 	interval := int32(56) // int32 | Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response) (optional)
 	to := "to_example" // string | Get data with a timestamp < to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) (optional)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -454,7 +454,7 @@ Name | Type | Description  | Notes
  **from** | **string** | Get data with a timestamp &gt;&#x3D; to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
  **interval** | **int32** | Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response) | 
  **to** | **string** | Get data with a timestamp &lt; to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z) | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 
@@ -498,7 +498,7 @@ func main() {
 	id := "id_example" // string | The id of the thing
 	pid := "pid_example" // string | The id of the property
 	property := *openapiclient.NewProperty("Name_example", "Permission_example", "Type_example", "UpdateStrategy_example") // Property | PropertyPayload describes a property of a thing. No field is mandatory
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -531,7 +531,7 @@ Name | Type | Description  | Notes
 
 
  **property** | [**Property**](Property.md) | PropertyPayload describes a property of a thing. No field is mandatory | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** | The id of the organization | 
 
 ### Return type
 

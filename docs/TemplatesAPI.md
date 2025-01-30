@@ -30,7 +30,7 @@ import (
 
 func main() {
 	template := *openapiclient.NewTemplate("remote-controlled-lights") // Template | TemplatePayload describes the needed attribute to apply a template
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiTemplatesApplyRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **template** | [**Template**](Template.md) | TemplatePayload describes the needed attribute to apply a template | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

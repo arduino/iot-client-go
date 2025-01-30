@@ -42,8 +42,8 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	clone := *openapiclient.NewClone() // Clone | Add overrides used when performing a clone of a dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	clone := *openapiclient.NewClone() // Clone | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -73,8 +73,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2CloneRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **clone** | [**Clone**](Clone.md) | Add overrides used when performing a clone of a dashboard | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **clone** | [**Clone**](Clone.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -115,8 +115,8 @@ import (
 )
 
 func main() {
-	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -141,8 +141,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2CreateRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -185,7 +185,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	force := true // bool | If true, hard delete the thing (optional) (default to false)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **force** | **bool** | If true, hard delete the thing | [default to false]
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -257,7 +257,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	userId := "userId_example" // string | The id of the user
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -331,7 +331,7 @@ func main() {
 	id := "id_example" // string | The id of the dashboard
 	widgetId := "widgetId_example" // string | The id of the widget
 	widgetlink := *openapiclient.NewWidgetlink() // Widgetlink | 
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 
  **widgetlink** | [**Widgetlink**](Widgetlink.md) |  | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -405,9 +405,9 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | Filter by name of the dashboard. It support like matching. (optional)
-	userId := "userId_example" // string | Filter by user_id of the dashboard's owner (optional)
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	name := "name_example" // string | The name of the dashboard (optional)
+	userId := "userId_example" // string | The user_id of the dashboard's owner (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -432,9 +432,9 @@ Other parameters are passed through a pointer to a apiDashboardsV2ListRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Filter by name of the dashboard. It support like matching. | 
- **userId** | **string** | Filter by user_id of the dashboard&#39;s owner | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **name** | **string** | The name of the dashboard | 
+ **userId** | **string** | The user_id of the dashboard&#39;s owner | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -476,7 +476,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -506,7 +506,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2ListSharesRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -548,8 +548,8 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -579,8 +579,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2PatchRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -623,7 +623,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	sharerequest := *openapiclient.NewSharerequest() // Sharerequest | 
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -652,7 +652,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **sharerequest** | [**Sharerequest**](Sharerequest.md) |  | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -695,7 +695,7 @@ import (
 func main() {
 	id := "id_example" // string | The id of the dashboard
 	dashboardshare := *openapiclient.NewDashboardshare() // Dashboardshare | 
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -724,7 +724,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **dashboardshare** | [**Dashboardshare**](Dashboardshare.md) |  | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -766,7 +766,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -796,7 +796,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2ShowRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -838,7 +838,7 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -868,7 +868,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2TemplateReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -910,8 +910,8 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the dashboard
-	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | Describes a dashboard
-	xOrganization := "xOrganization_example" // string | Organization space identifer (optional) (optional)
+	dashboardv2 := *openapiclient.NewDashboardv2() // Dashboardv2 | DashboardV2Payload describes a dashboard
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -941,8 +941,8 @@ Other parameters are passed through a pointer to a apiDashboardsV2UpdateRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | Describes a dashboard | 
- **xOrganization** | **string** | Organization space identifer (optional) | 
+ **dashboardv2** | [**Dashboardv2**](Dashboardv2.md) | DashboardV2Payload describes a dashboard | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
