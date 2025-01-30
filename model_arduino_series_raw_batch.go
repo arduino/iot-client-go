@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoSeriesRawBatch struct {
 	RespVersion int64 `json:"resp_version"`
 	// Responses of the request
 	Responses []ArduinoSeriesRawResponse `json:"responses"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoSeriesRawBatch ArduinoSeriesRawBatch
@@ -108,6 +108,11 @@ func (o ArduinoSeriesRawBatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["resp_version"] = o.RespVersion
 	toSerialize["responses"] = o.Responses
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ArduinoSeriesRawBatch) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoSeriesRawBatch := _ArduinoSeriesRawBatch{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoSeriesRawBatch)
+	err = json.Unmarshal(data, &varArduinoSeriesRawBatch)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoSeriesRawBatch(varArduinoSeriesRawBatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resp_version")
+		delete(additionalProperties, "responses")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type EmailAction struct {
 	Body BodyExpression `json:"body"`
 	Delivery EmailDeliveryOpts `json:"delivery"`
 	Subject TitleExpression `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmailAction EmailAction
@@ -133,6 +133,11 @@ func (o EmailAction) ToMap() (map[string]interface{}, error) {
 	toSerialize["body"] = o.Body
 	toSerialize["delivery"] = o.Delivery
 	toSerialize["subject"] = o.Subject
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *EmailAction) UnmarshalJSON(data []byte) (err error) {
 
 	varEmailAction := _EmailAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEmailAction)
+	err = json.Unmarshal(data, &varEmailAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmailAction(varEmailAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "delivery")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

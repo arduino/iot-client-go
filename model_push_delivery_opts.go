@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &PushDeliveryOpts{}
 type PushDeliveryOpts struct {
 	// The recipient of a push notification
 	To []UserRecipient `json:"to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PushDeliveryOpts PushDeliveryOpts
@@ -80,6 +80,11 @@ func (o PushDeliveryOpts) MarshalJSON() ([]byte, error) {
 func (o PushDeliveryOpts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *PushDeliveryOpts) UnmarshalJSON(data []byte) (err error) {
 
 	varPushDeliveryOpts := _PushDeliveryOpts{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPushDeliveryOpts)
+	err = json.Unmarshal(data, &varPushDeliveryOpts)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PushDeliveryOpts(varPushDeliveryOpts)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

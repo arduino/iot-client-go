@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type ArduinoThingresult struct {
 	Id string `json:"id"`
 	// UUID of the created Sketch
 	SketchId string `json:"sketch_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoThingresult ArduinoThingresult
@@ -145,6 +145,11 @@ func (o ArduinoThingresult) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["sketch_id"] = o.SketchId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *ArduinoThingresult) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoThingresult := _ArduinoThingresult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoThingresult)
+	err = json.Unmarshal(data, &varArduinoThingresult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoThingresult(varArduinoThingresult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "sketch_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

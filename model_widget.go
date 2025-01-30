@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -46,6 +45,7 @@ type Widget struct {
 	Y int64 `json:"y"`
 	// Widget y position for mobile
 	YMobile *int64 `json:"y_mobile,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Widget Widget
@@ -469,6 +469,11 @@ func (o Widget) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.YMobile) {
 		toSerialize["y_mobile"] = o.YMobile
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -502,15 +507,32 @@ func (o *Widget) UnmarshalJSON(data []byte) (err error) {
 
 	varWidget := _Widget{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWidget)
+	err = json.Unmarshal(data, &varWidget)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Widget(varWidget)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "height_mobile")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "variables")
+		delete(additionalProperties, "width")
+		delete(additionalProperties, "width_mobile")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "x_mobile")
+		delete(additionalProperties, "y")
+		delete(additionalProperties, "y_mobile")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

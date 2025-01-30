@@ -29,7 +29,10 @@ type ModelError struct {
 	Meta map[string]interface{} `json:"meta,omitempty"`
 	// the HTTP status code applicable to this problem
 	Status *int64 `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ModelError ModelError
 
 // NewModelError instantiates a new ModelError object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o ModelError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ModelError) UnmarshalJSON(data []byte) (err error) {
+	varModelError := _ModelError{}
+
+	err = json.Unmarshal(data, &varModelError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ModelError(varModelError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "detail")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableModelError struct {

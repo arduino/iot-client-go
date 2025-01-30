@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -41,6 +40,7 @@ type ArduinoLinkedvariable struct {
 	Type string `json:"type"`
 	// The name of the variable in the code
 	VariableName string `json:"variable_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLinkedvariable ArduinoLinkedvariable
@@ -360,6 +360,11 @@ func (o ArduinoLinkedvariable) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["variable_name"] = o.VariableName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -393,15 +398,29 @@ func (o *ArduinoLinkedvariable) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLinkedvariable := _ArduinoLinkedvariable{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLinkedvariable)
+	err = json.Unmarshal(data, &varArduinoLinkedvariable)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLinkedvariable(varArduinoLinkedvariable)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_value")
+		delete(additionalProperties, "last_value_updated_at")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permission")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "thing_name")
+		delete(additionalProperties, "thing_timezone")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "variable_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

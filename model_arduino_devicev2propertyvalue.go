@@ -22,7 +22,10 @@ var _ MappedNullable = &ArduinoDevicev2propertyvalue{}
 type ArduinoDevicev2propertyvalue struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Value *ArduinoDevicev2propertyvalueValue `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoDevicev2propertyvalue ArduinoDevicev2propertyvalue
 
 // NewArduinoDevicev2propertyvalue instantiates a new ArduinoDevicev2propertyvalue object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ArduinoDevicev2propertyvalue) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2propertyvalue) UnmarshalJSON(data []byte) (err error) {
+	varArduinoDevicev2propertyvalue := _ArduinoDevicev2propertyvalue{}
+
+	err = json.Unmarshal(data, &varArduinoDevicev2propertyvalue)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2propertyvalue(varArduinoDevicev2propertyvalue)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoDevicev2propertyvalue struct {

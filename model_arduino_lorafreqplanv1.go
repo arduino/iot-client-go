@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type ArduinoLorafreqplanv1 struct {
 	Id string `json:"id"`
 	// The name of the frequency plan
 	Name string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLorafreqplanv1 ArduinoLorafreqplanv1
@@ -136,6 +136,11 @@ func (o ArduinoLorafreqplanv1) ToMap() (map[string]interface{}, error) {
 	toSerialize["advanced"] = o.Advanced
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *ArduinoLorafreqplanv1) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLorafreqplanv1 := _ArduinoLorafreqplanv1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLorafreqplanv1)
+	err = json.Unmarshal(data, &varArduinoLorafreqplanv1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLorafreqplanv1(varArduinoLorafreqplanv1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "advanced")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

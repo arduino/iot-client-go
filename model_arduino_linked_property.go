@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ArduinoLinkedProperty struct {
 	Property ArduinoProperty `json:"property"`
 	// The status of the linked property
 	Status string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLinkedProperty ArduinoLinkedProperty
@@ -107,6 +107,11 @@ func (o ArduinoLinkedProperty) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["property"] = o.Property
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ArduinoLinkedProperty) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLinkedProperty := _ArduinoLinkedProperty{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLinkedProperty)
+	err = json.Unmarshal(data, &varArduinoLinkedProperty)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLinkedProperty(varArduinoLinkedProperty)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "property")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

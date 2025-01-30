@@ -25,7 +25,10 @@ type Devicev2Otaurlpyalod struct {
 	Sha256 *string `json:"sha256,omitempty" validate:"regexp=^[a-fA-F0-9]{64}$"`
 	// The id of the user who is requesting the url
 	UserId *string `json:"user_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Devicev2Otaurlpyalod Devicev2Otaurlpyalod
 
 // NewDevicev2Otaurlpyalod instantiates a new Devicev2Otaurlpyalod object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o Devicev2Otaurlpyalod) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UserId) {
 		toSerialize["user_id"] = o.UserId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Devicev2Otaurlpyalod) UnmarshalJSON(data []byte) (err error) {
+	varDevicev2Otaurlpyalod := _Devicev2Otaurlpyalod{}
+
+	err = json.Unmarshal(data, &varDevicev2Otaurlpyalod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Devicev2Otaurlpyalod(varDevicev2Otaurlpyalod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "binary_key")
+		delete(additionalProperties, "sha256")
+		delete(additionalProperties, "user_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDevicev2Otaurlpyalod struct {

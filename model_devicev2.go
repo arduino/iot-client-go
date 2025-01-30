@@ -37,7 +37,10 @@ type Devicev2 struct {
 	UserId *string `json:"user_id,omitempty"`
 	// The version of the NINA/WIFI101 firmware running on the device
 	WifiFwVersion *string `json:"wifi_fw_version,omitempty" validate:"regexp=^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Devicev2 Devicev2
 
 // NewDevicev2 instantiates a new Devicev2 object
 // This constructor will assign default values to properties that have it defined,
@@ -420,7 +423,42 @@ func (o Devicev2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WifiFwVersion) {
 		toSerialize["wifi_fw_version"] = o.WifiFwVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Devicev2) UnmarshalJSON(data []byte) (err error) {
+	varDevicev2 := _Devicev2{}
+
+	err = json.Unmarshal(data, &varDevicev2)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Devicev2(varDevicev2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ble_mac")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "fqbn")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "soft_deleted")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "unique_hardware_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "wifi_fw_version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDevicev2 struct {

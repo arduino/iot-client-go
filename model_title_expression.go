@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type TitleExpression struct {
 	Expression string `json:"expression"`
 	// Variables used by the expression
 	Variables []Variable `json:"variables,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TitleExpression TitleExpression
@@ -117,6 +117,11 @@ func (o TitleExpression) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Variables) {
 		toSerialize["variables"] = o.Variables
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *TitleExpression) UnmarshalJSON(data []byte) (err error) {
 
 	varTitleExpression := _TitleExpression{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTitleExpression)
+	err = json.Unmarshal(data, &varTitleExpression)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TitleExpression(varTitleExpression)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expression")
+		delete(additionalProperties, "variables")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

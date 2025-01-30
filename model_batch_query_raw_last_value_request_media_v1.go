@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type BatchQueryRawLastValueRequestMediaV1 struct {
 	PropertyId string `json:"property_id"`
 	// Thing id
 	ThingId string `json:"thing_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchQueryRawLastValueRequestMediaV1 BatchQueryRawLastValueRequestMediaV1
@@ -108,6 +108,11 @@ func (o BatchQueryRawLastValueRequestMediaV1) ToMap() (map[string]interface{}, e
 	toSerialize := map[string]interface{}{}
 	toSerialize["property_id"] = o.PropertyId
 	toSerialize["thing_id"] = o.ThingId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *BatchQueryRawLastValueRequestMediaV1) UnmarshalJSON(data []byte) (err e
 
 	varBatchQueryRawLastValueRequestMediaV1 := _BatchQueryRawLastValueRequestMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchQueryRawLastValueRequestMediaV1)
+	err = json.Unmarshal(data, &varBatchQueryRawLastValueRequestMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchQueryRawLastValueRequestMediaV1(varBatchQueryRawLastValueRequestMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "thing_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

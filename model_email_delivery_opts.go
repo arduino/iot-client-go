@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type EmailDeliveryOpts struct {
 	Cc []UserRecipient `json:"cc,omitempty"`
 	// The \"to:\" field of an e-mail
 	To []UserRecipient `json:"to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmailDeliveryOpts EmailDeliveryOpts
@@ -154,6 +154,11 @@ func (o EmailDeliveryOpts) ToMap() (map[string]interface{}, error) {
 		toSerialize["cc"] = o.Cc
 	}
 	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -181,15 +186,22 @@ func (o *EmailDeliveryOpts) UnmarshalJSON(data []byte) (err error) {
 
 	varEmailDeliveryOpts := _EmailDeliveryOpts{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEmailDeliveryOpts)
+	err = json.Unmarshal(data, &varEmailDeliveryOpts)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmailDeliveryOpts(varEmailDeliveryOpts)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bcc")
+		delete(additionalProperties, "cc")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

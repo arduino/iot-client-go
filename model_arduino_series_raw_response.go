@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -53,6 +52,7 @@ type ArduinoSeriesRawResponse struct {
 	ToDate time.Time `json:"to_date"`
 	// Values can be in Float, String, Bool, Object
 	Values []interface{} `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoSeriesRawResponse ArduinoSeriesRawResponse
@@ -558,6 +558,11 @@ func (o ArduinoSeriesRawResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["times"] = o.Times
 	toSerialize["to_date"] = o.ToDate
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -594,15 +599,35 @@ func (o *ArduinoSeriesRawResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoSeriesRawResponse := _ArduinoSeriesRawResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoSeriesRawResponse)
+	err = json.Unmarshal(data, &varArduinoSeriesRawResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoSeriesRawResponse(varArduinoSeriesRawResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count_values")
+		delete(additionalProperties, "from_date")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "property_name")
+		delete(additionalProperties, "property_type")
+		delete(additionalProperties, "query")
+		delete(additionalProperties, "resp_version")
+		delete(additionalProperties, "series")
+		delete(additionalProperties, "series_limit")
+		delete(additionalProperties, "sort")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "times")
+		delete(additionalProperties, "to_date")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoDevicev2StatusEvents struct {
 	Events []ArduinoDevicev2StatusEvent `json:"events"`
 	// The id of the device
 	Id string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2StatusEvents ArduinoDevicev2StatusEvents
@@ -108,6 +108,11 @@ func (o ArduinoDevicev2StatusEvents) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["events"] = o.Events
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ArduinoDevicev2StatusEvents) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2StatusEvents := _ArduinoDevicev2StatusEvents{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2StatusEvents)
+	err = json.Unmarshal(data, &varArduinoDevicev2StatusEvents)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2StatusEvents(varArduinoDevicev2StatusEvents)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoDevicev2Pass struct {
 	Set bool `json:"set"`
 	// A random suggested password
 	SuggestedPassword *string `json:"suggested_password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2Pass ArduinoDevicev2Pass
@@ -117,6 +117,11 @@ func (o ArduinoDevicev2Pass) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SuggestedPassword) {
 		toSerialize["suggested_password"] = o.SuggestedPassword
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *ArduinoDevicev2Pass) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2Pass := _ArduinoDevicev2Pass{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2Pass)
+	err = json.Unmarshal(data, &varArduinoDevicev2Pass)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2Pass(varArduinoDevicev2Pass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "set")
+		delete(additionalProperties, "suggested_password")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

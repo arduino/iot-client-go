@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -38,6 +37,7 @@ type ArduinoThingtemplate struct {
 	Variables []ArduinoTemplateproperty `json:"variables,omitempty"`
 	// Webhook uri
 	WebhookUri *string `json:"webhook_uri,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoThingtemplate ArduinoThingtemplate
@@ -366,6 +366,11 @@ func (o ArduinoThingtemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WebhookUri) {
 		toSerialize["webhook_uri"] = o.WebhookUri
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -394,15 +399,28 @@ func (o *ArduinoThingtemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoThingtemplate := _ArduinoThingtemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoThingtemplate)
+	err = json.Unmarshal(data, &varArduinoThingtemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoThingtemplate(varArduinoThingtemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "device_metadata")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "sketch_template")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "variables")
+		delete(additionalProperties, "webhook_uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

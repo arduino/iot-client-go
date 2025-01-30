@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -42,6 +41,7 @@ type ArduinoTriggerTemplate struct {
 	Name string `json:"name"`
 	// Id of the organization the trigger belongs to
 	OrganizationId *string `json:"organization_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTriggerTemplate ArduinoTriggerTemplate
@@ -440,6 +440,11 @@ func (o ArduinoTriggerTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -468,15 +473,30 @@ func (o *ArduinoTriggerTemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTriggerTemplate := _ArduinoTriggerTemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTriggerTemplate)
+	err = json.Unmarshal(data, &varArduinoTriggerTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTriggerTemplate(varArduinoTriggerTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "criteria")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "grace_period_offline")
+		delete(additionalProperties, "grace_period_online")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "linked_devices")
+		delete(additionalProperties, "linked_property")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

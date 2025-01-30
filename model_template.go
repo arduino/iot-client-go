@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type Template struct {
 	// The name of the directory on S3 bucket containing the template
 	TemplateName string `json:"template_name"`
 	ThingsOptions map[string]interface{} `json:"things_options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Template Template
@@ -190,6 +190,11 @@ func (o Template) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ThingsOptions) {
 		toSerialize["things_options"] = o.ThingsOptions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -217,15 +222,23 @@ func (o *Template) UnmarshalJSON(data []byte) (err error) {
 
 	varTemplate := _Template{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTemplate)
+	err = json.Unmarshal(data, &varTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Template(varTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "custom_template_id")
+		delete(additionalProperties, "prefix_name")
+		delete(additionalProperties, "template_name")
+		delete(additionalProperties, "things_options")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

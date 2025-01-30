@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type ArduinoDevicev2Webhook struct {
 	Id string `json:"id"`
 	// The uri of the webhook
 	Uri string `json:"uri"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2Webhook ArduinoDevicev2Webhook
@@ -149,6 +149,11 @@ func (o ArduinoDevicev2Webhook) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["uri"] = o.Uri
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -177,15 +182,22 @@ func (o *ArduinoDevicev2Webhook) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2Webhook := _ArduinoDevicev2Webhook{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2Webhook)
+	err = json.Unmarshal(data, &varArduinoDevicev2Webhook)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2Webhook(varArduinoDevicev2Webhook)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

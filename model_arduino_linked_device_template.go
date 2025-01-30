@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ArduinoLinkedDeviceTemplate{}
 type ArduinoLinkedDeviceTemplate struct {
 	// The thing the device is associated to
 	ThingId string `json:"thing_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLinkedDeviceTemplate ArduinoLinkedDeviceTemplate
@@ -80,6 +80,11 @@ func (o ArduinoLinkedDeviceTemplate) MarshalJSON() ([]byte, error) {
 func (o ArduinoLinkedDeviceTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["thing_id"] = o.ThingId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ArduinoLinkedDeviceTemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLinkedDeviceTemplate := _ArduinoLinkedDeviceTemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLinkedDeviceTemplate)
+	err = json.Unmarshal(data, &varArduinoLinkedDeviceTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLinkedDeviceTemplate(varArduinoLinkedDeviceTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "thing_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

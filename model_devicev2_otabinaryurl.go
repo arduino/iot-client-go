@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type Devicev2Otabinaryurl struct {
 	BinaryKey string `json:"binary_key" validate:"regexp=^ota\\/[a-zA-Z0-9_-]+\\/[a-zA-Z0-9_-]+.ota$"`
 	// Binary expire time in minutes, default 10 mins
 	ExpireInMins *int64 `json:"expire_in_mins,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Devicev2Otabinaryurl Devicev2Otabinaryurl
@@ -162,6 +162,11 @@ func (o Devicev2Otabinaryurl) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExpireInMins) {
 		toSerialize["expire_in_mins"] = o.ExpireInMins
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -189,15 +194,22 @@ func (o *Devicev2Otabinaryurl) UnmarshalJSON(data []byte) (err error) {
 
 	varDevicev2Otabinaryurl := _Devicev2Otabinaryurl{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDevicev2Otabinaryurl)
+	err = json.Unmarshal(data, &varDevicev2Otabinaryurl)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Devicev2Otabinaryurl(varDevicev2Otabinaryurl)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "async")
+		delete(additionalProperties, "binary_key")
+		delete(additionalProperties, "expire_in_mins")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

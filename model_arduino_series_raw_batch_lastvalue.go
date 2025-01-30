@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoSeriesRawBatchLastvalue struct {
 	Responses []ArduinoSeriesRawLastValueResponse `json:"responses"`
 	// Status of the response
 	Status string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoSeriesRawBatchLastvalue ArduinoSeriesRawBatchLastvalue
@@ -108,6 +108,11 @@ func (o ArduinoSeriesRawBatchLastvalue) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["responses"] = o.Responses
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ArduinoSeriesRawBatchLastvalue) UnmarshalJSON(data []byte) (err error) 
 
 	varArduinoSeriesRawBatchLastvalue := _ArduinoSeriesRawBatchLastvalue{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoSeriesRawBatchLastvalue)
+	err = json.Unmarshal(data, &varArduinoSeriesRawBatchLastvalue)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoSeriesRawBatchLastvalue(varArduinoSeriesRawBatchLastvalue)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "responses")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

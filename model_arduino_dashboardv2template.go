@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ArduinoDashboardv2template struct {
 	Name string `json:"name"`
 	// ArduinoWidgetv2templateCollection is the media type for an array of ArduinoWidgetv2template (default view)
 	Widgets []ArduinoWidgetv2template `json:"widgets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDashboardv2template ArduinoDashboardv2template
@@ -191,6 +191,11 @@ func (o ArduinoDashboardv2template) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Widgets) {
 		toSerialize["widgets"] = o.Widgets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *ArduinoDashboardv2template) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDashboardv2template := _ArduinoDashboardv2template{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDashboardv2template)
+	err = json.Unmarshal(data, &varArduinoDashboardv2template)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDashboardv2template(varArduinoDashboardv2template)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cover_image")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "widgets")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

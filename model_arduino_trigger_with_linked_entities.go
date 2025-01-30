@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -37,6 +36,7 @@ type ArduinoTriggerWithLinkedEntities struct {
 	Name string `json:"name"`
 	// Id of the organization the trigger belongs to
 	OrganizationId *string `json:"organization_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTriggerWithLinkedEntities ArduinoTriggerWithLinkedEntities
@@ -365,6 +365,11 @@ func (o ArduinoTriggerWithLinkedEntities) ToMap() (map[string]interface{}, error
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -393,15 +398,28 @@ func (o *ArduinoTriggerWithLinkedEntities) UnmarshalJSON(data []byte) (err error
 
 	varArduinoTriggerWithLinkedEntities := _ArduinoTriggerWithLinkedEntities{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTriggerWithLinkedEntities)
+	err = json.Unmarshal(data, &varArduinoTriggerWithLinkedEntities)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTriggerWithLinkedEntities(varArduinoTriggerWithLinkedEntities)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "device_status_source")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "linked_property")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

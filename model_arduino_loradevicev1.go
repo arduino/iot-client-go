@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ArduinoLoradevicev1 struct {
 	DeviceId string `json:"device_id"`
 	// The eui of the lora device
 	Eui string `json:"eui"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLoradevicev1 ArduinoLoradevicev1
@@ -164,6 +164,11 @@ func (o ArduinoLoradevicev1) ToMap() (map[string]interface{}, error) {
 	toSerialize["app_key"] = o.AppKey
 	toSerialize["device_id"] = o.DeviceId
 	toSerialize["eui"] = o.Eui
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *ArduinoLoradevicev1) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLoradevicev1 := _ArduinoLoradevicev1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLoradevicev1)
+	err = json.Unmarshal(data, &varArduinoLoradevicev1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLoradevicev1(varArduinoLoradevicev1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "app_eui")
+		delete(additionalProperties, "app_key")
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "eui")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

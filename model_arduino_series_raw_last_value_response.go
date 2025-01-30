@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type ArduinoSeriesRawLastValueResponse struct {
 	Times []time.Time `json:"times"`
 	// Values can be in Float, String, Bool, Object
 	Values []interface{} `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoSeriesRawLastValueResponse ArduinoSeriesRawLastValueResponse
@@ -193,6 +193,11 @@ func (o ArduinoSeriesRawLastValueResponse) ToMap() (map[string]interface{}, erro
 	toSerialize["thing_id"] = o.ThingId
 	toSerialize["times"] = o.Times
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *ArduinoSeriesRawLastValueResponse) UnmarshalJSON(data []byte) (err erro
 
 	varArduinoSeriesRawLastValueResponse := _ArduinoSeriesRawLastValueResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoSeriesRawLastValueResponse)
+	err = json.Unmarshal(data, &varArduinoSeriesRawLastValueResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoSeriesRawLastValueResponse(varArduinoSeriesRawLastValueResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count_values")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "times")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

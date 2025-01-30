@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -38,6 +37,7 @@ type ArduinoDashboardv2 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	// ArduinoWidgetv2Collection is the media type for an array of ArduinoWidgetv2 (default view)
 	Widgets []ArduinoWidgetv2 `json:"widgets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDashboardv2 ArduinoDashboardv2
@@ -357,6 +357,11 @@ func (o ArduinoDashboardv2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Widgets) {
 		toSerialize["widgets"] = o.Widgets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -386,15 +391,28 @@ func (o *ArduinoDashboardv2) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDashboardv2 := _ArduinoDashboardv2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDashboardv2)
+	err = json.Unmarshal(data, &varArduinoDashboardv2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDashboardv2(varArduinoDashboardv2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cover_image")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "shared_by")
+		delete(additionalProperties, "shared_with")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "widgets")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -41,6 +40,7 @@ type Property struct {
 	UpdateStrategy string `json:"update_strategy"`
 	// The  sketch variable name of the property
 	VariableName *string `json:"variable_name,omitempty" validate:"regexp=^[a-zA-Z_][a-zA-Z0-9_]*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Property Property
@@ -390,6 +390,11 @@ func (o Property) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VariableName) {
 		toSerialize["variable_name"] = o.VariableName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -420,15 +425,29 @@ func (o *Property) UnmarshalJSON(data []byte) (err error) {
 
 	varProperty := _Property{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProperty)
+	err = json.Unmarshal(data, &varProperty)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Property(varProperty)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "max_value")
+		delete(additionalProperties, "min_value")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permission")
+		delete(additionalProperties, "persist")
+		delete(additionalProperties, "tag")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "update_parameter")
+		delete(additionalProperties, "update_strategy")
+		delete(additionalProperties, "variable_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

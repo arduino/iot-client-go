@@ -21,7 +21,10 @@ var _ MappedNullable = &Sharerequest{}
 type Sharerequest struct {
 	// The message the user want to send to the dashboard owner
 	Message *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Sharerequest Sharerequest
 
 // NewSharerequest instantiates a new Sharerequest object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o Sharerequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Sharerequest) UnmarshalJSON(data []byte) (err error) {
+	varSharerequest := _Sharerequest{}
+
+	err = json.Unmarshal(data, &varSharerequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Sharerequest(varSharerequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSharerequest struct {

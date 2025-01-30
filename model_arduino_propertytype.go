@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -41,6 +40,7 @@ type ArduinoPropertytype struct {
 	Type string `json:"type"`
 	// The measure units available for this type
 	Units []string `json:"units,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoPropertytype ArduinoPropertytype
@@ -377,6 +377,11 @@ func (o ArduinoPropertytype) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Units) {
 		toSerialize["units"] = o.Units
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -408,15 +413,29 @@ func (o *ArduinoPropertytype) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoPropertytype := _ArduinoPropertytype{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoPropertytype)
+	err = json.Unmarshal(data, &varArduinoPropertytype)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoPropertytype(varArduinoPropertytype)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "assistants")
+		delete(additionalProperties, "declaration")
+		delete(additionalProperties, "deprecated")
+		delete(additionalProperties, "example")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rw")
+		delete(additionalProperties, "supersededBy")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "units")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

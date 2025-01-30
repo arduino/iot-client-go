@@ -37,7 +37,10 @@ type ThingCreate struct {
 	WebhookActive *bool `json:"webhook_active,omitempty"`
 	// Webhook uri
 	WebhookUri *string `json:"webhook_uri,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ThingCreate ThingCreate
 
 // NewThingCreate instantiates a new ThingCreate object
 // This constructor will assign default values to properties that have it defined,
@@ -385,7 +388,41 @@ func (o ThingCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WebhookUri) {
 		toSerialize["webhook_uri"] = o.WebhookUri
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ThingCreate) UnmarshalJSON(data []byte) (err error) {
+	varThingCreate := _ThingCreate{}
+
+	err = json.Unmarshal(data, &varThingCreate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ThingCreate(varThingCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "assistant")
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "properties")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "webhook_active")
+		delete(additionalProperties, "webhook_uri")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableThingCreate struct {

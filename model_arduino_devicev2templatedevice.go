@@ -23,7 +23,10 @@ type ArduinoDevicev2templatedevice struct {
 	Fqbn *string `json:"fqbn,omitempty"`
 	// The device type name
 	Name *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoDevicev2templatedevice ArduinoDevicev2templatedevice
 
 // NewArduinoDevicev2templatedevice instantiates a new ArduinoDevicev2templatedevice object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o ArduinoDevicev2templatedevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2templatedevice) UnmarshalJSON(data []byte) (err error) {
+	varArduinoDevicev2templatedevice := _ArduinoDevicev2templatedevice{}
+
+	err = json.Unmarshal(data, &varArduinoDevicev2templatedevice)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2templatedevice(varArduinoDevicev2templatedevice)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fqbn")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoDevicev2templatedevice struct {

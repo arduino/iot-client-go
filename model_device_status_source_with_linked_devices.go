@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type DeviceStatusSourceWithLinkedDevices struct {
 	GracePeriodOnline *int32 `json:"grace_period_online,omitempty"`
 	// A list of devices the trigger is associated to
 	LinkedDevices []ArduinoLinkedDevice `json:"linked_devices,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeviceStatusSourceWithLinkedDevices DeviceStatusSourceWithLinkedDevices
@@ -191,6 +191,11 @@ func (o DeviceStatusSourceWithLinkedDevices) ToMap() (map[string]interface{}, er
 	if !IsNil(o.LinkedDevices) {
 		toSerialize["linked_devices"] = o.LinkedDevices
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *DeviceStatusSourceWithLinkedDevices) UnmarshalJSON(data []byte) (err er
 
 	varDeviceStatusSourceWithLinkedDevices := _DeviceStatusSourceWithLinkedDevices{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeviceStatusSourceWithLinkedDevices)
+	err = json.Unmarshal(data, &varDeviceStatusSourceWithLinkedDevices)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeviceStatusSourceWithLinkedDevices(varDeviceStatusSourceWithLinkedDevices)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "criteria")
+		delete(additionalProperties, "grace_period_offline")
+		delete(additionalProperties, "grace_period_online")
+		delete(additionalProperties, "linked_devices")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

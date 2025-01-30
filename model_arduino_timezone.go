@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ArduinoTimezone struct {
 	Offset int64 `json:"offset"`
 	// Date until the offset is valid.
 	Until time.Time `json:"until"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTimezone ArduinoTimezone
@@ -137,6 +137,11 @@ func (o ArduinoTimezone) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["offset"] = o.Offset
 	toSerialize["until"] = o.Until
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *ArduinoTimezone) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTimezone := _ArduinoTimezone{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTimezone)
+	err = json.Unmarshal(data, &varArduinoTimezone)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTimezone(varArduinoTimezone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "offset")
+		delete(additionalProperties, "until")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

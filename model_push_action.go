@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type PushAction struct {
 	Body BodyExpression `json:"body"`
 	Delivery PushDeliveryOpts `json:"delivery"`
 	Title TitleExpression `json:"title"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PushAction PushAction
@@ -133,6 +133,11 @@ func (o PushAction) ToMap() (map[string]interface{}, error) {
 	toSerialize["body"] = o.Body
 	toSerialize["delivery"] = o.Delivery
 	toSerialize["title"] = o.Title
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *PushAction) UnmarshalJSON(data []byte) (err error) {
 
 	varPushAction := _PushAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPushAction)
+	err = json.Unmarshal(data, &varPushAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PushAction(varPushAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "delivery")
+		delete(additionalProperties, "title")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

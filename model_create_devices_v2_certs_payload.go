@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type CreateDevicesV2CertsPayload struct {
 	Csr string `json:"csr"`
 	// Whether the certificate is enabled
 	Enabled bool `json:"enabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDevicesV2CertsPayload CreateDevicesV2CertsPayload
@@ -145,6 +145,11 @@ func (o CreateDevicesV2CertsPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["csr"] = o.Csr
 	toSerialize["enabled"] = o.Enabled
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *CreateDevicesV2CertsPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateDevicesV2CertsPayload := _CreateDevicesV2CertsPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDevicesV2CertsPayload)
+	err = json.Unmarshal(data, &varCreateDevicesV2CertsPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDevicesV2CertsPayload(varCreateDevicesV2CertsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ca")
+		delete(additionalProperties, "csr")
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

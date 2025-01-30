@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type ArduinoCompressedv2 struct {
 	SignatureAsn1X string `json:"signature_asn1_x"`
 	// The ASN1 Y component of certificate signature
 	SignatureAsn1Y string `json:"signature_asn1_y"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoCompressedv2 ArduinoCompressedv2
@@ -258,6 +258,11 @@ func (o ArduinoCompressedv2) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature"] = o.Signature
 	toSerialize["signature_asn1_x"] = o.SignatureAsn1X
 	toSerialize["signature_asn1_y"] = o.SignatureAsn1Y
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -290,15 +295,26 @@ func (o *ArduinoCompressedv2) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoCompressedv2 := _ArduinoCompressedv2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoCompressedv2)
+	err = json.Unmarshal(data, &varArduinoCompressedv2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoCompressedv2(varArduinoCompressedv2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authority_key_identifier")
+		delete(additionalProperties, "not_after")
+		delete(additionalProperties, "not_before")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "signature_asn1_x")
+		delete(additionalProperties, "signature_asn1_y")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

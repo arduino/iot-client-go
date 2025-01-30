@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -45,6 +44,7 @@ type ArduinoTrigger struct {
 	PropertyId *string `json:"property_id,omitempty"`
 	// Update date of the trigger
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTrigger ArduinoTrigger
@@ -487,6 +487,11 @@ func (o ArduinoTrigger) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -514,15 +519,31 @@ func (o *ArduinoTrigger) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTrigger := _ArduinoTrigger{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTrigger)
+	err = json.Unmarshal(data, &varArduinoTrigger)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTrigger(varArduinoTrigger)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "device_status_source")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

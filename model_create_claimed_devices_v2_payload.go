@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type CreateClaimedDevicesV2Payload struct {
 	UserId string `json:"user_id"`
 	// The version of the NINA/WIFI101 firmware running on the device
 	WifiFwVersion *string `json:"wifi_fw_version,omitempty" validate:"regexp=^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateClaimedDevicesV2Payload CreateClaimedDevicesV2Payload
@@ -394,6 +394,11 @@ func (o CreateClaimedDevicesV2Payload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WifiFwVersion) {
 		toSerialize["wifi_fw_version"] = o.WifiFwVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -423,15 +428,29 @@ func (o *CreateClaimedDevicesV2Payload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateClaimedDevicesV2Payload := _CreateClaimedDevicesV2Payload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateClaimedDevicesV2Payload)
+	err = json.Unmarshal(data, &varCreateClaimedDevicesV2Payload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateClaimedDevicesV2Payload(varCreateClaimedDevicesV2Payload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ID")
+		delete(additionalProperties, "ble_mac")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "fqbn")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "unique_hardware_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "wifi_fw_version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

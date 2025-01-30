@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type BatchQueryRequestMediaV1 struct {
 	SeriesLimit *int64 `json:"series_limit,omitempty"`
 	// To timestamp
 	To time.Time `json:"to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchQueryRequestMediaV1 BatchQueryRequestMediaV1
@@ -248,6 +248,11 @@ func (o BatchQueryRequestMediaV1) ToMap() (map[string]interface{}, error) {
 		toSerialize["series_limit"] = o.SeriesLimit
 	}
 	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -277,15 +282,25 @@ func (o *BatchQueryRequestMediaV1) UnmarshalJSON(data []byte) (err error) {
 
 	varBatchQueryRequestMediaV1 := _BatchQueryRequestMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchQueryRequestMediaV1)
+	err = json.Unmarshal(data, &varBatchQueryRequestMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchQueryRequestMediaV1(varBatchQueryRequestMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "aggregation")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "q")
+		delete(additionalProperties, "series_limit")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

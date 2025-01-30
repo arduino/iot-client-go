@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ArduinoTimeseriesmedia{}
 // ArduinoTimeseriesmedia ArduinoTimeseriesmedia media type (default view)
 type ArduinoTimeseriesmedia struct {
 	Data []TimeseriesDataPoint `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTimeseriesmedia ArduinoTimeseriesmedia
@@ -79,6 +79,11 @@ func (o ArduinoTimeseriesmedia) MarshalJSON() ([]byte, error) {
 func (o ArduinoTimeseriesmedia) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ArduinoTimeseriesmedia) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTimeseriesmedia := _ArduinoTimeseriesmedia{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTimeseriesmedia)
+	err = json.Unmarshal(data, &varArduinoTimeseriesmedia)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTimeseriesmedia(varArduinoTimeseriesmedia)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

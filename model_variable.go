@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type Variable struct {
 	PropertyId *string `json:"property_id,omitempty"`
 	// The ID of the thing referenced entity
 	ThingId *string `json:"thing_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Variable Variable
@@ -247,6 +247,11 @@ func (o Variable) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ThingId) {
 		toSerialize["thing_id"] = o.ThingId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -276,15 +281,25 @@ func (o *Variable) UnmarshalJSON(data []byte) (err error) {
 
 	varVariable := _Variable{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVariable)
+	err = json.Unmarshal(data, &varVariable)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Variable(varVariable)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "attribute")
+		delete(additionalProperties, "entity")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "placeholder")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "thing_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -23,7 +23,10 @@ type Usershare struct {
 	UserId *string `json:"user_id,omitempty"`
 	// The username of the user you want to share the dashboard with
 	Username *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Usershare Usershare
 
 // NewUsershare instantiates a new Usershare object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o Usershare) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Usershare) UnmarshalJSON(data []byte) (err error) {
+	varUsershare := _Usershare{}
+
+	err = json.Unmarshal(data, &varUsershare)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Usershare(varUsershare)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUsershare struct {

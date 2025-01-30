@@ -34,7 +34,10 @@ type Trigger struct {
 	PropertyId *string `json:"property_id,omitempty"`
 	// If false, restore the thing from the soft deletion
 	SoftDeleted *bool `json:"soft_deleted,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Trigger Trigger
 
 // NewTrigger instantiates a new Trigger object
 // This constructor will assign default values to properties that have it defined,
@@ -347,7 +350,40 @@ func (o Trigger) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SoftDeleted) {
 		toSerialize["soft_deleted"] = o.SoftDeleted
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Trigger) UnmarshalJSON(data []byte) (err error) {
+	varTrigger := _Trigger{}
+
+	err = json.Unmarshal(data, &varTrigger)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Trigger(varTrigger)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "device_status_source")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "soft_deleted")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrigger struct {

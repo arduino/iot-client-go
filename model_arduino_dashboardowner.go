@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoDashboardowner struct {
 	UserId string `json:"user_id"`
 	// The username of the user who created the dashboard
 	Username *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDashboardowner ArduinoDashboardowner
@@ -117,6 +117,11 @@ func (o ArduinoDashboardowner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *ArduinoDashboardowner) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDashboardowner := _ArduinoDashboardowner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDashboardowner)
+	err = json.Unmarshal(data, &varArduinoDashboardowner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDashboardowner(varArduinoDashboardowner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

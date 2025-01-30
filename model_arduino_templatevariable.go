@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type ArduinoTemplatevariable struct {
 	Type string `json:"type"`
 	// The name of the variable in the code
 	VariableId string `json:"variable_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTemplatevariable ArduinoTemplatevariable
@@ -228,6 +228,11 @@ func (o ArduinoTemplatevariable) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["variable_id"] = o.VariableId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -259,15 +264,25 @@ func (o *ArduinoTemplatevariable) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTemplatevariable := _ArduinoTemplatevariable{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTemplatevariable)
+	err = json.Unmarshal(data, &varArduinoTemplatevariable)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTemplatevariable(varArduinoTemplatevariable)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permission")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "thing_timezone")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "variable_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

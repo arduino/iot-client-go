@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &BatchQueryRawResponseSeriesMediaV1{}
 type BatchQueryRawResponseSeriesMediaV1 struct {
 	// Metric name
 	Metric string `json:"metric"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchQueryRawResponseSeriesMediaV1 BatchQueryRawResponseSeriesMediaV1
@@ -80,6 +80,11 @@ func (o BatchQueryRawResponseSeriesMediaV1) MarshalJSON() ([]byte, error) {
 func (o BatchQueryRawResponseSeriesMediaV1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["metric"] = o.Metric
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *BatchQueryRawResponseSeriesMediaV1) UnmarshalJSON(data []byte) (err err
 
 	varBatchQueryRawResponseSeriesMediaV1 := _BatchQueryRawResponseSeriesMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchQueryRawResponseSeriesMediaV1)
+	err = json.Unmarshal(data, &varBatchQueryRawResponseSeriesMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchQueryRawResponseSeriesMediaV1(varBatchQueryRawResponseSeriesMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "metric")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

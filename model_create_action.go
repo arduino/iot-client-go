@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type CreateAction struct {
 	PushNotification *PushAction `json:"push_notification,omitempty"`
 	// Id of the trigger the action is associated to
 	TriggerId *string `json:"trigger_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAction CreateAction
@@ -291,6 +291,11 @@ func (o CreateAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TriggerId) {
 		toSerialize["trigger_id"] = o.TriggerId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -319,15 +324,26 @@ func (o *CreateAction) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAction := _CreateAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAction)
+	err = json.Unmarshal(data, &varCreateAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAction(varCreateAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "kind")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "push_notification")
+		delete(additionalProperties, "trigger_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

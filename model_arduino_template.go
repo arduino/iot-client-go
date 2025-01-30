@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoTemplate struct {
 	// ArduinoThingresultCollection is the media type for an array of ArduinoThingresult (default view)
 	Things []ArduinoThingresult `json:"things"`
 	Triggers []string `json:"triggers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTemplate ArduinoTemplate
@@ -152,6 +152,11 @@ func (o ArduinoTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Triggers) {
 		toSerialize["triggers"] = o.Triggers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *ArduinoTemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTemplate := _ArduinoTemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTemplate)
+	err = json.Unmarshal(data, &varArduinoTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTemplate(varArduinoTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dashboards")
+		delete(additionalProperties, "things")
+		delete(additionalProperties, "triggers")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

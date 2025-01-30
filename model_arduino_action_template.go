@@ -29,7 +29,10 @@ type ArduinoActionTemplate struct {
 	// Id of the organization the trigger belongs to
 	OrganizationId *string `json:"organization_id,omitempty"`
 	PushNotification *PushAction `json:"push_notification,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoActionTemplate ArduinoActionTemplate
 
 // NewArduinoActionTemplate instantiates a new ArduinoActionTemplate object
 // This constructor will assign default values to properties that have it defined,
@@ -268,7 +271,38 @@ func (o ArduinoActionTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PushNotification) {
 		toSerialize["push_notification"] = o.PushNotification
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoActionTemplate) UnmarshalJSON(data []byte) (err error) {
+	varArduinoActionTemplate := _ArduinoActionTemplate{}
+
+	err = json.Unmarshal(data, &varArduinoActionTemplate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoActionTemplate(varArduinoActionTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "kind")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "push_notification")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoActionTemplate struct {

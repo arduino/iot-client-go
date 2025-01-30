@@ -21,7 +21,10 @@ var _ MappedNullable = &Devicev2Pass{}
 type Devicev2Pass struct {
 	// The password for the device
 	Password *string `json:"password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Devicev2Pass Devicev2Pass
 
 // NewDevicev2Pass instantiates a new Devicev2Pass object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o Devicev2Pass) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Devicev2Pass) UnmarshalJSON(data []byte) (err error) {
+	varDevicev2Pass := _Devicev2Pass{}
+
+	err = json.Unmarshal(data, &varDevicev2Pass)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Devicev2Pass(varDevicev2Pass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDevicev2Pass struct {
