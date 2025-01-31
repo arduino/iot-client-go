@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ArduinoCredentialsv1 struct {
 	SecretName string `json:"secret_name"`
 	// Tell if the field is sensitive
 	Sensitive bool `json:"sensitive"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoCredentialsv1 ArduinoCredentialsv1
@@ -164,6 +164,11 @@ func (o ArduinoCredentialsv1) ToMap() (map[string]interface{}, error) {
 	toSerialize["required"] = o.Required
 	toSerialize["secret_name"] = o.SecretName
 	toSerialize["sensitive"] = o.Sensitive
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *ArduinoCredentialsv1) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoCredentialsv1 := _ArduinoCredentialsv1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoCredentialsv1)
+	err = json.Unmarshal(data, &varArduinoCredentialsv1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoCredentialsv1(varArduinoCredentialsv1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "friendly_name")
+		delete(additionalProperties, "required")
+		delete(additionalProperties, "secret_name")
+		delete(additionalProperties, "sensitive")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

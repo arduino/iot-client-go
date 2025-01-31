@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type UserRecipient struct {
 	Id string `json:"id"`
 	// The username of the user
 	Username *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserRecipient UserRecipient
@@ -154,6 +154,11 @@ func (o UserRecipient) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -181,15 +186,22 @@ func (o *UserRecipient) UnmarshalJSON(data []byte) (err error) {
 
 	varUserRecipient := _UserRecipient{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserRecipient)
+	err = json.Unmarshal(data, &varUserRecipient)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserRecipient(varUserRecipient)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

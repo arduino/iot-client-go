@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ArduinoTags{}
 // ArduinoTags ArduinoTags media type (default view)
 type ArduinoTags struct {
 	Tags []Tag `json:"tags"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTags ArduinoTags
@@ -79,6 +79,11 @@ func (o ArduinoTags) MarshalJSON() ([]byte, error) {
 func (o ArduinoTags) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tags"] = o.Tags
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ArduinoTags) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTags := _ArduinoTags{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTags)
+	err = json.Unmarshal(data, &varArduinoTags)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTags(varArduinoTags)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

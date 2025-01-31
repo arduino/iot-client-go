@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type PropertyValue struct {
 	DeviceId *string `json:"device_id,omitempty"`
 	// The property value
 	Value interface{} `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PropertyValue PropertyValue
@@ -121,6 +121,11 @@ func (o PropertyValue) ToMap() (map[string]interface{}, error) {
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -148,15 +153,21 @@ func (o *PropertyValue) UnmarshalJSON(data []byte) (err error) {
 
 	varPropertyValue := _PropertyValue{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPropertyValue)
+	err = json.Unmarshal(data, &varPropertyValue)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PropertyValue(varPropertyValue)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

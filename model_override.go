@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type Override struct {
 	NewThingId string `json:"new_thing_id"`
 	// The id of the thing to override
 	OldThingId string `json:"old_thing_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Override Override
@@ -108,6 +108,11 @@ func (o Override) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["new_thing_id"] = o.NewThingId
 	toSerialize["old_thing_id"] = o.OldThingId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *Override) UnmarshalJSON(data []byte) (err error) {
 
 	varOverride := _Override{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOverride)
+	err = json.Unmarshal(data, &varOverride)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Override(varOverride)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "new_thing_id")
+		delete(additionalProperties, "old_thing_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

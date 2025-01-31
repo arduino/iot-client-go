@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -54,6 +53,7 @@ type ArduinoSeriesResponse struct {
 	ToDate time.Time `json:"to_date"`
 	// Values in Float
 	Values []float64 `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoSeriesResponse ArduinoSeriesResponse
@@ -568,6 +568,11 @@ func (o ArduinoSeriesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["times"] = o.Times
 	toSerialize["to_date"] = o.ToDate
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -603,15 +608,35 @@ func (o *ArduinoSeriesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoSeriesResponse := _ArduinoSeriesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoSeriesResponse)
+	err = json.Unmarshal(data, &varArduinoSeriesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoSeriesResponse(varArduinoSeriesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "aggregation")
+		delete(additionalProperties, "count_values")
+		delete(additionalProperties, "from_date")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "property_name")
+		delete(additionalProperties, "property_type")
+		delete(additionalProperties, "query")
+		delete(additionalProperties, "resp_version")
+		delete(additionalProperties, "series_limit")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "times")
+		delete(additionalProperties, "to_date")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

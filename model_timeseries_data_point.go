@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type TimeseriesDataPoint struct {
 	Time time.Time `json:"time"`
 	// Avg value on the binning interval
 	Value float64 `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TimeseriesDataPoint TimeseriesDataPoint
@@ -109,6 +109,11 @@ func (o TimeseriesDataPoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["time"] = o.Time
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *TimeseriesDataPoint) UnmarshalJSON(data []byte) (err error) {
 
 	varTimeseriesDataPoint := _TimeseriesDataPoint{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTimeseriesDataPoint)
+	err = json.Unmarshal(data, &varTimeseriesDataPoint)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TimeseriesDataPoint(varTimeseriesDataPoint)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "time")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

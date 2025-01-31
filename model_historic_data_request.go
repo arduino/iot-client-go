@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type HistoricDataRequest struct {
 	Properties []string `json:"properties"`
 	// Get data up to this date
 	To time.Time `json:"to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HistoricDataRequest HistoricDataRequest
@@ -137,6 +137,11 @@ func (o HistoricDataRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["from"] = o.From
 	toSerialize["properties"] = o.Properties
 	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *HistoricDataRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varHistoricDataRequest := _HistoricDataRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHistoricDataRequest)
+	err = json.Unmarshal(data, &varHistoricDataRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HistoricDataRequest(varHistoricDataRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "properties")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

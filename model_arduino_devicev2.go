@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -78,6 +77,7 @@ type ArduinoDevicev2 struct {
 	Webhooks []ArduinoDevicev2Webhook `json:"webhooks,omitempty"`
 	// The version of the NINA/WIFI101 firmware running on the device
 	WifiFwVersion *string `json:"wifi_fw_version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2 ArduinoDevicev2
@@ -1096,6 +1096,11 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WifiFwVersion) {
 		toSerialize["wifi_fw_version"] = o.WifiFwVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -1129,15 +1134,49 @@ func (o *ArduinoDevicev2) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2 := _ArduinoDevicev2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2)
+	err = json.Unmarshal(data, &varArduinoDevicev2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2(varArduinoDevicev2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ble_mac")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "device_status")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "fqbn")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issuer_ca")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "last_activity_at")
+		delete(additionalProperties, "latest_wifi_fw_version")
+		delete(additionalProperties, "lib_version")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "no_sketch")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "ota_available")
+		delete(additionalProperties, "ota_compatible")
+		delete(additionalProperties, "required_wifi_fw_version")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "thing")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "unique_hardware_id")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "webhooks")
+		delete(additionalProperties, "wifi_fw_version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

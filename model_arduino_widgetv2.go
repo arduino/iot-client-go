@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -53,6 +52,7 @@ type ArduinoWidgetv2 struct {
 	Y int64 `json:"y"`
 	// Widget y position for mobile
 	YMobile *int64 `json:"y_mobile,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoWidgetv2 ArduinoWidgetv2
@@ -581,6 +581,11 @@ func (o ArduinoWidgetv2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.YMobile) {
 		toSerialize["y_mobile"] = o.YMobile
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -614,15 +619,35 @@ func (o *ArduinoWidgetv2) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoWidgetv2 := _ArduinoWidgetv2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoWidgetv2)
+	err = json.Unmarshal(data, &varArduinoWidgetv2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoWidgetv2(varArduinoWidgetv2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_permission_incompatibility")
+		delete(additionalProperties, "has_type_incompatibility")
+		delete(additionalProperties, "has_unlinked_variable")
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "height_mobile")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "variables")
+		delete(additionalProperties, "width")
+		delete(additionalProperties, "width_mobile")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "x_mobile")
+		delete(additionalProperties, "y")
+		delete(additionalProperties, "y_mobile")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -21,7 +21,10 @@ var _ MappedNullable = &Clone{}
 type Clone struct {
 	// The overrides to apply to the cloned dashboard. An override is a tuple of ids: the id of the thing to override and the id of the new thing to link
 	Overrides []Override `json:"overrides,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Clone Clone
 
 // NewClone instantiates a new Clone object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o Clone) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Overrides) {
 		toSerialize["overrides"] = o.Overrides
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Clone) UnmarshalJSON(data []byte) (err error) {
+	varClone := _Clone{}
+
+	err = json.Unmarshal(data, &varClone)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Clone(varClone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "overrides")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableClone struct {

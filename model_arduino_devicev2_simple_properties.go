@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ArduinoDevicev2SimpleProperties struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	// Value of the property
 	Value interface{} `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2SimpleProperties ArduinoDevicev2SimpleProperties
@@ -141,6 +141,11 @@ func (o ArduinoDevicev2SimpleProperties) ToMap() (map[string]interface{}, error)
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *ArduinoDevicev2SimpleProperties) UnmarshalJSON(data []byte) (err error)
 
 	varArduinoDevicev2SimpleProperties := _ArduinoDevicev2SimpleProperties{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2SimpleProperties)
+	err = json.Unmarshal(data, &varArduinoDevicev2SimpleProperties)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2SimpleProperties(varArduinoDevicev2SimpleProperties)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

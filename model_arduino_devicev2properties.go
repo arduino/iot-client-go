@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ArduinoDevicev2properties struct {
 	Properties []ArduinoProperty `json:"properties"`
 	// The user id of the owner
 	UserId string `json:"user_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2properties ArduinoDevicev2properties
@@ -164,6 +164,11 @@ func (o ArduinoDevicev2properties) ToMap() (map[string]interface{}, error) {
 	toSerialize["deviceId"] = o.DeviceId
 	toSerialize["properties"] = o.Properties
 	toSerialize["user_id"] = o.UserId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *ArduinoDevicev2properties) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2properties := _ArduinoDevicev2properties{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2properties)
+	err = json.Unmarshal(data, &varArduinoDevicev2properties)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2properties(varArduinoDevicev2properties)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data_retention_days")
+		delete(additionalProperties, "deviceId")
+		delete(additionalProperties, "properties")
+		delete(additionalProperties, "user_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

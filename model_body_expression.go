@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type BodyExpression struct {
 	Expression string `json:"expression"`
 	// Variables used by the expression
 	Variables []Variable `json:"variables,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BodyExpression BodyExpression
@@ -117,6 +117,11 @@ func (o BodyExpression) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Variables) {
 		toSerialize["variables"] = o.Variables
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *BodyExpression) UnmarshalJSON(data []byte) (err error) {
 
 	varBodyExpression := _BodyExpression{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBodyExpression)
+	err = json.Unmarshal(data, &varBodyExpression)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BodyExpression(varBodyExpression)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expression")
+		delete(additionalProperties, "variables")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

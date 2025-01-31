@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ThingClone struct {
 	IncludeTags *bool `json:"include_tags,omitempty"`
 	// The friendly name of the thing
 	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9_. -]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ThingClone ThingClone
@@ -117,6 +117,11 @@ func (o ThingClone) ToMap() (map[string]interface{}, error) {
 		toSerialize["include_tags"] = o.IncludeTags
 	}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *ThingClone) UnmarshalJSON(data []byte) (err error) {
 
 	varThingClone := _ThingClone{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varThingClone)
+	err = json.Unmarshal(data, &varThingClone)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ThingClone(varThingClone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "include_tags")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

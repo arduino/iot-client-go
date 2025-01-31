@@ -27,7 +27,10 @@ type Dashboardv2 struct {
 	SoftDeleted *bool `json:"soft_deleted,omitempty"`
 	// Widgets attached to this dashboard
 	Widgets []Widget `json:"widgets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Dashboardv2 Dashboardv2
 
 // NewDashboardv2 instantiates a new Dashboardv2 object
 // This constructor will assign default values to properties that have it defined,
@@ -200,7 +203,36 @@ func (o Dashboardv2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Widgets) {
 		toSerialize["widgets"] = o.Widgets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Dashboardv2) UnmarshalJSON(data []byte) (err error) {
+	varDashboardv2 := _Dashboardv2{}
+
+	err = json.Unmarshal(data, &varDashboardv2)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Dashboardv2(varDashboardv2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cover_image")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "soft_deleted")
+		delete(additionalProperties, "widgets")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDashboardv2 struct {

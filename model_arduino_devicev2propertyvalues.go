@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ArduinoDevicev2propertyvalues struct {
 	Name string `json:"name"`
 	// ArduinoDevicev2propertyvalueCollection is the media type for an array of ArduinoDevicev2propertyvalue (default view)
 	Values []ArduinoDevicev2propertyvalue `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2propertyvalues ArduinoDevicev2propertyvalues
@@ -161,6 +161,11 @@ func (o ArduinoDevicev2propertyvalues) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_evaluated_key"] = o.LastEvaluatedKey
 	toSerialize["name"] = o.Name
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *ArduinoDevicev2propertyvalues) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2propertyvalues := _ArduinoDevicev2propertyvalues{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2propertyvalues)
+	err = json.Unmarshal(data, &varArduinoDevicev2propertyvalues)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2propertyvalues(varArduinoDevicev2propertyvalues)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_evaluated_key")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

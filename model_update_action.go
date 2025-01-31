@@ -27,7 +27,10 @@ type UpdateAction struct {
 	PushNotification *PushAction `json:"push_notification,omitempty"`
 	// Id of the trigger the action is associated to
 	TriggerId *string `json:"trigger_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAction UpdateAction
 
 // NewUpdateAction instantiates a new UpdateAction object
 // This constructor will assign default values to properties that have it defined,
@@ -231,7 +234,37 @@ func (o UpdateAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TriggerId) {
 		toSerialize["trigger_id"] = o.TriggerId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAction) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAction := _UpdateAction{}
+
+	err = json.Unmarshal(data, &varUpdateAction)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAction(varUpdateAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "push_notification")
+		delete(additionalProperties, "trigger_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAction struct {

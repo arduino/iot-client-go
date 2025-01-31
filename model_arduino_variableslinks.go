@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ArduinoVariableslinks{}
 type ArduinoVariableslinks struct {
 	// The ids of the linked variables
 	Variables []string `json:"variables"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoVariableslinks ArduinoVariableslinks
@@ -80,6 +80,11 @@ func (o ArduinoVariableslinks) MarshalJSON() ([]byte, error) {
 func (o ArduinoVariableslinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["variables"] = o.Variables
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ArduinoVariableslinks) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoVariableslinks := _ArduinoVariableslinks{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoVariableslinks)
+	err = json.Unmarshal(data, &varArduinoVariableslinks)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoVariableslinks(varArduinoVariableslinks)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "variables")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

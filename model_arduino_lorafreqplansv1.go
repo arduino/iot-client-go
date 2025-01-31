@@ -21,7 +21,10 @@ var _ MappedNullable = &ArduinoLorafreqplansv1{}
 type ArduinoLorafreqplansv1 struct {
 	// The list of frequency plans
 	FrequencyPlans []ArduinoLorafreqplanv1 `json:"frequency_plans,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoLorafreqplansv1 ArduinoLorafreqplansv1
 
 // NewArduinoLorafreqplansv1 instantiates a new ArduinoLorafreqplansv1 object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ArduinoLorafreqplansv1) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FrequencyPlans) {
 		toSerialize["frequency_plans"] = o.FrequencyPlans
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoLorafreqplansv1) UnmarshalJSON(data []byte) (err error) {
+	varArduinoLorafreqplansv1 := _ArduinoLorafreqplansv1{}
+
+	err = json.Unmarshal(data, &varArduinoLorafreqplansv1)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoLorafreqplansv1(varArduinoLorafreqplansv1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "frequency_plans")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoLorafreqplansv1 struct {

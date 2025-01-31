@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type ArduinoTemplateproperty struct {
 	UpdateStrategy string `json:"update_strategy"`
 	// The sketch variable name of the property
 	VariableName *string `json:"variable_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoTemplateproperty ArduinoTemplateproperty
@@ -275,6 +275,11 @@ func (o ArduinoTemplateproperty) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VariableName) {
 		toSerialize["variable_name"] = o.VariableName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -305,15 +310,26 @@ func (o *ArduinoTemplateproperty) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoTemplateproperty := _ArduinoTemplateproperty{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoTemplateproperty)
+	err = json.Unmarshal(data, &varArduinoTemplateproperty)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoTemplateproperty(varArduinoTemplateproperty)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permission")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "update_parameter")
+		delete(additionalProperties, "update_strategy")
+		delete(additionalProperties, "variable_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

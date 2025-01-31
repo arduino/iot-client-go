@@ -20,7 +20,10 @@ var _ MappedNullable = &Widgetlink{}
 // Widgetlink struct for Widgetlink
 type Widgetlink struct {
 	Variables []string `json:"variables,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Widgetlink Widgetlink
 
 // NewWidgetlink instantiates a new Widgetlink object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o Widgetlink) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Variables) {
 		toSerialize["variables"] = o.Variables
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Widgetlink) UnmarshalJSON(data []byte) (err error) {
+	varWidgetlink := _Widgetlink{}
+
+	err = json.Unmarshal(data, &varWidgetlink)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Widgetlink(varWidgetlink)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "variables")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWidgetlink struct {

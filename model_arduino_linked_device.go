@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ArduinoLinkedDevice struct {
 	Device ArduinoDevicev2 `json:"device"`
 	// The status of the linked device
 	Status string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLinkedDevice ArduinoLinkedDevice
@@ -107,6 +107,11 @@ func (o ArduinoLinkedDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["device"] = o.Device
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ArduinoLinkedDevice) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLinkedDevice := _ArduinoLinkedDevice{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLinkedDevice)
+	err = json.Unmarshal(data, &varArduinoLinkedDevice)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLinkedDevice(varArduinoLinkedDevice)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

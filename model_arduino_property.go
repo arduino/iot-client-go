@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -64,6 +63,7 @@ type ArduinoProperty struct {
 	ValueUpdatedAt *time.Time `json:"value_updated_at,omitempty"`
 	// The sketch variable name of the property
 	VariableName *string `json:"variable_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoProperty ArduinoProperty
@@ -768,6 +768,11 @@ func (o ArduinoProperty) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VariableName) {
 		toSerialize["variable_name"] = o.VariableName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -801,15 +806,40 @@ func (o *ArduinoProperty) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoProperty := _ArduinoProperty{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoProperty)
+	err = json.Unmarshal(data, &varArduinoProperty)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoProperty(varArduinoProperty)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_value")
+		delete(additionalProperties, "linked_to_trigger")
+		delete(additionalProperties, "max_value")
+		delete(additionalProperties, "min_value")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permission")
+		delete(additionalProperties, "persist")
+		delete(additionalProperties, "sync_id")
+		delete(additionalProperties, "tag")
+		delete(additionalProperties, "thing_id")
+		delete(additionalProperties, "thing_name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "update_parameter")
+		delete(additionalProperties, "update_strategy")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "value_updated_at")
+		delete(additionalProperties, "variable_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

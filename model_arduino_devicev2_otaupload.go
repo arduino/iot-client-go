@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ArduinoDevicev2Otaupload struct {
 	OtaVersion int64 `json:"ota_version"`
 	// OTA request status (only available from OTA version 2 and above)
 	Status *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2Otaupload ArduinoDevicev2Otaupload
@@ -191,6 +191,11 @@ func (o ArduinoDevicev2Otaupload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *ArduinoDevicev2Otaupload) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2Otaupload := _ArduinoDevicev2Otaupload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2Otaupload)
+	err = json.Unmarshal(data, &varArduinoDevicev2Otaupload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2Otaupload(varArduinoDevicev2Otaupload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "file_sha")
+		delete(additionalProperties, "ota_id")
+		delete(additionalProperties, "ota_version")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

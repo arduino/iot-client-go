@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type BatchQuerySampledRequestMediaV1 struct {
 	SeriesLimit *int64 `json:"series_limit,omitempty"`
 	// To timestamp (default: now UTC)
 	To *time.Time `json:"to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchQuerySampledRequestMediaV1 BatchQuerySampledRequestMediaV1
@@ -233,6 +233,11 @@ func (o BatchQuerySampledRequestMediaV1) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.To) {
 		toSerialize["to"] = o.To
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -260,15 +265,24 @@ func (o *BatchQuerySampledRequestMediaV1) UnmarshalJSON(data []byte) (err error)
 
 	varBatchQuerySampledRequestMediaV1 := _BatchQuerySampledRequestMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchQuerySampledRequestMediaV1)
+	err = json.Unmarshal(data, &varBatchQuerySampledRequestMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchQuerySampledRequestMediaV1(varBatchQuerySampledRequestMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "q")
+		delete(additionalProperties, "series_limit")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

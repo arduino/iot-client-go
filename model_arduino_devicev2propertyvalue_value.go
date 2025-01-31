@@ -22,7 +22,10 @@ type ArduinoDevicev2propertyvalueValue struct {
 	Payload *string `json:"payload,omitempty"`
 	Seqno *int64 `json:"seqno,omitempty"`
 	Statistics *ArduinoDevicev2propertyvalueValueStatistics `json:"statistics,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoDevicev2propertyvalueValue ArduinoDevicev2propertyvalueValue
 
 // NewArduinoDevicev2propertyvalueValue instantiates a new ArduinoDevicev2propertyvalueValue object
 // This constructor will assign default values to properties that have it defined,
@@ -156,7 +159,35 @@ func (o ArduinoDevicev2propertyvalueValue) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Statistics) {
 		toSerialize["statistics"] = o.Statistics
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoDevicev2propertyvalueValue) UnmarshalJSON(data []byte) (err error) {
+	varArduinoDevicev2propertyvalueValue := _ArduinoDevicev2propertyvalueValue{}
+
+	err = json.Unmarshal(data, &varArduinoDevicev2propertyvalueValue)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoDevicev2propertyvalueValue(varArduinoDevicev2propertyvalueValue)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "payload")
+		delete(additionalProperties, "seqno")
+		delete(additionalProperties, "statistics")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoDevicev2propertyvalueValue struct {

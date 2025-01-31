@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &BatchLastValueRequestsMediaV1{}
 type BatchLastValueRequestsMediaV1 struct {
 	// Requests
 	Requests []BatchQueryRawLastValueRequestMediaV1 `json:"requests"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchLastValueRequestsMediaV1 BatchLastValueRequestsMediaV1
@@ -80,6 +80,11 @@ func (o BatchLastValueRequestsMediaV1) MarshalJSON() ([]byte, error) {
 func (o BatchLastValueRequestsMediaV1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["requests"] = o.Requests
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *BatchLastValueRequestsMediaV1) UnmarshalJSON(data []byte) (err error) {
 
 	varBatchLastValueRequestsMediaV1 := _BatchLastValueRequestsMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchLastValueRequestsMediaV1)
+	err = json.Unmarshal(data, &varBatchLastValueRequestsMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchLastValueRequestsMediaV1(varBatchLastValueRequestsMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "requests")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

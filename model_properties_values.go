@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type PropertiesValues struct {
 	// If true, send property values to device's input topic.
 	Input *bool `json:"input,omitempty"`
 	Properties []PropertiesValue `json:"properties"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PropertiesValues PropertiesValues
@@ -120,6 +120,11 @@ func (o PropertiesValues) ToMap() (map[string]interface{}, error) {
 		toSerialize["input"] = o.Input
 	}
 	toSerialize["properties"] = o.Properties
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -147,15 +152,21 @@ func (o *PropertiesValues) UnmarshalJSON(data []byte) (err error) {
 
 	varPropertiesValues := _PropertiesValues{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPropertiesValues)
+	err = json.Unmarshal(data, &varPropertiesValues)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PropertiesValues(varPropertiesValues)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "input")
+		delete(additionalProperties, "properties")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

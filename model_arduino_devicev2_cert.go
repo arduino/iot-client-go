@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type ArduinoDevicev2Cert struct {
 	Id string `json:"id"`
 	// The certificate in pem format
 	Pem string `json:"pem"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoDevicev2Cert ArduinoDevicev2Cert
@@ -286,6 +286,11 @@ func (o ArduinoDevicev2Cert) ToMap() (map[string]interface{}, error) {
 	toSerialize["href"] = o.Href
 	toSerialize["id"] = o.Id
 	toSerialize["pem"] = o.Pem
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -319,15 +324,27 @@ func (o *ArduinoDevicev2Cert) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoDevicev2Cert := _ArduinoDevicev2Cert{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoDevicev2Cert)
+	err = json.Unmarshal(data, &varArduinoDevicev2Cert)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoDevicev2Cert(varArduinoDevicev2Cert)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ca")
+		delete(additionalProperties, "compressed")
+		delete(additionalProperties, "der")
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "pem")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

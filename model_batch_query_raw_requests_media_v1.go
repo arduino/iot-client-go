@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type BatchQueryRawRequestsMediaV1 struct {
 	Requests []BatchQueryRawRequestMediaV1 `json:"requests"`
 	// Response version
 	RespVersion int64 `json:"resp_version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BatchQueryRawRequestsMediaV1 BatchQueryRawRequestsMediaV1
@@ -108,6 +108,11 @@ func (o BatchQueryRawRequestsMediaV1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["requests"] = o.Requests
 	toSerialize["resp_version"] = o.RespVersion
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *BatchQueryRawRequestsMediaV1) UnmarshalJSON(data []byte) (err error) {
 
 	varBatchQueryRawRequestsMediaV1 := _BatchQueryRawRequestsMediaV1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBatchQueryRawRequestsMediaV1)
+	err = json.Unmarshal(data, &varBatchQueryRawRequestsMediaV1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BatchQueryRawRequestsMediaV1(varBatchQueryRawRequestsMediaV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "requests")
+		delete(additionalProperties, "resp_version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

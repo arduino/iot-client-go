@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type DeviceStatusSource struct {
 	GracePeriodOffline *int32 `json:"grace_period_offline,omitempty"`
 	// Amount of seconds the trigger will wait before the device will be considered connected (requires 'device_id')
 	GracePeriodOnline *int32 `json:"grace_period_online,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeviceStatusSource DeviceStatusSource
@@ -191,6 +191,11 @@ func (o DeviceStatusSource) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.GracePeriodOnline) {
 		toSerialize["grace_period_online"] = o.GracePeriodOnline
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *DeviceStatusSource) UnmarshalJSON(data []byte) (err error) {
 
 	varDeviceStatusSource := _DeviceStatusSource{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeviceStatusSource)
+	err = json.Unmarshal(data, &varDeviceStatusSource)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeviceStatusSource(varDeviceStatusSource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "criteria")
+		delete(additionalProperties, "device_ids")
+		delete(additionalProperties, "grace_period_offline")
+		delete(additionalProperties, "grace_period_online")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

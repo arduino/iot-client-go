@@ -25,7 +25,10 @@ type Devicev2Cert struct {
 	Csr *string `json:"csr,omitempty"`
 	// Whether the certificate is enabled
 	Enabled *bool `json:"enabled,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Devicev2Cert Devicev2Cert
 
 // NewDevicev2Cert instantiates a new Devicev2Cert object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o Devicev2Cert) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Devicev2Cert) UnmarshalJSON(data []byte) (err error) {
+	varDevicev2Cert := _Devicev2Cert{}
+
+	err = json.Unmarshal(data, &varDevicev2Cert)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Devicev2Cert(varDevicev2Cert)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ca")
+		delete(additionalProperties, "csr")
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDevicev2Cert struct {

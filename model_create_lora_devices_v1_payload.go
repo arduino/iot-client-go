@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -39,6 +38,7 @@ type CreateLoraDevicesV1Payload struct {
 	Type string `json:"type"`
 	// The id of the user. Can be the special string 'me'
 	UserId string `json:"user_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateLoraDevicesV1Payload CreateLoraDevicesV1Payload
@@ -331,6 +331,11 @@ func (o CreateLoraDevicesV1Payload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["user_id"] = o.UserId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -363,15 +368,28 @@ func (o *CreateLoraDevicesV1Payload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateLoraDevicesV1Payload := _CreateLoraDevicesV1Payload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateLoraDevicesV1Payload)
+	err = json.Unmarshal(data, &varCreateLoraDevicesV1Payload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateLoraDevicesV1Payload(varCreateLoraDevicesV1Payload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "app")
+		delete(additionalProperties, "app_eui")
+		delete(additionalProperties, "app_key")
+		delete(additionalProperties, "eui")
+		delete(additionalProperties, "frequency_plan")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "user_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

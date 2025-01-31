@@ -13,7 +13,6 @@ package v3
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -62,6 +61,7 @@ type ArduinoThing struct {
 	WebhookActive *bool `json:"webhook_active,omitempty"`
 	// Webhook uri
 	WebhookUri *string `json:"webhook_uri,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoThing ArduinoThing
@@ -748,6 +748,11 @@ func (o ArduinoThing) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WebhookUri) {
 		toSerialize["webhook_uri"] = o.WebhookUri
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -779,15 +784,39 @@ func (o *ArduinoThing) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoThing := _ArduinoThing{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoThing)
+	err = json.Unmarshal(data, &varArduinoThing)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoThing(varArduinoThing)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "assistant")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "device_fqbn")
+		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "device_name")
+		delete(additionalProperties, "device_type")
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "properties")
+		delete(additionalProperties, "properties_count")
+		delete(additionalProperties, "sketch_id")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "webhook_active")
+		delete(additionalProperties, "webhook_uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

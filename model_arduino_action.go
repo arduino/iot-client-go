@@ -35,7 +35,10 @@ type ArduinoAction struct {
 	PushNotification *PushAction `json:"push_notification,omitempty"`
 	// Id of the trigger the action is associated to
 	TriggerId *string `json:"trigger_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoAction ArduinoAction
 
 // NewArduinoAction instantiates a new ArduinoAction object
 // This constructor will assign default values to properties that have it defined,
@@ -379,7 +382,41 @@ func (o ArduinoAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TriggerId) {
 		toSerialize["trigger_id"] = o.TriggerId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoAction) UnmarshalJSON(data []byte) (err error) {
+	varArduinoAction := _ArduinoAction{}
+
+	err = json.Unmarshal(data, &varArduinoAction)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoAction(varArduinoAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "kind")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "push_notification")
+		delete(additionalProperties, "trigger_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoAction struct {

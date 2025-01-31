@@ -35,7 +35,10 @@ type ArduinoArduinoconnectionsV1 struct {
 	Wifi []ArduinoCredentialsv1 `json:"wifi,omitempty"`
 	// ArduinoCredentialsv1Collection is the media type for an array of ArduinoCredentialsv1 (default view)
 	Wifiandsecret []ArduinoCredentialsv1 `json:"wifiandsecret,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ArduinoArduinoconnectionsV1 ArduinoArduinoconnectionsV1
 
 // NewArduinoArduinoconnectionsV1 instantiates a new ArduinoArduinoconnectionsV1 object
 // This constructor will assign default values to properties that have it defined,
@@ -344,7 +347,40 @@ func (o ArduinoArduinoconnectionsV1) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Wifiandsecret) {
 		toSerialize["wifiandsecret"] = o.Wifiandsecret
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ArduinoArduinoconnectionsV1) UnmarshalJSON(data []byte) (err error) {
+	varArduinoArduinoconnectionsV1 := _ArduinoArduinoconnectionsV1{}
+
+	err = json.Unmarshal(data, &varArduinoArduinoconnectionsV1)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArduinoArduinoconnectionsV1(varArduinoArduinoconnectionsV1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "catm1")
+		delete(additionalProperties, "cellular")
+		delete(additionalProperties, "eth")
+		delete(additionalProperties, "gsm")
+		delete(additionalProperties, "lora")
+		delete(additionalProperties, "nb")
+		delete(additionalProperties, "wifi")
+		delete(additionalProperties, "wifiandsecret")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableArduinoArduinoconnectionsV1 struct {

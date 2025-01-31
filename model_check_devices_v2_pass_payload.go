@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &CheckDevicesV2PassPayload{}
 type CheckDevicesV2PassPayload struct {
 	// The password for the device
 	Password string `json:"password"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CheckDevicesV2PassPayload CheckDevicesV2PassPayload
@@ -80,6 +80,11 @@ func (o CheckDevicesV2PassPayload) MarshalJSON() ([]byte, error) {
 func (o CheckDevicesV2PassPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["password"] = o.Password
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *CheckDevicesV2PassPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCheckDevicesV2PassPayload := _CheckDevicesV2PassPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckDevicesV2PassPayload)
+	err = json.Unmarshal(data, &varCheckDevicesV2PassPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckDevicesV2PassPayload(varCheckDevicesV2PassPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

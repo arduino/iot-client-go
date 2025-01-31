@@ -12,7 +12,6 @@ package v3
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ArduinoLinkedPropertyTemplate struct {
 	PropertyId string `json:"property_id"`
 	// The thing the trigger is associated to
 	ThingId string `json:"thing_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArduinoLinkedPropertyTemplate ArduinoLinkedPropertyTemplate
@@ -108,6 +108,11 @@ func (o ArduinoLinkedPropertyTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["property_id"] = o.PropertyId
 	toSerialize["thing_id"] = o.ThingId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ArduinoLinkedPropertyTemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varArduinoLinkedPropertyTemplate := _ArduinoLinkedPropertyTemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArduinoLinkedPropertyTemplate)
+	err = json.Unmarshal(data, &varArduinoLinkedPropertyTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArduinoLinkedPropertyTemplate(varArduinoLinkedPropertyTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "property_id")
+		delete(additionalProperties, "thing_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
