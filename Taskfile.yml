@@ -3,14 +3,15 @@ version: "3"
 tasks:
 
   license:
-    desc: Check dependency licenses
+    desc: Update license
     cmds:
       - licensed cache
-      - task: license:fix
+      - task: license:resolve
       - licensed status
 
-  license:fix:
-    desc: Fix "other" licenses by fetching the homepage and extracting the license info from the HTML content.
+  license:resolve:
+    internal: true
+    desc: Resolve "other" licenses by fetching the homepage and looking for the license description in the HTML content.
     cmds:
       - |
           mapfile -t files < <(find .licenses -type f -name '*.yml' -exec sh -c 'yq -e ".license == \"other\"" "$1" > /dev/null 2>&1 && echo "$1"' _ {} \;)
