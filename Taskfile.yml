@@ -1,0 +1,36 @@
+version: "3"
+
+tasks:
+
+  license:
+    desc: Check dependency licenses
+    cmds:
+      - licensed cache
+      - task: license:fix
+      - licensed status
+
+  license:fix:
+    desc: Fix "other" licenses by fetching the homepage and extracting the license info from the HTML content.
+    cmds:
+      - |
+          mapfile -t files < <(find .licenses -type f -name '*.yml' -exec sh -c 'yq -e ".license == \"other\"" "$1" > /dev/null 2>&1 && echo "$1"' _ {} \;)
+          total=${#files[@]}
+          if (( total == 0 )); then
+            echo "No files to process."
+            exit 0
+          fi
+          count=0
+          for file in "${files[@]}"; do
+            count=$((count + 1))
+            echo "Processing $file ($count/$total), remaining: $((total - count))"
+            homepage=$(yq -r '.homepage' "$file")
+            got=$(curl --max-time 10 -s "$homepage" | \
+            grep 'aria-describedby="license-description"' | \
+            sed -n 's/.*aria-describedby="license-description"[^>]*>\([^<]*\)<.*/\1/p')
+            if [ -n "$got" ]; then
+              # Write license in lowercase and remove ", + 1 more" suffix if present
+              yq -i ".license = \"$(echo "$got" | sed 's/, + 1 more//' | tr '[:upper:]' '[:lower:]')\"" "$file"
+            else
+              echo "Could not fetch license info for $file from $homepage"
+            fi
+          done
