@@ -3,7 +3,7 @@ version: "3"
 tasks:
 
   license:
-    desc: Update license
+    desc: Update license files for dependencies
     cmds:
       - licensed cache
       - task: license:resolve
