@@ -11,7 +11,7 @@ tasks:
 
   license:resolve:
     internal: true
-    desc: Resolve "other" licenses by fetching the homepage and looking for the license description in the HTML content.
+    desc: Resolve "other" licenses by fetching the homepage and looking for the license description in the HTML content. Note that manual review is still needed as some of the resolved dependencies will display multiple licenses but only one will apply.
     cmds:
       - |
           mapfile -t files < <(find .licenses -type f -name '*.yml' -exec sh -c 'yq -e ".license == \"other\"" "$1" > /dev/null 2>&1 && echo "$1"' _ {} \;)
