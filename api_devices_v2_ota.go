@@ -29,10 +29,16 @@ type ApiDevicesV2OtaSendRequest struct {
 	ApiService *DevicesV2OtaAPIService
 	id string
 	devicev2Otabinaryurl *Devicev2Otabinaryurl
+	xOrganization *string
 }
 
 func (r ApiDevicesV2OtaSendRequest) Devicev2Otabinaryurl(devicev2Otabinaryurl Devicev2Otabinaryurl) ApiDevicesV2OtaSendRequest {
 	r.devicev2Otabinaryurl = &devicev2Otabinaryurl
+	return r
+}
+
+func (r ApiDevicesV2OtaSendRequest) XOrganization(xOrganization string) ApiDevicesV2OtaSendRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -96,6 +102,9 @@ func (a *DevicesV2OtaAPIService) DevicesV2OtaSendExecute(r ApiDevicesV2OtaSendRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.devicev2Otabinaryurl
@@ -197,6 +206,7 @@ type ApiDevicesV2OtaUploadRequest struct {
 	ApiService *DevicesV2OtaAPIService
 	id string
 	otaFile *os.File
+	xOrganization *string
 	async *bool
 	expireInMins *int32
 }
@@ -204,6 +214,11 @@ type ApiDevicesV2OtaUploadRequest struct {
 // OTA file
 func (r ApiDevicesV2OtaUploadRequest) OtaFile(otaFile *os.File) ApiDevicesV2OtaUploadRequest {
 	r.otaFile = otaFile
+	return r
+}
+
+func (r ApiDevicesV2OtaUploadRequest) XOrganization(xOrganization string) ApiDevicesV2OtaUploadRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -281,6 +296,9 @@ func (a *DevicesV2OtaAPIService) DevicesV2OtaUploadExecute(r ApiDevicesV2OtaUplo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	if r.async != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "async", r.async, "", "")
@@ -421,10 +439,16 @@ type ApiDevicesV2OtaUrlRequest struct {
 	ApiService *DevicesV2OtaAPIService
 	id string
 	devicev2Otaurlpyalod *Devicev2Otaurlpyalod
+	xOrganization *string
 }
 
 func (r ApiDevicesV2OtaUrlRequest) Devicev2Otaurlpyalod(devicev2Otaurlpyalod Devicev2Otaurlpyalod) ApiDevicesV2OtaUrlRequest {
 	r.devicev2Otaurlpyalod = &devicev2Otaurlpyalod
+	return r
+}
+
+func (r ApiDevicesV2OtaUrlRequest) XOrganization(xOrganization string) ApiDevicesV2OtaUrlRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -488,6 +512,9 @@ func (a *DevicesV2OtaAPIService) DevicesV2OtaUrlExecute(r ApiDevicesV2OtaUrlRequ
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.devicev2Otaurlpyalod

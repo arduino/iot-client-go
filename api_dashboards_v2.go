@@ -831,6 +831,7 @@ type ApiDashboardsV2ListRequest struct {
 	ctx context.Context
 	ApiService *DashboardsV2APIService
 	name *string
+	thingId *string
 	userId *string
 	xOrganization *string
 }
@@ -838,6 +839,12 @@ type ApiDashboardsV2ListRequest struct {
 // The name of the dashboard
 func (r ApiDashboardsV2ListRequest) Name(name string) ApiDashboardsV2ListRequest {
 	r.name = &name
+	return r
+}
+
+// The thing_id of the dashboard&#39;s properties
+func (r ApiDashboardsV2ListRequest) ThingId(thingId string) ApiDashboardsV2ListRequest {
+	r.thingId = &thingId
 	return r
 }
 
@@ -894,6 +901,9 @@ func (a *DashboardsV2APIService) DashboardsV2ListExecute(r ApiDashboardsV2ListRe
 
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.thingId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thing_id", r.thingId, "form", "")
 	}
 	if r.userId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "form", "")

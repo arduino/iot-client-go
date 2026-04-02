@@ -28,10 +28,16 @@ type ApiDevicesV2CertsCreateRequest struct {
 	ApiService *DevicesV2CertsAPIService
 	id string
 	createDevicesV2CertsPayload *CreateDevicesV2CertsPayload
+	xOrganization *string
 }
 
 func (r ApiDevicesV2CertsCreateRequest) CreateDevicesV2CertsPayload(createDevicesV2CertsPayload CreateDevicesV2CertsPayload) ApiDevicesV2CertsCreateRequest {
 	r.createDevicesV2CertsPayload = &createDevicesV2CertsPayload
+	return r
+}
+
+func (r ApiDevicesV2CertsCreateRequest) XOrganization(xOrganization string) ApiDevicesV2CertsCreateRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -97,6 +103,9 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsCreateExecute(r ApiDevicesV2Cer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.createDevicesV2CertsPayload
@@ -174,6 +183,12 @@ type ApiDevicesV2CertsDeleteRequest struct {
 	ApiService *DevicesV2CertsAPIService
 	cid string
 	id string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2CertsDeleteRequest) XOrganization(xOrganization string) ApiDevicesV2CertsDeleteRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2CertsDeleteRequest) Execute() (*http.Response, error) {
@@ -237,6 +252,9 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsDeleteExecute(r ApiDevicesV2Cer
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -290,6 +308,12 @@ type ApiDevicesV2CertsListRequest struct {
 	ctx context.Context
 	ApiService *DevicesV2CertsAPIService
 	id string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2CertsListRequest) XOrganization(xOrganization string) ApiDevicesV2CertsListRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2CertsListRequest) Execute() ([]ArduinoDevicev2Cert, *http.Response, error) {
@@ -351,6 +375,9 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsListExecute(r ApiDevicesV2Certs
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -415,6 +442,12 @@ type ApiDevicesV2CertsShowRequest struct {
 	ApiService *DevicesV2CertsAPIService
 	cid string
 	id string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2CertsShowRequest) XOrganization(xOrganization string) ApiDevicesV2CertsShowRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2CertsShowRequest) Execute() (*ArduinoDevicev2Cert, *http.Response, error) {
@@ -480,6 +513,9 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsShowExecute(r ApiDevicesV2Certs
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -544,10 +580,16 @@ type ApiDevicesV2CertsUpdateRequest struct {
 	cid string
 	id string
 	devicev2Cert *Devicev2Cert
+	xOrganization *string
 }
 
 func (r ApiDevicesV2CertsUpdateRequest) Devicev2Cert(devicev2Cert Devicev2Cert) ApiDevicesV2CertsUpdateRequest {
 	r.devicev2Cert = &devicev2Cert
+	return r
+}
+
+func (r ApiDevicesV2CertsUpdateRequest) XOrganization(xOrganization string) ApiDevicesV2CertsUpdateRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -616,6 +658,9 @@ func (a *DevicesV2CertsAPIService) DevicesV2CertsUpdateExecute(r ApiDevicesV2Cer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.devicev2Cert

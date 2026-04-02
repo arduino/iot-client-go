@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ActionsV1Delete**](TriggersV1API.md#ActionsV1Delete) | **Delete** /iot/v1/actions/{id} | delete actions_v1
 [**ActionsV1List**](TriggersV1API.md#ActionsV1List) | **Get** /iot/v1/actions | list actions_v1
 [**ActionsV1Show**](TriggersV1API.md#ActionsV1Show) | **Get** /iot/v1/actions/{id} | show actions_v1
+[**ActionsV1Unsubscribe**](TriggersV1API.md#ActionsV1Unsubscribe) | **Put** /iot/v1/actions/{id}/unsubscribe | Unsubscribe actions_v1
 [**ActionsV1Update**](TriggersV1API.md#ActionsV1Update) | **Put** /iot/v1/actions/{id} | update actions_v1
 [**TriggersV1Create**](TriggersV1API.md#TriggersV1Create) | **Put** /iot/v1/triggers | create triggers_v1
 [**TriggersV1Delete**](TriggersV1API.md#TriggersV1Delete) | **Delete** /iot/v1/triggers/{id} | delete triggers_v1
@@ -15,6 +16,7 @@ Method | HTTP request | Description
 [**TriggersV1Patch**](TriggersV1API.md#TriggersV1Patch) | **Patch** /iot/v1/triggers/{id} | patch triggers_v1
 [**TriggersV1Show**](TriggersV1API.md#TriggersV1Show) | **Get** /iot/v1/triggers/{id} | show triggers_v1
 [**TriggersV1Template**](TriggersV1API.md#TriggersV1Template) | **Get** /iot/v1/triggers/{id}/template | template triggers_v1
+[**TriggersV1Unsubscribe**](TriggersV1API.md#TriggersV1Unsubscribe) | **Post** /iot/v1/triggers/{id}/unsubscribe | unsubscribe triggers_v1
 [**TriggersV1Update**](TriggersV1API.md#TriggersV1Update) | **Post** /iot/v1/triggers/{id} | update triggers_v1
 
 
@@ -288,6 +290,80 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/vnd.arduino.action+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ActionsV1Unsubscribe
+
+> ArduinoAction ActionsV1Unsubscribe(ctx, id).RecipientsList(recipientsList).XOrganization(xOrganization).Execute()
+
+Unsubscribe actions_v1
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the action
+	recipientsList := *openapiclient.NewRecipientsList([]string{"Recipients_example"}) // RecipientsList | 
+	xOrganization := "xOrganization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TriggersV1API.ActionsV1Unsubscribe(context.Background(), id).RecipientsList(recipientsList).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TriggersV1API.ActionsV1Unsubscribe``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ActionsV1Unsubscribe`: ArduinoAction
+	fmt.Fprintf(os.Stdout, "Response from `TriggersV1API.ActionsV1Unsubscribe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the action | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiActionsV1UnsubscribeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recipientsList** | [**RecipientsList**](RecipientsList.md) |  | 
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoAction**](ArduinoAction.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/vnd.arduino.action+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -795,6 +871,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.trigger_template+json, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TriggersV1Unsubscribe
+
+> TriggersV1Unsubscribe(ctx, id).RecipientsList(recipientsList).XOrganization(xOrganization).Execute()
+
+unsubscribe triggers_v1
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the trigger
+	recipientsList := *openapiclient.NewRecipientsList([]string{"Recipients_example"}) // RecipientsList | 
+	xOrganization := "xOrganization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.TriggersV1API.TriggersV1Unsubscribe(context.Background(), id).RecipientsList(recipientsList).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TriggersV1API.TriggersV1Unsubscribe``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the trigger | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTriggersV1UnsubscribeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recipientsList** | [**RecipientsList**](RecipientsList.md) |  | 
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.goa.error+json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

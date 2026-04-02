@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Properties** | Pointer to [**[]ArduinoProperty**](ArduinoProperty.md) | ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view) | [optional] 
 **PropertiesCount** | Pointer to **int64** | The number of properties of the thing | [optional] 
 **SketchId** | Pointer to **string** | The id of the attached sketch | [optional] 
+**SourceTemplate** | Pointer to **string** | The id of the template used to create the thing | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | Tags of the thing | [optional] 
 **Timezone** | **string** | Time zone of the thing | 
 **UpdatedAt** | Pointer to **time.Time** | Update date of the thing | [optional] 
@@ -378,6 +379,31 @@ SetSketchId sets SketchId field to given value.
 `func (o *ArduinoThing) HasSketchId() bool`
 
 HasSketchId returns a boolean if a field has been set.
+
+### GetSourceTemplate
+
+`func (o *ArduinoThing) GetSourceTemplate() string`
+
+GetSourceTemplate returns the SourceTemplate field if non-nil, zero value otherwise.
+
+### GetSourceTemplateOk
+
+`func (o *ArduinoThing) GetSourceTemplateOk() (*string, bool)`
+
+GetSourceTemplateOk returns a tuple with the SourceTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceTemplate
+
+`func (o *ArduinoThing) SetSourceTemplate(v string)`
+
+SetSourceTemplate sets SourceTemplate field to given value.
+
+### HasSourceTemplate
+
+`func (o *ArduinoThing) HasSourceTemplate() bool`
+
+HasSourceTemplate returns a boolean if a field has been set.
 
 ### GetTags
 

@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## DashboardsV2List
 
-> []ArduinoDashboardv2 DashboardsV2List(ctx).Name(name).UserId(userId).XOrganization(xOrganization).Execute()
+> []ArduinoDashboardv2 DashboardsV2List(ctx).Name(name).ThingId(thingId).UserId(userId).XOrganization(xOrganization).Execute()
 
 list dashboards_v2
 
@@ -406,12 +406,13 @@ import (
 
 func main() {
 	name := "name_example" // string | The name of the dashboard (optional)
+	thingId := "thingId_example" // string | The thing_id of the dashboard's properties (optional)
 	userId := "userId_example" // string | The user_id of the dashboard's owner (optional)
 	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsV2API.DashboardsV2List(context.Background()).Name(name).UserId(userId).XOrganization(xOrganization).Execute()
+	resp, r, err := apiClient.DashboardsV2API.DashboardsV2List(context.Background()).Name(name).ThingId(thingId).UserId(userId).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsV2API.DashboardsV2List``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -433,6 +434,7 @@ Other parameters are passed through a pointer to a apiDashboardsV2ListRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | The name of the dashboard | 
+ **thingId** | **string** | The thing_id of the dashboard&#39;s properties | 
  **userId** | **string** | The user_id of the dashboard&#39;s owner | 
  **xOrganization** | **string** |  | 
 
