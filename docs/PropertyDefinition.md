@@ -1,84 +1,79 @@
-# PropertyValue
+# PropertyDefinition
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeviceId** | Pointer to **string** | The device that sends the property | [optional] 
+**Property** | **string** | Property name | 
 **Value** | **interface{}** | The property value | 
 
 ## Methods
 
-### NewPropertyValue
+### NewPropertyDefinition
 
-`func NewPropertyValue(value interface{}, ) *PropertyValue`
+`func NewPropertyDefinition(property string, value interface{}, ) *PropertyDefinition`
 
-NewPropertyValue instantiates a new PropertyValue object
+NewPropertyDefinition instantiates a new PropertyDefinition object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPropertyValueWithDefaults
+### NewPropertyDefinitionWithDefaults
 
-`func NewPropertyValueWithDefaults() *PropertyValue`
+`func NewPropertyDefinitionWithDefaults() *PropertyDefinition`
 
-NewPropertyValueWithDefaults instantiates a new PropertyValue object
+NewPropertyDefinitionWithDefaults instantiates a new PropertyDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDeviceId
+### GetProperty
 
-`func (o *PropertyValue) GetDeviceId() string`
+`func (o *PropertyDefinition) GetProperty() string`
 
-GetDeviceId returns the DeviceId field if non-nil, zero value otherwise.
+GetProperty returns the Property field if non-nil, zero value otherwise.
 
-### GetDeviceIdOk
+### GetPropertyOk
 
-`func (o *PropertyValue) GetDeviceIdOk() (*string, bool)`
+`func (o *PropertyDefinition) GetPropertyOk() (*string, bool)`
 
-GetDeviceIdOk returns a tuple with the DeviceId field if it's non-nil, zero value otherwise
+GetPropertyOk returns a tuple with the Property field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeviceId
+### SetProperty
 
-`func (o *PropertyValue) SetDeviceId(v string)`
+`func (o *PropertyDefinition) SetProperty(v string)`
 
-SetDeviceId sets DeviceId field to given value.
+SetProperty sets Property field to given value.
 
-### HasDeviceId
-
-`func (o *PropertyValue) HasDeviceId() bool`
-
-HasDeviceId returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *PropertyValue) GetValue() interface{}`
+`func (o *PropertyDefinition) GetValue() interface{}`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *PropertyValue) GetValueOk() (*interface{}, bool)`
+`func (o *PropertyDefinition) GetValueOk() (*interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *PropertyValue) SetValue(v interface{})`
+`func (o *PropertyDefinition) SetValue(v interface{})`
 
 SetValue sets Value field to given value.
 
 
 ### SetValueNil
 
-`func (o *PropertyValue) SetValueNil(b bool)`
+`func (o *PropertyDefinition) SetValueNil(b bool)`
 
  SetValueNil sets the value for Value to be an explicit nil
 
 ### UnsetValue
-`func (o *PropertyValue) UnsetValue()`
+`func (o *PropertyDefinition) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
 

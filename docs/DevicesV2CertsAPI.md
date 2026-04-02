@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## DevicesV2CertsCreate
 
-> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).Execute()
+> ArduinoDevicev2Cert DevicesV2CertsCreate(ctx, id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).XOrganization(xOrganization).Execute()
 
 create devices_v2_certs
 
@@ -45,10 +45,11 @@ func main() {
 			oiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=
 			-----END CERTIFICATE-----
 			", false) // CreateDevicesV2CertsPayload | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsCreate(context.Background(), id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).Execute()
+	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsCreate(context.Background(), id).CreateDevicesV2CertsPayload(createDevicesV2CertsPayload).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsAPI.DevicesV2CertsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -75,6 +76,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **createDevicesV2CertsPayload** | [**CreateDevicesV2CertsPayload**](CreateDevicesV2CertsPayload.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -96,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsDelete
 
-> DevicesV2CertsDelete(ctx, cid, id).Execute()
+> DevicesV2CertsDelete(ctx, cid, id).XOrganization(xOrganization).Execute()
 
 delete devices_v2_certs
 
@@ -117,10 +119,11 @@ import (
 func main() {
 	cid := "cid_example" // string | The id of the cert
 	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsDelete(context.Background(), cid, id).Execute()
+	r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsDelete(context.Background(), cid, id).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsAPI.DevicesV2CertsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,6 +149,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -167,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsList
 
-> []ArduinoDevicev2Cert DevicesV2CertsList(ctx, id).Execute()
+> []ArduinoDevicev2Cert DevicesV2CertsList(ctx, id).XOrganization(xOrganization).Execute()
 
 list devices_v2_certs
 
@@ -187,10 +191,11 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsList(context.Background(), id).Execute()
+	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsList(context.Background(), id).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsAPI.DevicesV2CertsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -216,6 +221,7 @@ Other parameters are passed through a pointer to a apiDevicesV2CertsListRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -237,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsShow
 
-> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cid, id).Execute()
+> ArduinoDevicev2Cert DevicesV2CertsShow(ctx, cid, id).XOrganization(xOrganization).Execute()
 
 show devices_v2_certs
 
@@ -258,10 +264,11 @@ import (
 func main() {
 	cid := "cid_example" // string | The id of the cert
 	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsShow(context.Background(), cid, id).Execute()
+	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsShow(context.Background(), cid, id).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsAPI.DevicesV2CertsShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -289,6 +296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -310,7 +318,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2CertsUpdate
 
-> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cid, id).Devicev2Cert(devicev2Cert).Execute()
+> ArduinoDevicev2Cert DevicesV2CertsUpdate(ctx, cid, id).Devicev2Cert(devicev2Cert).XOrganization(xOrganization).Execute()
 
 update devices_v2_certs
 
@@ -332,10 +340,11 @@ func main() {
 	cid := "cid_example" // string | The id of the cert
 	id := "id_example" // string | The id of the device
 	devicev2Cert := *openapiclient.NewDevicev2Cert() // Devicev2Cert | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsUpdate(context.Background(), cid, id).Devicev2Cert(devicev2Cert).Execute()
+	resp, r, err := apiClient.DevicesV2CertsAPI.DevicesV2CertsUpdate(context.Background(), cid, id).Devicev2Cert(devicev2Cert).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2CertsAPI.DevicesV2CertsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -364,6 +373,7 @@ Name | Type | Description  | Notes
 
 
  **devicev2Cert** | [**Devicev2Cert**](Devicev2Cert.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

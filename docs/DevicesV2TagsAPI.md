@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## DevicesV2TagsDelete
 
-> DevicesV2TagsDelete(ctx, id, key).Execute()
+> DevicesV2TagsDelete(ctx, id, key).XOrganization(xOrganization).Execute()
 
 delete devices_v2_tags
 
@@ -33,10 +33,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	key := "key_example" // string | The key of the tag
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsDelete(context.Background(), id, key).Execute()
+	r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsDelete(context.Background(), id, key).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsAPI.DevicesV2TagsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -83,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2TagsList
 
-> ArduinoTags DevicesV2TagsList(ctx, id).Execute()
+> ArduinoTags DevicesV2TagsList(ctx, id).XOrganization(xOrganization).Execute()
 
 list devices_v2_tags
 
@@ -103,10 +105,11 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsList(context.Background(), id).Execute()
+	resp, r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsList(context.Background(), id).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsAPI.DevicesV2TagsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +135,7 @@ Other parameters are passed through a pointer to a apiDevicesV2TagsListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -153,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2TagsUpsert
 
-> DevicesV2TagsUpsert(ctx, id).Tag(tag).Execute()
+> DevicesV2TagsUpsert(ctx, id).Tag(tag).XOrganization(xOrganization).Execute()
 
 upsert devices_v2_tags
 
@@ -174,10 +178,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	tag := *openapiclient.NewTag("Key_example", "Value_example") // Tag | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsUpsert(context.Background(), id).Tag(tag).Execute()
+	r, err := apiClient.DevicesV2TagsAPI.DevicesV2TagsUpsert(context.Background(), id).Tag(tag).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2TagsAPI.DevicesV2TagsUpsert``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,6 +207,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **tag** | [**Tag**](Tag.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

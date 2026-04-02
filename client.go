@@ -52,6 +52,8 @@ type APIClient struct {
 
 	DashboardsV2API *DashboardsV2APIService
 
+	DashboardsV3API *DashboardsV3APIService
+
 	DevicesV2API *DevicesV2APIService
 
 	DevicesV2CertsAPI *DevicesV2CertsAPIService
@@ -100,6 +102,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.DashboardsV2API = (*DashboardsV2APIService)(&c.common)
+	c.DashboardsV3API = (*DashboardsV3APIService)(&c.common)
 	c.DevicesV2API = (*DevicesV2APIService)(&c.common)
 	c.DevicesV2CertsAPI = (*DevicesV2CertsAPIService)(&c.common)
 	c.DevicesV2OtaAPI = (*DevicesV2OtaAPIService)(&c.common)
