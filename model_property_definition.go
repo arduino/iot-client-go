@@ -15,73 +15,66 @@ import (
 	"fmt"
 )
 
-// checks if the PropertyValue type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PropertyValue{}
+// checks if the PropertyDefinition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PropertyDefinition{}
 
-// PropertyValue PropertyValuePayload describes a property value
-type PropertyValue struct {
-	// The device that sends the property
-	DeviceId *string `json:"device_id,omitempty"`
+// PropertyDefinition struct for PropertyDefinition
+type PropertyDefinition struct {
+	// Property name
+	Property string `json:"property"`
 	// The property value
 	Value interface{} `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _PropertyValue PropertyValue
+type _PropertyDefinition PropertyDefinition
 
-// NewPropertyValue instantiates a new PropertyValue object
+// NewPropertyDefinition instantiates a new PropertyDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPropertyValue(value interface{}) *PropertyValue {
-	this := PropertyValue{}
+func NewPropertyDefinition(property string, value interface{}) *PropertyDefinition {
+	this := PropertyDefinition{}
+	this.Property = property
 	this.Value = value
 	return &this
 }
 
-// NewPropertyValueWithDefaults instantiates a new PropertyValue object
+// NewPropertyDefinitionWithDefaults instantiates a new PropertyDefinition object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPropertyValueWithDefaults() *PropertyValue {
-	this := PropertyValue{}
+func NewPropertyDefinitionWithDefaults() *PropertyDefinition {
+	this := PropertyDefinition{}
 	return &this
 }
 
-// GetDeviceId returns the DeviceId field value if set, zero value otherwise.
-func (o *PropertyValue) GetDeviceId() string {
-	if o == nil || IsNil(o.DeviceId) {
+// GetProperty returns the Property field value
+func (o *PropertyDefinition) GetProperty() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DeviceId
+
+	return o.Property
 }
 
-// GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
+// GetPropertyOk returns a tuple with the Property field value
 // and a boolean to check if the value has been set.
-func (o *PropertyValue) GetDeviceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.DeviceId) {
+func (o *PropertyDefinition) GetPropertyOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DeviceId, true
+	return &o.Property, true
 }
 
-// HasDeviceId returns a boolean if a field has been set.
-func (o *PropertyValue) HasDeviceId() bool {
-	if o != nil && !IsNil(o.DeviceId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDeviceId gets a reference to the given string and assigns it to the DeviceId field.
-func (o *PropertyValue) SetDeviceId(v string) {
-	o.DeviceId = &v
+// SetProperty sets field value
+func (o *PropertyDefinition) SetProperty(v string) {
+	o.Property = v
 }
 
 // GetValue returns the Value field value
 // If the value is explicit nil, the zero value for interface{} will be returned
-func (o *PropertyValue) GetValue() interface{} {
+func (o *PropertyDefinition) GetValue() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
@@ -93,7 +86,7 @@ func (o *PropertyValue) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PropertyValue) GetValueOk() (*interface{}, bool) {
+func (o *PropertyDefinition) GetValueOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -101,11 +94,11 @@ func (o *PropertyValue) GetValueOk() (*interface{}, bool) {
 }
 
 // SetValue sets field value
-func (o *PropertyValue) SetValue(v interface{}) {
+func (o *PropertyDefinition) SetValue(v interface{}) {
 	o.Value = v
 }
 
-func (o PropertyValue) MarshalJSON() ([]byte, error) {
+func (o PropertyDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -113,11 +106,9 @@ func (o PropertyValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PropertyValue) ToMap() (map[string]interface{}, error) {
+func (o PropertyDefinition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DeviceId) {
-		toSerialize["device_id"] = o.DeviceId
-	}
+	toSerialize["property"] = o.Property
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
@@ -129,11 +120,12 @@ func (o PropertyValue) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PropertyValue) UnmarshalJSON(data []byte) (err error) {
+func (o *PropertyDefinition) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"property",
 		"value",
 	}
 
@@ -151,20 +143,20 @@ func (o *PropertyValue) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPropertyValue := _PropertyValue{}
+	varPropertyDefinition := _PropertyDefinition{}
 
-	err = json.Unmarshal(data, &varPropertyValue)
+	err = json.Unmarshal(data, &varPropertyDefinition)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PropertyValue(varPropertyValue)
+	*o = PropertyDefinition(varPropertyDefinition)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "device_id")
+		delete(additionalProperties, "property")
 		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
@@ -172,38 +164,38 @@ func (o *PropertyValue) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullablePropertyValue struct {
-	value *PropertyValue
+type NullablePropertyDefinition struct {
+	value *PropertyDefinition
 	isSet bool
 }
 
-func (v NullablePropertyValue) Get() *PropertyValue {
+func (v NullablePropertyDefinition) Get() *PropertyDefinition {
 	return v.value
 }
 
-func (v *NullablePropertyValue) Set(val *PropertyValue) {
+func (v *NullablePropertyDefinition) Set(val *PropertyDefinition) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePropertyValue) IsSet() bool {
+func (v NullablePropertyDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePropertyValue) Unset() {
+func (v *NullablePropertyDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePropertyValue(val *PropertyValue) *NullablePropertyValue {
-	return &NullablePropertyValue{value: val, isSet: true}
+func NewNullablePropertyDefinition(val *PropertyDefinition) *NullablePropertyDefinition {
+	return &NullablePropertyDefinition{value: val, isSet: true}
 }
 
-func (v NullablePropertyValue) MarshalJSON() ([]byte, error) {
+func (v NullablePropertyDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePropertyValue) UnmarshalJSON(src []byte) error {
+func (v *NullablePropertyDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

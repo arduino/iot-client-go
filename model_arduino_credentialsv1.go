@@ -22,6 +22,8 @@ var _ MappedNullable = &ArduinoCredentialsv1{}
 type ArduinoCredentialsv1 struct {
 	// Friendly name
 	FriendlyName string `json:"friendly_name"`
+	// Max length of the field expressed in bytes
+	MaxLength int64 `json:"max_length"`
 	// Tell if the parameter is required or not
 	Required bool `json:"required"`
 	// The secret parameter name
@@ -37,9 +39,10 @@ type _ArduinoCredentialsv1 ArduinoCredentialsv1
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArduinoCredentialsv1(friendlyName string, required bool, secretName string, sensitive bool) *ArduinoCredentialsv1 {
+func NewArduinoCredentialsv1(friendlyName string, maxLength int64, required bool, secretName string, sensitive bool) *ArduinoCredentialsv1 {
 	this := ArduinoCredentialsv1{}
 	this.FriendlyName = friendlyName
+	this.MaxLength = maxLength
 	this.Required = required
 	this.SecretName = secretName
 	this.Sensitive = sensitive
@@ -76,6 +79,30 @@ func (o *ArduinoCredentialsv1) GetFriendlyNameOk() (*string, bool) {
 // SetFriendlyName sets field value
 func (o *ArduinoCredentialsv1) SetFriendlyName(v string) {
 	o.FriendlyName = v
+}
+
+// GetMaxLength returns the MaxLength field value
+func (o *ArduinoCredentialsv1) GetMaxLength() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.MaxLength
+}
+
+// GetMaxLengthOk returns a tuple with the MaxLength field value
+// and a boolean to check if the value has been set.
+func (o *ArduinoCredentialsv1) GetMaxLengthOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MaxLength, true
+}
+
+// SetMaxLength sets field value
+func (o *ArduinoCredentialsv1) SetMaxLength(v int64) {
+	o.MaxLength = v
 }
 
 // GetRequired returns the Required field value
@@ -161,6 +188,7 @@ func (o ArduinoCredentialsv1) MarshalJSON() ([]byte, error) {
 func (o ArduinoCredentialsv1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["friendly_name"] = o.FriendlyName
+	toSerialize["max_length"] = o.MaxLength
 	toSerialize["required"] = o.Required
 	toSerialize["secret_name"] = o.SecretName
 	toSerialize["sensitive"] = o.Sensitive
@@ -178,6 +206,7 @@ func (o *ArduinoCredentialsv1) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"friendly_name",
+		"max_length",
 		"required",
 		"secret_name",
 		"sensitive",
@@ -211,6 +240,7 @@ func (o *ArduinoCredentialsv1) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "friendly_name")
+		delete(additionalProperties, "max_length")
 		delete(additionalProperties, "required")
 		delete(additionalProperties, "secret_name")
 		delete(additionalProperties, "sensitive")

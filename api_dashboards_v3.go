@@ -20,44 +20,42 @@ import (
 )
 
 
-// PropertiesV2APIService PropertiesV2API service
-type PropertiesV2APIService service
+// DashboardsV3APIService DashboardsV3API service
+type DashboardsV3APIService service
 
-type ApiPropertiesV2CreateRequest struct {
+type ApiDashboardsV3CloneRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2APIService
+	ApiService *DashboardsV3APIService
 	id string
-	property *Property
+	clone *Clone
 	xOrganization *string
 }
 
-// PropertyPayload describes a property of a thing. No field is mandatory
-func (r ApiPropertiesV2CreateRequest) Property(property Property) ApiPropertiesV2CreateRequest {
-	r.property = &property
+func (r ApiDashboardsV3CloneRequest) Clone(clone Clone) ApiDashboardsV3CloneRequest {
+	r.clone = &clone
 	return r
 }
 
-// The id of the organization
-func (r ApiPropertiesV2CreateRequest) XOrganization(xOrganization string) ApiPropertiesV2CreateRequest {
+func (r ApiDashboardsV3CloneRequest) XOrganization(xOrganization string) ApiDashboardsV3CloneRequest {
 	r.xOrganization = &xOrganization
 	return r
 }
 
-func (r ApiPropertiesV2CreateRequest) Execute() (*ArduinoProperty, *http.Response, error) {
-	return r.ApiService.PropertiesV2CreateExecute(r)
+func (r ApiDashboardsV3CloneRequest) Execute() (*ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3CloneExecute(r)
 }
 
 /*
-PropertiesV2Create create properties_v2
+DashboardsV3Clone clone dashboards_v3
 
-Creates a new property associated to a thing
+Clone an existing dashboard
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @return ApiPropertiesV2CreateRequest
+ @param id The id of the dashboard
+ @return ApiDashboardsV3CloneRequest
 */
-func (a *PropertiesV2APIService) PropertiesV2Create(ctx context.Context, id string) ApiPropertiesV2CreateRequest {
-	return ApiPropertiesV2CreateRequest{
+func (a *DashboardsV3APIService) DashboardsV3Clone(ctx context.Context, id string) ApiDashboardsV3CloneRequest {
+	return ApiDashboardsV3CloneRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -65,28 +63,28 @@ func (a *PropertiesV2APIService) PropertiesV2Create(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return ArduinoProperty
-func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2CreateRequest) (*ArduinoProperty, *http.Response, error) {
+//  @return ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3CloneExecute(r ApiDashboardsV3CloneRequest) (*ArduinoDashboardv3, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ArduinoProperty
+		localVarReturnValue  *ArduinoDashboardv3
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Clone")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties"
+	localVarPath := localBasePath + "/iot/v3/dashboards/{id}/clone"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.property == nil {
-		return localVarReturnValue, nil, reportError("property is required and must be specified")
+	if r.clone == nil {
+		return localVarReturnValue, nil, reportError("clone is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +97,7 @@ func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -110,7 +108,7 @@ func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.property
+	localVarPostBody = r.clone
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -155,7 +153,7 @@ func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 412 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -191,1180 +189,65 @@ func (a *PropertiesV2APIService) PropertiesV2CreateExecute(r ApiPropertiesV2Crea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPropertiesV2DeleteRequest struct {
+type ApiDashboardsV3CreateRequest struct {
 	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	force *bool
+	ApiService *DashboardsV3APIService
+	dashboardv3 *Dashboardv3
 	xOrganization *string
 }
 
-// If true, hard delete the property
-func (r ApiPropertiesV2DeleteRequest) Force(force bool) ApiPropertiesV2DeleteRequest {
-	r.force = &force
+// DashboardV3Payload describes a dashboard
+func (r ApiDashboardsV3CreateRequest) Dashboardv3(dashboardv3 Dashboardv3) ApiDashboardsV3CreateRequest {
+	r.dashboardv3 = &dashboardv3
 	return r
 }
 
-// The id of the organization
-func (r ApiPropertiesV2DeleteRequest) XOrganization(xOrganization string) ApiPropertiesV2DeleteRequest {
+func (r ApiDashboardsV3CreateRequest) XOrganization(xOrganization string) ApiDashboardsV3CreateRequest {
 	r.xOrganization = &xOrganization
 	return r
 }
 
-func (r ApiPropertiesV2DeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PropertiesV2DeleteExecute(r)
+func (r ApiDashboardsV3CreateRequest) Execute() (*ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3CreateExecute(r)
 }
 
 /*
-PropertiesV2Delete delete properties_v2
+DashboardsV3Create create dashboards_v3
 
-Removes a property associated to a thing
+Create a new dashboard
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid The id of the property
- @return ApiPropertiesV2DeleteRequest
+ @return ApiDashboardsV3CreateRequest
 */
-func (a *PropertiesV2APIService) PropertiesV2Delete(ctx context.Context, id string, pid string) ApiPropertiesV2DeleteRequest {
-	return ApiPropertiesV2DeleteRequest{
+func (a *DashboardsV3APIService) DashboardsV3Create(ctx context.Context) ApiDashboardsV3CreateRequest {
+	return ApiDashboardsV3CreateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		pid: pid,
 	}
 }
 
 // Execute executes the request
-func (a *PropertiesV2APIService) PropertiesV2DeleteExecute(r ApiPropertiesV2DeleteRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Delete")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.force = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2ListRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	showDeleted *bool
-	xOrganization *string
-}
-
-// If true, shows the soft deleted properties
-func (r ApiPropertiesV2ListRequest) ShowDeleted(showDeleted bool) ApiPropertiesV2ListRequest {
-	r.showDeleted = &showDeleted
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2ListRequest) XOrganization(xOrganization string) ApiPropertiesV2ListRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2ListRequest) Execute() ([]ArduinoProperty, *http.Response, error) {
-	return r.ApiService.PropertiesV2ListExecute(r)
-}
-
-/*
-PropertiesV2List list properties_v2
-
-Returns the list of properties associated to the thing
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @return ApiPropertiesV2ListRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2List(ctx context.Context, id string) ApiPropertiesV2ListRequest {
-	return ApiPropertiesV2ListRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return []ArduinoProperty
-func (a *PropertiesV2APIService) PropertiesV2ListExecute(r ApiPropertiesV2ListRequest) ([]ArduinoProperty, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ArduinoProperty
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2List")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.showDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.showDeleted = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json; type=collection", "application/vnd.goa.error+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2PublishRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	propertyValue *PropertyValue
-	xOrganization *string
-}
-
-// PropertyValuePayload describes a property value
-func (r ApiPropertiesV2PublishRequest) PropertyValue(propertyValue PropertyValue) ApiPropertiesV2PublishRequest {
-	r.propertyValue = &propertyValue
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2PublishRequest) XOrganization(xOrganization string) ApiPropertiesV2PublishRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2PublishRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PropertiesV2PublishExecute(r)
-}
-
-/*
-PropertiesV2Publish publish properties_v2
-
-Publish a property value to MQTT
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid The id of the property
- @return ApiPropertiesV2PublishRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2Publish(ctx context.Context, id string, pid string) ApiPropertiesV2PublishRequest {
-	return ApiPropertiesV2PublishRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-		pid: pid,
-	}
-}
-
-// Execute executes the request
-func (a *PropertiesV2APIService) PropertiesV2PublishExecute(r ApiPropertiesV2PublishRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Publish")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}/publish"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.propertyValue == nil {
-		return nil, reportError("propertyValue is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.propertyValue
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2PublishBatchRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	propertyTimedValue *[]PropertyTimedValue
-	xOrganization *string
-}
-
-func (r ApiPropertiesV2PublishBatchRequest) PropertyTimedValue(propertyTimedValue []PropertyTimedValue) ApiPropertiesV2PublishBatchRequest {
-	r.propertyTimedValue = &propertyTimedValue
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2PublishBatchRequest) XOrganization(xOrganization string) ApiPropertiesV2PublishBatchRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2PublishBatchRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PropertiesV2PublishBatchExecute(r)
-}
-
-/*
-PropertiesV2PublishBatch publishBatch properties_v2
-
-Publish a property's array of values to MQTT
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid The id of the property
- @return ApiPropertiesV2PublishBatchRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2PublishBatch(ctx context.Context, id string, pid string) ApiPropertiesV2PublishBatchRequest {
-	return ApiPropertiesV2PublishBatchRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-		pid: pid,
-	}
-}
-
-// Execute executes the request
-func (a *PropertiesV2APIService) PropertiesV2PublishBatchExecute(r ApiPropertiesV2PublishBatchRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2PublishBatch")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}/publish_batch"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.propertyTimedValue == nil {
-		return nil, reportError("propertyTimedValue is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.propertyTimedValue
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2PublishMultiRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	propertyValues *PropertyValues
-	xOrganization *string
-}
-
-func (r ApiPropertiesV2PublishMultiRequest) PropertyValues(propertyValues PropertyValues) ApiPropertiesV2PublishMultiRequest {
-	r.propertyValues = &propertyValues
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2PublishMultiRequest) XOrganization(xOrganization string) ApiPropertiesV2PublishMultiRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2PublishMultiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PropertiesV2PublishMultiExecute(r)
-}
-
-/*
-PropertiesV2PublishMulti publishMulti properties_v2
-
-Publish property values to MQTT
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @return ApiPropertiesV2PublishMultiRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2PublishMulti(ctx context.Context, id string) ApiPropertiesV2PublishMultiRequest {
-	return ApiPropertiesV2PublishMultiRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *PropertiesV2APIService) PropertiesV2PublishMultiExecute(r ApiPropertiesV2PublishMultiRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2PublishMulti")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/publish"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.propertyValues == nil {
-		return nil, reportError("propertyValues is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.goa.error+json", "text/plain"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.propertyValues
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2ShowRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	showDeleted *bool
-	xOrganization *string
-}
-
-// If true, shows the soft deleted properties
-func (r ApiPropertiesV2ShowRequest) ShowDeleted(showDeleted bool) ApiPropertiesV2ShowRequest {
-	r.showDeleted = &showDeleted
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2ShowRequest) XOrganization(xOrganization string) ApiPropertiesV2ShowRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2ShowRequest) Execute() (*ArduinoProperty, *http.Response, error) {
-	return r.ApiService.PropertiesV2ShowExecute(r)
-}
-
-/*
-PropertiesV2Show show properties_v2
-
-Returns the property requested by the user
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid The id of the property
- @return ApiPropertiesV2ShowRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2Show(ctx context.Context, id string, pid string) ApiPropertiesV2ShowRequest {
-	return ApiPropertiesV2ShowRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-		pid: pid,
-	}
-}
-
-// Execute executes the request
-//  @return ArduinoProperty
-func (a *PropertiesV2APIService) PropertiesV2ShowExecute(r ApiPropertiesV2ShowRequest) (*ArduinoProperty, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ArduinoProperty
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Show")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.showDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "show_deleted", r.showDeleted, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.showDeleted = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2TimeseriesRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	aggregation *string
-	desc *bool
-	from *string
-	interval *int32
-	to *string
-	xOrganization *string
-}
-
-// Samples aggregation statistic. Supported aggregations AVG|MAX|MIN|COUNT|SUM|PCT_99|PCT_95|PCT_90|PCT_75|PCT_50|PCT_15|PCT_5
-func (r ApiPropertiesV2TimeseriesRequest) Aggregation(aggregation string) ApiPropertiesV2TimeseriesRequest {
-	r.aggregation = &aggregation
-	return r
-}
-
-// Whether data&#39;s ordering (by time) should be descending
-func (r ApiPropertiesV2TimeseriesRequest) Desc(desc bool) ApiPropertiesV2TimeseriesRequest {
-	r.desc = &desc
-	return r
-}
-
-// Get data with a timestamp &gt;&#x3D; to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)
-func (r ApiPropertiesV2TimeseriesRequest) From(from string) ApiPropertiesV2TimeseriesRequest {
-	r.from = &from
-	return r
-}
-
-// Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response)
-func (r ApiPropertiesV2TimeseriesRequest) Interval(interval int32) ApiPropertiesV2TimeseriesRequest {
-	r.interval = &interval
-	return r
-}
-
-// Get data with a timestamp &lt; to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)
-func (r ApiPropertiesV2TimeseriesRequest) To(to string) ApiPropertiesV2TimeseriesRequest {
-	r.to = &to
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2TimeseriesRequest) XOrganization(xOrganization string) ApiPropertiesV2TimeseriesRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2TimeseriesRequest) Execute() (*ArduinoTimeseriesmedia, *http.Response, error) {
-	return r.ApiService.PropertiesV2TimeseriesExecute(r)
-}
-
-/*
-PropertiesV2Timeseries timeseries properties_v2
-
-Get numerical property's historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result will be truncated)
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid ID of a numerical property
- @return ApiPropertiesV2TimeseriesRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2Timeseries(ctx context.Context, id string, pid string) ApiPropertiesV2TimeseriesRequest {
-	return ApiPropertiesV2TimeseriesRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-		pid: pid,
-	}
-}
-
-// Execute executes the request
-//  @return ArduinoTimeseriesmedia
-func (a *PropertiesV2APIService) PropertiesV2TimeseriesExecute(r ApiPropertiesV2TimeseriesRequest) (*ArduinoTimeseriesmedia, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ArduinoTimeseriesmedia
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Timeseries")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}/timeseries"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.aggregation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation", r.aggregation, "form", "")
-	}
-	if r.desc != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.desc = &defaultValue
-	}
-	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
-	}
-	if r.interval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "interval", r.interval, "form", "")
-	}
-	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.timeseriesmedia+json", "application/vnd.goa.error+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPropertiesV2UpdateRequest struct {
-	ctx context.Context
-	ApiService *PropertiesV2APIService
-	id string
-	pid string
-	property *Property
-	xOrganization *string
-}
-
-// PropertyPayload describes a property of a thing. No field is mandatory
-func (r ApiPropertiesV2UpdateRequest) Property(property Property) ApiPropertiesV2UpdateRequest {
-	r.property = &property
-	return r
-}
-
-// The id of the organization
-func (r ApiPropertiesV2UpdateRequest) XOrganization(xOrganization string) ApiPropertiesV2UpdateRequest {
-	r.xOrganization = &xOrganization
-	return r
-}
-
-func (r ApiPropertiesV2UpdateRequest) Execute() (*ArduinoProperty, *http.Response, error) {
-	return r.ApiService.PropertiesV2UpdateExecute(r)
-}
-
-/*
-PropertiesV2Update update properties_v2
-
-Updates a property associated to a thing
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the thing
- @param pid The id of the property
- @return ApiPropertiesV2UpdateRequest
-*/
-func (a *PropertiesV2APIService) PropertiesV2Update(ctx context.Context, id string, pid string) ApiPropertiesV2UpdateRequest {
-	return ApiPropertiesV2UpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-		pid: pid,
-	}
-}
-
-// Execute executes the request
-//  @return ArduinoProperty
-func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2UpdateRequest) (*ArduinoProperty, *http.Response, error) {
+//  @return ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3CreateExecute(r ApiDashboardsV3CreateRequest) (*ArduinoDashboardv3, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ArduinoProperty
+		localVarReturnValue  *ArduinoDashboardv3
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PropertiesV2APIService.PropertiesV2Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/iot/v2/things/{id}/properties/{pid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pid"+"}", url.PathEscape(parameterValueToString(r.pid, "pid")), -1)
+	localVarPath := localBasePath + "/iot/v3/dashboards"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.property == nil {
-		return localVarReturnValue, nil, reportError("property is required and must be specified")
+	if r.dashboardv3 == nil {
+		return localVarReturnValue, nil, reportError("dashboardv3 is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1377,7 +260,7 @@ func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.property+json", "application/vnd.goa.error+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json", "application/vnd.goa.error+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1388,7 +271,7 @@ func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.property
+	localVarPostBody = r.dashboardv3
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1433,7 +316,821 @@ func (a *PropertiesV2APIService) PropertiesV2UpdateExecute(r ApiPropertiesV2Upda
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDashboardsV3ListRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV3APIService
+	name *string
+	thingId *string
+	userId *string
+	xOrganization *string
+}
+
+// The name of the dashboard
+func (r ApiDashboardsV3ListRequest) Name(name string) ApiDashboardsV3ListRequest {
+	r.name = &name
+	return r
+}
+
+// The thing_id of the dashboard&#39;s properties
+func (r ApiDashboardsV3ListRequest) ThingId(thingId string) ApiDashboardsV3ListRequest {
+	r.thingId = &thingId
+	return r
+}
+
+// The user_id of the dashboard&#39;s owner
+func (r ApiDashboardsV3ListRequest) UserId(userId string) ApiDashboardsV3ListRequest {
+	r.userId = &userId
+	return r
+}
+
+func (r ApiDashboardsV3ListRequest) XOrganization(xOrganization string) ApiDashboardsV3ListRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV3ListRequest) Execute() ([]ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3ListExecute(r)
+}
+
+/*
+DashboardsV3List list dashboards_v3
+
+Returns the list of dashboards
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDashboardsV3ListRequest
+*/
+func (a *DashboardsV3APIService) DashboardsV3List(ctx context.Context) ApiDashboardsV3ListRequest {
+	return ApiDashboardsV3ListRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3ListExecute(r ApiDashboardsV3ListRequest) ([]ArduinoDashboardv3, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ArduinoDashboardv3
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3List")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v3/dashboards"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.thingId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thing_id", r.thingId, "form", "")
+	}
+	if r.userId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json; type=collection", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDashboardsV3PatchRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV3APIService
+	id string
+	dashboardv3 *Dashboardv3
+	xOrganization *string
+}
+
+// DashboardV3Payload describes a dashboard
+func (r ApiDashboardsV3PatchRequest) Dashboardv3(dashboardv3 Dashboardv3) ApiDashboardsV3PatchRequest {
+	r.dashboardv3 = &dashboardv3
+	return r
+}
+
+func (r ApiDashboardsV3PatchRequest) XOrganization(xOrganization string) ApiDashboardsV3PatchRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV3PatchRequest) Execute() (*ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3PatchExecute(r)
+}
+
+/*
+DashboardsV3Patch patch dashboards_v3
+
+Updates an existing dashboard field without overwriting the existing data
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the dashboard
+ @return ApiDashboardsV3PatchRequest
+*/
+func (a *DashboardsV3APIService) DashboardsV3Patch(ctx context.Context, id string) ApiDashboardsV3PatchRequest {
+	return ApiDashboardsV3PatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3PatchExecute(r ApiDashboardsV3PatchRequest) (*ArduinoDashboardv3, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDashboardv3
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Patch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v3/dashboards/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.dashboardv3 == nil {
+		return localVarReturnValue, nil, reportError("dashboardv3 is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.dashboardv3
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDashboardsV3ShowRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV3APIService
+	id string
+	xOrganization *string
+}
+
+func (r ApiDashboardsV3ShowRequest) XOrganization(xOrganization string) ApiDashboardsV3ShowRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV3ShowRequest) Execute() (*ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3ShowExecute(r)
+}
+
+/*
+DashboardsV3Show show dashboards_v3
+
+Show a dashboard
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the dashboard
+ @return ApiDashboardsV3ShowRequest
+*/
+func (a *DashboardsV3APIService) DashboardsV3Show(ctx context.Context, id string) ApiDashboardsV3ShowRequest {
+	return ApiDashboardsV3ShowRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3ShowExecute(r ApiDashboardsV3ShowRequest) (*ArduinoDashboardv3, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDashboardv3
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Show")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v3/dashboards/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDashboardsV3TemplateRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV3APIService
+	id string
+	xOrganization *string
+}
+
+func (r ApiDashboardsV3TemplateRequest) XOrganization(xOrganization string) ApiDashboardsV3TemplateRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV3TemplateRequest) Execute() (*ArduinoDashboardv3template, *http.Response, error) {
+	return r.ApiService.DashboardsV3TemplateExecute(r)
+}
+
+/*
+DashboardsV3Template template dashboards_v3
+
+Get a template of the dashboard
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the dashboard
+ @return ApiDashboardsV3TemplateRequest
+*/
+func (a *DashboardsV3APIService) DashboardsV3Template(ctx context.Context, id string) ApiDashboardsV3TemplateRequest {
+	return ApiDashboardsV3TemplateRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDashboardv3template
+func (a *DashboardsV3APIService) DashboardsV3TemplateExecute(r ApiDashboardsV3TemplateRequest) (*ArduinoDashboardv3template, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDashboardv3template
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Template")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v3/dashboards/{id}/template"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3template+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDashboardsV3UpdateRequest struct {
+	ctx context.Context
+	ApiService *DashboardsV3APIService
+	id string
+	dashboardv3 *Dashboardv3
+	xOrganization *string
+}
+
+// DashboardV3Payload describes a dashboard
+func (r ApiDashboardsV3UpdateRequest) Dashboardv3(dashboardv3 Dashboardv3) ApiDashboardsV3UpdateRequest {
+	r.dashboardv3 = &dashboardv3
+	return r
+}
+
+func (r ApiDashboardsV3UpdateRequest) XOrganization(xOrganization string) ApiDashboardsV3UpdateRequest {
+	r.xOrganization = &xOrganization
+	return r
+}
+
+func (r ApiDashboardsV3UpdateRequest) Execute() (*ArduinoDashboardv3, *http.Response, error) {
+	return r.ApiService.DashboardsV3UpdateExecute(r)
+}
+
+/*
+DashboardsV3Update update dashboards_v3
+
+Updates an existing dashboard
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the dashboard
+ @return ApiDashboardsV3UpdateRequest
+*/
+func (a *DashboardsV3APIService) DashboardsV3Update(ctx context.Context, id string) ApiDashboardsV3UpdateRequest {
+	return ApiDashboardsV3UpdateRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ArduinoDashboardv3
+func (a *DashboardsV3APIService) DashboardsV3UpdateExecute(r ApiDashboardsV3UpdateRequest) (*ArduinoDashboardv3, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ArduinoDashboardv3
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsV3APIService.DashboardsV3Update")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iot/v3/dashboards/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.dashboardv3 == nil {
+		return localVarReturnValue, nil, reportError("dashboardv3 is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.arduino.dashboardv3+json", "application/vnd.goa.error+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.dashboardv3
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

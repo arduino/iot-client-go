@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**DevicesV2GetProperties**](DevicesV2API.md#DevicesV2GetProperties) | **Get** /iot/v2/devices/{id}/properties | getProperties devices_v2
 [**DevicesV2GetStatusEvents**](DevicesV2API.md#DevicesV2GetStatusEvents) | **Get** /iot/v2/devices/{id}/status | GetStatusEvents devices_v2
 [**DevicesV2List**](DevicesV2API.md#DevicesV2List) | **Get** /iot/v2/devices | list devices_v2
+[**DevicesV2RemoveHardwareID**](DevicesV2API.md#DevicesV2RemoveHardwareID) | **Post** /iot/v2/devices/{id}/remove-uhwid | removeHardwareID devices_v2
 [**DevicesV2Show**](DevicesV2API.md#DevicesV2Show) | **Get** /iot/v2/devices/{id} | show devices_v2
 [**DevicesV2Timeseries**](DevicesV2API.md#DevicesV2Timeseries) | **Get** /iot/v2/devices/{id}/properties/{pid} | timeseries devices_v2
 [**DevicesV2Update**](DevicesV2API.md#DevicesV2Update) | **Post** /iot/v2/devices/{id} | update devices_v2
@@ -522,6 +523,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/vnd.arduino.devicev2+json; type=collection, application/vnd.goa.error+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DevicesV2RemoveHardwareID
+
+> ArduinoDevicev2 DevicesV2RemoveHardwareID(ctx, id).XOrganization(xOrganization).Execute()
+
+removeHardwareID devices_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DevicesV2API.DevicesV2RemoveHardwareID(context.Background(), id).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2API.DevicesV2RemoveHardwareID``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DevicesV2RemoveHardwareID`: ArduinoDevicev2
+	fmt.Fprintf(os.Stdout, "Response from `DevicesV2API.DevicesV2RemoveHardwareID`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the device | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDevicesV2RemoveHardwareIDRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xOrganization** | **string** |  | 
+
+### Return type
+
+[**ArduinoDevicev2**](ArduinoDevicev2.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.arduino.devicev2+json, application/vnd.goa.error+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

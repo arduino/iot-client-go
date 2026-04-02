@@ -49,6 +49,8 @@ type ArduinoThing struct {
 	PropertiesCount *int64 `json:"properties_count,omitempty"`
 	// The id of the attached sketch
 	SketchId *string `json:"sketch_id,omitempty"`
+	// The id of the template used to create the thing
+	SourceTemplate *string `json:"source_template,omitempty"`
 	// Tags of the thing
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Time zone of the thing
@@ -512,6 +514,38 @@ func (o *ArduinoThing) SetSketchId(v string) {
 	o.SketchId = &v
 }
 
+// GetSourceTemplate returns the SourceTemplate field value if set, zero value otherwise.
+func (o *ArduinoThing) GetSourceTemplate() string {
+	if o == nil || IsNil(o.SourceTemplate) {
+		var ret string
+		return ret
+	}
+	return *o.SourceTemplate
+}
+
+// GetSourceTemplateOk returns a tuple with the SourceTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoThing) GetSourceTemplateOk() (*string, bool) {
+	if o == nil || IsNil(o.SourceTemplate) {
+		return nil, false
+	}
+	return o.SourceTemplate, true
+}
+
+// HasSourceTemplate returns a boolean if a field has been set.
+func (o *ArduinoThing) HasSourceTemplate() bool {
+	if o != nil && !IsNil(o.SourceTemplate) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceTemplate gets a reference to the given string and assigns it to the SourceTemplate field.
+func (o *ArduinoThing) SetSourceTemplate(v string) {
+	o.SourceTemplate = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ArduinoThing) GetTags() map[string]interface{} {
 	if o == nil || IsNil(o.Tags) {
@@ -734,6 +768,9 @@ func (o ArduinoThing) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SketchId) {
 		toSerialize["sketch_id"] = o.SketchId
 	}
+	if !IsNil(o.SourceTemplate) {
+		toSerialize["source_template"] = o.SourceTemplate
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -809,6 +846,7 @@ func (o *ArduinoThing) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "properties")
 		delete(additionalProperties, "properties_count")
 		delete(additionalProperties, "sketch_id")
+		delete(additionalProperties, "source_template")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "timezone")
 		delete(additionalProperties, "updated_at")

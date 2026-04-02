@@ -151,6 +151,12 @@ type ApiDevicesV2PassDeleteRequest struct {
 	ctx context.Context
 	ApiService *DevicesV2PassAPIService
 	id string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2PassDeleteRequest) XOrganization(xOrganization string) ApiDevicesV2PassDeleteRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2PassDeleteRequest) Execute() (*http.Response, error) {
@@ -211,6 +217,9 @@ func (a *DevicesV2PassAPIService) DevicesV2PassDeleteExecute(r ApiDevicesV2PassD
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -265,11 +274,17 @@ type ApiDevicesV2PassGetRequest struct {
 	ApiService *DevicesV2PassAPIService
 	id string
 	suggestedPassword *bool
+	xOrganization *string
 }
 
 // If true, return a suggested password
 func (r ApiDevicesV2PassGetRequest) SuggestedPassword(suggestedPassword bool) ApiDevicesV2PassGetRequest {
 	r.suggestedPassword = &suggestedPassword
+	return r
+}
+
+func (r ApiDevicesV2PassGetRequest) XOrganization(xOrganization string) ApiDevicesV2PassGetRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -339,6 +354,9 @@ func (a *DevicesV2PassAPIService) DevicesV2PassGetExecute(r ApiDevicesV2PassGetR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -402,10 +420,16 @@ type ApiDevicesV2PassSetRequest struct {
 	ApiService *DevicesV2PassAPIService
 	id string
 	devicev2Pass *Devicev2Pass
+	xOrganization *string
 }
 
 func (r ApiDevicesV2PassSetRequest) Devicev2Pass(devicev2Pass Devicev2Pass) ApiDevicesV2PassSetRequest {
 	r.devicev2Pass = &devicev2Pass
+	return r
+}
+
+func (r ApiDevicesV2PassSetRequest) XOrganization(xOrganization string) ApiDevicesV2PassSetRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -471,6 +495,9 @@ func (a *DevicesV2PassAPIService) DevicesV2PassSetExecute(r ApiDevicesV2PassSetR
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.devicev2Pass

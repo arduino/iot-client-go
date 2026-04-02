@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassDelete
 
-> DevicesV2PassDelete(ctx, id).Execute()
+> DevicesV2PassDelete(ctx, id).XOrganization(xOrganization).Execute()
 
 delete devices_v2_pass
 
@@ -103,10 +103,11 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the device
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2PassAPI.DevicesV2PassDelete(context.Background(), id).Execute()
+	r, err := apiClient.DevicesV2PassAPI.DevicesV2PassDelete(context.Background(), id).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassAPI.DevicesV2PassDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,6 +131,7 @@ Other parameters are passed through a pointer to a apiDevicesV2PassDeleteRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -151,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassGet
 
-> ArduinoDevicev2Pass DevicesV2PassGet(ctx, id).SuggestedPassword(suggestedPassword).Execute()
+> ArduinoDevicev2Pass DevicesV2PassGet(ctx, id).SuggestedPassword(suggestedPassword).XOrganization(xOrganization).Execute()
 
 get devices_v2_pass
 
@@ -172,10 +174,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	suggestedPassword := true // bool | If true, return a suggested password (optional) (default to false)
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2PassAPI.DevicesV2PassGet(context.Background(), id).SuggestedPassword(suggestedPassword).Execute()
+	resp, r, err := apiClient.DevicesV2PassAPI.DevicesV2PassGet(context.Background(), id).SuggestedPassword(suggestedPassword).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassAPI.DevicesV2PassGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,6 +205,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **suggestedPassword** | **bool** | If true, return a suggested password | [default to false]
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -223,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2PassSet
 
-> ArduinoDevicev2Pass DevicesV2PassSet(ctx, id).Devicev2Pass(devicev2Pass).Execute()
+> ArduinoDevicev2Pass DevicesV2PassSet(ctx, id).Devicev2Pass(devicev2Pass).XOrganization(xOrganization).Execute()
 
 set devices_v2_pass
 
@@ -244,10 +248,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	devicev2Pass := *openapiclient.NewDevicev2Pass() // Devicev2Pass | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2PassAPI.DevicesV2PassSet(context.Background(), id).Devicev2Pass(devicev2Pass).Execute()
+	resp, r, err := apiClient.DevicesV2PassAPI.DevicesV2PassSet(context.Background(), id).Devicev2Pass(devicev2Pass).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2PassAPI.DevicesV2PassSet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,6 +279,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **devicev2Pass** | [**Devicev2Pass**](Devicev2Pass.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

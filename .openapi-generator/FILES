@@ -3,6 +3,7 @@
 README.md
 api/openapi.yaml
 api_dashboards_v2.go
+api_dashboards_v3.go
 api_devices_v2.go
 api_devices_v2_certs.go
 api_devices_v2_ota.go
@@ -29,6 +30,8 @@ docs/ArduinoDashboardowner.md
 docs/ArduinoDashboardshare.md
 docs/ArduinoDashboardv2.md
 docs/ArduinoDashboardv2template.md
+docs/ArduinoDashboardv3.md
+docs/ArduinoDashboardv3template.md
 docs/ArduinoDevicev2.md
 docs/ArduinoDevicev2Cert.md
 docs/ArduinoDevicev2EventProperties.md
@@ -53,6 +56,7 @@ docs/ArduinoLinkedvariable.md
 docs/ArduinoLoradevicev1.md
 docs/ArduinoLorafreqplansv1.md
 docs/ArduinoLorafreqplanv1.md
+docs/ArduinoPagevariable.md
 docs/ArduinoProperty.md
 docs/ArduinoPropertytype.md
 docs/ArduinoSeriesBatch.md
@@ -78,6 +82,8 @@ docs/ArduinoTriggerWithLinkedEntities.md
 docs/ArduinoVariableslinks.md
 docs/ArduinoWidgetv2.md
 docs/ArduinoWidgetv2template.md
+docs/ArduinoWidgetv3.md
+docs/ArduinoWidgetv3template.md
 docs/BatchLastValueRequestsMediaV1.md
 docs/BatchQueryRawLastValueRequestMediaV1.md
 docs/BatchQueryRawRequestMediaV1.md
@@ -96,8 +102,10 @@ docs/CreateDevicesV2CertsPayload.md
 docs/CreateDevicesV2Payload.md
 docs/CreateLoraDevicesV1Payload.md
 docs/DashboardsV2API.md
+docs/DashboardsV3API.md
 docs/Dashboardshare.md
 docs/Dashboardv2.md
+docs/Dashboardv3.md
 docs/DeviceStatusSource.md
 docs/DeviceStatusSourceWithLinkedDevices.md
 docs/DevicesV2API.md
@@ -118,14 +126,19 @@ docs/LoraFreqPlanV1API.md
 docs/ModelError.md
 docs/NetworkCredentialsV1API.md
 docs/Override.md
+docs/Pagepayload.md
 docs/PropertiesV2API.md
 docs/PropertiesValue.md
 docs/PropertiesValues.md
 docs/Property.md
+docs/PropertyDefinition.md
+docs/PropertyTimedValue.md
 docs/PropertyTypesV1API.md
 docs/PropertyValue.md
+docs/PropertyValues.md
 docs/PushAction.md
 docs/PushDeliveryOpts.md
+docs/RecipientsList.md
 docs/SeriesV2API.md
 docs/Sharerequest.md
 docs/Tag.md
@@ -148,6 +161,7 @@ docs/Usershare.md
 docs/Variable.md
 docs/Widget.md
 docs/Widgetlink.md
+docs/Widgetv3.md
 git_push.sh
 go.mod
 go.sum
@@ -160,6 +174,8 @@ model_arduino_dashboardowner.go
 model_arduino_dashboardshare.go
 model_arduino_dashboardv2.go
 model_arduino_dashboardv2template.go
+model_arduino_dashboardv3.go
+model_arduino_dashboardv3template.go
 model_arduino_devicev2.go
 model_arduino_devicev2_cert.go
 model_arduino_devicev2_event_properties.go
@@ -184,6 +200,7 @@ model_arduino_linkedvariable.go
 model_arduino_loradevicev1.go
 model_arduino_lorafreqplansv1.go
 model_arduino_lorafreqplanv1.go
+model_arduino_pagevariable.go
 model_arduino_property.go
 model_arduino_propertytype.go
 model_arduino_series_batch.go
@@ -209,6 +226,8 @@ model_arduino_trigger_with_linked_entities.go
 model_arduino_variableslinks.go
 model_arduino_widgetv2.go
 model_arduino_widgetv2template.go
+model_arduino_widgetv3.go
+model_arduino_widgetv3template.go
 model_batch_last_value_requests_media_v1.go
 model_batch_query_raw_last_value_request_media_v1.go
 model_batch_query_raw_request_media_v1.go
@@ -228,6 +247,7 @@ model_create_devices_v2_payload.go
 model_create_lora_devices_v1_payload.go
 model_dashboardshare.go
 model_dashboardv2.go
+model_dashboardv3.go
 model_device_status_source.go
 model_device_status_source_with_linked_devices.go
 model_devicev2.go
@@ -240,12 +260,17 @@ model_email_delivery_opts.go
 model_error.go
 model_historic_data_request.go
 model_override.go
+model_pagepayload.go
 model_properties_value.go
 model_properties_values.go
 model_property.go
+model_property_definition.go
+model_property_timed_value.go
 model_property_value.go
+model_property_values.go
 model_push_action.go
 model_push_delivery_opts.go
+model_recipients_list.go
 model_sharerequest.go
 model_tag.go
 model_template.go
@@ -263,5 +288,7 @@ model_usershare.go
 model_variable.go
 model_widget.go
 model_widgetlink.go
+model_widgetv3.go
 response.go
+test/api_dashboards_v3_test.go
 utils.go

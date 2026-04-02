@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## DevicesV2OtaSend
 
-> DevicesV2OtaSend(ctx, id).Devicev2Otabinaryurl(devicev2Otabinaryurl).Execute()
+> DevicesV2OtaSend(ctx, id).Devicev2Otabinaryurl(devicev2Otabinaryurl).XOrganization(xOrganization).Execute()
 
 send devices_v2_ota
 
@@ -33,10 +33,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	devicev2Otabinaryurl := *openapiclient.NewDevicev2Otabinaryurl("BinaryKey_example") // Devicev2Otabinaryurl | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaSend(context.Background(), id).Devicev2Otabinaryurl(devicev2Otabinaryurl).Execute()
+	r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaSend(context.Background(), id).Devicev2Otabinaryurl(devicev2Otabinaryurl).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2OtaAPI.DevicesV2OtaSend``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **devicev2Otabinaryurl** | [**Devicev2Otabinaryurl**](Devicev2Otabinaryurl.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 
@@ -82,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2OtaUpload
 
-> ArduinoDevicev2Otaupload DevicesV2OtaUpload(ctx, id).OtaFile(otaFile).Async(async).ExpireInMins(expireInMins).Execute()
+> ArduinoDevicev2Otaupload DevicesV2OtaUpload(ctx, id).OtaFile(otaFile).XOrganization(xOrganization).Async(async).ExpireInMins(expireInMins).Execute()
 
 upload devices_v2_ota
 
@@ -103,12 +105,13 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	otaFile := os.NewFile(1234, "some_file") // *os.File | OTA file
+	xOrganization := "xOrganization_example" // string |  (optional)
 	async := true // bool | If false, wait for the full OTA process, until it gets a result from the device (optional) (default to true)
 	expireInMins := int32(56) // int32 | Binary expire time in minutes, default 10 mins (optional) (default to 10)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaUpload(context.Background(), id).OtaFile(otaFile).Async(async).ExpireInMins(expireInMins).Execute()
+	resp, r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaUpload(context.Background(), id).OtaFile(otaFile).XOrganization(xOrganization).Async(async).ExpireInMins(expireInMins).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2OtaAPI.DevicesV2OtaUpload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,6 +138,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **otaFile** | ***os.File** | OTA file | 
+ **xOrganization** | **string** |  | 
  **async** | **bool** | If false, wait for the full OTA process, until it gets a result from the device | [default to true]
  **expireInMins** | **int32** | Binary expire time in minutes, default 10 mins | [default to 10]
 
@@ -158,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## DevicesV2OtaUrl
 
-> DevicesV2OtaUrl(ctx, id).Devicev2Otaurlpyalod(devicev2Otaurlpyalod).Execute()
+> DevicesV2OtaUrl(ctx, id).Devicev2Otaurlpyalod(devicev2Otaurlpyalod).XOrganization(xOrganization).Execute()
 
 url devices_v2_ota
 
@@ -179,10 +183,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the device
 	devicev2Otaurlpyalod := *openapiclient.NewDevicev2Otaurlpyalod() // Devicev2Otaurlpyalod | 
+	xOrganization := "xOrganization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaUrl(context.Background(), id).Devicev2Otaurlpyalod(devicev2Otaurlpyalod).Execute()
+	r, err := apiClient.DevicesV2OtaAPI.DevicesV2OtaUrl(context.Background(), id).Devicev2Otaurlpyalod(devicev2Otaurlpyalod).XOrganization(xOrganization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DevicesV2OtaAPI.DevicesV2OtaUrl``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,6 +212,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **devicev2Otaurlpyalod** | [**Devicev2Otaurlpyalod**](Devicev2Otaurlpyalod.md) |  | 
+ **xOrganization** | **string** |  | 
 
 ### Return type
 

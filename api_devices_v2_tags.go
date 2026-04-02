@@ -28,6 +28,12 @@ type ApiDevicesV2TagsDeleteRequest struct {
 	ApiService *DevicesV2TagsAPIService
 	id string
 	key string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2TagsDeleteRequest) XOrganization(xOrganization string) ApiDevicesV2TagsDeleteRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2TagsDeleteRequest) Execute() (*http.Response, error) {
@@ -94,6 +100,9 @@ func (a *DevicesV2TagsAPIService) DevicesV2TagsDeleteExecute(r ApiDevicesV2TagsD
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -158,6 +167,12 @@ type ApiDevicesV2TagsListRequest struct {
 	ctx context.Context
 	ApiService *DevicesV2TagsAPIService
 	id string
+	xOrganization *string
+}
+
+func (r ApiDevicesV2TagsListRequest) XOrganization(xOrganization string) ApiDevicesV2TagsListRequest {
+	r.xOrganization = &xOrganization
+	return r
 }
 
 func (r ApiDevicesV2TagsListRequest) Execute() (*ArduinoTags, *http.Response, error) {
@@ -219,6 +234,9 @@ func (a *DevicesV2TagsAPIService) DevicesV2TagsListExecute(r ApiDevicesV2TagsLis
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -283,10 +301,16 @@ type ApiDevicesV2TagsUpsertRequest struct {
 	ApiService *DevicesV2TagsAPIService
 	id string
 	tag *Tag
+	xOrganization *string
 }
 
 func (r ApiDevicesV2TagsUpsertRequest) Tag(tag Tag) ApiDevicesV2TagsUpsertRequest {
 	r.tag = &tag
+	return r
+}
+
+func (r ApiDevicesV2TagsUpsertRequest) XOrganization(xOrganization string) ApiDevicesV2TagsUpsertRequest {
+	r.xOrganization = &xOrganization
 	return r
 }
 
@@ -350,6 +374,9 @@ func (a *DevicesV2TagsAPIService) DevicesV2TagsUpsertExecute(r ApiDevicesV2TagsU
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization", r.xOrganization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.tag

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FriendlyName** | **string** | Friendly name | 
+**MaxLength** | **int64** | Max length of the field expressed in bytes | 
 **Required** | **bool** | Tell if the parameter is required or not | 
 **SecretName** | **string** | The secret parameter name | 
 **Sensitive** | **bool** | Tell if the field is sensitive | 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewArduinoCredentialsv1
 
-`func NewArduinoCredentialsv1(friendlyName string, required bool, secretName string, sensitive bool, ) *ArduinoCredentialsv1`
+`func NewArduinoCredentialsv1(friendlyName string, maxLength int64, required bool, secretName string, sensitive bool, ) *ArduinoCredentialsv1`
 
 NewArduinoCredentialsv1 instantiates a new ArduinoCredentialsv1 object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +47,26 @@ and a boolean to check if the value has been set.
 `func (o *ArduinoCredentialsv1) SetFriendlyName(v string)`
 
 SetFriendlyName sets FriendlyName field to given value.
+
+
+### GetMaxLength
+
+`func (o *ArduinoCredentialsv1) GetMaxLength() int64`
+
+GetMaxLength returns the MaxLength field if non-nil, zero value otherwise.
+
+### GetMaxLengthOk
+
+`func (o *ArduinoCredentialsv1) GetMaxLengthOk() (*int64, bool)`
+
+GetMaxLengthOk returns a tuple with the MaxLength field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxLength
+
+`func (o *ArduinoCredentialsv1) SetMaxLength(v int64)`
+
+SetMaxLength sets MaxLength field to given value.
 
 
 ### GetRequired

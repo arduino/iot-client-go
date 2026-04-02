@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**PropertiesV2Delete**](PropertiesV2API.md#PropertiesV2Delete) | **Delete** /iot/v2/things/{id}/properties/{pid} | delete properties_v2
 [**PropertiesV2List**](PropertiesV2API.md#PropertiesV2List) | **Get** /iot/v2/things/{id}/properties | list properties_v2
 [**PropertiesV2Publish**](PropertiesV2API.md#PropertiesV2Publish) | **Put** /iot/v2/things/{id}/properties/{pid}/publish | publish properties_v2
+[**PropertiesV2PublishBatch**](PropertiesV2API.md#PropertiesV2PublishBatch) | **Put** /iot/v2/things/{id}/properties/{pid}/publish_batch | publishBatch properties_v2
+[**PropertiesV2PublishMulti**](PropertiesV2API.md#PropertiesV2PublishMulti) | **Put** /iot/v2/things/{id}/publish | publishMulti properties_v2
 [**PropertiesV2Show**](PropertiesV2API.md#PropertiesV2Show) | **Get** /iot/v2/things/{id}/properties/{pid} | show properties_v2
 [**PropertiesV2Timeseries**](PropertiesV2API.md#PropertiesV2Timeseries) | **Get** /iot/v2/things/{id}/properties/{pid}/timeseries | timeseries properties_v2
 [**PropertiesV2Update**](PropertiesV2API.md#PropertiesV2Update) | **Post** /iot/v2/things/{id}/properties/{pid} | update properties_v2
@@ -292,6 +294,154 @@ Name | Type | Description  | Notes
 
 
  **propertyValue** | [**PropertyValue**](PropertyValue.md) | PropertyValuePayload describes a property value | 
+ **xOrganization** | **string** | The id of the organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.goa.error+json, text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PropertiesV2PublishBatch
+
+> PropertiesV2PublishBatch(ctx, id, pid).PropertyTimedValue(propertyTimedValue).XOrganization(xOrganization).Execute()
+
+publishBatch properties_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+    "time"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the thing
+	pid := "pid_example" // string | The id of the property
+	propertyTimedValue := []openapiclient.PropertyTimedValue{*openapiclient.NewPropertyTimedValue(time.Now(), interface{}(123))} // []PropertyTimedValue | 
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.PropertiesV2API.PropertiesV2PublishBatch(context.Background(), id, pid).PropertyTimedValue(propertyTimedValue).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2API.PropertiesV2PublishBatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the thing | 
+**pid** | **string** | The id of the property | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPropertiesV2PublishBatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **propertyTimedValue** | [**[]PropertyTimedValue**](PropertyTimedValue.md) |  | 
+ **xOrganization** | **string** | The id of the organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.goa.error+json, text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PropertiesV2PublishMulti
+
+> PropertiesV2PublishMulti(ctx, id).PropertyValues(propertyValues).XOrganization(xOrganization).Execute()
+
+publishMulti properties_v2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/arduino/iot-client-go/v3"
+)
+
+func main() {
+	id := "id_example" // string | The id of the thing
+	propertyValues := *openapiclient.NewPropertyValues([]openapiclient.PropertyDefinition{*openapiclient.NewPropertyDefinition("Property_example", interface{}(123))}) // PropertyValues | 
+	xOrganization := "xOrganization_example" // string | The id of the organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.PropertiesV2API.PropertiesV2PublishMulti(context.Background(), id).PropertyValues(propertyValues).XOrganization(xOrganization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PropertiesV2API.PropertiesV2PublishMulti``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the thing | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPropertiesV2PublishMultiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **propertyValues** | [**PropertyValues**](PropertyValues.md) |  | 
  **xOrganization** | **string** | The id of the organization | 
 
 ### Return type

@@ -1,84 +1,79 @@
-# PropertyValue
+# PropertyTimedValue
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeviceId** | Pointer to **string** | The device that sends the property | [optional] 
+**Timestamp** | **time.Time** | The timestamp of the property value | 
 **Value** | **interface{}** | The property value | 
 
 ## Methods
 
-### NewPropertyValue
+### NewPropertyTimedValue
 
-`func NewPropertyValue(value interface{}, ) *PropertyValue`
+`func NewPropertyTimedValue(timestamp time.Time, value interface{}, ) *PropertyTimedValue`
 
-NewPropertyValue instantiates a new PropertyValue object
+NewPropertyTimedValue instantiates a new PropertyTimedValue object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPropertyValueWithDefaults
+### NewPropertyTimedValueWithDefaults
 
-`func NewPropertyValueWithDefaults() *PropertyValue`
+`func NewPropertyTimedValueWithDefaults() *PropertyTimedValue`
 
-NewPropertyValueWithDefaults instantiates a new PropertyValue object
+NewPropertyTimedValueWithDefaults instantiates a new PropertyTimedValue object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDeviceId
+### GetTimestamp
 
-`func (o *PropertyValue) GetDeviceId() string`
+`func (o *PropertyTimedValue) GetTimestamp() time.Time`
 
-GetDeviceId returns the DeviceId field if non-nil, zero value otherwise.
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
-### GetDeviceIdOk
+### GetTimestampOk
 
-`func (o *PropertyValue) GetDeviceIdOk() (*string, bool)`
+`func (o *PropertyTimedValue) GetTimestampOk() (*time.Time, bool)`
 
-GetDeviceIdOk returns a tuple with the DeviceId field if it's non-nil, zero value otherwise
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeviceId
+### SetTimestamp
 
-`func (o *PropertyValue) SetDeviceId(v string)`
+`func (o *PropertyTimedValue) SetTimestamp(v time.Time)`
 
-SetDeviceId sets DeviceId field to given value.
+SetTimestamp sets Timestamp field to given value.
 
-### HasDeviceId
-
-`func (o *PropertyValue) HasDeviceId() bool`
-
-HasDeviceId returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *PropertyValue) GetValue() interface{}`
+`func (o *PropertyTimedValue) GetValue() interface{}`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *PropertyValue) GetValueOk() (*interface{}, bool)`
+`func (o *PropertyTimedValue) GetValueOk() (*interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *PropertyValue) SetValue(v interface{})`
+`func (o *PropertyTimedValue) SetValue(v interface{})`
 
 SetValue sets Value field to given value.
 
 
 ### SetValueNil
 
-`func (o *PropertyValue) SetValueNil(b bool)`
+`func (o *PropertyTimedValue) SetValueNil(b bool)`
 
  SetValueNil sets the value for Value to be an explicit nil
 
 ### UnsetValue
-`func (o *PropertyValue) UnsetValue()`
+`func (o *PropertyTimedValue) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
 
