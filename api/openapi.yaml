@@ -4245,6 +4245,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Forbidden
+        "409":
+          content:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Conflict
         "412":
           content:
             application/vnd.arduino.devicev2+json:
@@ -7463,6 +7472,10 @@ components:
           type: string
         lib_version:
           type: string
+        locked:
+          description: True if the device is locked and can't be claimed by another
+            user
+          type: boolean
         metadata:
           additionalProperties: true
           description: The metadata of the device
@@ -9745,6 +9758,7 @@ components:
         wifi_fw_version: wifi_fw_version
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         unique_hardware_id: unique_hardware_id
+        locked: true
         type: mkrwifi1010
       properties:
         ID:
@@ -9772,6 +9786,10 @@ components:
         fqbn:
           description: The fully qualified board name
           type: string
+        locked:
+          description: True if the device is locked and can't be claimed by another
+            user
+          type: boolean
         name:
           description: The friendly name of the device
           maxLength: 64
@@ -9877,6 +9895,7 @@ components:
         name: name
         wifi_fw_version: wifi_fw_version
         unique_hardware_id: unique_hardware_id
+        locked: true
         type: mkrwifi1010
       properties:
         ble_mac:
@@ -9900,6 +9919,10 @@ components:
         fqbn:
           description: The fully qualified board name
           type: string
+        locked:
+          description: True if the device is locked and can't be claimed by another
+            user
+          type: boolean
         name:
           description: The friendly name of the device
           maxLength: 64
@@ -10382,6 +10405,10 @@ components:
         fqbn:
           description: The fully qualified board name
           type: string
+        locked:
+          description: True if the device is locked and can't be claimed by another
+            user
+          type: boolean
         name:
           description: The friendly name of the device
           maxLength: 64

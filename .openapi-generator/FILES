@@ -290,5 +290,4 @@ model_widget.go
 model_widgetlink.go
 model_widgetv3.go
 response.go
-test/api_dashboards_v3_test.go
 utils.go

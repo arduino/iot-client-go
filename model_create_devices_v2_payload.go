@@ -25,6 +25,8 @@ type CreateDevicesV2Payload struct {
 	ConnectionType *string `json:"connection_type,omitempty"`
 	// The fully qualified board name
 	Fqbn *string `json:"fqbn,omitempty"`
+	// True if the device is locked and can't be claimed by another user
+	Locked *bool `json:"locked,omitempty"`
 	// The friendly name of the device
 	Name *string `json:"name,omitempty" validate:"regexp=[a-zA-Z0-9_.@-]+"`
 	// The serial uuid of the device
@@ -159,6 +161,38 @@ func (o *CreateDevicesV2Payload) HasFqbn() bool {
 // SetFqbn gets a reference to the given string and assigns it to the Fqbn field.
 func (o *CreateDevicesV2Payload) SetFqbn(v string) {
 	o.Fqbn = &v
+}
+
+// GetLocked returns the Locked field value if set, zero value otherwise.
+func (o *CreateDevicesV2Payload) GetLocked() bool {
+	if o == nil || IsNil(o.Locked) {
+		var ret bool
+		return ret
+	}
+	return *o.Locked
+}
+
+// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDevicesV2Payload) GetLockedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Locked) {
+		return nil, false
+	}
+	return o.Locked, true
+}
+
+// HasLocked returns a boolean if a field has been set.
+func (o *CreateDevicesV2Payload) HasLocked() bool {
+	if o != nil && !IsNil(o.Locked) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocked gets a reference to the given bool and assigns it to the Locked field.
+func (o *CreateDevicesV2Payload) SetLocked(v bool) {
+	o.Locked = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -396,6 +430,9 @@ func (o CreateDevicesV2Payload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Fqbn) {
 		toSerialize["fqbn"] = o.Fqbn
 	}
+	if !IsNil(o.Locked) {
+		toSerialize["locked"] = o.Locked
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -461,6 +498,7 @@ func (o *CreateDevicesV2Payload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ble_mac")
 		delete(additionalProperties, "connection_type")
 		delete(additionalProperties, "fqbn")
+		delete(additionalProperties, "locked")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "serial")
 		delete(additionalProperties, "soft_deleted")

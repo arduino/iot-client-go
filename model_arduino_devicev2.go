@@ -46,6 +46,8 @@ type ArduinoDevicev2 struct {
 	// The latest version of the NINA/WIFI101 firmware available for this device
 	LatestWifiFwVersion *string `json:"latest_wifi_fw_version,omitempty"`
 	LibVersion *string `json:"lib_version,omitempty"`
+	// True if the device is locked and can't be claimed by another user
+	Locked *bool `json:"locked,omitempty"`
 	// The metadata of the device
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The friendly name of the device
@@ -528,6 +530,38 @@ func (o *ArduinoDevicev2) HasLibVersion() bool {
 // SetLibVersion gets a reference to the given string and assigns it to the LibVersion field.
 func (o *ArduinoDevicev2) SetLibVersion(v string) {
 	o.LibVersion = &v
+}
+
+// GetLocked returns the Locked field value if set, zero value otherwise.
+func (o *ArduinoDevicev2) GetLocked() bool {
+	if o == nil || IsNil(o.Locked) {
+		var ret bool
+		return ret
+	}
+	return *o.Locked
+}
+
+// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArduinoDevicev2) GetLockedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Locked) {
+		return nil, false
+	}
+	return o.Locked, true
+}
+
+// HasLocked returns a boolean if a field has been set.
+func (o *ArduinoDevicev2) HasLocked() bool {
+	if o != nil && !IsNil(o.Locked) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocked gets a reference to the given bool and assigns it to the Locked field.
+func (o *ArduinoDevicev2) SetLocked(v bool) {
+	o.Locked = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -1056,6 +1090,9 @@ func (o ArduinoDevicev2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LibVersion) {
 		toSerialize["lib_version"] = o.LibVersion
 	}
+	if !IsNil(o.Locked) {
+		toSerialize["locked"] = o.Locked
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -1159,6 +1196,7 @@ func (o *ArduinoDevicev2) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "last_activity_at")
 		delete(additionalProperties, "latest_wifi_fw_version")
 		delete(additionalProperties, "lib_version")
+		delete(additionalProperties, "locked")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "no_sketch")
