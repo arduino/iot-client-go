@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **LastActivityAt** | Pointer to **time.Time** | Last activity date | [optional] 
 **LatestWifiFwVersion** | Pointer to **string** | The latest version of the NINA/WIFI101 firmware available for this device | [optional] 
 **LibVersion** | Pointer to **string** |  | [optional] 
+**Locked** | Pointer to **bool** | True if the device is locked and can&#39;t be claimed by another user | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the device | [optional] 
 **Name** | **string** | The friendly name of the device | 
 **NoSketch** | Pointer to **bool** | True if the device type can not have an associated sketch | [optional] 
@@ -388,6 +389,31 @@ SetLibVersion sets LibVersion field to given value.
 `func (o *ArduinoDevicev2) HasLibVersion() bool`
 
 HasLibVersion returns a boolean if a field has been set.
+
+### GetLocked
+
+`func (o *ArduinoDevicev2) GetLocked() bool`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *ArduinoDevicev2) GetLockedOk() (*bool, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocked
+
+`func (o *ArduinoDevicev2) SetLocked(v bool)`
+
+SetLocked sets Locked field to given value.
+
+### HasLocked
+
+`func (o *ArduinoDevicev2) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
 
 ### GetMetadata
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **BleMac** | Pointer to **string** |  | [optional] 
 **ConnectionType** | Pointer to **string** | The type of the connections selected by the user when multiple connections are available | [optional] 
 **Fqbn** | Pointer to **string** | The fully qualified board name | [optional] 
+**Locked** | Pointer to **bool** | True if the device is locked and can&#39;t be claimed by another user | [optional] 
 **Name** | Pointer to **string** | The friendly name of the device | [optional] 
 **Serial** | Pointer to **string** | The serial uuid of the device | [optional] 
 **Type** | **string** | The type of the device | 
@@ -133,6 +134,31 @@ SetFqbn sets Fqbn field to given value.
 `func (o *CreateClaimedDevicesV2Payload) HasFqbn() bool`
 
 HasFqbn returns a boolean if a field has been set.
+
+### GetLocked
+
+`func (o *CreateClaimedDevicesV2Payload) GetLocked() bool`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *CreateClaimedDevicesV2Payload) GetLockedOk() (*bool, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocked
+
+`func (o *CreateClaimedDevicesV2Payload) SetLocked(v bool)`
+
+SetLocked sets Locked field to given value.
+
+### HasLocked
+
+`func (o *CreateClaimedDevicesV2Payload) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
 
 ### GetName
 
